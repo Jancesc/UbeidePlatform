@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="总进球" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mwb-bO-2qf">
+                    <rect key="frame" x="10" y="0.0" width="46" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" priority="250" constant="42" id="VbC-Gc-ZD4"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="全场90min(含伤停补时)的比赛结果" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ecZ-Dt-JDT">
+                    <rect key="frame" x="61" y="0.0" width="192" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" priority="250" constant="42" id="ie9-tu-azr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Mwb-bO-2qf" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="N37-IJ-Joh"/>
+                <constraint firstAttribute="bottom" secondItem="Mwb-bO-2qf" secondAttribute="bottom" id="Vkw-uW-52p"/>
+                <constraint firstItem="ecZ-Dt-JDT" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="gfG-DN-jHq"/>
+                <constraint firstItem="Mwb-bO-2qf" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" constant="10" id="rbK-et-E41"/>
+                <constraint firstAttribute="bottom" secondItem="ecZ-Dt-JDT" secondAttribute="bottom" id="xx4-rR-Ljs"/>
+                <constraint firstItem="ecZ-Dt-JDT" firstAttribute="leading" secondItem="Mwb-bO-2qf" secondAttribute="trailing" constant="5" id="yp9-oc-8PY"/>
+            </constraints>
+        </collectionReusableView>
+    </objects>
+</document>

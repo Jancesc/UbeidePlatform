@@ -1,0 +1,35 @@
+//
+//  NGG-Prefix.pch
+//  shelves
+//
+//  Created by Jan on 08/08/2017.
+//  Copyright © 2017 niugaga. All rights reserved.
+//
+
+#ifndef NGG_Prefix_pch
+#define NGG_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import "ComMacro.h"
+#import "NSDictionary+Extension.h"
+#import "UIImage+Helpers.h"
+#import "NGGLoginSession.h"
+#import "NGGHTTPClient.h"
+
+#define NGGPrimaryColor UIColorWithRGB(0xed, 0x27, 0x27)
+
+#define NGGViceColor UIColorWithRGB(0xfd, 0xbf, 0x2c)
+#define NGGGlobalBGColor UIColorWithRGB(0xf7, 0xf7, 0xf7)
+#define NGGButtonDisableColor UIColorWithRGB(0xcc, 0xcc, 0xcc)
+#define NGGSeparatorColor UIColorWithRGB(0xf1, 0xf1, 0xf1)
+#define NGGRandomColor [UIColor colorWithRed:(CGFloat)random() / (CGFloat)RAND_MAX green:(CGFloat)random() / (CGFloat)RAND_MAX blue:(CGFloat)random() / (CGFloat)RAND_MAX alpha:1.0f]
+
+#define NGGColor333 UIColorWithRGB(0x33, 0x33, 0x33)
+#define NGGColor666 UIColorWithRGB(0x66, 0x66, 0x66)
+#define NGGColor999 UIColorWithRGB(0x99, 0x99, 0x99)
+#define NGGColorCCC UIColorWithRGB(0xcc, 0xcc, 0xcc)
+
+#define NGGMaxCountPerPage 12
+
+#endif /* NGG_Prefix_pch */
