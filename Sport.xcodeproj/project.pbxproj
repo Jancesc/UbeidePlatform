@@ -174,6 +174,16 @@
 		3D35EE5C1FB3085400E01659 /* NGGGuess2RowsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D35EE5A1FB3085400E01659 /* NGGGuess2RowsCollectionViewCell.xib */; };
 		3D35EE601FB30A3B00E01659 /* NGGDetailHeaderReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EE5E1FB30A3B00E01659 /* NGGDetailHeaderReusableView.m */; };
 		3D35EE611FB30A3B00E01659 /* NGGDetailHeaderReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D35EE5F1FB30A3B00E01659 /* NGGDetailHeaderReusableView.xib */; };
+		3D45CB5C1FCBF5F0006EF330 /* NGGModifyNicknameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB5A1FCBF5F0006EF330 /* NGGModifyNicknameViewController.m */; };
+		3D45CB5D1FCBF5F0006EF330 /* NGGModifyNicknameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D45CB5B1FCBF5F0006EF330 /* NGGModifyNicknameViewController.xib */; };
+		3D45CB6C1FCC0128006EF330 /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB6B1FCC0128006EF330 /* UITextView+Placeholder.m */; };
+		3D45CB701FCC0C14006EF330 /* NGGModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB6E1FCC0C14006EF330 /* NGGModifyPasswordViewController.m */; };
+		3D45CB711FCC0C14006EF330 /* NGGModifyPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D45CB6F1FCC0C14006EF330 /* NGGModifyPasswordViewController.xib */; };
+		3D45CB751FCC1434006EF330 /* NGGMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB741FCC1434006EF330 /* NGGMessageViewController.m */; };
+		3D45CB781FCC1CAC006EF330 /* NGGSystemMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB771FCC1CAC006EF330 /* NGGSystemMessageViewController.m */; };
+		3D45CB7C1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB7A1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.m */; };
+		3D45CB7D1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D45CB7B1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.xib */; };
+		3D45CB801FCD10FA006EF330 /* NGGEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB7F1FCD10FA006EF330 /* NGGEmptyView.m */; };
 		3D4B1BD91FC6A0C600FBAB6C /* NGGUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D4B1BD81FC6A0C600FBAB6C /* NGGUserViewController.xib */; };
 		3D4B1BDD1FC7BF7F00FBAB6C /* NGGUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4B1BDC1FC7BF7F00FBAB6C /* NGGUser.m */; };
 		3D4B1BE01FC7C4F500FBAB6C /* NGGModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4B1BDF1FC7C4F500FBAB6C /* NGGModel.m */; };
@@ -518,6 +528,23 @@
 		3D35EE5D1FB30A3B00E01659 /* NGGDetailHeaderReusableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGDetailHeaderReusableView.h; sourceTree = "<group>"; };
 		3D35EE5E1FB30A3B00E01659 /* NGGDetailHeaderReusableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGDetailHeaderReusableView.m; sourceTree = "<group>"; };
 		3D35EE5F1FB30A3B00E01659 /* NGGDetailHeaderReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGDetailHeaderReusableView.xib; sourceTree = "<group>"; };
+		3D45CB591FCBF5F0006EF330 /* NGGModifyNicknameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGModifyNicknameViewController.h; sourceTree = "<group>"; };
+		3D45CB5A1FCBF5F0006EF330 /* NGGModifyNicknameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGModifyNicknameViewController.m; sourceTree = "<group>"; };
+		3D45CB5B1FCBF5F0006EF330 /* NGGModifyNicknameViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGModifyNicknameViewController.xib; sourceTree = "<group>"; };
+		3D45CB6A1FCC0127006EF330 /* UITextView+Placeholder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITextView+Placeholder.h"; sourceTree = "<group>"; };
+		3D45CB6B1FCC0128006EF330 /* UITextView+Placeholder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITextView+Placeholder.m"; sourceTree = "<group>"; };
+		3D45CB6D1FCC0C14006EF330 /* NGGModifyPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGModifyPasswordViewController.h; sourceTree = "<group>"; };
+		3D45CB6E1FCC0C14006EF330 /* NGGModifyPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGModifyPasswordViewController.m; sourceTree = "<group>"; };
+		3D45CB6F1FCC0C14006EF330 /* NGGModifyPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGModifyPasswordViewController.xib; sourceTree = "<group>"; };
+		3D45CB731FCC1434006EF330 /* NGGMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGMessageViewController.h; sourceTree = "<group>"; };
+		3D45CB741FCC1434006EF330 /* NGGMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGMessageViewController.m; sourceTree = "<group>"; };
+		3D45CB761FCC1CAC006EF330 /* NGGSystemMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGSystemMessageViewController.h; sourceTree = "<group>"; };
+		3D45CB771FCC1CAC006EF330 /* NGGSystemMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGSystemMessageViewController.m; sourceTree = "<group>"; };
+		3D45CB791FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGSystemMessageTableViewCell.h; sourceTree = "<group>"; };
+		3D45CB7A1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGSystemMessageTableViewCell.m; sourceTree = "<group>"; };
+		3D45CB7B1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGSystemMessageTableViewCell.xib; sourceTree = "<group>"; };
+		3D45CB7E1FCD10FA006EF330 /* NGGEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGEmptyView.h; sourceTree = "<group>"; };
+		3D45CB7F1FCD10FA006EF330 /* NGGEmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGEmptyView.m; sourceTree = "<group>"; };
 		3D4B1BD81FC6A0C600FBAB6C /* NGGUserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGUserViewController.xib; sourceTree = "<group>"; };
 		3D4B1BDB1FC7BF7F00FBAB6C /* NGGUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGUser.h; sourceTree = "<group>"; };
 		3D4B1BDC1FC7BF7F00FBAB6C /* NGGUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGUser.m; sourceTree = "<group>"; };
@@ -796,6 +823,7 @@
 		3D35ECC11FB2F78800E01659 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				3D45CB721FCC1410006EF330 /* Message */,
 				3DDACFB01FC8136B0057BD9B /* UserInfo */,
 				3D35ECC21FB2F78800E01659 /* NGGUserViewController.h */,
 				3D35ECC31FB2F78800E01659 /* NGGUserViewController.m */,
@@ -1178,6 +1206,8 @@
 			isa = PBXGroup;
 			children = (
 				3D4B1BE11FC7CF1600FBAB6C /* CommonCell */,
+				3D45CB6A1FCC0127006EF330 /* UITextView+Placeholder.h */,
+				3D45CB6B1FCC0128006EF330 /* UITextView+Placeholder.m */,
 				3D35ED941FB2F78900E01659 /* Encoding */,
 				3D35ED9A1FB2F78900E01659 /* NGGHTTPClient.h */,
 				3D35ED9B1FB2F78900E01659 /* NGGHTTPClient.m */,
@@ -1185,6 +1215,8 @@
 				3D35ED9D1FB2F78900E01659 /* NSDictionary+Extension.m */,
 				3D35ED9E1FB2F78900E01659 /* ZSBlockAlertView.h */,
 				3D35ED9F1FB2F78900E01659 /* ZSBlockAlertView.m */,
+				3D45CB7E1FCD10FA006EF330 /* NGGEmptyView.h */,
+				3D45CB7F1FCD10FA006EF330 /* NGGEmptyView.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1264,6 +1296,20 @@
 				3D35EE5F1FB30A3B00E01659 /* NGGDetailHeaderReusableView.xib */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		3D45CB721FCC1410006EF330 /* Message */ = {
+			isa = PBXGroup;
+			children = (
+				3D45CB731FCC1434006EF330 /* NGGMessageViewController.h */,
+				3D45CB741FCC1434006EF330 /* NGGMessageViewController.m */,
+				3D45CB761FCC1CAC006EF330 /* NGGSystemMessageViewController.h */,
+				3D45CB771FCC1CAC006EF330 /* NGGSystemMessageViewController.m */,
+				3D45CB791FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.h */,
+				3D45CB7A1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.m */,
+				3D45CB7B1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.xib */,
+			);
+			path = Message;
 			sourceTree = "<group>";
 		};
 		3D4B1BDA1FC7BF5700FBAB6C /* Model */ = {
@@ -1355,6 +1401,12 @@
 			children = (
 				3DDACFB11FC8139C0057BD9B /* NGGUserInfoViewController.h */,
 				3DDACFB21FC8139C0057BD9B /* NGGUserInfoViewController.m */,
+				3D45CB591FCBF5F0006EF330 /* NGGModifyNicknameViewController.h */,
+				3D45CB5A1FCBF5F0006EF330 /* NGGModifyNicknameViewController.m */,
+				3D45CB5B1FCBF5F0006EF330 /* NGGModifyNicknameViewController.xib */,
+				3D45CB6D1FCC0C14006EF330 /* NGGModifyPasswordViewController.h */,
+				3D45CB6E1FCC0C14006EF330 /* NGGModifyPasswordViewController.m */,
+				3D45CB6F1FCC0C14006EF330 /* NGGModifyPasswordViewController.xib */,
 			);
 			path = UserInfo;
 			sourceTree = "<group>";
@@ -1427,6 +1479,7 @@
 				3D35EDA81FB2F78900E01659 /* Main.storyboard in Resources */,
 				3D35EDB51FB2F78900E01659 /* NGGHomeHeaderReusableView.xib in Resources */,
 				3DC56B7E1FC421F000F67C32 /* NGGFollowGameTableViewCell.xib in Resources */,
+				3D45CB7D1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.xib in Resources */,
 				3D35EDCE1FB2F78900E01659 /* AlipaySDK.bundle in Resources */,
 				3D35EDC41FB2F78900E01659 /* NGGLoginViewController.xib in Resources */,
 				3D35EDC21FB2F78900E01659 /* NGGTypeTableViewCell.xib in Resources */,
@@ -1441,8 +1494,10 @@
 				3DC56B661FC3DA0A00F67C32 /* NGGAnalyseHistoryheaderView.xib in Resources */,
 				3DC56B891FC42FC000F67C32 /* NGGGameResultTableViewCell.xib in Resources */,
 				3D35EDB71FB2F78900E01659 /* NGGHomeItemCollectionViewCell.xib in Resources */,
+				3D45CB5D1FCBF5F0006EF330 /* NGGModifyNicknameViewController.xib in Resources */,
 				3D35EE031FB2F78900E01659 /* MJRefresh.bundle in Resources */,
 				3DC56B921FC4432A00F67C32 /* NGGRankTableViewCell.xib in Resources */,
+				3D45CB711FCC0C14006EF330 /* NGGModifyPasswordViewController.xib in Resources */,
 				3D4B1BD91FC6A0C600FBAB6C /* NGGUserViewController.xib in Resources */,
 				3D25B4AF1FB428A200D20FB2 /* NGGDetailAnalyseView.xib in Resources */,
 				3D35EE571FB3073D00E01659 /* NGGGuessCollectionViewCell.xib in Resources */,
@@ -1500,6 +1555,7 @@
 				3D35EDF41FB2F78900E01659 /* ViewController+MASAdditions.m in Sources */,
 				3D35EDAB1FB2F78900E01659 /* NGGLoginSession.m in Sources */,
 				3D35EDDA1FB2F78900E01659 /* AFURLSessionManager.m in Sources */,
+				3D45CB701FCC0C14006EF330 /* NGGModifyPasswordViewController.m in Sources */,
 				3D35EE561FB3073D00E01659 /* NGGGuessCollectionViewCell.m in Sources */,
 				3D35EDFA1FB2F78900E01659 /* MJRefreshAutoGifFooter.m in Sources */,
 				3D35EDBC1FB2F78900E01659 /* NGGHomeViewController.m in Sources */,
@@ -1532,6 +1588,7 @@
 				3D35EDAE1FB2F78900E01659 /* NGGGuessDetailViewController.m in Sources */,
 				3D35EDEB1FB2F78900E01659 /* MASCompositeConstraint.m in Sources */,
 				3D35EE061FB2F78900E01659 /* UIScrollView+MJExtension.m in Sources */,
+				3D45CB751FCC1434006EF330 /* NGGMessageViewController.m in Sources */,
 				3D35EE2C1FB2F78900E01659 /* ViewController.m in Sources */,
 				3D35EDF11FB2F78900E01659 /* NSArray+MASAdditions.m in Sources */,
 				3D35EDF61FB2F78900E01659 /* MJRefreshBackFooter.m in Sources */,
@@ -1548,16 +1605,19 @@
 				3D35EE0A1FB2F78900E01659 /* SVProgressHUD.m in Sources */,
 				3D35EE1C1FB2F78900E01659 /* UIImage+MultiFormat.m in Sources */,
 				3D4B1BE01FC7C4F500FBAB6C /* NGGModel.m in Sources */,
+				3D45CB781FCC1CAC006EF330 /* NGGSystemMessageViewController.m in Sources */,
 				3D35EE261FB2F78900E01659 /* UIImageView+LBBlurredImage.m in Sources */,
 				3D35EDCA1FB2F78900E01659 /* NGGTaskViewController.m in Sources */,
 				3DC56B701FC4103100F67C32 /* NGGRecentRecordCollectionViewCell.m in Sources */,
 				3D35EE1E1FB2F78900E01659 /* UIImageView+HighlightedWebCache.m in Sources */,
 				3D35EDBA1FB2F78900E01659 /* NGGHomePageMenuCollectionViewCell.m in Sources */,
 				3D35EDBF1FB2F78900E01659 /* NGGPreGuessListViewController.m in Sources */,
+				3D45CB801FCD10FA006EF330 /* NGGEmptyView.m in Sources */,
 				3D35EDC31FB2F78900E01659 /* NGGLoginViewController.m in Sources */,
 				3D35EDE51FB2F78900E01659 /* DMPhotoView.m in Sources */,
 				3D35EE111FB2F78900E01659 /* NSImage+WebCache.m in Sources */,
 				3D35EE271FB2F78900E01659 /* ZSMD5.m in Sources */,
+				3D45CB6C1FCC0128006EF330 /* UITextView+Placeholder.m in Sources */,
 				3D35EE011FB2F78900E01659 /* MJRefreshNormalHeader.m in Sources */,
 				3D35EDFC1FB2F78900E01659 /* MJRefreshAutoStateFooter.m in Sources */,
 				3D35EDF81FB2F78900E01659 /* MJRefreshFooter.m in Sources */,
@@ -1588,6 +1648,7 @@
 				3D35EDE21FB2F78900E01659 /* DMPhotoBrowserViewController.m in Sources */,
 				3D35EE091FB2F78900E01659 /* MBProgressHUD.m in Sources */,
 				3D35EE191FB2F78900E01659 /* SDWebImagePrefetcher.m in Sources */,
+				3D45CB7C1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.m in Sources */,
 				3D35EE161FB2F78900E01659 /* SDWebImageDownloader.m in Sources */,
 				3D35EDD01FB2F78900E01659 /* NGGSocial.m in Sources */,
 				3D35EDF91FB2F78900E01659 /* MJRefreshHeader.m in Sources */,
@@ -1595,6 +1656,7 @@
 				3D35EDD81FB2F78900E01659 /* AFURLRequestSerialization.m in Sources */,
 				3DC56B601FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.m in Sources */,
 				3D35EDE61FB2F78900E01659 /* DMPictureBrowerViewController.m in Sources */,
+				3D45CB5C1FCBF5F0006EF330 /* NGGModifyNicknameViewController.m in Sources */,
 				3D35EE211FB2F78900E01659 /* UIView+WebCacheOperation.m in Sources */,
 				3D35EDBD1FB2F78900E01659 /* NGGPreGameTableViewCell.m in Sources */,
 				3D35EE051FB2F78900E01659 /* NSBundle+MJRefresh.m in Sources */,

@@ -20,7 +20,7 @@
 #define NGGPrimaryColor UIColorWithRGB(0xed, 0x27, 0x27)
 
 #define NGGViceColor UIColorWithRGB(0xfd, 0xbf, 0x2c)
-#define NGGGlobalBGColor UIColorWithRGB(0xf7, 0xf7, 0xf7)
+#define NGGGlobalBGColor UIColorWithRGB(0xf0, 0xf0, 0xf0)
 #define NGGButtonDisableColor UIColorWithRGB(0xcc, 0xcc, 0xcc)
 #define NGGSeparatorColor UIColorWithRGB(0xf1, 0xf1, 0xf1)
 #define NGGRandomColor [UIColor colorWithRed:(CGFloat)random() / (CGFloat)RAND_MAX green:(CGFloat)random() / (CGFloat)RAND_MAX blue:(CGFloat)random() / (CGFloat)RAND_MAX alpha:1.0f]

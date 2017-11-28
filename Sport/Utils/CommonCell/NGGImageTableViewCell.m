@@ -7,6 +7,7 @@
 //
 
 #import "NGGImageTableViewCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface NGGImageTableViewCell() {
     
@@ -27,6 +28,15 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)setModel:(NGGCommonCellModel *)model {
+    
+    [super setModel:model];
+
+    _namelabel.text = model.title;
+    _descLabel.text = model.desc;
+    [_imageView sd_setImageWithURL:[NSURL URLWithString:model.value]];
 }
 
 @end

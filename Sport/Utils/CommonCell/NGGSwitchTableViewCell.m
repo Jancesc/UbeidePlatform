@@ -21,6 +21,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    _switch.onTintColor = NGGViceColor;
+    [_switch addTarget:self action:@selector(switchValueChanged:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -29,4 +31,26 @@
     // Configure the view for the selected state
 }
 
+- (void)setModel:(NGGCommonCellModel *)model {
+    
+    [super setModel:model];
+    _namelabel.text = model.title;
+    _descLabel.text = model.desc;
+    
+    if (model.value && [model.value isEqualToString:@"0"]) {
+        
+        _switch.on = NO;
+    } else {
+        
+        _switch.on = YES;
+    }
+}
+
+- (void)switchValueChanged:(UISwitch *)theSwitch {
+    
+    if (_valueChanged) {
+        
+        _valueChanged(theSwitch.on);
+    }
+}
 @end

@@ -9,5 +9,6 @@
 #import "NGGCommonTableViewCell.h"
 
 @interface NGGSwitchTableViewCell : NGGCommonTableViewCell
+@property (nonatomic, copy) void(^valueChanged)(BOOL change);
 
 @end
