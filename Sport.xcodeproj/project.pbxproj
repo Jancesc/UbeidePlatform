@@ -184,6 +184,14 @@
 		3D45CB7C1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB7A1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.m */; };
 		3D45CB7D1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D45CB7B1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.xib */; };
 		3D45CB801FCD10FA006EF330 /* NGGEmptyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB7F1FCD10FA006EF330 /* NGGEmptyView.m */; };
+		3D45CB851FCD380D006EF330 /* NGGExchangeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB831FCD380D006EF330 /* NGGExchangeViewController.m */; };
+		3D45CB861FCD380D006EF330 /* NGGExchangeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D45CB841FCD380D006EF330 /* NGGExchangeViewController.xib */; };
+		3D45CB8A1FCD5CF5006EF330 /* NGGRechargeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB891FCD5CF5006EF330 /* NGGRechargeViewController.m */; };
+		3D45CB8E1FCD5D14006EF330 /* NGGRechargeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB8C1FCD5D14006EF330 /* NGGRechargeCollectionViewCell.m */; };
+		3D45CB8F1FCD5D14006EF330 /* NGGRechargeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D45CB8D1FCD5D14006EF330 /* NGGRechargeCollectionViewCell.xib */; };
+		3D45CB921FCD6303006EF330 /* NGGRechargeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB911FCD6303006EF330 /* NGGRechargeModel.m */; };
+		3D45CB971FCD7156006EF330 /* NGGConsumptionDeatilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB951FCD7156006EF330 /* NGGConsumptionDeatilViewController.m */; };
+		3D45CB981FCD7156006EF330 /* NGGConsumptionDeatilViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D45CB961FCD7156006EF330 /* NGGConsumptionDeatilViewController.xib */; };
 		3D4B1BD91FC6A0C600FBAB6C /* NGGUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D4B1BD81FC6A0C600FBAB6C /* NGGUserViewController.xib */; };
 		3D4B1BDD1FC7BF7F00FBAB6C /* NGGUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4B1BDC1FC7BF7F00FBAB6C /* NGGUser.m */; };
 		3D4B1BE01FC7C4F500FBAB6C /* NGGModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4B1BDF1FC7C4F500FBAB6C /* NGGModel.m */; };
@@ -545,6 +553,19 @@
 		3D45CB7B1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGSystemMessageTableViewCell.xib; sourceTree = "<group>"; };
 		3D45CB7E1FCD10FA006EF330 /* NGGEmptyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGEmptyView.h; sourceTree = "<group>"; };
 		3D45CB7F1FCD10FA006EF330 /* NGGEmptyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGEmptyView.m; sourceTree = "<group>"; };
+		3D45CB821FCD380D006EF330 /* NGGExchangeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGExchangeViewController.h; sourceTree = "<group>"; };
+		3D45CB831FCD380D006EF330 /* NGGExchangeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGExchangeViewController.m; sourceTree = "<group>"; };
+		3D45CB841FCD380D006EF330 /* NGGExchangeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGExchangeViewController.xib; sourceTree = "<group>"; };
+		3D45CB881FCD5CF5006EF330 /* NGGRechargeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGRechargeViewController.h; sourceTree = "<group>"; };
+		3D45CB891FCD5CF5006EF330 /* NGGRechargeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGRechargeViewController.m; sourceTree = "<group>"; };
+		3D45CB8B1FCD5D14006EF330 /* NGGRechargeCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGRechargeCollectionViewCell.h; sourceTree = "<group>"; };
+		3D45CB8C1FCD5D14006EF330 /* NGGRechargeCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGRechargeCollectionViewCell.m; sourceTree = "<group>"; };
+		3D45CB8D1FCD5D14006EF330 /* NGGRechargeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGRechargeCollectionViewCell.xib; sourceTree = "<group>"; };
+		3D45CB901FCD6303006EF330 /* NGGRechargeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGRechargeModel.h; sourceTree = "<group>"; };
+		3D45CB911FCD6303006EF330 /* NGGRechargeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGRechargeModel.m; sourceTree = "<group>"; };
+		3D45CB941FCD7156006EF330 /* NGGConsumptionDeatilViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGConsumptionDeatilViewController.h; sourceTree = "<group>"; };
+		3D45CB951FCD7156006EF330 /* NGGConsumptionDeatilViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGConsumptionDeatilViewController.m; sourceTree = "<group>"; };
+		3D45CB961FCD7156006EF330 /* NGGConsumptionDeatilViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGConsumptionDeatilViewController.xib; sourceTree = "<group>"; };
 		3D4B1BD81FC6A0C600FBAB6C /* NGGUserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGUserViewController.xib; sourceTree = "<group>"; };
 		3D4B1BDB1FC7BF7F00FBAB6C /* NGGUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGUser.h; sourceTree = "<group>"; };
 		3D4B1BDC1FC7BF7F00FBAB6C /* NGGUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGUser.m; sourceTree = "<group>"; };
@@ -823,6 +844,9 @@
 		3D35ECC11FB2F78800E01659 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				3D45CB931FCD706D006EF330 /* ConsumptionDetail */,
+				3D45CB871FCD5BE4006EF330 /* Recharge */,
+				3D45CB811FCD3758006EF330 /* Excharge */,
 				3D45CB721FCC1410006EF330 /* Message */,
 				3DDACFB01FC8136B0057BD9B /* UserInfo */,
 				3D35ECC21FB2F78800E01659 /* NGGUserViewController.h */,
@@ -1312,6 +1336,40 @@
 			path = Message;
 			sourceTree = "<group>";
 		};
+		3D45CB811FCD3758006EF330 /* Excharge */ = {
+			isa = PBXGroup;
+			children = (
+				3D45CB821FCD380D006EF330 /* NGGExchangeViewController.h */,
+				3D45CB831FCD380D006EF330 /* NGGExchangeViewController.m */,
+				3D45CB841FCD380D006EF330 /* NGGExchangeViewController.xib */,
+			);
+			path = Excharge;
+			sourceTree = "<group>";
+		};
+		3D45CB871FCD5BE4006EF330 /* Recharge */ = {
+			isa = PBXGroup;
+			children = (
+				3D45CB881FCD5CF5006EF330 /* NGGRechargeViewController.h */,
+				3D45CB891FCD5CF5006EF330 /* NGGRechargeViewController.m */,
+				3D45CB8B1FCD5D14006EF330 /* NGGRechargeCollectionViewCell.h */,
+				3D45CB8C1FCD5D14006EF330 /* NGGRechargeCollectionViewCell.m */,
+				3D45CB8D1FCD5D14006EF330 /* NGGRechargeCollectionViewCell.xib */,
+				3D45CB901FCD6303006EF330 /* NGGRechargeModel.h */,
+				3D45CB911FCD6303006EF330 /* NGGRechargeModel.m */,
+			);
+			path = Recharge;
+			sourceTree = "<group>";
+		};
+		3D45CB931FCD706D006EF330 /* ConsumptionDetail */ = {
+			isa = PBXGroup;
+			children = (
+				3D45CB941FCD7156006EF330 /* NGGConsumptionDeatilViewController.h */,
+				3D45CB951FCD7156006EF330 /* NGGConsumptionDeatilViewController.m */,
+				3D45CB961FCD7156006EF330 /* NGGConsumptionDeatilViewController.xib */,
+			);
+			path = ConsumptionDetail;
+			sourceTree = "<group>";
+		};
 		3D4B1BDA1FC7BF5700FBAB6C /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1474,6 +1532,8 @@
 				3DC56B711FC4103100F67C32 /* NGGRecentRecordCollectionViewCell.xib in Resources */,
 				3DC56B6C1FC3FF0A00F67C32 /* NGGRecentRecordView.xib in Resources */,
 				3D4B1BE61FC7CF9400FBAB6C /* NGGImageTableViewCell.xib in Resources */,
+				3D45CB981FCD7156006EF330 /* NGGConsumptionDeatilViewController.xib in Resources */,
+				3D45CB861FCD380D006EF330 /* NGGExchangeViewController.xib in Resources */,
 				3D35EDA91FB2F78900E01659 /* Info.plist in Resources */,
 				3D35EE611FB30A3B00E01659 /* NGGDetailHeaderReusableView.xib in Resources */,
 				3D35EDA81FB2F78900E01659 /* Main.storyboard in Resources */,
@@ -1503,6 +1563,7 @@
 				3D35EE571FB3073D00E01659 /* NGGGuessCollectionViewCell.xib in Resources */,
 				3D35EDE71FB2F78900E01659 /* DMPictureBrowserViewController.Bundle in Resources */,
 				3D35EDB91FB2F78900E01659 /* NGGHomeNoticeCollectionViewCell.xib in Resources */,
+				3D45CB8F1FCD5D14006EF330 /* NGGRechargeCollectionViewCell.xib in Resources */,
 				3D4B1BF61FC80E6100FBAB6C /* NGGSwitchTableViewCell.xib in Resources */,
 				3D25B4B61FB4327300D20FB2 /* NGGAnalyseHistoryView.xib in Resources */,
 				3D4B1BF11FC7F7E900FBAB6C /* NGGTextTableViewCell.xib in Resources */,
@@ -1570,6 +1631,7 @@
 				3D35EDA61FB2F78900E01659 /* NGGTabBarController.m in Sources */,
 				3DC56B821FC42F5B00F67C32 /* NGGGameResultView.m in Sources */,
 				3D4B1BDD1FC7BF7F00FBAB6C /* NGGUser.m in Sources */,
+				3D45CB971FCD7156006EF330 /* NGGConsumptionDeatilViewController.m in Sources */,
 				3DC56B641FC3D9F700F67C32 /* NGGAnalyseHistoryheaderView.m in Sources */,
 				3D35EE151FB2F78900E01659 /* SDWebImageDecoder.m in Sources */,
 				3D35EDA41FB2F78900E01659 /* NGGCommonViewController.m in Sources */,
@@ -1592,6 +1654,7 @@
 				3D35EE2C1FB2F78900E01659 /* ViewController.m in Sources */,
 				3D35EDF11FB2F78900E01659 /* NSArray+MASAdditions.m in Sources */,
 				3D35EDF61FB2F78900E01659 /* MJRefreshBackFooter.m in Sources */,
+				3D45CB851FCD380D006EF330 /* NGGExchangeViewController.m in Sources */,
 				3D35EDC81FB2F78900E01659 /* NGGTaskTableViewCell.m in Sources */,
 				3D35EDB21FB2F78900E01659 /* NGGHomeBannerCollectionViewCell.m in Sources */,
 				3DC56B6A1FC3FEEC00F67C32 /* NGGRecentRecordView.m in Sources */,
@@ -1618,6 +1681,7 @@
 				3D35EE111FB2F78900E01659 /* NSImage+WebCache.m in Sources */,
 				3D35EE271FB2F78900E01659 /* ZSMD5.m in Sources */,
 				3D45CB6C1FCC0128006EF330 /* UITextView+Placeholder.m in Sources */,
+				3D45CB8A1FCD5CF5006EF330 /* NGGRechargeViewController.m in Sources */,
 				3D35EE011FB2F78900E01659 /* MJRefreshNormalHeader.m in Sources */,
 				3D35EDFC1FB2F78900E01659 /* MJRefreshAutoStateFooter.m in Sources */,
 				3D35EDF81FB2F78900E01659 /* MJRefreshFooter.m in Sources */,
@@ -1636,6 +1700,7 @@
 				3D35EDD51FB2F78900E01659 /* AFHTTPSessionManager.m in Sources */,
 				3D35EDAD1FB2F78900E01659 /* NGGDateListView.m in Sources */,
 				3D4B1BE91FC7D34300FBAB6C /* NGGCommonCellModel.m in Sources */,
+				3D45CB8E1FCD5D14006EF330 /* NGGRechargeCollectionViewCell.m in Sources */,
 				3DDACFB71FC82F3B0057BD9B /* NGGCommonTableViewCell.m in Sources */,
 				3D35EE0B1FB2F78900E01659 /* PSCarouselCollectionCell.m in Sources */,
 				3D35EDE41FB2F78900E01659 /* DMPhotoBrowserView.m in Sources */,
@@ -1645,6 +1710,7 @@
 				3D35EDFF1FB2F78900E01659 /* MJRefreshBackStateFooter.m in Sources */,
 				3D35EDA21FB2F78900E01659 /* AppDelegate.m in Sources */,
 				3D35EDDF1FB2F78900E01659 /* DMAssetsPickerViewController.m in Sources */,
+				3D45CB921FCD6303006EF330 /* NGGRechargeModel.m in Sources */,
 				3D35EDE21FB2F78900E01659 /* DMPhotoBrowserViewController.m in Sources */,
 				3D35EE091FB2F78900E01659 /* MBProgressHUD.m in Sources */,
 				3D35EE191FB2F78900E01659 /* SDWebImagePrefetcher.m in Sources */,

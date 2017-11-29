@@ -11,6 +11,8 @@
 #import "NGGLoginViewController.h"
 #import "NGGUserInfoViewController.h"
 #import "NGGMessageViewController.h"
+#import "NGGExchangeViewController.h"
+#import "NGGRechargeViewController.h"
 
 @interface NGGUserViewController ()<UITableViewDataSource, UITableViewDelegate> {
    
@@ -234,7 +236,17 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    if (indexPath.section == 1 && indexPath.row == 4) {
+    if (indexPath.section == 0 && indexPath.row == 1) {
+        
+        NGGExchangeViewController *controller = [[NGGExchangeViewController alloc] initWithNibName:@"NGGExchangeViewController" bundle:nil];
+        controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
+    } else if (indexPath.section == 0 && indexPath.row == 0) {
+        
+        NGGRechargeViewController *controller = [[NGGRechargeViewController alloc] init];
+        controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
+    }  else if (indexPath.section == 1 && indexPath.row == 4) {
         
         NGGMessageViewController *controller = [[NGGMessageViewController alloc] initWithNibName:@"NGGMessageViewController" bundle:nil];
         controller.hidesBottomBarWhenPushed = YES;

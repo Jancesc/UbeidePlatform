@@ -63,10 +63,10 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     [_collectionView registerNib:[UINib nibWithNibName:@"NGGHomeHeaderReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHomeHeaderIdentifier];
     if (@available(iOS 11.0, *)) {
         _collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        _collectionView.dataSource = self;
     } else {
         // Fallback on earlier versions
     }
+    _collectionView.dataSource = self;
     _collectionView.delegate = self;
     _collectionView.backgroundColor = [UIColor whiteColor];
     _collectionView.showsVerticalScrollIndicator = NO;
