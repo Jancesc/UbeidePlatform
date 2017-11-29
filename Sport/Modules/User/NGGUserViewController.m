@@ -13,6 +13,8 @@
 #import "NGGMessageViewController.h"
 #import "NGGExchangeViewController.h"
 #import "NGGRechargeViewController.h"
+#import "NGGRegisterViewController.h"
+#import "UIImageView+WebCache.h"
 
 @interface NGGUserViewController ()<UITableViewDataSource, UITableViewDelegate> {
    
@@ -20,8 +22,8 @@
     IBOutlet UIView *_loginedHeader;
     __weak IBOutlet UIImageView *_loginedHeaderAvaterView;
     __weak IBOutlet UILabel *_loginedHeaderNameLabel;
-    
     __weak IBOutlet UIButton *_loginedHeaderUserInfoButton;
+    
     IBOutlet UIView *_unloginHeader;
     __weak IBOutlet UIImageView *_unloginHeaderAvaterView;
     __weak IBOutlet UILabel *_unloginHeaderNameLabel;
@@ -49,8 +51,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    [self configueData];
-    [self refreshUI];
+    [self refreshData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,7 +62,6 @@
 #pragma mark - private methods
 - (void)configueUIComponents {
 
-    [_loginedHeaderUserInfoButton setBackgroundImage:[UIImage imageWithColor:[NGGColor999 colorWithAlphaComponent:0.2]] forState:UIControlStateHighlighted];
     _rechargeButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 60, 25)];
     [_rechargeButton setBackgroundImage:[UIImage imageWithColor:UIColorWithRGB(0x22, 0x4b, 0xf0)] forState:UIControlStateNormal];
     [_rechargeButton setTitle:@"充值" forState:UIControlStateNormal];
@@ -103,10 +103,14 @@
     [_unloginHeaderRegisterButton setBackgroundImage:[UIImage imageWithColor:NGGPrimaryColor] forState:UIControlStateNormal];
     
     [_unloginHeaderLoginButton addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
-    
+    [_unloginHeaderRegisterButton addTarget:self action:@selector(registerAction) forControlEvents:UIControlEventTouchUpInside];
+    [_loginedHeaderUserInfoButton setBackgroundImage:[UIImage imageWithColor:[NGGColor999 colorWithAlphaComponent:0.2]] forState:UIControlStateHighlighted];
+    [_loginedHeaderUserInfoButton addTarget:self action:@selector(handleUserInfoButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    _unloginHeader.frame = CGRectMake(0, 0, SCREEN_WIDTH, 240);
+    _loginedHeader.frame = CGRectMake(0, 0, SCREEN_WIDTH, 95);
 }
 
-- (void)configueData {
+- (void)refreshData {
     
     _arrayOfItem = @[
                      @[@{
@@ -143,14 +147,20 @@
                              @"name"  : @"我的邀请码",
                              },],
                      ];
+    
+    [self refreshUI];
+
 }
 
 - (void)refreshUI {
     
     NGGLoginSession *activeSession = [NGGLoginSession activeSession];
+    NGGUser *currentUser = [activeSession currentUser];
     if (activeSession) {
         
         _tableView.tableHeaderView = _loginedHeader;
+        _loginedHeaderNameLabel.text = currentUser.nickName;
+        [_loginedHeaderAvaterView sd_setImageWithURL:[NSURL URLWithString:currentUser.avatarURL] placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
     } else {
         
         _tableView.tableHeaderView = _unloginHeader;
@@ -162,10 +172,23 @@
 
 - (void)loginAction {
     
-    NGGUserInfoViewController *controller = [NGGUserInfoViewController new];
+    [self presentLoginViewController];
+}
+
+- (void)registerAction {
+    
+    NGGRegisterViewController *controller = [[NGGRegisterViewController alloc] initWithNibName:@"NGGRegisterViewController" bundle:nil];
+    NGGNavigationController *nav = [[NGGNavigationController alloc] initWithRootViewController:controller];
+    controller.hidesBottomBarWhenPushed = YES;
+    controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self.navigationController presentViewController:nav animated:YES completion:nil];
+}
+
+- (void)handleUserInfoButtonClicked:(UIButton *) button {
+    
+    NGGUserInfoViewController *controller = [[NGGUserInfoViewController alloc] init];
     controller.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:controller animated:YES];
-//    [self presentLoginViewController];
 }
 
 #pragma mark - UITableViewDataSource && UITableViewDelegate

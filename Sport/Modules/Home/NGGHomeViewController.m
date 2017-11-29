@@ -78,7 +78,7 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     // Do any additional setup after loading the view.
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = NGGPrimaryColor;
-    [self configureNavigationBar];
+//    [self configureNavigationBar];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -197,11 +197,11 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
             make.right.equalTo(beanImageView.mas_left).with.offset(-7);
 
         }
-        make.height.equalTo(rightView);
     }];
-    avatarImageView.contentMode = UIViewContentModeScaleAspectFit;
     avatarImageView.image = [UIImage imageNamed:@"avatar_placeholder"];
-    
+    avatarImageView.contentMode = UIViewContentModeScaleAspectFit;
+    avatarImageView.layer.masksToBounds = YES;
+    avatarImageView.layer.cornerRadius = 15;
     UIImageView *logoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     logoView.image = [UIImage imageNamed:@"icon"];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:logoView];;

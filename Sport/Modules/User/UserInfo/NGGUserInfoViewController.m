@@ -65,7 +65,7 @@
     [_logoutButton setTitle:@"退出当前账号" forState:UIControlStateNormal];
     _logoutButton.titleLabel.font = [UIFont systemFontOfSize:14];
     [_logoutButton setTitleColor:NGGColor666 forState:UIControlStateNormal];
-//    _logoutButton.enabled = NO;
+    [_logoutButton addTarget:self action:@selector(logoutButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [footetView addSubview:_logoutButton];
     
     _tableView.tableFooterView = footetView;
@@ -115,6 +115,15 @@
                    @[model_1, model_2, model_3, model_4]];
     
     [_tableView reloadData];
+}
+
+#pragma mark - button actions
+
+- (void)logoutButtonClicked:(UIButton *) button {
+    
+    [NGGLoginSession destroyActiveSession];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidLogoutNotificationName object:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - UITableViewDataSource

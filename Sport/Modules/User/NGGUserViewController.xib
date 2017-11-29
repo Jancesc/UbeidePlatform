@@ -38,34 +38,34 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </view>
         <view contentMode="scaleToFill" id="Qxh-1P-RK1" userLabel="loginedHeader">
-            <rect key="frame" x="0.0" y="0.0" width="354" height="100"/>
+            <rect key="frame" x="0.0" y="0.0" width="355" height="94"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="avatar_placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="qHj-SH-RXp">
-                    <rect key="frame" x="15" y="20" width="60" height="60"/>
+                    <rect key="frame" x="15" y="17" width="60" height="60"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="lfZ-jS-tvd"/>
                         <constraint firstAttribute="height" constant="60" id="opP-K9-WjM"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="游客69366" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SkH-SA-KDk">
-                    <rect key="frame" x="90" y="20" width="249" height="20"/>
+                    <rect key="frame" x="90" y="20" width="250" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="R2v-SD-7HY"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_right" translatesAutoresizingMaskIntoConstraints="NO" id="NPP-YL-pub">
-                    <rect key="frame" x="324" y="42.5" width="15" height="15"/>
+                    <rect key="frame" x="325" y="39.5" width="15" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="BCx-1e-3k7"/>
                         <constraint firstAttribute="width" constant="15" id="jmO-Bc-5yA"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Au4-0R-kFt">
-                    <rect key="frame" x="0.0" y="0.0" width="354" height="100"/>
+                    <rect key="frame" x="0.0" y="0.0" width="355" height="94"/>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -83,7 +83,7 @@
                 <constraint firstItem="NPP-YL-pub" firstAttribute="centerY" secondItem="Qxh-1P-RK1" secondAttribute="centerY" id="svK-98-B5I"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="42" y="512"/>
+            <point key="canvasLocation" x="42.5" y="511"/>
         </view>
         <view contentMode="scaleToFill" id="yG5-Ad-LFZ" userLabel="unloginedHeader">
             <rect key="frame" x="0.0" y="0.0" width="465" height="240"/>
@@ -96,7 +96,7 @@
                         <constraint firstAttribute="height" constant="60" id="QiB-tB-ua7"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你好，游客78341" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gmq-tI-9Ah">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您还未登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gmq-tI-9Ah">
                     <rect key="frame" x="15" y="100" width="435" height="15"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="Blu-uV-Xuh"/>
@@ -150,6 +150,6 @@
     </objects>
     <resources>
         <image name="arrow_right" width="10" height="16"/>
-        <image name="avatar_placeholder" width="30" height="30"/>
+        <image name="avatar_placeholder" width="96" height="96"/>
     </resources>
 </document>

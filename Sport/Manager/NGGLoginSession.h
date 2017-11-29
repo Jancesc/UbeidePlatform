@@ -17,7 +17,7 @@ extern NSString *const NGGUserDidModifyUserInfoNotificationName;
 + (NGGLoginSession *) activeSession;
 + (void) destroyActiveSession;
 
-- (NGGLoginSession *) initWithLoginInformation:(NSDictionary *) info;
++ (NGGLoginSession *) newSessionWithLoginInformation:(NSDictionary *) info;
 
 - (void) updateUserInfo:(NSDictionary *) userInfo;
 

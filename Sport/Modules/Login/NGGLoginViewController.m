@@ -50,6 +50,7 @@
     _accountField.clearButtonMode = UITextFieldViewModeWhileEditing;
     _accountField.tintColor = NGGPrimaryColor;
     _accountField.delegate = self;
+    _accountField.returnKeyType = UIReturnKeyNext;
     //construct password text field
     UIView *passLeftView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 82, VIEW_H(_passwordField))];
     passLeftView.backgroundColor = [UIColor clearColor];
@@ -100,8 +101,15 @@
 #pragma mark - button actions
 
 - (void)loginButtonClicked:(UIButton *) button {
+
+    if (isStringEmpty(_accountField.text) ||
+        isStringEmpty(_passwordField.text)) {
+        
+        [self showErrorHUDWithText:@"请先输入账号密码!"];
+        return;
+    }
     
-    NSLog(@"loginButtonClicked");
+    [self showLoadingHUDWithText:nil];
 }
 
 - (void)registerButtonClicked:(UIButton *) button {
@@ -139,6 +147,33 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     
     [self.view endEditing:YES];
+}
+
+- (void)loginAction:(NSDictionary *)params {
+    
+    [self showLoadingHUDWithText:nil];
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=user.login" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self dismissHUD];
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showLoadingHUDWithText:msg];
+        }];
+        if (dict) {
+            
+            [self handleLoginSuccess:dict];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [self dismissHUD];
+    }];
+}
+
+- (void)handleLoginSuccess:(NSDictionary *)info {
+    
+    [NGGLoginSession newSessionWithLoginInformation:info];
+    [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidLoginNotificationName object:nil];
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - UITextFieldDelegate

@@ -221,9 +221,9 @@ static NSOperationQueue *sRequestQueue = nil;
 
 #pragma mark - API Reponse
 
-#define CODE_NONLOGIN   306
-#define CODE_NOTOKEN    307
-#define CODE_TOKENFAIL  308
+#define CODE_NONLOGIN   401
+#define CODE_NOTOKEN    401
+#define CODE_TOKENFAIL  402
 
 - (NSDictionary *)dictionaryData:(id)responseJSONObject errorHandler:(void (^)(NSInteger, NSString *))handler
 {
