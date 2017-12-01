@@ -8,6 +8,12 @@
 
 #import "NGGPreGameTableViewCell.h"
 
+@interface NGGPreGameTableViewCell() {
+
+}
+
+@end
+
 @implementation NGGPreGameTableViewCell
 
 - (void)awakeFromNib {
