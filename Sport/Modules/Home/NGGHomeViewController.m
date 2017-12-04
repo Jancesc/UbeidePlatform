@@ -232,11 +232,13 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
         [self.navigationController pushViewController:controller animated:YES];
     } else if (index == 4) {
         
+        [self showLoadingHUDWithText:@""];
         NGGPreGuessListViewController *controller = [[NGGPreGuessListViewController alloc] initWithNibName:@"NGGPreGuessListViewController" bundle:nil];
         controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         NGGNavigationController *nav = [[NGGNavigationController alloc] initWithRootViewController:controller];;
         [self presentViewController:nav animated:YES completion:^{
             
+            [self dismissHUD];
         }];
     }
     

@@ -6,31 +6,25 @@
 //  Copyright © 2017 NGG. All rights reserved.
 //
 #import "NGGPreGuessListViewController.h"
-#import "NGGDateListView.h"
-#import "NGGTypeTableViewCell.h"
-#import "NGGPreGameTableViewCell.h"
 #import "NGGGuessDetailViewController.h"
 #import "NGGGameResultView.h"
 #import "Masonry.h"
 #import "NGGRankView.h"
+#import "NGGGameListView.h"
 
-static NSString *kTypeCellIdentifier = @"NGGTypeTableViewCell";
-static NSString *kPreGameCellIdentifier = @"NGGPreGameTableViewCell";
-
-@interface NGGPreGuessListViewController ()<UITableViewDelegate, UITableViewDataSource> {
+@interface NGGPreGuessListViewController ()<UITableViewDelegate, UITableViewDataSource, NGGGameListViewDelegate> {
     
     NGGGameResultView *_resultView;
-    
     NGGRankView *_rankView;
+    NGGGameListView *_gameListView;
 }
-@property (weak, nonatomic) IBOutlet UIView *separatorView;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *typeTableViewWidthConstraint;
+
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 
-@property (weak, nonatomic) IBOutlet UITableView *typeTableView;
+@property (strong, nonatomic)  NSDictionary *dictionaryOfGameList;
+@property (strong, nonatomic)  NSArray *arrayOfGameResult;
+@property (strong, nonatomic)  NSArray *arrayOfRank;
 
-@property (weak, nonatomic) IBOutlet UITableView *gameTableView;
-@property (weak, nonatomic) IBOutlet NGGDateListView *dateScrollView;
 @end
 
 
@@ -45,6 +39,8 @@ static NSString *kPreGameCellIdentifier = @"NGGPreGameTableViewCell";
     [self configueUIComponents];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(leftBarButtonClicked)];
+    [self refreshUI];
+    [self refreshData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -56,7 +52,9 @@ static NSString *kPreGameCellIdentifier = @"NGGPreGameTableViewCell";
     
     self.navigationController.navigationBar.hidden = NO;
     [_segmentControl setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [_segmentControl setBackgroundImage:[UIImage imageWithColor:UIColorWithRGB(0xfe, 0xa9, 0x03)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+//        [_segmentControl setBackgroundImage:[UIImage imageWithColor:NGGSeparatorColor] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    [_segmentControl setBackgroundImage:[UIImage imageWithColor:NGGViceColor] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    [_segmentControl addTarget:self action:@selector(segmentControlValueChanged:) forControlEvents:UIControlEventValueChanged];
     _segmentControl.tintColor = NGGSeparatorColor;
     [_segmentControl setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName : [UIFont systemFontOfSize:16]} forState:UIControlStateNormal];
     [_segmentControl setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor], NSFontAttributeName : [UIFont systemFontOfSize:16]} forState:UIControlStateSelected];
@@ -66,127 +64,122 @@ static NSString *kPreGameCellIdentifier = @"NGGPreGameTableViewCell";
     _segmentControl.clipsToBounds = YES;
     _segmentControl.layer.borderWidth = 1.f;
     
-    _typeTableView.separatorColor = UIColorWithRGB(0xda, 0xda, 0xda);
-    [_typeTableView setLayoutMargins:UIEdgeInsetsZero];
-    [_typeTableView setSeparatorInset:UIEdgeInsetsZero];
-    _typeTableView.backgroundColor = [UIColor clearColor];
-    _typeTableView.separatorColor = NGGSeparatorColor;
-    _typeTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    _typeTableView.rowHeight = 55.f;
-    _typeTableView.delegate = self;
-    _typeTableView.dataSource = self;
-    _typeTableView.layer.borderColor = [NGGSeparatorColor CGColor];
-    _typeTableView.layer.borderWidth = 0.5f;
-    _typeTableView.showsVerticalScrollIndicator = NO;
-    [_typeTableView registerNib:[UINib nibWithNibName:@"NGGTypeTableViewCell" bundle:nil] forCellReuseIdentifier:kTypeCellIdentifier];
-    
-    _gameTableView.separatorColor = UIColorWithRGB(0xda, 0xda, 0xda);
-    _gameTableView.backgroundColor = [UIColor clearColor];
-    _gameTableView.separatorColor = NGGSeparatorColor;
-    _gameTableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    _gameTableView.rowHeight = 144.f;
-    _gameTableView.delegate = self;
-    _gameTableView.dataSource = self;
-    [_gameTableView registerNib:[UINib nibWithNibName:@"NGGPreGameTableViewCell" bundle:nil] forCellReuseIdentifier:kPreGameCellIdentifier];
-    [self refreshDateList];
-    _typeTableViewWidthConstraint.constant = 125.0 * SCREEN_WIDTH / 375;
-    
-    _resultView = [NGGGameResultView new];
-    _resultView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:_resultView];
-    [_resultView mas_makeConstraints:^(MASConstraintMaker *make) {
+    _gameListView = [[[NSBundle mainBundle] loadNibNamed:@"NGGGameListView" owner:nil options:nil] lastObject];
+    _gameListView.hidden = NO;
+    _gameListView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:_gameListView];
+    [_gameListView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.equalTo(_separatorView.mas_bottom);
+        make.top.equalTo(_segmentControl.superview.mas_bottom);
         make.left.right.bottom.equalTo(self.view);
     }];
     
-    _rankView = [NGGRankView new];;
+    _resultView = [NGGGameResultView new];
+    _resultView.backgroundColor = [UIColor whiteColor];
+    _resultView.hidden = YES;
+    [self.view addSubview:_resultView];
+    [_resultView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.top.equalTo(_segmentControl.superview.mas_bottom);
+        make.left.right.bottom.equalTo(self.view);
+    }];
+    
+    _rankView = [NGGRankView new];
+    _rankView.hidden = YES;
     _rankView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_rankView];
     [_rankView mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.equalTo(_separatorView.mas_bottom);
+        make.top.equalTo(_segmentControl.superview.mas_bottom);
         make.left.right.bottom.equalTo(self.view);
     }];
 }
 
-
 #pragma mark - private methods
-
-- (void)refreshDateList {
-    
-    _dateScrollView.dateInfo = nil;
-}
 
 - (void)leftBarButtonClicked {
     
-    self.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     [self.navigationController dismissViewControllerAnimated:YES completion:^{
         
     }];
 }
 
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+- (void)refreshUI {
     
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    return 10;;
-    
-}
-
-- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ([tableView isEqual:_typeTableView]) {
-        
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTypeCellIdentifier forIndexPath:indexPath];
-        return cell;
+    NSInteger index = _segmentControl.selectedSegmentIndex;
+    switch (index) {
+        case 0:
+            _gameListView.hidden = NO;
+            _resultView.hidden = YES;
+            _rankView.hidden = YES;
+            _gameListView.dictionaryOfGameList = _dictionaryOfGameList;
+            break;
+        case 1:
+            _gameListView.hidden = YES;
+            _resultView.hidden = NO;
+            _rankView.hidden = YES;
+            _resultView.arrayOfGameResult = _arrayOfGameResult;
+            break;
+        case 2:
+            _gameListView.hidden = YES;
+            _resultView.hidden = YES;
+            _rankView.hidden = NO;
+            _rankView.arrayOfRank = _arrayOfRank;
+            break;
     }
-    if ([tableView isEqual:_gameTableView]) {
-        
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kPreGameCellIdentifier forIndexPath:indexPath];
-        return cell;
+}
+
+- (void)refreshData {
+    
+    NSInteger index = _segmentControl.selectedSegmentIndex;
+    switch (index) {
+        case 0:
+            [self loadGameListInfo];
+            break;
+        case 1:
+            [self loadGameResult];
+            break;
+        case 2:
+            [self loadGameRank];
+            break;
     }
-    return nil;
 }
 
-#pragma mark - UITableViewDelegate
-- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return 0.01f;
+- (void)loadGameListInfo {
+    
+    [self showLoadingHUDWithText:nil];
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.gameList" parameters:nil willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self dismissHUD];
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showErrorHUDWithText:msg];
+        }];
+        if (dict) {
+            
+            _dictionaryOfGameList = dict;
+            [self refreshUI];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+       
+        [self dismissHUD];
+    }];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return nil;
-}
-
-- (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 0.01f;
-}
-
-//- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    
-//    return 70.f;
-//}
-
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NGGGuessDetailViewController *controller = [[NGGGuessDetailViewController alloc] init];
-    [self.navigationController pushViewController:controller animated:YES];
+- (void)loadGameResult {
+    
     
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-   
-    [cell setLayoutMargins:UIEdgeInsetsZero];
+- (void)loadGameRank {
+    
+    
 }
+
+- (void)segmentControlValueChanged:(UISegmentedControl *) segmentControl {
+    [self refreshUI];
+}
+
+#pragma mark - NGGGameListViewDelegate
 
 @end

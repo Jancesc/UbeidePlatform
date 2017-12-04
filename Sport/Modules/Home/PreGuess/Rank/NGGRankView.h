@@ -10,4 +10,5 @@
 
 @interface NGGRankView : UIView
 
+@property (nonatomic, strong) NSArray *arrayOfRank;
 @end

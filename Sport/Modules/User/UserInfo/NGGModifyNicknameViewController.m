@@ -38,6 +38,9 @@
     _confirmButton.layer.cornerRadius = 5.f;
     _confirmButton.clipsToBounds = YES;
     [_confirmButton addTarget:self action:@selector(handleConfirmButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    _textField.text = _model.value;
+    _countLabel.text = [NSString stringWithFormat:@"剩余：%ld/%ld",  _maxCount - _textField.text.length, _maxCount];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,6 +62,12 @@
     
     _countLabel.text = [NSString stringWithFormat:@"剩余%ld/%ld",_maxCount - _textField.text.length, _maxCount];
     
+}
+
+- (void)setModel:(NGGCommonCellModel *)model {
+    
+    _model = model;
+
 }
 
 #pragma mark - button actions

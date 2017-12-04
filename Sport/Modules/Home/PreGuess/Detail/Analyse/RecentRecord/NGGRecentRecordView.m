@@ -28,13 +28,13 @@ static NSString *kRecentRecordCellIdentifier = @"NGGRecentRecordCollectionViewCe
    
     _homeCollectionView.dataSource = self;
     _homeCollectionView.delegate = self;
-    _homeCollectionView.backgroundColor =UIColorWithRGB(0xea, 0xea, 0xea);
+    _homeCollectionView.backgroundColor = NGGSeparatorColor;
     
     [_homeCollectionView registerNib:[UINib nibWithNibName:@"NGGRecentRecordCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kRecentRecordCellIdentifier];
     
     _awayCollectionView.dataSource = self;
     _awayCollectionView.delegate = self;
-    _awayCollectionView.backgroundColor =UIColorWithRGB(0xea, 0xea, 0xea);
+    _awayCollectionView.backgroundColor = NGGSeparatorColor;
     
     [_awayCollectionView registerNib:[UINib nibWithNibName:@"NGGRecentRecordCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kRecentRecordCellIdentifier];
 }

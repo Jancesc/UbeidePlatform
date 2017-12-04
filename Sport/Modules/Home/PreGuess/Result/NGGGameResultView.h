@@ -10,4 +10,6 @@
 
 @interface NGGGameResultView : UIView
 
+@property (nonatomic, strong) NSArray *arrayOfGameResult;
+
 @end

@@ -60,6 +60,8 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
 
 + (instancetype)showHUDAddedTo:(UIView *)view animated:(BOOL)animated {
     MBProgressHUD *hud = [[self alloc] initWithView:view];
+    hud.bezelView.backgroundColor = UIColorWithRGBA(0x00, 0x00, 0x00, 255);
+    [UIActivityIndicatorView appearanceWhenContainedIn:[MBProgressHUD class], nil].color = NGGSeparatorColor;
     hud.removeFromSuperViewOnHide = YES;
     [view addSubview:hud];
     [hud showAnimated:animated];

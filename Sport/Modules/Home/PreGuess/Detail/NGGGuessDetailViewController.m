@@ -65,7 +65,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     [_collectionView registerNib:[UINib nibWithNibName:@"NGGDetailHeaderReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kDetailHeaderIdentifier];
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
-    _collectionView.backgroundColor =UIColorWithRGB(0xea, 0xea, 0xea);
+    _collectionView.backgroundColor = NGGSeparatorColor;
     _collectionView.contentInset = UIEdgeInsetsMake(0, 0, 15, 0);
     
     

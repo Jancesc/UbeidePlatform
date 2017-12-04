@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NGGLeagueModel.h"
 
 @interface NGGTypeTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) NGGLeagueModel *model;
 @end

@@ -7,7 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NGGGameListModel.h"
+#import "NGGLeagueModel.h"
+
+@protocol NGGGameListViewDelegate <NSObject>
+
+///nil 为选择全部
+- (void)gameListViewDidSelectDate:(NSDate *)date;
+- (void)gameListViewDidSelectLeague:(NGGLeagueModel *)model;
+
+@end
 
 @interface NGGGameListView : UIView
-
+@property (nonatomic, strong)NSDictionary *dictionaryOfGameList;
+@property (nonatomic, weak) id <NGGGameListViewDelegate> delegate;
 @end

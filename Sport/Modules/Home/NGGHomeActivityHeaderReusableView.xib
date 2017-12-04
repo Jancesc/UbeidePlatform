@@ -31,7 +31,7 @@
                     <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_left" translatesAutoresizingMaskIntoConstraints="NO" id="Qw3-gp-nYW">
+                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow_right" translatesAutoresizingMaskIntoConstraints="NO" id="Qw3-gp-nYW">
                     <rect key="frame" x="294" y="0.0" width="30" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="30" id="bqj-Vx-N0n"/>
@@ -66,6 +66,6 @@
         </collectionReusableView>
     </objects>
     <resources>
-        <image name="arrow_left" width="10" height="16"/>
+        <image name="arrow_right" width="10" height="16"/>
     </resources>
 </document>

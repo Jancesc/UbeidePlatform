@@ -6,8 +6,13 @@
 //  Copyright © 2017 NGG. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "NGGModel.h"
 
-@interface NGGGameDateModel : NSObject
+@interface NGGGameDateModel : NGGModel
+
+
+@property (nonatomic, copy) NSString *timeStamp;
+@property (nonatomic, copy) NSString *dateName;
+@property (nonatomic, copy) NSString *count;
 
 @end

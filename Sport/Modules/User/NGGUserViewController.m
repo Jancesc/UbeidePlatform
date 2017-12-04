@@ -159,7 +159,7 @@
     if (activeSession) {
         
         _tableView.tableHeaderView = _loginedHeader;
-        _loginedHeaderNameLabel.text = currentUser.nickName;
+        _loginedHeaderNameLabel.text = currentUser.nickname;
         [_loginedHeaderAvaterView sd_setImageWithURL:[NSURL URLWithString:currentUser.avatarURL] placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
     } else {
         

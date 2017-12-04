@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NGGGameDateModel.h"
 
 @interface NGGDateListItemView : UIButton
 
-@property (nonatomic, strong) NSDictionary *dictionaryOfDateItem;
+@property (nonatomic, strong) NGGGameDateModel *model;
 
 @end

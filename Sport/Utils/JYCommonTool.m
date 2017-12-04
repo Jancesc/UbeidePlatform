@@ -10,4 +10,13 @@
 
 @implementation JYCommonTool
 
++ (NSString *)dateFormatWithInterval:(NSInteger)intetval format:(NSString *)format {
+    
+    NSDate *date = [[NSDate alloc] initWithTimeIntervalSince1970:intetval];
+    NSDateFormatter *fmt = [[NSDateFormatter alloc] init];
+    [fmt setDateFormat:format];
+    
+   return  [fmt stringFromDate:date];
+}
+
 @end

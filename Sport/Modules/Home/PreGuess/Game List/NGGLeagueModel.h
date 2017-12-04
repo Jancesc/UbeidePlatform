@@ -10,4 +10,7 @@
 
 @interface NGGLeagueModel : NGGModel
 
+@property (nonatomic, copy) NSString *leagueID;
+@property (nonatomic, copy) NSString *leagueName;
+@property (nonatomic, copy) NSString *count;
 @end

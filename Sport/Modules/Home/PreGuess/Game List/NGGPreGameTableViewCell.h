@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NGGGameListModel.h"
 
 @interface NGGPreGameTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) NGGGameListModel *model;
 
 @end

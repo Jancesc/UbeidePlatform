@@ -10,4 +10,15 @@
 
 @implementation NGGGameDateModel
 
+
+- (instancetype)initWithInfo:(NSDictionary *)dict {
+    
+    if (self = [super initWithInfo:dict]) {
+        
+        _timeStamp = [dict stringForKey:@"t"];
+        _dateName = [dict stringForKey:@"w"];
+        _count = [dict stringForKey:@"total"];
+    }
+    return self;
+}
 @end

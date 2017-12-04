@@ -62,7 +62,7 @@
     
     _textField.layer.cornerRadius = 4.f;
     _textField.clipsToBounds = YES;
-    _textField.layer.borderColor = [UIColorWithRGB(0xe0, 0xe0, 0xe0) CGColor];
+    _textField.layer.borderColor = [NGGSeparatorColor CGColor];
     _textField.layer.borderWidth = 1.f;
     _textField.background= [UIImage imageWithColor:[UIColor whiteColor]];
     _textField.returnKeyType = UIReturnKeyDone;

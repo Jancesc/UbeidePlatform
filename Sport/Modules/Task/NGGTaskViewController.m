@@ -58,8 +58,8 @@ static NSString *kTaskCellIdentifier = @"NGGTaskTableViewCell";
     [_closeButton setBackgroundImage:[UIImage imageWithColor:[NGGPrimaryColor colorWithAlphaComponent:0.7]] forState:UIControlStateNormal];
     
     [_segmentControl setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-    [_segmentControl setBackgroundImage:[UIImage imageWithColor:UIColorWithRGB(0xfe, 0xa9, 0x03)] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-    [_segmentControl setBackgroundImage:[UIImage imageWithColor:UIColorWithRGB(0xfe, 0xa9, 0x03)] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
+    [_segmentControl setBackgroundImage:[UIImage imageWithColor:NGGViceColor] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
+    [_segmentControl setBackgroundImage:[UIImage imageWithColor:NGGViceColor] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     _segmentControl.tintColor = NGGSeparatorColor;
     [_segmentControl setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName : [UIFont systemFontOfSize:16]} forState:UIControlStateNormal];
     [_segmentControl setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor], NSFontAttributeName : [UIFont systemFontOfSize:16]} forState:UIControlStateSelected];

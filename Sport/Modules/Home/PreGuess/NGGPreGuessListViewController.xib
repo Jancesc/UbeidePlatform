@@ -11,12 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NGGPreGuessListViewController">
             <connections>
-                <outlet property="dateScrollView" destination="2jd-tM-Ayn" id="FZb-TE-O5J"/>
-                <outlet property="gameTableView" destination="4go-6O-waE" id="oLJ-OC-qCl"/>
                 <outlet property="segmentControl" destination="qNc-Me-HB7" id="JwC-Xk-mEE"/>
-                <outlet property="separatorView" destination="t0A-uL-KpL" id="HT5-4P-BGx"/>
-                <outlet property="typeTableView" destination="NNe-s2-F5v" id="Cwe-el-4eU"/>
-                <outlet property="typeTableViewWidthConstraint" destination="QXX-Ph-9cV" id="mHR-DJ-k5I"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -26,10 +21,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="70y-3h-Fi3">
-                    <rect key="frame" x="0.0" y="64" width="375" height="60"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="70"/>
                     <subviews>
                         <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="qNc-Me-HB7">
-                            <rect key="frame" x="15" y="10" width="345" height="41"/>
+                            <rect key="frame" x="15" y="12.5" width="345" height="46"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="n8r-6h-AeW"/>
+                            </constraints>
                             <segments>
                                 <segment title="赛前"/>
                                 <segment title="赛果"/>
@@ -38,94 +36,22 @@
                             <color key="tintColor" red="0.99607843137254903" green="0.66274509803921566" blue="0.011764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </segmentedControl>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.94509803921568625" green="0.94509803921568625" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="qNc-Me-HB7" secondAttribute="bottom" constant="10" id="2EI-uf-wDo"/>
                         <constraint firstAttribute="trailing" secondItem="qNc-Me-HB7" secondAttribute="trailing" constant="15" id="2LL-mi-V8K"/>
-                        <constraint firstItem="qNc-Me-HB7" firstAttribute="top" secondItem="70y-3h-Fi3" secondAttribute="top" constant="10" id="72J-Ap-Bef"/>
                         <constraint firstItem="qNc-Me-HB7" firstAttribute="leading" secondItem="70y-3h-Fi3" secondAttribute="leading" constant="15" id="dI2-As-LFg"/>
-                        <constraint firstAttribute="height" constant="60" id="pih-1n-K9S"/>
+                        <constraint firstAttribute="height" constant="70" id="pih-1n-K9S"/>
+                        <constraint firstItem="qNc-Me-HB7" firstAttribute="centerY" secondItem="70y-3h-Fi3" secondAttribute="centerY" id="xoo-2c-01e"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t0A-uL-KpL">
-                    <rect key="frame" x="0.0" y="124" width="375" height="10"/>
-                    <color key="backgroundColor" red="0.91764705879999997" green="0.91764705879999997" blue="0.91764705879999997" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="10" id="pJM-B9-xAs"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z9i-Jz-SRv">
-                    <rect key="frame" x="0.0" y="134" width="375" height="55"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCs-h3-lnT">
-                            <rect key="frame" x="0.0" y="0.0" width="35" height="55"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="35" id="aTJ-Ec-UhN"/>
-                            </constraints>
-                            <state key="normal" image="arrow_right"/>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0u-UJ-YJt">
-                            <rect key="frame" x="340" y="0.0" width="35" height="55"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="35" id="med-7C-dOk"/>
-                            </constraints>
-                            <state key="normal" image="arrow_left"/>
-                        </button>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2jd-tM-Ayn" customClass="NGGDateListView">
-                            <rect key="frame" x="35" y="0.0" width="305" height="55"/>
-                        </scrollView>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="2jd-tM-Ayn" firstAttribute="top" secondItem="z9i-Jz-SRv" secondAttribute="top" id="40l-C9-MX8"/>
-                        <constraint firstItem="BCs-h3-lnT" firstAttribute="leading" secondItem="z9i-Jz-SRv" secondAttribute="leading" id="4l4-eV-WD5"/>
-                        <constraint firstItem="h0u-UJ-YJt" firstAttribute="leading" secondItem="2jd-tM-Ayn" secondAttribute="trailing" id="8qM-Fb-aXu"/>
-                        <constraint firstAttribute="bottom" secondItem="BCs-h3-lnT" secondAttribute="bottom" id="90a-gG-KyF"/>
-                        <constraint firstItem="BCs-h3-lnT" firstAttribute="top" secondItem="z9i-Jz-SRv" secondAttribute="top" id="LMa-An-lkI"/>
-                        <constraint firstAttribute="height" constant="55" id="Mwi-Lv-hd7"/>
-                        <constraint firstAttribute="trailing" secondItem="h0u-UJ-YJt" secondAttribute="trailing" id="aRC-qh-QHp"/>
-                        <constraint firstAttribute="bottom" secondItem="h0u-UJ-YJt" secondAttribute="bottom" id="bee-DQ-tSX"/>
-                        <constraint firstItem="h0u-UJ-YJt" firstAttribute="top" secondItem="z9i-Jz-SRv" secondAttribute="top" id="ofz-BL-r5O"/>
-                        <constraint firstAttribute="bottom" secondItem="2jd-tM-Ayn" secondAttribute="bottom" id="rGk-GW-fT5"/>
-                        <constraint firstItem="2jd-tM-Ayn" firstAttribute="leading" secondItem="BCs-h3-lnT" secondAttribute="trailing" id="rqx-of-gx1"/>
-                    </constraints>
-                </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NNe-s2-F5v">
-                    <rect key="frame" x="0.0" y="189" width="125" height="478"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="125" id="QXX-Ph-9cV"/>
-                    </constraints>
-                </tableView>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="4go-6O-waE">
-                    <rect key="frame" x="125" y="189" width="250" height="478"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                </tableView>
             </subviews>
-            <color key="backgroundColor" red="0.82745098039999998" green="0.18823529410000001" blue="0.0078431372550000003" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="t0A-uL-KpL" firstAttribute="top" secondItem="70y-3h-Fi3" secondAttribute="bottom" id="5Rh-V7-ylh"/>
-                <constraint firstItem="NNe-s2-F5v" firstAttribute="top" secondItem="z9i-Jz-SRv" secondAttribute="bottom" id="6rX-j6-1eA"/>
                 <constraint firstItem="70y-3h-Fi3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="GUU-bc-yPC"/>
-                <constraint firstItem="4go-6O-waE" firstAttribute="leading" secondItem="NNe-s2-F5v" secondAttribute="trailing" id="Ieb-Zq-Bur"/>
-                <constraint firstAttribute="trailing" secondItem="t0A-uL-KpL" secondAttribute="trailing" id="Jrx-Ye-4rO"/>
-                <constraint firstItem="z9i-Jz-SRv" firstAttribute="top" secondItem="t0A-uL-KpL" secondAttribute="bottom" id="MR8-gD-CFh"/>
-                <constraint firstItem="z9i-Jz-SRv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Qcu-Ok-6ld"/>
-                <constraint firstAttribute="trailing" secondItem="z9i-Jz-SRv" secondAttribute="trailing" id="epI-fg-urR"/>
                 <constraint firstAttribute="trailing" secondItem="70y-3h-Fi3" secondAttribute="trailing" id="hAP-VG-UdJ"/>
-                <constraint firstAttribute="trailing" secondItem="4go-6O-waE" secondAttribute="trailing" id="ioH-ic-4ZI"/>
-                <constraint firstAttribute="bottom" secondItem="NNe-s2-F5v" secondAttribute="bottom" id="kNR-f1-s9K"/>
-                <constraint firstItem="4go-6O-waE" firstAttribute="top" secondItem="z9i-Jz-SRv" secondAttribute="bottom" id="rks-M5-bvc"/>
                 <constraint firstItem="70y-3h-Fi3" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="unZ-Jh-AIz"/>
-                <constraint firstItem="t0A-uL-KpL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wfA-H0-cwk"/>
-                <constraint firstAttribute="bottom" secondItem="4go-6O-waE" secondAttribute="bottom" id="ymE-pB-Tix"/>
-                <constraint firstItem="NNe-s2-F5v" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zhO-NO-rW7"/>
             </constraints>
             <point key="canvasLocation" x="-36.5" y="100.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="arrow_left" width="10" height="16"/>
-        <image name="arrow_right" width="10" height="16"/>
-    </resources>
 </document>

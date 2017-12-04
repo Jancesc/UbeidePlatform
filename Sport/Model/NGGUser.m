@@ -8,6 +8,8 @@
 
 #import "NGGUser.h"
 
+#define NGGGameResultNotificationEnableKey @"notificationkey"
+
 @implementation NGGUser
 
 - (instancetype)initWithInfo:(NSDictionary *)dict {
@@ -26,7 +28,7 @@
         _uid = [dict stringForKey:@"uid"];
         _token = [dict stringForKey:@"token"];
         _phone = [dict stringForKey:@"phone"];
-        _nickName = [dict stringForKey:@"nickname"];
+        _nickname = [dict stringForKey:@"nickname"];
         _avatarURL = [dict stringForKey:@"avatar_img"];
         _sex = [dict stringForKey:@"sex"];
         _coin = [dict stringForKey:@"coin"];
@@ -36,4 +38,19 @@
     }
     return self;
 }
+
++(BOOL)gameResultNotificationEnable {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults boolForKey:NGGGameResultNotificationEnableKey];
+}
+
++ (void)changeGameResultNotificationEnable:(BOOL)on {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setBool:on forKey:NGGGameResultNotificationEnableKey];
+    [defaults synchronize];
+}
+
+
 @end

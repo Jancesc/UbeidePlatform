@@ -40,7 +40,6 @@
 		3D35EDBA1FB2F78900E01659 /* NGGHomePageMenuCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ECA31FB2F78800E01659 /* NGGHomePageMenuCollectionViewCell.m */; };
 		3D35EDBB1FB2F78900E01659 /* NGGHomePageMenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D35ECA41FB2F78800E01659 /* NGGHomePageMenuCollectionViewCell.xib */; };
 		3D35EDBC1FB2F78900E01659 /* NGGHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ECA61FB2F78800E01659 /* NGGHomeViewController.m */; };
-		3D35EDBD1FB2F78900E01659 /* NGGPreGameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ECA81FB2F78800E01659 /* NGGPreGameTableViewCell.m */; };
 		3D35EDBE1FB2F78900E01659 /* NGGPreGameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D35ECA91FB2F78800E01659 /* NGGPreGameTableViewCell.xib */; };
 		3D35EDBF1FB2F78900E01659 /* NGGPreGuessListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ECAB1FB2F78800E01659 /* NGGPreGuessListViewController.m */; };
 		3D35EDC01FB2F78900E01659 /* NGGPreGuessListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D35ECAC1FB2F78800E01659 /* NGGPreGuessListViewController.xib */; };
@@ -202,6 +201,8 @@
 		3D4B1BF11FC7F7E900FBAB6C /* NGGTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D4B1BEF1FC7F7E900FBAB6C /* NGGTextTableViewCell.xib */; };
 		3D4B1BF51FC80E6100FBAB6C /* NGGSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4B1BF31FC80E6100FBAB6C /* NGGSwitchTableViewCell.m */; };
 		3D4B1BF61FC80E6100FBAB6C /* NGGSwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D4B1BF41FC80E6100FBAB6C /* NGGSwitchTableViewCell.xib */; };
+		3D922EF81FD00EEB003AA7F1 /* NGGGameListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D922EF71FD00EEB003AA7F1 /* NGGGameListView.m */; };
+		3D922EFA1FD00F72003AA7F1 /* NGGGameListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D922EF91FD00F72003AA7F1 /* NGGGameListView.xib */; };
 		3DC56B601FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC56B5E1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.m */; };
 		3DC56B611FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC56B5F1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.xib */; };
 		3DC56B641FC3D9F700F67C32 /* NGGAnalyseHistoryheaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC56B631FC3D9F700F67C32 /* NGGAnalyseHistoryheaderView.m */; };
@@ -221,6 +222,11 @@
 		3DC56B921FC4432A00F67C32 /* NGGRankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC56B901FC4432A00F67C32 /* NGGRankTableViewCell.xib */; };
 		3DDACFB31FC8139C0057BD9B /* NGGUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDACFB21FC8139C0057BD9B /* NGGUserInfoViewController.m */; };
 		3DDACFB71FC82F3B0057BD9B /* NGGCommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDACFB61FC82F3B0057BD9B /* NGGCommonTableViewCell.m */; };
+		3DF60B3B1FD126FA00FE26E9 /* NGGPreGameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF60B391FD126F900FE26E9 /* NGGPreGameTableViewCell.m */; };
+		3DF60B3E1FD12AE400FE26E9 /* NGGGameListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF60B3D1FD12AE400FE26E9 /* NGGGameListModel.m */; };
+		3DF60B411FD12F8100FE26E9 /* NGGLeagueModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF60B401FD12F8100FE26E9 /* NGGLeagueModel.m */; };
+		3DF60B441FD1492F00FE26E9 /* JYCommonTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF60B431FD1492F00FE26E9 /* JYCommonTool.m */; };
+		3DF60B471FD1624400FE26E9 /* NGGGameDateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF60B461FD1624400FE26E9 /* NGGGameDateModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -291,8 +297,6 @@
 		3D35ECA41FB2F78800E01659 /* NGGHomePageMenuCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGGHomePageMenuCollectionViewCell.xib; sourceTree = "<group>"; };
 		3D35ECA51FB2F78800E01659 /* NGGHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGHomeViewController.h; sourceTree = "<group>"; };
 		3D35ECA61FB2F78800E01659 /* NGGHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGHomeViewController.m; sourceTree = "<group>"; };
-		3D35ECA71FB2F78800E01659 /* NGGPreGameTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGPreGameTableViewCell.h; sourceTree = "<group>"; };
-		3D35ECA81FB2F78800E01659 /* NGGPreGameTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGPreGameTableViewCell.m; sourceTree = "<group>"; };
 		3D35ECA91FB2F78800E01659 /* NGGPreGameTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGGPreGameTableViewCell.xib; sourceTree = "<group>"; };
 		3D35ECAA1FB2F78800E01659 /* NGGPreGuessListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGPreGuessListViewController.h; sourceTree = "<group>"; };
 		3D35ECAB1FB2F78800E01659 /* NGGPreGuessListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGPreGuessListViewController.m; sourceTree = "<group>"; };
@@ -582,6 +586,9 @@
 		3D4B1BF21FC80E6100FBAB6C /* NGGSwitchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGSwitchTableViewCell.h; sourceTree = "<group>"; };
 		3D4B1BF31FC80E6100FBAB6C /* NGGSwitchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGSwitchTableViewCell.m; sourceTree = "<group>"; };
 		3D4B1BF41FC80E6100FBAB6C /* NGGSwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGSwitchTableViewCell.xib; sourceTree = "<group>"; };
+		3D922EF61FD00EEB003AA7F1 /* NGGGameListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGameListView.h; sourceTree = "<group>"; };
+		3D922EF71FD00EEB003AA7F1 /* NGGGameListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGameListView.m; sourceTree = "<group>"; };
+		3D922EF91FD00F72003AA7F1 /* NGGGameListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGGameListView.xib; sourceTree = "<group>"; };
 		3DC56B5D1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGAnalyseHistoryTableViewCell.h; sourceTree = "<group>"; };
 		3DC56B5E1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGAnalyseHistoryTableViewCell.m; sourceTree = "<group>"; };
 		3DC56B5F1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGAnalyseHistoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -614,6 +621,17 @@
 		3DDACFB41FC814800057BD9B /* NGGCommonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGCommonCell.h; sourceTree = "<group>"; };
 		3DDACFB51FC82F3B0057BD9B /* NGGCommonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGCommonTableViewCell.h; sourceTree = "<group>"; };
 		3DDACFB61FC82F3B0057BD9B /* NGGCommonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGCommonTableViewCell.m; sourceTree = "<group>"; };
+		3DF60B391FD126F900FE26E9 /* NGGPreGameTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGPreGameTableViewCell.m; sourceTree = "<group>"; };
+		3DF60B3A1FD126FA00FE26E9 /* NGGPreGameTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGPreGameTableViewCell.h; sourceTree = "<group>"; };
+		3DF60B3C1FD12AE400FE26E9 /* NGGGameListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGameListModel.h; sourceTree = "<group>"; };
+		3DF60B3D1FD12AE400FE26E9 /* NGGGameListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGameListModel.m; sourceTree = "<group>"; };
+		3DF60B3F1FD12F8100FE26E9 /* NGGLeagueModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGLeagueModel.h; sourceTree = "<group>"; };
+		3DF60B401FD12F8100FE26E9 /* NGGLeagueModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGLeagueModel.m; sourceTree = "<group>"; };
+		3DF60B421FD1492F00FE26E9 /* JYCommonTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JYCommonTool.h; sourceTree = "<group>"; };
+		3DF60B431FD1492F00FE26E9 /* JYCommonTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JYCommonTool.m; sourceTree = "<group>"; };
+		3DF60B451FD1624400FE26E9 /* NGGGameDateModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGameDateModel.h; sourceTree = "<group>"; };
+		3DF60B461FD1624400FE26E9 /* NGGGameDateModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGameDateModel.m; sourceTree = "<group>"; };
+		3DF6E6301FCFE2DD009CB3E3 /* Sport.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sport.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -696,6 +714,7 @@
 		3D35EC721FB2F78800E01659 /* Sport */ = {
 			isa = PBXGroup;
 			children = (
+				3DF6E6301FCFE2DD009CB3E3 /* Sport.entitlements */,
 				3D4B1BDA1FC7BF5700FBAB6C /* Model */,
 				3D35EC761FB2F78800E01659 /* Assets.xcassets */,
 				3D35EC731FB2F78800E01659 /* AppDelegate */,
@@ -1241,6 +1260,8 @@
 				3D35ED9F1FB2F78900E01659 /* ZSBlockAlertView.m */,
 				3D45CB7E1FCD10FA006EF330 /* NGGEmptyView.h */,
 				3D45CB7F1FCD10FA006EF330 /* NGGEmptyView.m */,
+				3DF60B421FD1492F00FE26E9 /* JYCommonTool.h */,
+				3DF60B431FD1492F00FE26E9 /* JYCommonTool.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1282,22 +1303,13 @@
 		3D35EE511FB3048900E01659 /* PreGuess */ = {
 			isa = PBXGroup;
 			children = (
+				3D922EF51FD00DF1003AA7F1 /* Game List */,
 				3DC56B8A1FC442CD00F67C32 /* Rank */,
 				3DC56B7F1FC42F0400F67C32 /* Result */,
 				3D35EE521FB3070F00E01659 /* Detail */,
-				3D35ECA71FB2F78800E01659 /* NGGPreGameTableViewCell.h */,
-				3D35ECA81FB2F78800E01659 /* NGGPreGameTableViewCell.m */,
-				3D35ECA91FB2F78800E01659 /* NGGPreGameTableViewCell.xib */,
-				3D35EC8C1FB2F78800E01659 /* NGGDateListItemView.h */,
-				3D35EC8D1FB2F78800E01659 /* NGGDateListItemView.m */,
-				3D35EC8E1FB2F78800E01659 /* NGGDateListView.h */,
-				3D35EC8F1FB2F78800E01659 /* NGGDateListView.m */,
 				3D35ECAA1FB2F78800E01659 /* NGGPreGuessListViewController.h */,
 				3D35ECAB1FB2F78800E01659 /* NGGPreGuessListViewController.m */,
 				3D35ECAC1FB2F78800E01659 /* NGGPreGuessListViewController.xib */,
-				3D35ECAD1FB2F78800E01659 /* NGGTypeTableViewCell.h */,
-				3D35ECAE1FB2F78800E01659 /* NGGTypeTableViewCell.m */,
-				3D35ECAF1FB2F78800E01659 /* NGGTypeTableViewCell.xib */,
 			);
 			path = PreGuess;
 			sourceTree = "<group>";
@@ -1402,6 +1414,32 @@
 			path = CommonCell;
 			sourceTree = "<group>";
 		};
+		3D922EF51FD00DF1003AA7F1 /* Game List */ = {
+			isa = PBXGroup;
+			children = (
+				3D35EC8C1FB2F78800E01659 /* NGGDateListItemView.h */,
+				3D35EC8D1FB2F78800E01659 /* NGGDateListItemView.m */,
+				3D35EC8E1FB2F78800E01659 /* NGGDateListView.h */,
+				3D35EC8F1FB2F78800E01659 /* NGGDateListView.m */,
+				3DF60B3A1FD126FA00FE26E9 /* NGGPreGameTableViewCell.h */,
+				3DF60B391FD126F900FE26E9 /* NGGPreGameTableViewCell.m */,
+				3D35ECA91FB2F78800E01659 /* NGGPreGameTableViewCell.xib */,
+				3D35ECAD1FB2F78800E01659 /* NGGTypeTableViewCell.h */,
+				3D35ECAE1FB2F78800E01659 /* NGGTypeTableViewCell.m */,
+				3D35ECAF1FB2F78800E01659 /* NGGTypeTableViewCell.xib */,
+				3DF60B3C1FD12AE400FE26E9 /* NGGGameListModel.h */,
+				3DF60B3D1FD12AE400FE26E9 /* NGGGameListModel.m */,
+				3DF60B3F1FD12F8100FE26E9 /* NGGLeagueModel.h */,
+				3DF60B401FD12F8100FE26E9 /* NGGLeagueModel.m */,
+				3DF60B451FD1624400FE26E9 /* NGGGameDateModel.h */,
+				3DF60B461FD1624400FE26E9 /* NGGGameDateModel.m */,
+				3D922EF61FD00EEB003AA7F1 /* NGGGameListView.h */,
+				3D922EF71FD00EEB003AA7F1 /* NGGGameListView.m */,
+				3D922EF91FD00F72003AA7F1 /* NGGGameListView.xib */,
+			);
+			path = "Game List";
+			sourceTree = "<group>";
+		};
 		3DC56B671FC3FB9F00F67C32 /* RecentRecord */ = {
 			isa = PBXGroup;
 			children = (
@@ -1501,7 +1539,12 @@
 				TargetAttributes = {
 					3D35EC581FB2F73A00E01659 = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -1548,6 +1591,7 @@
 				3D0BEAA61FC55B7800EC14A9 /* NGGRankHeaderView.xib in Resources */,
 				3D35EDBE1FB2F78900E01659 /* NGGPreGameTableViewCell.xib in Resources */,
 				3D35EDEA1FB2F78900E01659 /* Info.plist in Resources */,
+				3D922EFA1FD00F72003AA7F1 /* NGGGameListView.xib in Resources */,
 				3D35EDCB1FB2F78900E01659 /* NGGTaskViewController.xib in Resources */,
 				3D35EDAF1FB2F78900E01659 /* NGGGuessDetailViewController.xib in Resources */,
 				3DC56B611FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.xib in Resources */,
@@ -1586,9 +1630,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DF60B3B1FD126FA00FE26E9 /* NGGPreGameTableViewCell.m in Sources */,
 				3D35EDC71FB2F78900E01659 /* NGGResultViewController.m in Sources */,
 				3D35EDE81FB2F78900E01659 /* DMPictureModel.m in Sources */,
 				3D35EDAA1FB2F78900E01659 /* main.m in Sources */,
+				3D922EF81FD00EEB003AA7F1 /* NGGGameListView.m in Sources */,
 				3D35EE2A1FB2F78900E01659 /* NSDictionary+Extension.m in Sources */,
 				3D35EE181FB2F78900E01659 /* SDWebImageManager.m in Sources */,
 				3D35EDB61FB2F78900E01659 /* NGGHomeItemCollectionViewCell.m in Sources */,
@@ -1638,6 +1684,7 @@
 				3D35EE1D1FB2F78900E01659 /* UIImage+WebP.m in Sources */,
 				3D35EE131FB2F78900E01659 /* SDImageCacheConfig.m in Sources */,
 				3D35EE0D1FB2F78900E01659 /* PSCarouselView.m in Sources */,
+				3DF60B471FD1624400FE26E9 /* NGGGameDateModel.m in Sources */,
 				3D35EE1A1FB2F78900E01659 /* UIButton+WebCache.m in Sources */,
 				3D35EDDB1FB2F78900E01659 /* DMAssetGroupTableViewCell.m in Sources */,
 				3D35EDAC1FB2F78900E01659 /* NGGDateListItemView.m in Sources */,
@@ -1683,6 +1730,7 @@
 				3D45CB6C1FCC0128006EF330 /* UITextView+Placeholder.m in Sources */,
 				3D45CB8A1FCD5CF5006EF330 /* NGGRechargeViewController.m in Sources */,
 				3D35EE011FB2F78900E01659 /* MJRefreshNormalHeader.m in Sources */,
+				3DF60B411FD12F8100FE26E9 /* NGGLeagueModel.m in Sources */,
 				3D35EDFC1FB2F78900E01659 /* MJRefreshAutoStateFooter.m in Sources */,
 				3D35EDF81FB2F78900E01659 /* MJRefreshFooter.m in Sources */,
 				3D35EE081FB2F78900E01659 /* UIView+MJExtension.m in Sources */,
@@ -1714,17 +1762,18 @@
 				3D35EDE21FB2F78900E01659 /* DMPhotoBrowserViewController.m in Sources */,
 				3D35EE091FB2F78900E01659 /* MBProgressHUD.m in Sources */,
 				3D35EE191FB2F78900E01659 /* SDWebImagePrefetcher.m in Sources */,
+				3DF60B441FD1492F00FE26E9 /* JYCommonTool.m in Sources */,
 				3D45CB7C1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.m in Sources */,
 				3D35EE161FB2F78900E01659 /* SDWebImageDownloader.m in Sources */,
 				3D35EDD01FB2F78900E01659 /* NGGSocial.m in Sources */,
 				3D35EDF91FB2F78900E01659 /* MJRefreshHeader.m in Sources */,
+				3DF60B3E1FD12AE400FE26E9 /* NGGGameListModel.m in Sources */,
 				3D35EE5B1FB3085400E01659 /* NGGGuess2RowsCollectionViewCell.m in Sources */,
 				3D35EDD81FB2F78900E01659 /* AFURLRequestSerialization.m in Sources */,
 				3DC56B601FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.m in Sources */,
 				3D35EDE61FB2F78900E01659 /* DMPictureBrowerViewController.m in Sources */,
 				3D45CB5C1FCBF5F0006EF330 /* NGGModifyNicknameViewController.m in Sources */,
 				3D35EE211FB2F78900E01659 /* UIView+WebCacheOperation.m in Sources */,
-				3D35EDBD1FB2F78900E01659 /* NGGPreGameTableViewCell.m in Sources */,
 				3D35EE051FB2F78900E01659 /* NSBundle+MJRefresh.m in Sources */,
 				3DC56B911FC4432A00F67C32 /* NGGRankTableViewCell.m in Sources */,
 				3D35EDA51FB2F78900E01659 /* NGGNavigationController.m in Sources */,
@@ -1865,7 +1914,8 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_ENTITLEMENTS = Sport/Sport.entitlements;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = CD8Y6D6QYC;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1884,8 +1934,10 @@
 					"$(PROJECT_DIR)/Sport/Social/Weibo3.2.2",
 				);
 				OTHER_LIBTOOLFLAGS = "-fobjc-arc -ObjC \"-Objc -all_load\"";
-				PRODUCT_BUNDLE_IDENTIFIER = com.niugaga.Sport;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yyy.c001;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "588b3761-6623-4ad3-bdbc-4deba6cdd559";
+				PROVISIONING_PROFILE_SPECIFIER = 0001_dev.profile;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1895,8 +1947,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = CD8Y6D6QYC;
+				CODE_SIGN_ENTITLEMENTS = Sport/Sport.entitlements;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1914,8 +1967,9 @@
 					"$(PROJECT_DIR)/Sport/Social/Weibo3.2.2",
 				);
 				OTHER_LIBTOOLFLAGS = "-fobjc-arc -ObjC \"-Objc -all_load\"";
-				PRODUCT_BUNDLE_IDENTIFIER = com.niugaga.Sport;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yyy.c001;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

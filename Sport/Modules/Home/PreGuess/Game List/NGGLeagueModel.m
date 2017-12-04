@@ -10,4 +10,15 @@
 
 @implementation NGGLeagueModel
 
+- (instancetype)initWithInfo:(NSDictionary *)dict {
+    
+    if (self = [super initWithInfo:dict]) {
+        
+        _leagueID = [dict stringForKey:@"c_id"];
+        _leagueName = [dict stringForKey:@"c_name"];
+        _count = [dict stringForKey:@"total"];
+    }
+    return self;
+}
+
 @end

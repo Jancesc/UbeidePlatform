@@ -9,44 +9,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Sport/Modules/User/UserInfo/NGGUserInfoViewController.m"
-            timestampString = "533643203.798543"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
-            landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Sport/Modules/User/Excharge/NGGExchangeViewController.m"
-            timestampString = "533614715.961228"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "-touchesBegan:withEvent:"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Sport/Modules/Login/NGGRegisterViewController.m"
-            timestampString = "533643203.798688"
+            timestampString = "533720862.109487"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "261"
-            endingLineNumber = "261"
+            startingLineNumber = "266"
+            endingLineNumber = "266"
             landmarkName = "-registerButtonClicked:"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Sport/Modules/Login/NGGRegisterViewController.m"
-            timestampString = "533643203.798783"
+            timestampString = "533720862.109601"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "257"
-            endingLineNumber = "257"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
             landmarkName = "-registerButtonClicked:"
             landmarkType = "7">
             <Locations>
@@ -74,11 +42,11 @@
                   moduleName = "Sport"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Jan/Code/Sport/Sport/Modules/Login/NGGRegisterViewController.m"
-                  timestampString = "533643203.893601"
+                  timestampString = "533817636.298862"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "257"
-                  endingLineNumber = "257"
+                  startingLineNumber = "262"
+                  endingLineNumber = "262"
                   offsetFromSymbolStart = "136">
                </Location>
                <Location
@@ -89,11 +57,11 @@
                   moduleName = "Sport"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Jan/Code/Sport/Sport/Modules/Login/NGGRegisterViewController.m"
-                  timestampString = "533643203.895043"
+                  timestampString = "533817636.30025"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "257"
-                  endingLineNumber = "257"
+                  startingLineNumber = "262"
+                  endingLineNumber = "262"
                   offsetFromSymbolStart = "24">
                </Location>
             </Locations>
@@ -105,76 +73,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Sport/Modules/Login/NGGLoginViewController.m"
-            timestampString = "533643240.112215"
+            filePath = "Sport/Modules/Home/PreGuess/Game List/NGGDateListView.m"
+            timestampString = "533817636.165998"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
-            landmarkName = "-loginAction:"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__38-[NGGLoginViewController loginAction:]_block_invoke_2"
-                  moduleName = "Sport"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jan/Code/Sport/Sport/Modules/Login/NGGLoginViewController.m"
-                  timestampString = "533643240.433435"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "161"
-                  endingLineNumber = "161"
-                  offsetFromSymbolStart = "100">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__copy_helper_block_"
-                  moduleName = "Sport"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jan/Code/Sport/Sport/Modules/Login/NGGLoginViewController.m"
-                  timestampString = "533643240.434928"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "161"
-                  endingLineNumber = "161"
-                  offsetFromSymbolStart = "64">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__destroy_helper_block_"
-                  moduleName = "Sport"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Jan/Code/Sport/Sport/Modules/Login/NGGLoginViewController.m"
-                  timestampString = "533643240.436315"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "161"
-                  endingLineNumber = "161"
-                  offsetFromSymbolStart = "36">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Sport/Modules/Login/NGGLoginViewController.m"
-            timestampString = "533643247.952672"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "-loginAction:"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "-dateItemClicked:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

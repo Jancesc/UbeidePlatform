@@ -11,12 +11,9 @@
 
 @interface NGGDateListItemView ()
 
-@property (nonatomic, assign) NSInteger currentIndex;
-
 @end
 
 @implementation NGGDateListView
-
 
 - (void)awakeFromNib {
     
@@ -26,38 +23,39 @@
     self.showsHorizontalScrollIndicator = NO;
 }
 
-- (void)setDateInfo:(NSDictionary *)dateInfo {
+- (void)setArrayOfDate:(NSArray *)arrayOfDate {
     
-    _dateInfo = dateInfo;
-    
-    [self refreshData:dateInfo];
+    _arrayOfDate = arrayOfDate;
+    [self refreshData];
 }
 
-- (void)refreshData:(NSDictionary *)dateInfo {
+- (void)refreshData {
     
     for (UIView *subview in self.subviews) {
         
         [subview removeFromSuperview];
     }
-    
-    NSInteger itemCount = 10;
+    NSInteger itemCount = [_arrayOfDate count];
     CGFloat lastViewLeftX = 0;
     for (NSInteger index = 0; index < itemCount; index++) {
         
-        NGGDateListItemView *listView = [[NGGDateListItemView alloc] initWithFrame:CGRectMake(lastViewLeftX, 0, 70, VIEW_H(self))];
-        [listView addTarget:self action:@selector(dateItemClicked:) forControlEvents:UIControlEventTouchUpInside];
-//        listView.backgroundColor = NGGRandomColor;
-        [self addSubview:listView];
-        lastViewLeftX += VIEW_W(listView);
-        
+        NGGDateListItemView *itemView = [[NGGDateListItemView alloc] initWithFrame:CGRectMake(lastViewLeftX, 0, 85, VIEW_H(self))];
+        itemView.tag = index;
+        itemView.model = _arrayOfDate[index];
+        [itemView addTarget:self action:@selector(dateItemClicked:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:itemView];
+        lastViewLeftX += VIEW_W(itemView);
     }
+    
     self.contentSize = CGSizeMake(lastViewLeftX, VIEW_H(self));
-
 }
-
 
 - (void)dateItemClicked:(NGGDateListItemView *)itemView {
     
     itemView.selected = YES;
+    if (_listViewdelegate && [_listViewdelegate respondsToSelector:@selector(dateListViewDidSelectItem:atIndex:)]) {
+    
+        [_listViewdelegate dateListViewDidSelectItem:_arrayOfDate[itemView.tag] atIndex:itemView.tag];
+    }
 }
 @end

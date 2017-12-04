@@ -13,6 +13,7 @@
 #import "NGGNavigationController.h"
 #import "NGGModifyPasswordViewController.h"
 #import "NGGMessageViewController.h"
+#import "ZSBlockAlertView.h"
 
 @interface NGGUserInfoViewController()<UITableViewDelegate, UITableViewDataSource,UIActionSheetDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate> {
     
@@ -85,25 +86,27 @@
 
 - (void)refreshData {
     
+    NGGUser *currentUser = [NGGLoginSession activeSession].currentUser;
+    
     NGGCommonCellModel *model_0 = [NGGCommonCellModel new];
     model_0.title = @"头像";
     model_0.type = NGGCommonCellTypeImage;
-    model_0.value = @"http://upload-images.jianshu.io/upload_images/927233-558062c2a3cd2ac9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240";
+    model_0.value =currentUser.avatarURL;
     
     NGGCommonCellModel *model_1 = [NGGCommonCellModel new];
     model_1.title = @"昵称";
-    model_1.value = @"游客366";
+    model_1.value = currentUser.nickname;
     model_1.type = NGGCommonCellTypeText;
 
     NGGCommonCellModel *model_2 = [NGGCommonCellModel new];
     model_2.title = @"性别";
-    model_2.value = @"男";
+    model_2.value = [currentUser.sex isEqualToString:@"1"] ? @"男" : @"女";
     model_2.type = NGGCommonCellTypeText;
 
     NGGCommonCellModel *model_3 = [NGGCommonCellModel new];
     model_3.title = @"消息";
     model_3.desc = @"投注比赛结果推送";
-    model_3.value = @"0";
+    model_3.value = [@([NGGUser gameResultNotificationEnable]) stringValue] ;
     model_3.type = NGGCommonCellTypeSwitch;
 
     NGGCommonCellModel *model_4 = [NGGCommonCellModel new];
@@ -124,6 +127,109 @@
     [NGGLoginSession destroyActiveSession];
     [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidLogoutNotificationName object:nil];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark - private methods
+
+- (void)modifyAvatar:(UIImage *)image {
+    
+    [self showLoadingHUDWithText:nil];
+    NGGUser *currentUser = [NGGLoginSession activeSession].currentUser;
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=user.modifyInfo" parameters:@{@"uid" : currentUser.uid, @"token" : currentUser.token} constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+        
+        NSData *imageData = UIImageJPEGRepresentation(image, 0.5);
+        [formData appendPartWithFileData: imageData name: @"photo" fileName:@"photo.jpg" mimeType:@"image/jpeg"];
+    } success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self dismissHUD];
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showErrorHUDWithText:msg];
+        }];
+        if (dict) {
+            
+            NSString *avatar = [dict stringForKey:@"avatar_img"];
+            [[NGGLoginSession activeSession] updateUserInfo:@{@"avatar_img" : avatar}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidModifyUserInfoNotificationName object:nil];
+            [self refreshData];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [self dismissHUD];
+    }];
+}
+
+- (void)modifyNickname:(NSString *)nickname {
+    
+    [self showLoadingHUDWithText:nil];
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=user.modifyInfo" parameters:@{@"nickname" : nickname} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self dismissHUD];
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showErrorHUDWithText:msg];
+        }];
+        if (dict) {
+            
+            [[NGGLoginSession activeSession] updateUserInfo:@{@"nickname" : dict[@"nickname"]}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidModifyUserInfoNotificationName object:nil];
+            [self refreshData];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [self dismissHUD];
+    }];
+}
+
+- (void)modifySex:(NSString *)sex {
+    
+    [self showLoadingHUDWithText:nil];
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=user.modifyInfo" parameters:@{@"sex" : sex} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self dismissHUD];
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showErrorHUDWithText:msg];
+        }];
+        if (dict) {
+            
+            [[NGGLoginSession activeSession] updateUserInfo:@{@"sex" : dict[@"sex"]}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidModifyUserInfoNotificationName object:nil];
+            [self refreshData];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [self dismissHUD];
+    }];
+}
+
+- (void)modifyGameResultNotification:(BOOL)on {
+ 
+    if (on) {
+        
+        UIUserNotificationType type = [[UIApplication sharedApplication] currentUserNotificationSettings].types;
+        if (type == UIUserNotificationTypeNone) { //并未打开开关
+            
+            ZSBlockAlertView *alertView = [[ZSBlockAlertView alloc] initWithTitle:@"设置推送权限" message:@"需要先打开推送权限，才能及时推送比赛结果" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            [alertView setClickHandler:^(NSInteger index) {
+                
+                if (index == 1) {
+                    
+                    NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+
+                    if (@available(iOS 10.0, *)) {
+                        [[UIApplication sharedApplication] openURL:url options:@{} completionHandler:nil];
+                    } else {
+                        [[UIApplication sharedApplication] openURL:url];
+                    }
+                }
+            }];
+            [alertView show];
+        } else {
+            
+        }
+        
+    }
 }
 
 #pragma mark - UITableViewDataSource
@@ -162,6 +268,7 @@
         NGGSwitchTableViewCell *switchCell = (NGGSwitchTableViewCell *)cell;
         switchCell.valueChanged = ^(BOOL change) {
             
+            [self modifyGameResultNotification:change];
         };
     }
     cell.model = model;
@@ -201,6 +308,7 @@
         controller.completion = ^(NSString *text) {
             
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+            [self modifyNickname:text];
         } ;
         
         NGGNavigationController *nav = [[NGGNavigationController alloc] initWithRootViewController:controller];;
@@ -209,17 +317,19 @@
         }];
     } else if (indexPath.section == 1 && indexPath.row == 1) {
         
-        
         // 准备初始化配置参数
         NSString *title = @"设置性别";
         UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:title message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         
         UIAlertAction *maleAction = [UIAlertAction actionWithTitle:@"男" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
        
+            [self modifySex:@"1"];
         }];
         
         UIAlertAction *femaleAction = [UIAlertAction actionWithTitle:@"女" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
        
+            [self modifySex:@"2"];
+
         }];
         [actionSheet addAction:maleAction];
         [actionSheet addAction:femaleAction];
@@ -240,39 +350,11 @@
 
 #pragma mark - UIImagePickerControllerDelegate
 
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    
     UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
-    
     [self dismissViewControllerAnimated:YES completion:nil];
-    NSData *imageData = UIImageJPEGRepresentation(image, 0.5f);
-    NGGLoginSession *session = [NGGLoginSession activeSession];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [self showLoadingHUDWithText:@"正在设置头像"];
-//    [NGGHTTPClient postPath:@"/api.php?method=user.modifyInfo" parameters:@{@"token":session.token, @"uid":session.uid} constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-//        
-//        [formData appendPartWithFileData:imageData name:@"photo" fileName:@"avatar.jpg" mimeType:@"image/jpeg"];
-//    } success:^(NSURLSessionDataTask *task, id responseObject) {
-//        
-//        [self dismissHUD];
-//        NSDictionary *dataDic = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
-//            [self showErrorHUDWithText:msg];
-//        }];
-//        if (nil == dataDic) {
-//            return ;
-//        }
-//        
-//        NSString *imgString = [dataDic stringForKey:@"img"];
-//        NGGLoginSession *session = [NGGLoginSession activeSession];
-//        NSMutableDictionary *sessionInfo = [session.info mutableCopy];
-//        sessionInfo[@"img"] = imgString;
-//        [session setUserInfo:[sessionInfo copy]];
-//        [self nNGG_refreshUI];
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//        
-//        [self dismissHUD];
-//    }];
+    [self modifyAvatar:image];
 }
 
 #pragma mark - UIActionSheetDelegate

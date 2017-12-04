@@ -39,9 +39,9 @@
     UILabel *accLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, VIEW_W(accLeftView)-15, VIEW_H(accLeftView))];
     accLabel.backgroundColor = [UIColor clearColor];
     accLabel.font = [UIFont systemFontOfSize:14];
-    accLabel.textColor = UIColorWithRGB(0x70, 0x70, 0x70);
+    accLabel.textColor = NGGColor666;
     [accLeftView addSubview:accLabel];
-    accLabel.text = @"账号";
+    accLabel.text = @"手机号";
     
     _accountField.leftViewMode = UITextFieldViewModeAlways;
     _accountField.leftView = accLeftView;
@@ -57,7 +57,7 @@
     UILabel *passLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, VIEW_W(passLeftView)-15, VIEW_H(passLeftView))];
     passLabel.backgroundColor = [UIColor clearColor];
     passLabel.font = [UIFont systemFontOfSize:14];
-    passLabel.textColor = UIColorWithRGB(0x70, 0x70, 0x70);
+    passLabel.textColor = NGGColor666;
     [passLeftView addSubview:passLabel];
     passLabel.text = @"密码";
     
@@ -109,7 +109,7 @@
         return;
     }
     
-    [self showLoadingHUDWithText:nil];
+    [self loginAction:@{@"phone" : _accountField.text, @"password" : _passwordField.text}];
 }
 
 - (void)registerButtonClicked:(UIButton *) button {
@@ -151,13 +151,14 @@
 
 - (void)loginAction:(NSDictionary *)params {
     
+    [self.view endEditing:YES];
     [self showLoadingHUDWithText:nil];
     [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=user.login" parameters:params success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [self dismissHUD];
         NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
             
-            [self showLoadingHUDWithText:msg];
+            [self showErrorHUDWithText:msg];
         }];
         if (dict) {
             

@@ -7,9 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NGGGameDateModel.h"
+
+@protocol NGGDateListViewDelegate<NSObject>
+
+- (void)dateListViewDidSelectItem:(NGGGameDateModel *)model atIndex:(NSInteger)index;
+
+@end
 
 @interface NGGDateListView : UIScrollView
 
-@property (nonatomic, strong) NSDictionary *dateInfo;
+@property (nonatomic, assign) NSInteger dateSelectedIndex;
+
+@property (nonatomic, strong) NSArray *arrayOfDate;
+
+@property (nonatomic, weak) id <NGGDateListViewDelegate> listViewdelegate;
 
 @end

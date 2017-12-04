@@ -216,10 +216,15 @@
         
         [self showErrorHUDWithText:@"手机号码为空！"];
         return;
-    } 
+    }
+    if (isStringEmpty(_taskID)) {
+        
+        [self showErrorHUDWithText:@"需要先获取手机验证码！"];
+        return;
+    }
     if (isStringEmpty(_verificationCodeField.text)) {
         
-        [self showErrorHUDWithText:@"未填写验证码！"];
+        [self showErrorHUDWithText:@"未填写手机验证码！"];
         return;
     }
     if (isStringEmpty(_passwordField.text)) {

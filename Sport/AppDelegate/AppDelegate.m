@@ -21,6 +21,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    [[UIApplication sharedApplication] registerForRemoteNotifications];
     _tabbar = [[NGGTabBarController alloc] init];
     [_tabbar configure];
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

@@ -16,7 +16,7 @@
 
 @property (nonatomic, strong) NSString *phone;
 
-@property (nonatomic, strong) NSString *nickName;
+@property (nonatomic, strong) NSString *nickname;
 
 @property (nonatomic, strong) NSString *avatarURL;
 
@@ -28,5 +28,9 @@
 @property (nonatomic, strong) NSString *bean;
 
 @property (nonatomic, strong) NSString *invitationCode;
+
++ (BOOL)gameResultNotificationEnable;
+
++ (void)changeGameResultNotificationEnable:(BOOL)on;
 
 @end

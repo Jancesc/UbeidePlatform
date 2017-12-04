@@ -62,10 +62,17 @@ static NGGLoginSession *_activeSession = nil;
 
 - (void)updateUserInfo:(NSDictionary *)userInfo
 {
-    _currentUser = [[NGGUser alloc] initWithInfo:userInfo];
-
     NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    [standardUserDefaults setObject:userInfo forKey:kNGGSavedLoginInfoUserDefaultsKey];
+    NSMutableDictionary *infoM = [NSMutableDictionary dictionaryWithDictionary:[standardUserDefaults dictionaryForKey:kNGGSavedLoginInfoUserDefaultsKey]];
+    NSArray *keyArray = [userInfo allKeys];
+    for (NSString *key in keyArray) {
+        
+        [infoM setObject:userInfo[key] forKey:key];
+    }
+    
+    NSDictionary *finalInfo = [infoM copy];
+    _currentUser = [[NGGUser alloc] initWithInfo:finalInfo];
+    [standardUserDefaults setObject:finalInfo forKey:kNGGSavedLoginInfoUserDefaultsKey];
     [standardUserDefaults synchronize];
 }
 

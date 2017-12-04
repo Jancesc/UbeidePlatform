@@ -10,4 +10,10 @@
 
 @interface NGGGameListModel : NGGModel
 
+@property (nonatomic, copy) NSString *matchID;
+@property (nonatomic, copy) NSString *leagueName;
+@property (nonatomic, copy) NSString *homeName;
+@property (nonatomic, copy) NSString *awayName;
+@property (nonatomic, copy) NSString *timeString;
+
 @end
