@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol NGGRankViewDelegate <NSObject>
+
+- (void)refreshRankInfo;
+
+@end
 @interface NGGRankView : UIView
 
-@property (nonatomic, strong) NSArray *arrayOfRank;
+@property (nonatomic, strong) NSDictionary *rankDict;
+
+@property (nonatomic, weak) id <NGGRankViewDelegate> delegate;
+
 @end

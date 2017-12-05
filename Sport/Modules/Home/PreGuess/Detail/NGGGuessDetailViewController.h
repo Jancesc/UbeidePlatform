@@ -7,7 +7,10 @@
 //
 
 #import "NGGCommonViewController.h"
+#import "NGGGameListModel.h"
 
 @interface NGGGuessDetailViewController : NGGCommonViewController
+
+@property (nonatomic, strong) NGGGameListModel *model;
 
 @end

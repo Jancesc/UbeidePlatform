@@ -24,35 +24,48 @@
                             <constraint firstAttribute="width" constant="22" id="gqL-14-DWk"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="所有联赛(182)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="2P9-aN-7wo">
-                        <rect key="frame" x="30" y="0.0" width="98" height="74.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TAU-jk-7xN">
                         <rect key="frame" x="0.0" y="0.0" width="3" height="74.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="3" id="7dA-3z-RYJ"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="英超" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Gs0-3V-S1U">
+                        <rect key="frame" x="35" y="0.0" width="29" height="74.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" priority="250" constant="20" id="I1A-T5-02e"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(15)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PhG-XP-FCo">
+                        <rect key="frame" x="64" y="0.0" width="59" height="74.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" red="0.95294117647058818" green="0.95686274509803915" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="TAU-jk-7xN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="0qs-cT-AEx"/>
-                    <constraint firstAttribute="bottom" secondItem="2P9-aN-7wo" secondAttribute="bottom" id="7vq-Zk-RQC"/>
-                    <constraint firstAttribute="trailing" secondItem="2P9-aN-7wo" secondAttribute="trailing" constant="5" id="BFK-5T-fXW"/>
                     <constraint firstItem="2LS-sI-YdU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="3" id="FCV-vL-DSx"/>
-                    <constraint firstItem="2P9-aN-7wo" firstAttribute="leading" secondItem="2LS-sI-YdU" secondAttribute="trailing" constant="5" id="KXP-rT-aau"/>
+                    <constraint firstAttribute="bottom" secondItem="PhG-XP-FCo" secondAttribute="bottom" id="MK5-c5-hue"/>
+                    <constraint firstItem="Gs0-3V-S1U" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="daC-rX-XhM"/>
                     <constraint firstItem="TAU-jk-7xN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="e3M-HT-Wvm"/>
+                    <constraint firstItem="PhG-XP-FCo" firstAttribute="leading" secondItem="Gs0-3V-S1U" secondAttribute="trailing" id="g7x-k6-UIG"/>
                     <constraint firstAttribute="bottom" secondItem="2LS-sI-YdU" secondAttribute="bottom" id="hZi-aj-IbK"/>
+                    <constraint firstAttribute="trailing" secondItem="PhG-XP-FCo" secondAttribute="trailing" constant="10" id="iHW-he-LMY"/>
                     <constraint firstItem="2LS-sI-YdU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="kYj-vc-wNK"/>
+                    <constraint firstItem="PhG-XP-FCo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="mhp-rg-pbJ"/>
+                    <constraint firstAttribute="bottom" secondItem="Gs0-3V-S1U" secondAttribute="bottom" id="qBQ-hr-ySq"/>
+                    <constraint firstItem="Gs0-3V-S1U" firstAttribute="leading" secondItem="2LS-sI-YdU" secondAttribute="trailing" constant="10" id="sUX-Tl-GXj"/>
                     <constraint firstAttribute="bottom" secondItem="TAU-jk-7xN" secondAttribute="bottom" id="zKc-CA-w96"/>
-                    <constraint firstItem="2P9-aN-7wo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="zla-vG-kGI"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="_leagueName" destination="2P9-aN-7wo" id="8rW-I8-SRN"/>
+                <outlet property="_countLabel" destination="PhG-XP-FCo" id="gBZ-Cr-oeK"/>
+                <outlet property="_leagueName" destination="Gs0-3V-S1U" id="ecZ-Mp-BMV"/>
                 <outlet property="_logoView" destination="2LS-sI-YdU" id="rLW-lI-ici"/>
                 <outlet property="_noticeView" destination="TAU-jk-7xN" id="Bwc-nG-IaD"/>
             </connections>

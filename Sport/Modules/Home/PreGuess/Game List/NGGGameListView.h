@@ -13,8 +13,9 @@
 @protocol NGGGameListViewDelegate <NSObject>
 
 ///nil 为选择全部
-- (void)gameListViewDidSelectDate:(NSDate *)date;
-- (void)gameListViewDidSelectLeague:(NGGLeagueModel *)model;
+- (void)gameListViewUpdateInfoWithLeagueID:(NSString *)leagueID timeStamp:(NSString *)timeStamp;
+
+- (void)gameListViewDidSelectCellWithModel:(NGGGameListModel *)model;
 
 @end
 

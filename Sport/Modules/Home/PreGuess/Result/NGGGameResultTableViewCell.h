@@ -10,4 +10,6 @@
 
 @interface NGGGameResultTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) NSDictionary *cellInfo;
+
 @end

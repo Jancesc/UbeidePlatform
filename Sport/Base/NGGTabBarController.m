@@ -104,7 +104,6 @@
     [childVC.tabBarItem setTitleTextAttributes:textAttrs forState:UIControlStateNormal];
     childVC.tabBarItem.title = tabbarName;
     
-    
     // 设置tabBarItem的选中文字颜色
     NSMutableDictionary *selectedTextAttrs = [NSMutableDictionary dictionary];
     selectedTextAttrs[NSForegroundColorAttributeName] = NGGPrimaryColor;

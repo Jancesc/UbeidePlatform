@@ -16,57 +16,64 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I6B-H0-oWA">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="die-6h-aiV">
-                            <rect key="frame" x="0.0" y="0.0" width="35" height="55"/>
+                            <rect key="frame" x="0.0" y="0.0" width="25" height="60"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="35" id="gHR-Fn-zXU"/>
+                                <constraint firstAttribute="width" constant="25" id="gHR-Fn-zXU"/>
                             </constraints>
                             <state key="normal" image="arrow_left"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B9M-Bk-v6B">
-                            <rect key="frame" x="340" y="0.0" width="35" height="55"/>
+                            <rect key="frame" x="350" y="0.0" width="25" height="60"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="35" id="k01-WB-J6Z"/>
+                                <constraint firstAttribute="width" constant="25" id="k01-WB-J6Z"/>
                             </constraints>
                             <state key="normal" image="arrow_right"/>
                         </button>
-                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TCw-VS-Eez" customClass="NGGDateListView">
-                            <rect key="frame" x="35" y="0.0" width="305" height="55"/>
-                        </scrollView>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="QBI-n3-lO1">
+                            <rect key="frame" x="25" y="0.0" width="325" height="60"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="0Qg-Yr-jub">
+                                <size key="itemSize" width="85" height="60"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="TCw-VS-Eez" firstAttribute="top" secondItem="I6B-H0-oWA" secondAttribute="top" id="02b-2F-C8l"/>
-                        <constraint firstAttribute="bottom" secondItem="TCw-VS-Eez" secondAttribute="bottom" id="5H1-ow-t30"/>
+                        <constraint firstItem="QBI-n3-lO1" firstAttribute="top" secondItem="I6B-H0-oWA" secondAttribute="top" id="64e-wd-Wot"/>
                         <constraint firstAttribute="trailing" secondItem="B9M-Bk-v6B" secondAttribute="trailing" id="7yH-Mc-hav"/>
-                        <constraint firstAttribute="height" constant="55" id="DfC-sc-o1c"/>
+                        <constraint firstItem="B9M-Bk-v6B" firstAttribute="leading" secondItem="QBI-n3-lO1" secondAttribute="trailing" id="DaM-ys-vYi"/>
+                        <constraint firstAttribute="height" constant="60" id="DfC-sc-o1c"/>
                         <constraint firstItem="B9M-Bk-v6B" firstAttribute="top" secondItem="I6B-H0-oWA" secondAttribute="top" id="bAE-PV-b6e"/>
-                        <constraint firstItem="TCw-VS-Eez" firstAttribute="leading" secondItem="die-6h-aiV" secondAttribute="trailing" id="ecJ-Ys-bG9"/>
+                        <constraint firstItem="QBI-n3-lO1" firstAttribute="leading" secondItem="die-6h-aiV" secondAttribute="trailing" id="e5E-SY-RIf"/>
                         <constraint firstAttribute="bottom" secondItem="die-6h-aiV" secondAttribute="bottom" id="gVE-IZ-XuK"/>
-                        <constraint firstItem="B9M-Bk-v6B" firstAttribute="leading" secondItem="TCw-VS-Eez" secondAttribute="trailing" id="jh4-YT-BnT"/>
                         <constraint firstItem="die-6h-aiV" firstAttribute="top" secondItem="I6B-H0-oWA" secondAttribute="top" id="mAQ-gQ-jJt"/>
                         <constraint firstAttribute="bottom" secondItem="B9M-Bk-v6B" secondAttribute="bottom" id="oTf-Lh-qTD"/>
+                        <constraint firstAttribute="bottom" secondItem="QBI-n3-lO1" secondAttribute="bottom" id="xYI-o5-5Ku"/>
                         <constraint firstItem="die-6h-aiV" firstAttribute="leading" secondItem="I6B-H0-oWA" secondAttribute="leading" id="xcu-X4-FV1"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4EL-kB-Vk8">
-                    <rect key="frame" x="0.0" y="55" width="375" height="1"/>
+                    <rect key="frame" x="0.0" y="60" width="375" height="1"/>
                     <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="i8p-fE-o7T"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9RS-A9-KbA">
-                    <rect key="frame" x="0.0" y="56" width="125" height="611"/>
+                    <rect key="frame" x="0.0" y="61" width="125" height="606"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="125" id="uXO-Bl-Hm6"/>
                     </constraints>
                 </tableView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="llr-lE-8RK">
-                    <rect key="frame" x="125" y="56" width="250" height="611"/>
+                    <rect key="frame" x="125" y="61" width="250" height="606"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </tableView>
             </subviews>
@@ -88,7 +95,7 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="dateScrollView" destination="TCw-VS-Eez" id="rwr-cd-wJw"/>
+                <outlet property="dateCollectionView" destination="QBI-n3-lO1" id="L7K-Ka-9Yk"/>
                 <outlet property="gameTableView" destination="llr-lE-8RK" id="jqX-mh-80L"/>
                 <outlet property="typeTableView" destination="9RS-A9-KbA" id="lc5-C5-4E4"/>
                 <outlet property="typeTableViewWidthConstraint" destination="uXO-Bl-Hm6" id="vaK-Sv-JfH"/>

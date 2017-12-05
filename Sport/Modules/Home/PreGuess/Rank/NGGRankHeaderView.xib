@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="BE4-UD-iqt">
+        <view contentMode="scaleToFill" id="BE4-UD-iqt" customClass="NGGRankHeaderView">
             <rect key="frame" x="0.0" y="0.0" width="377" height="109"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -22,7 +22,7 @@
                         <constraint firstAttribute="height" constant="40" id="S0T-Up-Gx3"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="131345" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hqn-kw-vrO">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="131345" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hqn-kw-vrO">
                     <rect key="frame" x="297" y="0.0" width="60" height="109"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="60" id="o9p-VM-got"/>
@@ -73,10 +73,16 @@
                 <constraint firstItem="GBi-io-aZj" firstAttribute="leading" secondItem="Seh-ga-tdQ" secondAttribute="trailing" constant="10" id="zSO-Kx-era"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="_avatarImageView" destination="hwa-m0-JRb" id="JXi-6G-I6V"/>
+                <outlet property="_coinLabel" destination="Hqn-kw-vrO" id="QBO-xc-lCj"/>
+                <outlet property="_nameLabel" destination="Seh-ga-tdQ" id="oQn-ek-Kmc"/>
+                <outlet property="_rankLabel" destination="GBi-io-aZj" id="AGw-Aa-W1S"/>
+            </connections>
             <point key="canvasLocation" x="46.5" y="12.5"/>
         </view>
     </objects>
     <resources>
-        <image name="avatar_placeholder" width="30" height="30"/>
+        <image name="avatar_placeholder" width="96" height="96"/>
     </resources>
 </document>

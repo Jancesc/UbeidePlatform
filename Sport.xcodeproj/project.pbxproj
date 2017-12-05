@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D07BE721FD4E0F900BC4A64 /* NGGDateCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BE701FD4E0F900BC4A64 /* NGGDateCollectionViewCell.m */; };
+		3D07BE731FD4E0F900BC4A64 /* NGGDateCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D07BE711FD4E0F900BC4A64 /* NGGDateCollectionViewCell.xib */; };
 		3D0BEAA61FC55B7800EC14A9 /* NGGRankHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BEAA51FC55B7800EC14A9 /* NGGRankHeaderView.xib */; };
 		3D0BEAA91FC55BA100EC14A9 /* NGGRankHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0BEAA81FC55BA100EC14A9 /* NGGRankHeaderView.m */; };
 		3D25B4AD1FB4287600D20FB2 /* NGGDetailAnalyseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D25B4AC1FB4287600D20FB2 /* NGGDetailAnalyseView.m */; };
@@ -23,8 +25,6 @@
 		3D35EDA91FB2F78900E01659 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D35EC841FB2F78800E01659 /* Info.plist */; };
 		3D35EDAA1FB2F78900E01659 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EC851FB2F78800E01659 /* main.m */; };
 		3D35EDAB1FB2F78900E01659 /* NGGLoginSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EC891FB2F78800E01659 /* NGGLoginSession.m */; };
-		3D35EDAC1FB2F78900E01659 /* NGGDateListItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EC8D1FB2F78800E01659 /* NGGDateListItemView.m */; };
-		3D35EDAD1FB2F78900E01659 /* NGGDateListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EC8F1FB2F78800E01659 /* NGGDateListView.m */; };
 		3D35EDAE1FB2F78900E01659 /* NGGGuessDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EC911FB2F78800E01659 /* NGGGuessDetailViewController.m */; };
 		3D35EDAF1FB2F78900E01659 /* NGGGuessDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D35EC921FB2F78800E01659 /* NGGGuessDetailViewController.xib */; };
 		3D35EDB01FB2F78900E01659 /* NGGHomeActivityHeaderReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EC941FB2F78800E01659 /* NGGHomeActivityHeaderReusableView.m */; };
@@ -244,6 +244,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3D07BE6F1FD4E0F900BC4A64 /* NGGDateCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGDateCollectionViewCell.h; sourceTree = "<group>"; };
+		3D07BE701FD4E0F900BC4A64 /* NGGDateCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGDateCollectionViewCell.m; sourceTree = "<group>"; };
+		3D07BE711FD4E0F900BC4A64 /* NGGDateCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGDateCollectionViewCell.xib; sourceTree = "<group>"; };
 		3D0BEAA51FC55B7800EC14A9 /* NGGRankHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGRankHeaderView.xib; sourceTree = "<group>"; };
 		3D0BEAA71FC55BA100EC14A9 /* NGGRankHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGRankHeaderView.h; sourceTree = "<group>"; };
 		3D0BEAA81FC55BA100EC14A9 /* NGGRankHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGRankHeaderView.m; sourceTree = "<group>"; };
@@ -270,10 +273,6 @@
 		3D35EC851FB2F78800E01659 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3D35EC881FB2F78800E01659 /* NGGLoginSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGLoginSession.h; sourceTree = "<group>"; };
 		3D35EC891FB2F78800E01659 /* NGGLoginSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGLoginSession.m; sourceTree = "<group>"; };
-		3D35EC8C1FB2F78800E01659 /* NGGDateListItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGDateListItemView.h; sourceTree = "<group>"; };
-		3D35EC8D1FB2F78800E01659 /* NGGDateListItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGDateListItemView.m; sourceTree = "<group>"; };
-		3D35EC8E1FB2F78800E01659 /* NGGDateListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGDateListView.h; sourceTree = "<group>"; };
-		3D35EC8F1FB2F78800E01659 /* NGGDateListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGDateListView.m; sourceTree = "<group>"; };
 		3D35EC901FB2F78800E01659 /* NGGGuessDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGGuessDetailViewController.h; sourceTree = "<group>"; };
 		3D35EC911FB2F78800E01659 /* NGGGuessDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGGuessDetailViewController.m; sourceTree = "<group>"; };
 		3D35EC921FB2F78800E01659 /* NGGGuessDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGGGuessDetailViewController.xib; sourceTree = "<group>"; };
@@ -1417,10 +1416,6 @@
 		3D922EF51FD00DF1003AA7F1 /* Game List */ = {
 			isa = PBXGroup;
 			children = (
-				3D35EC8C1FB2F78800E01659 /* NGGDateListItemView.h */,
-				3D35EC8D1FB2F78800E01659 /* NGGDateListItemView.m */,
-				3D35EC8E1FB2F78800E01659 /* NGGDateListView.h */,
-				3D35EC8F1FB2F78800E01659 /* NGGDateListView.m */,
 				3DF60B3A1FD126FA00FE26E9 /* NGGPreGameTableViewCell.h */,
 				3DF60B391FD126F900FE26E9 /* NGGPreGameTableViewCell.m */,
 				3D35ECA91FB2F78800E01659 /* NGGPreGameTableViewCell.xib */,
@@ -1433,6 +1428,9 @@
 				3DF60B401FD12F8100FE26E9 /* NGGLeagueModel.m */,
 				3DF60B451FD1624400FE26E9 /* NGGGameDateModel.h */,
 				3DF60B461FD1624400FE26E9 /* NGGGameDateModel.m */,
+				3D07BE6F1FD4E0F900BC4A64 /* NGGDateCollectionViewCell.h */,
+				3D07BE701FD4E0F900BC4A64 /* NGGDateCollectionViewCell.m */,
+				3D07BE711FD4E0F900BC4A64 /* NGGDateCollectionViewCell.xib */,
 				3D922EF61FD00EEB003AA7F1 /* NGGGameListView.h */,
 				3D922EF71FD00EEB003AA7F1 /* NGGGameListView.m */,
 				3D922EF91FD00F72003AA7F1 /* NGGGameListView.xib */,
@@ -1618,6 +1616,7 @@
 				3D35EDE01FB2F78900E01659 /* DMMultiImagePicker.bundle in Resources */,
 				3D35EDA71FB2F78900E01659 /* LaunchScreen.storyboard in Resources */,
 				3D35EDC61FB2F78900E01659 /* NGGRegisterViewController.xib in Resources */,
+				3D07BE731FD4E0F900BC4A64 /* NGGDateCollectionViewCell.xib in Resources */,
 				3D35EDB11FB2F78900E01659 /* NGGHomeActivityHeaderReusableView.xib in Resources */,
 				3D35EE5C1FB3085400E01659 /* NGGGuess2RowsCollectionViewCell.xib in Resources */,
 			);
@@ -1687,7 +1686,6 @@
 				3DF60B471FD1624400FE26E9 /* NGGGameDateModel.m in Sources */,
 				3D35EE1A1FB2F78900E01659 /* UIButton+WebCache.m in Sources */,
 				3D35EDDB1FB2F78900E01659 /* DMAssetGroupTableViewCell.m in Sources */,
-				3D35EDAC1FB2F78900E01659 /* NGGDateListItemView.m in Sources */,
 				3D35EE1B1FB2F78900E01659 /* UIImage+GIF.m in Sources */,
 				3D35EE001FB2F78900E01659 /* MJRefreshGifHeader.m in Sources */,
 				3D35EE0F1FB2F78900E01659 /* MKAnnotationView+WebCache.m in Sources */,
@@ -1699,6 +1697,7 @@
 				3D35EE061FB2F78900E01659 /* UIScrollView+MJExtension.m in Sources */,
 				3D45CB751FCC1434006EF330 /* NGGMessageViewController.m in Sources */,
 				3D35EE2C1FB2F78900E01659 /* ViewController.m in Sources */,
+				3D07BE721FD4E0F900BC4A64 /* NGGDateCollectionViewCell.m in Sources */,
 				3D35EDF11FB2F78900E01659 /* NSArray+MASAdditions.m in Sources */,
 				3D35EDF61FB2F78900E01659 /* MJRefreshBackFooter.m in Sources */,
 				3D45CB851FCD380D006EF330 /* NGGExchangeViewController.m in Sources */,
@@ -1746,7 +1745,6 @@
 				3D4B1BE51FC7CF9400FBAB6C /* NGGImageTableViewCell.m in Sources */,
 				3D0BEAA91FC55BA100EC14A9 /* NGGRankHeaderView.m in Sources */,
 				3D35EDD51FB2F78900E01659 /* AFHTTPSessionManager.m in Sources */,
-				3D35EDAD1FB2F78900E01659 /* NGGDateListView.m in Sources */,
 				3D4B1BE91FC7D34300FBAB6C /* NGGCommonCellModel.m in Sources */,
 				3D45CB8E1FCD5D14006EF330 /* NGGRechargeCollectionViewCell.m in Sources */,
 				3DDACFB71FC82F3B0057BD9B /* NGGCommonTableViewCell.m in Sources */,

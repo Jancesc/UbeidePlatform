@@ -10,4 +10,6 @@
 
 @interface NGGRankHeaderView : UIView
 
+@property (nonatomic, strong) NSDictionary *info;
+
 @end

@@ -8,8 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol NGGGameResultViewDelegate <NSObject>
+
+- (void)loadMoreGameResultInfo;
+- (void)refreshGameResultInfo;
+
+@end
+
 @interface NGGGameResultView : UIView
 
 @property (nonatomic, strong) NSArray *arrayOfGameResult;
+
+@property (nonatomic, weak) id <NGGGameResultViewDelegate> delegate;
 
 @end

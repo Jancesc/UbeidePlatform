@@ -167,6 +167,13 @@
                     <constraint firstItem="SVw-81-veX" firstAttribute="top" secondItem="wI9-eH-Fi5" secondAttribute="bottom" constant="15" id="ua9-lQ-6Cm"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="_awayNameLabel" destination="mFH-0b-oLy" id="39b-zo-vET"/>
+                <outlet property="_awayResultLabel" destination="8zg-Fr-e2F" id="PRX-ta-ea4"/>
+                <outlet property="_homeNameLabel" destination="df7-Qy-zGV" id="ZWw-g5-cMb"/>
+                <outlet property="_homeResultLabel" destination="COe-Ro-vK8" id="Qhg-pw-AN6"/>
+                <outlet property="_timeLabel" destination="y2v-XX-pdd" id="JDk-g3-oAc"/>
+            </connections>
             <point key="canvasLocation" x="79.5" y="174.5"/>
         </tableViewCell>
     </objects>

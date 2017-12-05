@@ -10,4 +10,6 @@
 
 @interface NGGRankTableViewCell : UITableViewCell
 
+@property (nonatomic, strong) NSDictionary *cellInfo;
+
 @end

@@ -12,21 +12,22 @@
 #import "NGGRankView.h"
 #import "NGGGameListView.h"
 
-@interface NGGPreGuessListViewController ()<UITableViewDelegate, UITableViewDataSource, NGGGameListViewDelegate> {
+@interface NGGPreGuessListViewController ()<UITableViewDelegate, UITableViewDataSource, NGGGameListViewDelegate, NGGGameResultViewDelegate, NGGRankViewDelegate> {
     
     NGGGameResultView *_resultView;
     NGGRankView *_rankView;
     NGGGameListView *_gameListView;
+    
+    NGGGuessDetailViewController *_detailController;
 }
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
 
 @property (strong, nonatomic)  NSDictionary *dictionaryOfGameList;
-@property (strong, nonatomic)  NSArray *arrayOfGameResult;
-@property (strong, nonatomic)  NSArray *arrayOfRank;
+@property (strong, nonatomic)  NSMutableArray *arrayOfGameResult;
+@property (strong, nonatomic)  NSDictionary *dictionaryOfRank;
 
 @end
-
 
 @implementation NGGPreGuessListViewController
 
@@ -41,6 +42,7 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(leftBarButtonClicked)];
     [self refreshUI];
     [self refreshData];
+    _detailController = [[NGGGuessDetailViewController alloc] initWithNibName:@"NGGGuessDetailViewController" bundle:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -67,6 +69,7 @@
     _gameListView = [[[NSBundle mainBundle] loadNibNamed:@"NGGGameListView" owner:nil options:nil] lastObject];
     _gameListView.hidden = NO;
     _gameListView.backgroundColor = [UIColor whiteColor];
+    _gameListView.delegate = self;
     [self.view addSubview:_gameListView];
     [_gameListView mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -76,6 +79,7 @@
     
     _resultView = [NGGGameResultView new];
     _resultView.backgroundColor = [UIColor whiteColor];
+    _resultView.delegate = self;
     _resultView.hidden = YES;
     [self.view addSubview:_resultView];
     [_resultView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -85,6 +89,7 @@
     }];
     
     _rankView = [NGGRankView new];
+    _rankView.delegate = self;
     _rankView.hidden = YES;
     _rankView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:_rankView];
@@ -113,18 +118,27 @@
             _resultView.hidden = YES;
             _rankView.hidden = YES;
             _gameListView.dictionaryOfGameList = _dictionaryOfGameList;
+      
             break;
         case 1:
             _gameListView.hidden = YES;
             _resultView.hidden = NO;
             _rankView.hidden = YES;
             _resultView.arrayOfGameResult = _arrayOfGameResult;
+            if (_arrayOfGameResult == nil) {
+                
+                [self loadGameResult];
+            }
             break;
         case 2:
             _gameListView.hidden = YES;
             _resultView.hidden = YES;
             _rankView.hidden = NO;
-            _rankView.arrayOfRank = _arrayOfRank;
+            _rankView.rankDict = _dictionaryOfRank;
+            if (_dictionaryOfRank == nil) {
+                
+                [self loadGameRank];
+            }
             break;
     }
 }
@@ -134,7 +148,7 @@
     NSInteger index = _segmentControl.selectedSegmentIndex;
     switch (index) {
         case 0:
-            [self loadGameListInfo];
+            [self loadGameListInfo:nil];
             break;
         case 1:
             [self loadGameResult];
@@ -145,10 +159,10 @@
     }
 }
 
-- (void)loadGameListInfo {
+- (void)loadGameListInfo:(NSDictionary *)params {
     
     [self showLoadingHUDWithText:nil];
-    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.gameList" parameters:nil willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.gameList" parameters:params willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [self dismissHUD];
         NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
@@ -168,18 +182,90 @@
 
 - (void)loadGameResult {
     
-    
+    NSInteger page = (NSInteger)([_arrayOfGameResult count] / NGGMaxCountPerPage) + 1;
+    if (page == 1) {
+        
+        [self showLoadingHUDWithText:nil];
+    }
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.gameResult" parameters:@{@"page" : @(page)} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self dismissHUD];
+        NSArray *dataArray = [self arrayData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showErrorHUDWithText:msg];
+        }];
+        if (dataArray) {
+            
+            if (_arrayOfGameResult == nil) {
+                
+                _arrayOfGameResult = [NSMutableArray arrayWithCapacity:[dataArray count]];
+            }
+            [_arrayOfGameResult addObjectsFromArray:dataArray];
+            [self refreshUI];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [self dismissHUD];
+    }];
 }
 
 - (void)loadGameRank {
     
-    
+    [self showLoadingHUDWithText:nil];
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.ranking" parameters:nil willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self dismissHUD];
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showErrorHUDWithText:msg];
+        }];
+        if (dict) {
+            
+            _dictionaryOfRank = dict;
+            [self refreshUI];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [self dismissHUD];
+    }];
 }
 
 - (void)segmentControlValueChanged:(UISegmentedControl *) segmentControl {
+
     [self refreshUI];
 }
 
 #pragma mark - NGGGameListViewDelegate
+
+- (void)gameListViewUpdateInfoWithLeagueID:(NSString *)leagueID timeStamp:(NSString *)timeStamp {
+    
+    [self loadGameListInfo:@{@"cid" : leagueID, @"mt" : timeStamp}];
+}
+
+- (void)gameListViewDidSelectCellWithModel:(NGGGameListModel *)model {
+    
+    _detailController.model = model;
+    [self.navigationController pushViewController:_detailController animated:YES];
+}
+
+#pragma mark - NGGGameResultViewDelegate
+
+- (void)loadMoreGameResultInfo {
+    
+    [self loadGameResult];
+}
+
+- (void)refreshGameResultInfo {
+    
+    _arrayOfGameResult = nil;
+    [self loadGameResult];
+}
+
+#pragma mark - NGGRankViewDelegate
+
+- (void)refreshRankInfo {
+    
+    [self loadGameRank];
+}
 
 @end

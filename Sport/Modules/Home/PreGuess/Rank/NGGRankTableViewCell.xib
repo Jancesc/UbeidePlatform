@@ -45,28 +45,45 @@
                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tPh-wd-hiz">
+                        <rect key="frame" x="0.0" y="0.0" width="80" height="98.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="gqK-nv-soz" firstAttribute="leading" secondItem="yd8-6T-InR" secondAttribute="trailing" constant="10" id="1gW-px-X6X"/>
                     <constraint firstItem="yd8-6T-InR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="6O7-g6-j2l"/>
+                    <constraint firstAttribute="bottom" secondItem="tPh-wd-hiz" secondAttribute="bottom" id="8r4-8A-qJr"/>
                     <constraint firstItem="Uh4-3x-udg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="A6o-4e-Vex"/>
                     <constraint firstAttribute="bottom" secondItem="yd8-6T-InR" secondAttribute="bottom" id="FZi-I5-6nA"/>
                     <constraint firstItem="JsX-ke-wrI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="GIt-tl-y5S"/>
                     <constraint firstAttribute="bottom" secondItem="gqK-nv-soz" secondAttribute="bottom" id="O7k-OT-hyR"/>
                     <constraint firstAttribute="bottom" secondItem="Uh4-3x-udg" secondAttribute="bottom" id="QOJ-j8-chc"/>
                     <constraint firstItem="JsX-ke-wrI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="UMh-rt-kkn"/>
+                    <constraint firstItem="tPh-wd-hiz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ZHH-YI-f6s"/>
                     <constraint firstItem="Uh4-3x-udg" firstAttribute="leading" secondItem="gqK-nv-soz" secondAttribute="trailing" constant="10" id="c5e-cy-OXI"/>
                     <constraint firstItem="gqK-nv-soz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="jQA-x3-qUv"/>
                     <constraint firstAttribute="bottom" secondItem="JsX-ke-wrI" secondAttribute="bottom" id="jhr-HG-7Eg"/>
+                    <constraint firstItem="yd8-6T-InR" firstAttribute="leading" secondItem="tPh-wd-hiz" secondAttribute="trailing" id="lGu-2P-No4"/>
                     <constraint firstItem="yd8-6T-InR" firstAttribute="leading" secondItem="JsX-ke-wrI" secondAttribute="trailing" id="mNz-iX-7Qr"/>
                     <constraint firstAttribute="trailing" secondItem="Uh4-3x-udg" secondAttribute="trailing" constant="20" id="mkH-bM-hYs"/>
+                    <constraint firstItem="tPh-wd-hiz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="uGP-lU-Wzm"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="_avatarImageView" destination="yd8-6T-InR" id="yGK-9N-qZh"/>
+                <outlet property="_coinLabel" destination="Uh4-3x-udg" id="DEi-rb-c3m"/>
+                <outlet property="_nameLabel" destination="gqK-nv-soz" id="AvU-zU-nfS"/>
+                <outlet property="_rankImageView" destination="JsX-ke-wrI" id="1Qa-ta-vxA"/>
+                <outlet property="_rankLabel" destination="tPh-wd-hiz" id="6EU-JL-1kM"/>
+            </connections>
             <point key="canvasLocation" x="54" y="86.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="avatar_placeholder" width="30" height="30"/>
+        <image name="avatar_placeholder" width="96" height="96"/>
         <image name="rank1" width="28" height="37"/>
     </resources>
 </document>

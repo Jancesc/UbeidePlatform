@@ -7,15 +7,29 @@
 //
 
 #import "NGGRankHeaderView.h"
+#import "UIImageView+WebCache.h"
+
+@interface NGGRankHeaderView () {
+    
+    __weak IBOutlet UIImageView *_avatarImageView;
+    __weak IBOutlet UILabel *_coinLabel;
+    __weak IBOutlet UILabel *_rankLabel;
+    __weak IBOutlet UILabel *_nameLabel;
+}
+
+@end;
 
 @implementation NGGRankHeaderView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+-(void)setInfo:(NSDictionary *)info {
+    
+    _info = info;
+    
+    NSString *imageString = [info stringForKey:@"avatar_img"];
+    [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:imageString] placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
+    _coinLabel.text = [info stringForKey:@"total"];
+    _nameLabel.text = [info stringForKey:@"nickname"];
+    _rankLabel.text = [NSString stringWithFormat:@"七日盈利:%@", [info stringForKey:@"rank"]];
 }
-*/
 
 @end

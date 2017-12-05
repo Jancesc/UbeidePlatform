@@ -38,12 +38,18 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self configueUIComponents];
+    self.title = @"赛事";
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    [self configueUIComponents];
 }
 
 #pragma mark - private methods
@@ -68,11 +74,11 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     _collectionView.backgroundColor = NGGSeparatorColor;
     _collectionView.contentInset = UIEdgeInsetsMake(0, 0, 15, 0);
     
-    
     _analyseView = [[[NSBundle mainBundle] loadNibNamed:@"NGGDetailAnalyseView" owner:nil options:nil] lastObject];
+    _analyseView.hidden = YES;
     [self.view addSubview:_analyseView];
     [_analyseView mas_makeConstraints:^(MASConstraintMaker *make) {
-        
+
         make.top.equalTo(_collectionView.mas_top);
         make.left.bottom.right.equalTo(self.view);
     }];

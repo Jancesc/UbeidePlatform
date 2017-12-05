@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="NGGDateCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="192" height="60"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="192" height="60"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="09/21" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="77L-nx-f5r">
+                        <rect key="frame" x="0.0" y="30" width="192" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="Lk4-bD-9dt"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7lc-on-Oha">
+                        <rect key="frame" x="61" y="10" width="71" height="20"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="星期三" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nKR-Ct-FbM">
+                                <rect key="frame" x="0.0" y="0.0" width="43" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" priority="250" constant="42" id="rTX-8s-85c"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(15)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FL2-uF-SMO">
+                                <rect key="frame" x="43" y="0.0" width="28" height="20"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="nKR-Ct-FbM" secondAttribute="bottom" id="1TA-T0-GiE"/>
+                            <constraint firstAttribute="width" priority="200" constant="50" id="8kx-De-JEG"/>
+                            <constraint firstItem="nKR-Ct-FbM" firstAttribute="leading" secondItem="7lc-on-Oha" secondAttribute="leading" id="C22-Bv-No6"/>
+                            <constraint firstAttribute="trailing" secondItem="FL2-uF-SMO" secondAttribute="trailing" id="VEK-IK-LU0"/>
+                            <constraint firstAttribute="height" constant="20" id="Zfx-Mg-bjz"/>
+                            <constraint firstAttribute="bottom" secondItem="FL2-uF-SMO" secondAttribute="bottom" id="eEl-6Y-Qud"/>
+                            <constraint firstItem="nKR-Ct-FbM" firstAttribute="top" secondItem="7lc-on-Oha" secondAttribute="top" id="qOZ-yf-eIb"/>
+                            <constraint firstItem="FL2-uF-SMO" firstAttribute="leading" secondItem="nKR-Ct-FbM" secondAttribute="trailing" id="uaT-BP-I0h"/>
+                            <constraint firstItem="FL2-uF-SMO" firstAttribute="top" secondItem="7lc-on-Oha" secondAttribute="top" id="v5O-1n-1Gh"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="7lc-on-Oha" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="20m-FT-PME"/>
+                <constraint firstItem="7lc-on-Oha" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="4fj-bT-38k"/>
+                <constraint firstItem="77L-nx-f5r" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="F1a-rq-HJA"/>
+                <constraint firstAttribute="trailing" secondItem="77L-nx-f5r" secondAttribute="trailing" id="HBn-PR-hFU"/>
+                <constraint firstAttribute="bottom" secondItem="77L-nx-f5r" secondAttribute="bottom" constant="10" id="rEq-5Y-XIP"/>
+            </constraints>
+            <size key="customSize" width="192" height="60"/>
+            <connections>
+                <outlet property="_countLabel" destination="FL2-uF-SMO" id="zIl-7A-PZX"/>
+                <outlet property="_dateLabel" destination="77L-nx-f5r" id="6pl-xJ-7ve"/>
+                <outlet property="_weekLabel" destination="nKR-Ct-FbM" id="ldk-TE-0ZT"/>
+            </connections>
+            <point key="canvasLocation" x="96" y="57"/>
+        </collectionViewCell>
+    </objects>
+</document>

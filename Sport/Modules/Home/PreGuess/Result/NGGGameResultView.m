@@ -9,6 +9,7 @@
 #import "NGGGameResultView.h"
 #import "NGGGameResultTableViewCell.h"
 #import "Masonry.h"
+#import "MJRefresh.h"
 
 static NSString *kGameResultTableViewCellIdentidier = @"gameResultTableViewCellIdentidier";
 
@@ -16,6 +17,7 @@ static NSString *kGameResultTableViewCellIdentidier = @"gameResultTableViewCellI
     
     UITableView *_tableView;
 }
+
 @end
 
 @implementation NGGGameResultView
@@ -55,8 +57,47 @@ static NSString *kGameResultTableViewCellIdentidier = @"gameResultTableViewCellI
     } else {
         // Fallback on earlier versions
     }
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
+    _tableView.mj_header = header;
 }
 
+-(void)setArrayOfGameResult:(NSArray *)arrayOfGameResult {
+    
+    if ([_arrayOfGameResult count] == 0 && [arrayOfGameResult count] == NGGMaxCountPerPage) {
+        
+        [self setupLoadMoreFooter];
+    } else if ([arrayOfGameResult count] - [_arrayOfGameResult count] < NGGMaxCountPerPage) {
+        
+        _tableView.mj_footer = nil;
+    }
+    _arrayOfGameResult = [arrayOfGameResult copy];
+    [_tableView reloadData];
+    [_tableView.mj_header endRefreshing];
+    [_tableView.mj_footer endRefreshing];
+}
+
+- (void) setupLoadMoreFooter
+{
+    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    _tableView.mj_footer = footer;
+}
+
+- (void)loadMoreData {
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(loadMoreGameResultInfo)]) {
+        
+        [_delegate loadMoreGameResultInfo];
+    }
+}
+
+- (void)refreshData {
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(refreshGameResultInfo)]) {
+        
+        _arrayOfGameResult = nil;
+        [_delegate refreshGameResultInfo];
+    }
+}
 
 #pragma mark - UITableViewDataSource
 
@@ -67,14 +108,15 @@ static NSString *kGameResultTableViewCellIdentidier = @"gameResultTableViewCellI
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 10;;
+    return [_arrayOfGameResult count];
     
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kGameResultTableViewCellIdentidier
+    NGGGameResultTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kGameResultTableViewCellIdentidier
                                                             forIndexPath:indexPath];
+    cell.cellInfo = _arrayOfGameResult[indexPath.row];
     return cell;
 }
 
@@ -97,26 +139,9 @@ static NSString *kGameResultTableViewCellIdentidier = @"gameResultTableViewCellI
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    //    [_tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //    if (indexPath.row == 0)
-    //    {
-    //        DMAgencyAddBankAccountViewController *controller =
-    //        [[DMAgencyAddBankAccountViewController alloc] initWithNibName:@"DMAgencyAddBankAccountViewController" bundle:nil];
-    //        controller.delegate = self;
-    //        [self.navigationController pushViewController:controller animated:YES];
-    //    }
-    //    else if (indexPath.row == 1)
-    //    {
-    //        DMAgencyAddAliPayAccountViewController *contoller = [[DMAgencyAddAliPayAccountViewController alloc] initWithNibName:@"DMAgencyAddAliPayAccountViewController" bundle:nil];
-    //        contoller.delegate = self;
-    //        [self.navigationController pushViewController:contoller animated:YES];
-    //    }
+
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
-}
 
 @end
 

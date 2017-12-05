@@ -207,11 +207,6 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:logoView];;
 }
 
-//-(BOOL)prefersStatusBarHidden {
-//    
-//    return YES;
-//}
-
 #pragma mark - private methods
 
 - (void)bannerImageTapped:(NSInteger)index {

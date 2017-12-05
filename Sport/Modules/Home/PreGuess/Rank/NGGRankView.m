@@ -10,13 +10,19 @@
 #import "NGGRankTableViewCell.h"
 #import "NGGRankHeaderView.h"
 #import "Masonry.h"
+#import "MJRefresh.h"
 
 static NSString *kNGGRankTableViewCellIdentifier = @"nGGRankTableViewCellIdentifier";
 
 @interface NGGRankView()<UITableViewDelegate, UITableViewDataSource> {
     
     UITableView *_tableView;
+    NGGRankHeaderView *_headerView;
 }
+
+@property (nonatomic, strong) NSDictionary *userInfo;
+
+@property (nonatomic, strong) NSArray *rankArray;
 
 @end
 
@@ -33,7 +39,7 @@ static NSString *kNGGRankTableViewCellIdentifier = @"nGGRankTableViewCellIdentif
 
 - (void)configueUIComponents {
     
-    _tableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStyleGrouped];
     _tableView.separatorColor = NGGSeparatorColor;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     _tableView.rowHeight = 70.f;
@@ -48,8 +54,9 @@ static NSString *kNGGRankTableViewCellIdentifier = @"nGGRankTableViewCellIdentif
         // Fallback on earlier versions
     }
     
-    UIView *headerView = [[[NSBundle mainBundle] loadNibNamed:@"NGGRankHeaderView" owner:nil options:nil] lastObject];
+    NGGRankHeaderView *headerView = [[[NSBundle mainBundle] loadNibNamed:@"NGGRankHeaderView" owner:nil options:nil] lastObject];
     headerView.frame = CGRectMake(0, 0, SCREEN_WIDTH, 75);
+    _headerView = headerView;
     _tableView.tableHeaderView = headerView;
     
     [self addSubview:_tableView];
@@ -57,8 +64,29 @@ static NSString *kNGGRankTableViewCellIdentifier = @"nGGRankTableViewCellIdentif
         
         make.edges.equalTo(self);
     }];
+    
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
+    _tableView.mj_header = header;
 }
 
+
+- (void)refreshData {
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(refreshRankInfo)]) {
+        
+        [_delegate refreshRankInfo];
+    }
+}
+
+- (void)setRankDict:(NSDictionary *)rankDict {
+    
+    _rankDict = rankDict;
+    _userInfo = [rankDict dictionaryForKey:@"user_rank"];
+    _rankArray = [rankDict arrayForKey:@"list"];
+    [_tableView.mj_header endRefreshing];
+    [_tableView reloadData];
+    _headerView.info = _userInfo;
+}
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -68,13 +96,14 @@ static NSString *kNGGRankTableViewCellIdentifier = @"nGGRankTableViewCellIdentif
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 10;;
+    return [_rankArray count];;
     
 }
 
-- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kNGGRankTableViewCellIdentifier forIndexPath:indexPath];
+- (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    NGGRankTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kNGGRankTableViewCellIdentifier forIndexPath:indexPath];
+    cell.cellInfo = _rankArray[indexPath.row];
     return cell;
 }
 
@@ -97,20 +126,6 @@ static NSString *kNGGRankTableViewCellIdentifier = @"nGGRankTableViewCellIdentif
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
-    //    [_tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //    if (indexPath.row == 0)
-    //    {
-    //        DMAgencyAddBankAccountViewController *controller =
-    //        [[DMAgencyAddBankAccountViewController alloc] initWithNibName:@"DMAgencyAddBankAccountViewController" bundle:nil];
-    //        controller.delegate = self;
-    //        [self.navigationController pushViewController:controller animated:YES];
-    //    }
-    //    else if (indexPath.row == 1)
-    //    {
-    //        DMAgencyAddAliPayAccountViewController *contoller = [[DMAgencyAddAliPayAccountViewController alloc] initWithNibName:@"DMAgencyAddAliPayAccountViewController" bundle:nil];
-    //        contoller.delegate = self;
-    //        [self.navigationController pushViewController:contoller animated:YES];
-    //    }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

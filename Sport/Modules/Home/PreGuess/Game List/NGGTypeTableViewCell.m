@@ -13,6 +13,8 @@
     __weak IBOutlet UIImageView *_noticeView;
     __weak IBOutlet UIImageView *_logoView;
     __weak IBOutlet UILabel *_leagueName;
+    __weak IBOutlet UILabel *_countLabel;
+
 }
 
 @end
@@ -40,7 +42,13 @@
 - (void)setModel:(NGGLeagueModel *)model{
     
     _model = model;
-    
-    _leagueName.text = [NSString stringWithFormat:@"%@(%@)", _model.leagueName, _model.count];
+    _leagueName.text = _model.leagueName;
+    if (_model.count) {
+        
+        _countLabel.text = [NSString stringWithFormat:@"(%@)", _model.count];
+    } else {
+        
+        _countLabel.text = nil;
+    }
 }
 @end
