@@ -9,6 +9,31 @@
 /* Begin PBXBuildFile section */
 		3D07BE721FD4E0F900BC4A64 /* NGGDateCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BE701FD4E0F900BC4A64 /* NGGDateCollectionViewCell.m */; };
 		3D07BE731FD4E0F900BC4A64 /* NGGDateCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D07BE711FD4E0F900BC4A64 /* NGGDateCollectionViewCell.xib */; };
+		3D07BE761FD66BF300BC4A64 /* NGGWebSocketHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BE751FD66BF300BC4A64 /* NGGWebSocketHelper.m */; };
+		3D07BEAA1FD66E3400BC4A64 /* SRDelegateController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BE7B1FD66E3400BC4A64 /* SRDelegateController.m */; };
+		3D07BEAB1FD66E3400BC4A64 /* SRIOConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BE7E1FD66E3400BC4A64 /* SRIOConsumer.m */; };
+		3D07BEAC1FD66E3400BC4A64 /* SRIOConsumerPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BE801FD66E3400BC4A64 /* SRIOConsumerPool.m */; };
+		3D07BEAD1FD66E3400BC4A64 /* SRProxyConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BE851FD66E3400BC4A64 /* SRProxyConnect.m */; };
+		3D07BEAE1FD66E3400BC4A64 /* SRRunLoopThread.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BE881FD66E3400BC4A64 /* SRRunLoopThread.m */; };
+		3D07BEAF1FD66E3400BC4A64 /* SRPinningSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BE8B1FD66E3400BC4A64 /* SRPinningSecurityPolicy.m */; };
+		3D07BEB01FD66E3400BC4A64 /* SRConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BE8D1FD66E3400BC4A64 /* SRConstants.m */; };
+		3D07BEB11FD66E3400BC4A64 /* SRError.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BE901FD66E3400BC4A64 /* SRError.m */; };
+		3D07BEB21FD66E3400BC4A64 /* SRHash.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BE921FD66E3400BC4A64 /* SRHash.m */; };
+		3D07BEB31FD66E3400BC4A64 /* SRHTTPConnectMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BE941FD66E3400BC4A64 /* SRHTTPConnectMessage.m */; };
+		3D07BEB41FD66E3400BC4A64 /* SRLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BE961FD66E3400BC4A64 /* SRLog.m */; };
+		3D07BEB51FD66E3400BC4A64 /* SRMutex.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BE981FD66E3400BC4A64 /* SRMutex.m */; };
+		3D07BEB61FD66E3400BC4A64 /* SRRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BE9A1FD66E3400BC4A64 /* SRRandom.m */; };
+		3D07BEB71FD66E3400BC4A64 /* SRSIMDHelpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BE9C1FD66E3400BC4A64 /* SRSIMDHelpers.m */; };
+		3D07BEB81FD66E3400BC4A64 /* SRURLUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BE9E1FD66E3400BC4A64 /* SRURLUtilities.m */; };
+		3D07BEB91FD66E3400BC4A64 /* NSRunLoop+SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BEA01FD66E3400BC4A64 /* NSRunLoop+SRWebSocket.m */; };
+		3D07BEBA1FD66E3400BC4A64 /* NSURLRequest+SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BEA21FD66E3400BC4A64 /* NSURLRequest+SRWebSocket.m */; };
+		3D07BEBB1FD66E3400BC4A64 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D07BEA41FD66E3400BC4A64 /* Info.plist */; };
+		3D07BEBC1FD66E3400BC4A64 /* SRSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BEA71FD66E3400BC4A64 /* SRSecurityPolicy.m */; };
+		3D07BEBD1FD66E3400BC4A64 /* SRWebSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BEA91FD66E3400BC4A64 /* SRWebSocket.m */; };
+		3D07BEBF1FD6704300BC4A64 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D07BEBE1FD6704300BC4A64 /* libicucore.tbd */; };
+		3D07BEC21FD67BA200BC4A64 /* NGGGameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BEC11FD67BA200BC4A64 /* NGGGameModel.m */; };
+		3D07BEC61FD698BB00BC4A64 /* NGGOptionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BEC41FD698BB00BC4A64 /* NGGOptionCollectionViewCell.m */; };
+		3D07BEC71FD698BB00BC4A64 /* NGGOptionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D07BEC51FD698BB00BC4A64 /* NGGOptionCollectionViewCell.xib */; };
 		3D0BEAA61FC55B7800EC14A9 /* NGGRankHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BEAA51FC55B7800EC14A9 /* NGGRankHeaderView.xib */; };
 		3D0BEAA91FC55BA100EC14A9 /* NGGRankHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0BEAA81FC55BA100EC14A9 /* NGGRankHeaderView.m */; };
 		3D25B4AD1FB4287600D20FB2 /* NGGDetailAnalyseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D25B4AC1FB4287600D20FB2 /* NGGDetailAnalyseView.m */; };
@@ -21,7 +46,6 @@
 		3D35EDA51FB2F78900E01659 /* NGGNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EC7B1FB2F78800E01659 /* NGGNavigationController.m */; };
 		3D35EDA61FB2F78900E01659 /* NGGTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EC7D1FB2F78800E01659 /* NGGTabBarController.m */; };
 		3D35EDA71FB2F78900E01659 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D35EC7E1FB2F78800E01659 /* LaunchScreen.storyboard */; };
-		3D35EDA81FB2F78900E01659 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D35EC801FB2F78800E01659 /* Main.storyboard */; };
 		3D35EDA91FB2F78900E01659 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D35EC841FB2F78800E01659 /* Info.plist */; };
 		3D35EDAA1FB2F78900E01659 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EC851FB2F78800E01659 /* main.m */; };
 		3D35EDAB1FB2F78900E01659 /* NGGLoginSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EC891FB2F78800E01659 /* NGGLoginSession.m */; };
@@ -150,7 +174,6 @@
 		3D35EE291FB2F78900E01659 /* NGGHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ED9B1FB2F78900E01659 /* NGGHTTPClient.m */; };
 		3D35EE2A1FB2F78900E01659 /* NSDictionary+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ED9D1FB2F78900E01659 /* NSDictionary+Extension.m */; };
 		3D35EE2B1FB2F78900E01659 /* ZSBlockAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ED9F1FB2F78900E01659 /* ZSBlockAlertView.m */; };
-		3D35EE2C1FB2F78900E01659 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EDA11FB2F78900E01659 /* ViewController.m */; };
 		3D35EE301FB2F83D00E01659 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D35EE2F1FB2F83300E01659 /* Photos.framework */; };
 		3D35EE321FB2F85300E01659 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D35EE311FB2F85300E01659 /* libiconv.tbd */; };
 		3D35EE381FB2F87E00E01659 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D35EE371FB2F87600E01659 /* ImageIO.framework */; };
@@ -247,6 +270,57 @@
 		3D07BE6F1FD4E0F900BC4A64 /* NGGDateCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGDateCollectionViewCell.h; sourceTree = "<group>"; };
 		3D07BE701FD4E0F900BC4A64 /* NGGDateCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGDateCollectionViewCell.m; sourceTree = "<group>"; };
 		3D07BE711FD4E0F900BC4A64 /* NGGDateCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGDateCollectionViewCell.xib; sourceTree = "<group>"; };
+		3D07BE741FD66BF300BC4A64 /* NGGWebSocketHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGWebSocketHelper.h; sourceTree = "<group>"; };
+		3D07BE751FD66BF300BC4A64 /* NGGWebSocketHelper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGWebSocketHelper.m; sourceTree = "<group>"; };
+		3D07BE7A1FD66E3400BC4A64 /* SRDelegateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRDelegateController.h; sourceTree = "<group>"; };
+		3D07BE7B1FD66E3400BC4A64 /* SRDelegateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRDelegateController.m; sourceTree = "<group>"; };
+		3D07BE7D1FD66E3400BC4A64 /* SRIOConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRIOConsumer.h; sourceTree = "<group>"; };
+		3D07BE7E1FD66E3400BC4A64 /* SRIOConsumer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRIOConsumer.m; sourceTree = "<group>"; };
+		3D07BE7F1FD66E3400BC4A64 /* SRIOConsumerPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRIOConsumerPool.h; sourceTree = "<group>"; };
+		3D07BE801FD66E3400BC4A64 /* SRIOConsumerPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRIOConsumerPool.m; sourceTree = "<group>"; };
+		3D07BE811FD66E3400BC4A64 /* NSRunLoop+SRWebSocketPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSRunLoop+SRWebSocketPrivate.h"; sourceTree = "<group>"; };
+		3D07BE821FD66E3400BC4A64 /* NSURLRequest+SRWebSocketPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+SRWebSocketPrivate.h"; sourceTree = "<group>"; };
+		3D07BE841FD66E3400BC4A64 /* SRProxyConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRProxyConnect.h; sourceTree = "<group>"; };
+		3D07BE851FD66E3400BC4A64 /* SRProxyConnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRProxyConnect.m; sourceTree = "<group>"; };
+		3D07BE871FD66E3400BC4A64 /* SRRunLoopThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRRunLoopThread.h; sourceTree = "<group>"; };
+		3D07BE881FD66E3400BC4A64 /* SRRunLoopThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRRunLoopThread.m; sourceTree = "<group>"; };
+		3D07BE8A1FD66E3400BC4A64 /* SRPinningSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRPinningSecurityPolicy.h; sourceTree = "<group>"; };
+		3D07BE8B1FD66E3400BC4A64 /* SRPinningSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRPinningSecurityPolicy.m; sourceTree = "<group>"; };
+		3D07BE8C1FD66E3400BC4A64 /* SRConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRConstants.h; sourceTree = "<group>"; };
+		3D07BE8D1FD66E3400BC4A64 /* SRConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRConstants.m; sourceTree = "<group>"; };
+		3D07BE8F1FD66E3400BC4A64 /* SRError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRError.h; sourceTree = "<group>"; };
+		3D07BE901FD66E3400BC4A64 /* SRError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRError.m; sourceTree = "<group>"; };
+		3D07BE911FD66E3400BC4A64 /* SRHash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRHash.h; sourceTree = "<group>"; };
+		3D07BE921FD66E3400BC4A64 /* SRHash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRHash.m; sourceTree = "<group>"; };
+		3D07BE931FD66E3400BC4A64 /* SRHTTPConnectMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRHTTPConnectMessage.h; sourceTree = "<group>"; };
+		3D07BE941FD66E3400BC4A64 /* SRHTTPConnectMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRHTTPConnectMessage.m; sourceTree = "<group>"; };
+		3D07BE951FD66E3400BC4A64 /* SRLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRLog.h; sourceTree = "<group>"; };
+		3D07BE961FD66E3400BC4A64 /* SRLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRLog.m; sourceTree = "<group>"; };
+		3D07BE971FD66E3400BC4A64 /* SRMutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRMutex.h; sourceTree = "<group>"; };
+		3D07BE981FD66E3400BC4A64 /* SRMutex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRMutex.m; sourceTree = "<group>"; };
+		3D07BE991FD66E3400BC4A64 /* SRRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRRandom.h; sourceTree = "<group>"; };
+		3D07BE9A1FD66E3400BC4A64 /* SRRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRRandom.m; sourceTree = "<group>"; };
+		3D07BE9B1FD66E3400BC4A64 /* SRSIMDHelpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRSIMDHelpers.h; sourceTree = "<group>"; };
+		3D07BE9C1FD66E3400BC4A64 /* SRSIMDHelpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRSIMDHelpers.m; sourceTree = "<group>"; };
+		3D07BE9D1FD66E3400BC4A64 /* SRURLUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRURLUtilities.h; sourceTree = "<group>"; };
+		3D07BE9E1FD66E3400BC4A64 /* SRURLUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRURLUtilities.m; sourceTree = "<group>"; };
+		3D07BE9F1FD66E3400BC4A64 /* NSRunLoop+SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSRunLoop+SRWebSocket.h"; sourceTree = "<group>"; };
+		3D07BEA01FD66E3400BC4A64 /* NSRunLoop+SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSRunLoop+SRWebSocket.m"; sourceTree = "<group>"; };
+		3D07BEA11FD66E3400BC4A64 /* NSURLRequest+SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+SRWebSocket.h"; sourceTree = "<group>"; };
+		3D07BEA21FD66E3400BC4A64 /* NSURLRequest+SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+SRWebSocket.m"; sourceTree = "<group>"; };
+		3D07BEA41FD66E3400BC4A64 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3D07BEA51FD66E3400BC4A64 /* SocketRocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocketRocket.h; sourceTree = "<group>"; };
+		3D07BEA61FD66E3400BC4A64 /* SRSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRSecurityPolicy.h; sourceTree = "<group>"; };
+		3D07BEA71FD66E3400BC4A64 /* SRSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRSecurityPolicy.m; sourceTree = "<group>"; };
+		3D07BEA81FD66E3400BC4A64 /* SRWebSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SRWebSocket.h; sourceTree = "<group>"; };
+		3D07BEA91FD66E3400BC4A64 /* SRWebSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SRWebSocket.m; sourceTree = "<group>"; };
+		3D07BEBE1FD6704300BC4A64 /* libicucore.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libicucore.tbd; path = usr/lib/libicucore.tbd; sourceTree = SDKROOT; };
+		3D07BEC01FD67BA200BC4A64 /* NGGGameModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGameModel.h; sourceTree = "<group>"; };
+		3D07BEC11FD67BA200BC4A64 /* NGGGameModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGameModel.m; sourceTree = "<group>"; };
+		3D07BEC31FD698BB00BC4A64 /* NGGOptionCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGOptionCollectionViewCell.h; sourceTree = "<group>"; };
+		3D07BEC41FD698BB00BC4A64 /* NGGOptionCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGOptionCollectionViewCell.m; sourceTree = "<group>"; };
+		3D07BEC51FD698BB00BC4A64 /* NGGOptionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGOptionCollectionViewCell.xib; sourceTree = "<group>"; };
+		3D07BEC81FD79F4200BC4A64 /* NGGEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGEnum.h; sourceTree = "<group>"; };
 		3D0BEAA51FC55B7800EC14A9 /* NGGRankHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGRankHeaderView.xib; sourceTree = "<group>"; };
 		3D0BEAA71FC55BA100EC14A9 /* NGGRankHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGRankHeaderView.h; sourceTree = "<group>"; };
 		3D0BEAA81FC55BA100EC14A9 /* NGGRankHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGRankHeaderView.m; sourceTree = "<group>"; };
@@ -267,7 +341,6 @@
 		3D35EC7C1FB2F78800E01659 /* NGGTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGTabBarController.h; sourceTree = "<group>"; };
 		3D35EC7D1FB2F78800E01659 /* NGGTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGTabBarController.m; sourceTree = "<group>"; };
 		3D35EC7F1FB2F78800E01659 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		3D35EC811FB2F78800E01659 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3D35EC831FB2F78800E01659 /* ComMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComMacro.h; sourceTree = "<group>"; };
 		3D35EC841FB2F78800E01659 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D35EC851FB2F78800E01659 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -513,8 +586,6 @@
 		3D35ED9D1FB2F78900E01659 /* NSDictionary+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Extension.m"; sourceTree = "<group>"; };
 		3D35ED9E1FB2F78900E01659 /* ZSBlockAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZSBlockAlertView.h; sourceTree = "<group>"; };
 		3D35ED9F1FB2F78900E01659 /* ZSBlockAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZSBlockAlertView.m; sourceTree = "<group>"; };
-		3D35EDA01FB2F78900E01659 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		3D35EDA11FB2F78900E01659 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		3D35EE2E1FB2F82900E01659 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3D35EE2F1FB2F83300E01659 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		3D35EE311FB2F85300E01659 /* libiconv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
@@ -645,6 +716,7 @@
 				3D35EE3E1FB2F8CF00E01659 /* QuartzCore.framework in Frameworks */,
 				3D35EE3C1FB2F8B600E01659 /* CoreMotion.framework in Frameworks */,
 				3D35EE3B1FB2F8A400E01659 /* CoreGraphics.framework in Frameworks */,
+				3D07BEBF1FD6704300BC4A64 /* libicucore.tbd in Frameworks */,
 				3D35EE461FB2F90300E01659 /* libsqlite3.0.tbd in Frameworks */,
 				3D35EE481FB2F90B00E01659 /* libz.tbd in Frameworks */,
 				3D35EE3A1FB2F89400E01659 /* CFNetwork.framework in Frameworks */,
@@ -664,6 +736,119 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D07BE771FD66E3400BC4A64 /* SocketRocket */ = {
+			isa = PBXGroup;
+			children = (
+				3D07BE781FD66E3400BC4A64 /* Internal */,
+				3D07BE9F1FD66E3400BC4A64 /* NSRunLoop+SRWebSocket.h */,
+				3D07BEA01FD66E3400BC4A64 /* NSRunLoop+SRWebSocket.m */,
+				3D07BEA11FD66E3400BC4A64 /* NSURLRequest+SRWebSocket.h */,
+				3D07BEA21FD66E3400BC4A64 /* NSURLRequest+SRWebSocket.m */,
+				3D07BEA31FD66E3400BC4A64 /* Resources */,
+				3D07BEA51FD66E3400BC4A64 /* SocketRocket.h */,
+				3D07BEA61FD66E3400BC4A64 /* SRSecurityPolicy.h */,
+				3D07BEA71FD66E3400BC4A64 /* SRSecurityPolicy.m */,
+				3D07BEA81FD66E3400BC4A64 /* SRWebSocket.h */,
+				3D07BEA91FD66E3400BC4A64 /* SRWebSocket.m */,
+			);
+			path = SocketRocket;
+			sourceTree = "<group>";
+		};
+		3D07BE781FD66E3400BC4A64 /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				3D07BE791FD66E3400BC4A64 /* Delegate */,
+				3D07BE7C1FD66E3400BC4A64 /* IOConsumer */,
+				3D07BE811FD66E3400BC4A64 /* NSRunLoop+SRWebSocketPrivate.h */,
+				3D07BE821FD66E3400BC4A64 /* NSURLRequest+SRWebSocketPrivate.h */,
+				3D07BE831FD66E3400BC4A64 /* Proxy */,
+				3D07BE861FD66E3400BC4A64 /* RunLoop */,
+				3D07BE891FD66E3400BC4A64 /* Security */,
+				3D07BE8C1FD66E3400BC4A64 /* SRConstants.h */,
+				3D07BE8D1FD66E3400BC4A64 /* SRConstants.m */,
+				3D07BE8E1FD66E3400BC4A64 /* Utilities */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		3D07BE791FD66E3400BC4A64 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				3D07BE7A1FD66E3400BC4A64 /* SRDelegateController.h */,
+				3D07BE7B1FD66E3400BC4A64 /* SRDelegateController.m */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		3D07BE7C1FD66E3400BC4A64 /* IOConsumer */ = {
+			isa = PBXGroup;
+			children = (
+				3D07BE7D1FD66E3400BC4A64 /* SRIOConsumer.h */,
+				3D07BE7E1FD66E3400BC4A64 /* SRIOConsumer.m */,
+				3D07BE7F1FD66E3400BC4A64 /* SRIOConsumerPool.h */,
+				3D07BE801FD66E3400BC4A64 /* SRIOConsumerPool.m */,
+			);
+			path = IOConsumer;
+			sourceTree = "<group>";
+		};
+		3D07BE831FD66E3400BC4A64 /* Proxy */ = {
+			isa = PBXGroup;
+			children = (
+				3D07BE841FD66E3400BC4A64 /* SRProxyConnect.h */,
+				3D07BE851FD66E3400BC4A64 /* SRProxyConnect.m */,
+			);
+			path = Proxy;
+			sourceTree = "<group>";
+		};
+		3D07BE861FD66E3400BC4A64 /* RunLoop */ = {
+			isa = PBXGroup;
+			children = (
+				3D07BE871FD66E3400BC4A64 /* SRRunLoopThread.h */,
+				3D07BE881FD66E3400BC4A64 /* SRRunLoopThread.m */,
+			);
+			path = RunLoop;
+			sourceTree = "<group>";
+		};
+		3D07BE891FD66E3400BC4A64 /* Security */ = {
+			isa = PBXGroup;
+			children = (
+				3D07BE8A1FD66E3400BC4A64 /* SRPinningSecurityPolicy.h */,
+				3D07BE8B1FD66E3400BC4A64 /* SRPinningSecurityPolicy.m */,
+			);
+			path = Security;
+			sourceTree = "<group>";
+		};
+		3D07BE8E1FD66E3400BC4A64 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				3D07BE8F1FD66E3400BC4A64 /* SRError.h */,
+				3D07BE901FD66E3400BC4A64 /* SRError.m */,
+				3D07BE911FD66E3400BC4A64 /* SRHash.h */,
+				3D07BE921FD66E3400BC4A64 /* SRHash.m */,
+				3D07BE931FD66E3400BC4A64 /* SRHTTPConnectMessage.h */,
+				3D07BE941FD66E3400BC4A64 /* SRHTTPConnectMessage.m */,
+				3D07BE951FD66E3400BC4A64 /* SRLog.h */,
+				3D07BE961FD66E3400BC4A64 /* SRLog.m */,
+				3D07BE971FD66E3400BC4A64 /* SRMutex.h */,
+				3D07BE981FD66E3400BC4A64 /* SRMutex.m */,
+				3D07BE991FD66E3400BC4A64 /* SRRandom.h */,
+				3D07BE9A1FD66E3400BC4A64 /* SRRandom.m */,
+				3D07BE9B1FD66E3400BC4A64 /* SRSIMDHelpers.h */,
+				3D07BE9C1FD66E3400BC4A64 /* SRSIMDHelpers.m */,
+				3D07BE9D1FD66E3400BC4A64 /* SRURLUtilities.h */,
+				3D07BE9E1FD66E3400BC4A64 /* SRURLUtilities.m */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		3D07BEA31FD66E3400BC4A64 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				3D07BEA41FD66E3400BC4A64 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		3D25B4B01FB431EF00D20FB2 /* Analyse */ = {
 			isa = PBXGroup;
 			children = (
@@ -725,13 +910,10 @@
 				3D35ECC71FB2F78800E01659 /* Social */,
 				3D35ECD91FB2F78900E01659 /* ThirdParty */,
 				3D35ED931FB2F78900E01659 /* Utils */,
-				3D35EDA01FB2F78900E01659 /* ViewController.h */,
-				3D35EDA11FB2F78900E01659 /* ViewController.m */,
 				3D35ECC41FB2F78800E01659 /* NGG-Prefix.pch */,
 				3D35EC841FB2F78800E01659 /* Info.plist */,
 				3D35EC851FB2F78800E01659 /* main.m */,
 				3D35EC7E1FB2F78800E01659 /* LaunchScreen.storyboard */,
-				3D35EC801FB2F78800E01659 /* Main.storyboard */,
 				3D35ECC51FB2F78800E01659 /* pop.framework */,
 			);
 			path = Sport;
@@ -770,18 +952,12 @@
 		3D35EC861FB2F78800E01659 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				3D35EC871FB2F78800E01659 /* Modules */,
+				3D07BE741FD66BF300BC4A64 /* NGGWebSocketHelper.h */,
+				3D07BE751FD66BF300BC4A64 /* NGGWebSocketHelper.m */,
 				3D35EC881FB2F78800E01659 /* NGGLoginSession.h */,
 				3D35EC891FB2F78800E01659 /* NGGLoginSession.m */,
 			);
 			path = Manager;
-			sourceTree = "<group>";
-		};
-		3D35EC871FB2F78800E01659 /* Modules */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Modules;
 			sourceTree = "<group>";
 		};
 		3D35EC8A1FB2F78800E01659 /* Modules */ = {
@@ -936,6 +1112,7 @@
 		3D35ECD91FB2F78900E01659 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				3D07BE771FD66E3400BC4A64 /* SocketRocket */,
 				3D35ECDA1FB2F78900E01659 /* AFNetworking */,
 				3D35ECE81FB2F78900E01659 /* DMComponents */,
 				3D35ED081FB2F78900E01659 /* Masonry */,
@@ -1261,6 +1438,7 @@
 				3D45CB7F1FCD10FA006EF330 /* NGGEmptyView.m */,
 				3DF60B421FD1492F00FE26E9 /* JYCommonTool.h */,
 				3DF60B431FD1492F00FE26E9 /* JYCommonTool.m */,
+				3D07BEC81FD79F4200BC4A64 /* NGGEnum.h */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1280,6 +1458,7 @@
 		3D35EE2D1FB2F82900E01659 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3D07BEBE1FD6704300BC4A64 /* libicucore.tbd */,
 				3D35EE491FB2F91700E01659 /* SystemConfiguration.framework */,
 				3D35EE471FB2F90B00E01659 /* libz.tbd */,
 				3D35EE451FB2F90300E01659 /* libsqlite3.0.tbd */,
@@ -1326,9 +1505,14 @@
 				3D35EE581FB3085400E01659 /* NGGGuess2RowsCollectionViewCell.h */,
 				3D35EE591FB3085400E01659 /* NGGGuess2RowsCollectionViewCell.m */,
 				3D35EE5A1FB3085400E01659 /* NGGGuess2RowsCollectionViewCell.xib */,
+				3D07BEC31FD698BB00BC4A64 /* NGGOptionCollectionViewCell.h */,
+				3D07BEC41FD698BB00BC4A64 /* NGGOptionCollectionViewCell.m */,
+				3D07BEC51FD698BB00BC4A64 /* NGGOptionCollectionViewCell.xib */,
 				3D35EE5D1FB30A3B00E01659 /* NGGDetailHeaderReusableView.h */,
 				3D35EE5E1FB30A3B00E01659 /* NGGDetailHeaderReusableView.m */,
 				3D35EE5F1FB30A3B00E01659 /* NGGDetailHeaderReusableView.xib */,
+				3D07BEC01FD67BA200BC4A64 /* NGGGameModel.h */,
+				3D07BEC11FD67BA200BC4A64 /* NGGGameModel.m */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -1577,7 +1761,6 @@
 				3D45CB861FCD380D006EF330 /* NGGExchangeViewController.xib in Resources */,
 				3D35EDA91FB2F78900E01659 /* Info.plist in Resources */,
 				3D35EE611FB30A3B00E01659 /* NGGDetailHeaderReusableView.xib in Resources */,
-				3D35EDA81FB2F78900E01659 /* Main.storyboard in Resources */,
 				3D35EDB51FB2F78900E01659 /* NGGHomeHeaderReusableView.xib in Resources */,
 				3DC56B7E1FC421F000F67C32 /* NGGFollowGameTableViewCell.xib in Resources */,
 				3D45CB7D1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.xib in Resources */,
@@ -1593,6 +1776,7 @@
 				3D35EDCB1FB2F78900E01659 /* NGGTaskViewController.xib in Resources */,
 				3D35EDAF1FB2F78900E01659 /* NGGGuessDetailViewController.xib in Resources */,
 				3DC56B611FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.xib in Resources */,
+				3D07BEC71FD698BB00BC4A64 /* NGGOptionCollectionViewCell.xib in Resources */,
 				3DC56B661FC3DA0A00F67C32 /* NGGAnalyseHistoryheaderView.xib in Resources */,
 				3DC56B891FC42FC000F67C32 /* NGGGameResultTableViewCell.xib in Resources */,
 				3D35EDB71FB2F78900E01659 /* NGGHomeItemCollectionViewCell.xib in Resources */,
@@ -1613,6 +1797,7 @@
 				3D35EDC91FB2F78900E01659 /* NGGTaskTableViewCell.xib in Resources */,
 				3D35EE0C1FB2F78900E01659 /* PSCarouselCollectionCell.xib in Resources */,
 				3D35EDB31FB2F78900E01659 /* NGGHomeBannerCollectionViewCell.xib in Resources */,
+				3D07BEBB1FD66E3400BC4A64 /* Info.plist in Resources */,
 				3D35EDE01FB2F78900E01659 /* DMMultiImagePicker.bundle in Resources */,
 				3D35EDA71FB2F78900E01659 /* LaunchScreen.storyboard in Resources */,
 				3D35EDC61FB2F78900E01659 /* NGGRegisterViewController.xib in Resources */,
@@ -1634,6 +1819,8 @@
 				3D35EDE81FB2F78900E01659 /* DMPictureModel.m in Sources */,
 				3D35EDAA1FB2F78900E01659 /* main.m in Sources */,
 				3D922EF81FD00EEB003AA7F1 /* NGGGameListView.m in Sources */,
+				3D07BEAA1FD66E3400BC4A64 /* SRDelegateController.m in Sources */,
+				3D07BEB51FD66E3400BC4A64 /* SRMutex.m in Sources */,
 				3D35EE2A1FB2F78900E01659 /* NSDictionary+Extension.m in Sources */,
 				3D35EE181FB2F78900E01659 /* SDWebImageManager.m in Sources */,
 				3D35EDB61FB2F78900E01659 /* NGGHomeItemCollectionViewCell.m in Sources */,
@@ -1646,20 +1833,27 @@
 				3DC56B881FC42FC000F67C32 /* NGGGameResultTableViewCell.m in Sources */,
 				3D35EDF31FB2F78900E01659 /* View+MASAdditions.m in Sources */,
 				3D35EE2B1FB2F78900E01659 /* ZSBlockAlertView.m in Sources */,
+				3D07BEB91FD66E3400BC4A64 /* NSRunLoop+SRWebSocket.m in Sources */,
 				3D35EDB01FB2F78900E01659 /* NGGHomeActivityHeaderReusableView.m in Sources */,
 				3D35EE601FB30A3B00E01659 /* NGGDetailHeaderReusableView.m in Sources */,
 				3D25B4AD1FB4287600D20FB2 /* NGGDetailAnalyseView.m in Sources */,
+				3D07BE761FD66BF300BC4A64 /* NGGWebSocketHelper.m in Sources */,
+				3D07BEC21FD67BA200BC4A64 /* NGGGameModel.m in Sources */,
 				3D35EDC51FB2F78900E01659 /* NGGRegisterViewController.m in Sources */,
 				3D35EDDC1FB2F78900E01659 /* DMAssetGroupViewController.m in Sources */,
 				3D4B1BF51FC80E6100FBAB6C /* NGGSwitchTableViewCell.m in Sources */,
 				3D35EDE11FB2F78900E01659 /* DMPhotoBrowserViewCell.m in Sources */,
 				3D35EDC11FB2F78900E01659 /* NGGTypeTableViewCell.m in Sources */,
+				3D07BEC61FD698BB00BC4A64 /* NGGOptionCollectionViewCell.m in Sources */,
+				3D07BEB81FD66E3400BC4A64 /* SRURLUtilities.m in Sources */,
 				3D35EE241FB2F78900E01659 /* UIImage+ImageWithColor.m in Sources */,
+				3D07BEB61FD66E3400BC4A64 /* SRRandom.m in Sources */,
 				3D35EDF21FB2F78900E01659 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				3D35EDFD1FB2F78900E01659 /* MJRefreshBackGifFooter.m in Sources */,
 				3D35EDB41FB2F78900E01659 /* NGGHomeHeaderReusableView.m in Sources */,
 				3D35EDF41FB2F78900E01659 /* ViewController+MASAdditions.m in Sources */,
 				3D35EDAB1FB2F78900E01659 /* NGGLoginSession.m in Sources */,
+				3D07BEBD1FD66E3400BC4A64 /* SRWebSocket.m in Sources */,
 				3D35EDDA1FB2F78900E01659 /* AFURLSessionManager.m in Sources */,
 				3D45CB701FCC0C14006EF330 /* NGGModifyPasswordViewController.m in Sources */,
 				3D35EE561FB3073D00E01659 /* NGGGuessCollectionViewCell.m in Sources */,
@@ -1688,21 +1882,27 @@
 				3D35EDDB1FB2F78900E01659 /* DMAssetGroupTableViewCell.m in Sources */,
 				3D35EE1B1FB2F78900E01659 /* UIImage+GIF.m in Sources */,
 				3D35EE001FB2F78900E01659 /* MJRefreshGifHeader.m in Sources */,
+				3D07BEB11FD66E3400BC4A64 /* SRError.m in Sources */,
+				3D07BEBC1FD66E3400BC4A64 /* SRSecurityPolicy.m in Sources */,
 				3D35EE0F1FB2F78900E01659 /* MKAnnotationView+WebCache.m in Sources */,
 				3D35EDD91FB2F78900E01659 /* AFURLResponseSerialization.m in Sources */,
 				3D35EE071FB2F78900E01659 /* UIScrollView+MJRefresh.m in Sources */,
+				3D07BEAC1FD66E3400BC4A64 /* SRIOConsumerPool.m in Sources */,
 				3D35EDEE1FB2F78900E01659 /* MASLayoutConstraint.m in Sources */,
 				3D35EDAE1FB2F78900E01659 /* NGGGuessDetailViewController.m in Sources */,
 				3D35EDEB1FB2F78900E01659 /* MASCompositeConstraint.m in Sources */,
+				3D07BEB31FD66E3400BC4A64 /* SRHTTPConnectMessage.m in Sources */,
 				3D35EE061FB2F78900E01659 /* UIScrollView+MJExtension.m in Sources */,
 				3D45CB751FCC1434006EF330 /* NGGMessageViewController.m in Sources */,
-				3D35EE2C1FB2F78900E01659 /* ViewController.m in Sources */,
+				3D07BEB41FD66E3400BC4A64 /* SRLog.m in Sources */,
 				3D07BE721FD4E0F900BC4A64 /* NGGDateCollectionViewCell.m in Sources */,
 				3D35EDF11FB2F78900E01659 /* NSArray+MASAdditions.m in Sources */,
 				3D35EDF61FB2F78900E01659 /* MJRefreshBackFooter.m in Sources */,
 				3D45CB851FCD380D006EF330 /* NGGExchangeViewController.m in Sources */,
 				3D35EDC81FB2F78900E01659 /* NGGTaskTableViewCell.m in Sources */,
+				3D07BEAF1FD66E3400BC4A64 /* SRPinningSecurityPolicy.m in Sources */,
 				3D35EDB21FB2F78900E01659 /* NGGHomeBannerCollectionViewCell.m in Sources */,
+				3D07BEB01FD66E3400BC4A64 /* SRConstants.m in Sources */,
 				3DC56B6A1FC3FEEC00F67C32 /* NGGRecentRecordView.m in Sources */,
 				3D35EDF71FB2F78900E01659 /* MJRefreshComponent.m in Sources */,
 				3D35EE021FB2F78900E01659 /* MJRefreshStateHeader.m in Sources */,
@@ -1722,21 +1922,27 @@
 				3D35EDBA1FB2F78900E01659 /* NGGHomePageMenuCollectionViewCell.m in Sources */,
 				3D35EDBF1FB2F78900E01659 /* NGGPreGuessListViewController.m in Sources */,
 				3D45CB801FCD10FA006EF330 /* NGGEmptyView.m in Sources */,
+				3D07BEB71FD66E3400BC4A64 /* SRSIMDHelpers.m in Sources */,
 				3D35EDC31FB2F78900E01659 /* NGGLoginViewController.m in Sources */,
 				3D35EDE51FB2F78900E01659 /* DMPhotoView.m in Sources */,
 				3D35EE111FB2F78900E01659 /* NSImage+WebCache.m in Sources */,
+				3D07BEAB1FD66E3400BC4A64 /* SRIOConsumer.m in Sources */,
 				3D35EE271FB2F78900E01659 /* ZSMD5.m in Sources */,
 				3D45CB6C1FCC0128006EF330 /* UITextView+Placeholder.m in Sources */,
 				3D45CB8A1FCD5CF5006EF330 /* NGGRechargeViewController.m in Sources */,
 				3D35EE011FB2F78900E01659 /* MJRefreshNormalHeader.m in Sources */,
 				3DF60B411FD12F8100FE26E9 /* NGGLeagueModel.m in Sources */,
 				3D35EDFC1FB2F78900E01659 /* MJRefreshAutoStateFooter.m in Sources */,
+				3D07BEB21FD66E3400BC4A64 /* SRHash.m in Sources */,
+				3D07BEBA1FD66E3400BC4A64 /* NSURLRequest+SRWebSocket.m in Sources */,
 				3D35EDF81FB2F78900E01659 /* MJRefreshFooter.m in Sources */,
 				3D35EE081FB2F78900E01659 /* UIView+MJExtension.m in Sources */,
 				3D35EDEF1FB2F78900E01659 /* MASViewAttribute.m in Sources */,
 				3D35EE251FB2F78900E01659 /* UIImage+Screenshot.m in Sources */,
+				3D07BEAD1FD66E3400BC4A64 /* SRProxyConnect.m in Sources */,
 				3D35EE141FB2F78900E01659 /* SDWebImageCompat.m in Sources */,
 				3D35EDD71FB2F78900E01659 /* AFSecurityPolicy.m in Sources */,
+				3D07BEAE1FD66E3400BC4A64 /* SRRunLoopThread.m in Sources */,
 				3D35EDFB1FB2F78900E01659 /* MJRefreshAutoNormalFooter.m in Sources */,
 				3D35EE171FB2F78900E01659 /* SDWebImageDownloaderOperation.m in Sources */,
 				3D35EDFE1FB2F78900E01659 /* MJRefreshBackNormalFooter.m in Sources */,
@@ -1790,14 +1996,6 @@
 				3D35EC7F1FB2F78800E01659 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-		3D35EC801FB2F78800E01659 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3D35EC811FB2F78800E01659 /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1936,7 +2134,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "588b3761-6623-4ad3-bdbc-4deba6cdd559";
 				PROVISIONING_PROFILE_SPECIFIER = 0001_dev.profile;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1968,7 +2166,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yyy.c001;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

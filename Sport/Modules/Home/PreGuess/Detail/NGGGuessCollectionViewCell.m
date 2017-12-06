@@ -8,6 +8,14 @@
 
 #import "NGGGuessCollectionViewCell.h"
 
+@interface NGGGuessCollectionViewCell() {
+    
+    __weak IBOutlet UILabel *_titleLabel;
+    __weak IBOutlet UIView *_disableVIew;
+}
+
+@end
+
 @implementation NGGGuessCollectionViewCell
 
 - (void)awakeFromNib {

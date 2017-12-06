@@ -98,6 +98,10 @@
                 <constraint firstAttribute="trailing" secondItem="0Sa-af-Yct" secondAttribute="trailing" id="k8a-63-DBU"/>
             </constraints>
             <size key="customSize" width="120" height="55"/>
+            <connections>
+                <outlet property="_aboveLabel" destination="OMg-LE-gxh" id="9Wp-JN-ykh"/>
+                <outlet property="_bottoomLabel" destination="El5-fd-J34" id="6K3-L1-Kee"/>
+            </connections>
             <point key="canvasLocation" x="60" y="54.5"/>
         </collectionViewCell>
     </objects>

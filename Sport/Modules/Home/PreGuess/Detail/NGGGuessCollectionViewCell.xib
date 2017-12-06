@@ -55,6 +55,10 @@
                 <constraint firstItem="gij-uL-YB2" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="zIY-Fu-n3t"/>
             </constraints>
             <size key="customSize" width="134" height="76"/>
+            <connections>
+                <outlet property="_disableVIew" destination="Xy8-AT-1tJ" id="CTN-PP-IDE"/>
+                <outlet property="_titleLabel" destination="gij-uL-YB2" id="Fuf-aC-qN9"/>
+            </connections>
             <point key="canvasLocation" x="-66" y="47"/>
         </collectionViewCell>
     </objects>

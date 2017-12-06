@@ -8,6 +8,15 @@
 
 #import "NGGGuess2RowsCollectionViewCell.h"
 
+@interface NGGGuess2RowsCollectionViewCell() {
+    
+    __weak IBOutlet UILabel *_aboveLabel;
+    __weak IBOutlet UILabel *_bottoomLabel;
+
+    
+}
+@end
+
 @implementation NGGGuess2RowsCollectionViewCell
 
 - (void)awakeFromNib {

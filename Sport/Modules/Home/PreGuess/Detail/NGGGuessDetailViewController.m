@@ -13,6 +13,8 @@
 #import "NGGGuess2RowsCollectionViewCell.h"
 #import "NGGDetailHeaderReusableView.h"
 #import "NGGDetailAnalyseView.h"
+#import "NGGGameModel.h"
+#import "NGGWebSocketHelper.h"
 
 static NSString *kGuessCellIdentifier = @"NGGGuessCollectionViewCell";
 static NSString *kGuess2RowsCellIdentifier = @"NGGGuess2RowsCollectionViewCell";
@@ -27,6 +29,8 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     __weak IBOutlet UICollectionView *_collectionView;
 }
 
+@property (nonatomic, strong) NGGGameModel *gameModel;
+
 @property (nonatomic, strong) UIView *analyseView;
 
 @end
@@ -39,6 +43,8 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"赛事";
+    [self loadDetailInfo];
+    [[NGGWebSocketHelper shareHelper] SRWebSocketOpen];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,6 +56,25 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     
     [super viewDidAppear:animated];
     [self configueUIComponents];
+}
+
+- (void)loadDetailInfo {
+    
+    [self showLoadingHUDWithText:nil];
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.gameDetail" parameters:@{@"match_id" : _model.matchID} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self dismissHUD];
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showErrorHUDWithText:msg];
+        }];
+        if (dict) {
+            
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+       
+        [self dismissHUD];
+    }];
 }
 
 #pragma mark - private methods
@@ -73,7 +98,6 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     _collectionView.delegate = self;
     _collectionView.backgroundColor = NGGSeparatorColor;
     _collectionView.contentInset = UIEdgeInsetsMake(0, 0, 15, 0);
-    
     _analyseView = [[[NSBundle mainBundle] loadNibNamed:@"NGGDetailAnalyseView" owner:nil options:nil] lastObject];
     _analyseView.hidden = YES;
     [self.view addSubview:_analyseView];
@@ -120,7 +144,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
             return 2;
         } else if (section == 2) {
             
-            return 8;
+            return 6;
         } else if (section == 3) {
             
             return 3;
