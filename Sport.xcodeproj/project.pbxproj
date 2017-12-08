@@ -34,6 +34,22 @@
 		3D07BEC21FD67BA200BC4A64 /* NGGGameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BEC11FD67BA200BC4A64 /* NGGGameModel.m */; };
 		3D07BEC61FD698BB00BC4A64 /* NGGOptionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BEC41FD698BB00BC4A64 /* NGGOptionCollectionViewCell.m */; };
 		3D07BEC71FD698BB00BC4A64 /* NGGOptionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D07BEC51FD698BB00BC4A64 /* NGGOptionCollectionViewCell.xib */; };
+		3D07BED21FD7C80D00BC4A64 /* NGGShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BECF1FD7C80D00BC4A64 /* NGGShopViewController.m */; };
+		3D07BED31FD7C80D00BC4A64 /* NGGShopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D07BED11FD7C80D00BC4A64 /* NGGShopViewController.xib */; };
+		3D07BEDC1FD7D1DC00BC4A64 /* NGGShopClassifyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D07BED91FD7D1DC00BC4A64 /* NGGShopClassifyCollectionViewCell.xib */; };
+		3D07BEDD1FD7D1DC00BC4A64 /* NGGShopClassifyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BEDA1FD7D1DC00BC4A64 /* NGGShopClassifyCollectionViewCell.m */; };
+		3D07BEE11FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BEDF1FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.m */; };
+		3D07BEE21FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D07BEE01FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.xib */; };
+		3D07BEE61FD8D8A600BC4A64 /* NGGGoodsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BEE41FD8D8A500BC4A64 /* NGGGoodsDetailViewController.m */; };
+		3D07BEE71FD8D8A600BC4A64 /* NGGGoodsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D07BEE51FD8D8A500BC4A64 /* NGGGoodsDetailViewController.xib */; };
+		3D07BEFA1FD90B9600BC4A64 /* SCLAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BEEA1FD90B9600BC4A64 /* SCLAlertView.m */; };
+		3D07BEFB1FD90B9600BC4A64 /* SCLAlertViewResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BEEC1FD90B9600BC4A64 /* SCLAlertViewResponder.m */; };
+		3D07BEFC1FD90B9600BC4A64 /* SCLAlertViewStyleKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BEEE1FD90B9600BC4A64 /* SCLAlertViewStyleKit.m */; };
+		3D07BEFD1FD90B9600BC4A64 /* SCLButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BEF01FD90B9600BC4A64 /* SCLButton.m */; };
+		3D07BEFE1FD90B9600BC4A64 /* SCLSwitchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BEF31FD90B9600BC4A64 /* SCLSwitchView.m */; };
+		3D07BEFF1FD90B9600BC4A64 /* SCLTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BEF51FD90B9600BC4A64 /* SCLTextView.m */; };
+		3D07BF001FD90B9600BC4A64 /* SCLTimerDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BEF71FD90B9600BC4A64 /* SCLTimerDisplay.m */; };
+		3D07BF011FD90B9600BC4A64 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D07BEF91FD90B9600BC4A64 /* UIImage+ImageEffects.m */; };
 		3D0BEAA61FC55B7800EC14A9 /* NGGRankHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D0BEAA51FC55B7800EC14A9 /* NGGRankHeaderView.xib */; };
 		3D0BEAA91FC55BA100EC14A9 /* NGGRankHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0BEAA81FC55BA100EC14A9 /* NGGRankHeaderView.m */; };
 		3D25B4AD1FB4287600D20FB2 /* NGGDetailAnalyseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D25B4AC1FB4287600D20FB2 /* NGGDetailAnalyseView.m */; };
@@ -79,7 +95,6 @@
 		3D35EDCA1FB2F78900E01659 /* NGGTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ECBF1FB2F78800E01659 /* NGGTaskViewController.m */; };
 		3D35EDCB1FB2F78900E01659 /* NGGTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D35ECC01FB2F78800E01659 /* NGGTaskViewController.xib */; };
 		3D35EDCC1FB2F78900E01659 /* NGGUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ECC31FB2F78800E01659 /* NGGUserViewController.m */; };
-		3D35EDCD1FB2F78900E01659 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D35ECC51FB2F78800E01659 /* pop.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		3D35EDCE1FB2F78900E01659 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3D35ECC91FB2F78800E01659 /* AlipaySDK.bundle */; };
 		3D35EDCF1FB2F78900E01659 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D35ECCA1FB2F78800E01659 /* AlipaySDK.framework */; };
 		3D35EDD01FB2F78900E01659 /* NGGSocial.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ECCC1FB2F78800E01659 /* NGGSocial.m */; };
@@ -188,8 +203,6 @@
 		3D35EE461FB2F90300E01659 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D35EE451FB2F90300E01659 /* libsqlite3.0.tbd */; };
 		3D35EE481FB2F90B00E01659 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D35EE471FB2F90B00E01659 /* libz.tbd */; };
 		3D35EE4A1FB2F91C00E01659 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D35EE491FB2F91700E01659 /* SystemConfiguration.framework */; };
-		3D35EE4E1FB2FD8000E01659 /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D35ECC51FB2F78800E01659 /* pop.framework */; };
-		3D35EE4F1FB2FD8000E01659 /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3D35ECC51FB2F78800E01659 /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3D35EE561FB3073D00E01659 /* NGGGuessCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EE541FB3073D00E01659 /* NGGGuessCollectionViewCell.m */; };
 		3D35EE571FB3073D00E01659 /* NGGGuessCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D35EE551FB3073D00E01659 /* NGGGuessCollectionViewCell.xib */; };
 		3D35EE5B1FB3085400E01659 /* NGGGuess2RowsCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EE591FB3085400E01659 /* NGGGuess2RowsCollectionViewCell.m */; };
@@ -245,6 +258,8 @@
 		3DC56B921FC4432A00F67C32 /* NGGRankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC56B901FC4432A00F67C32 /* NGGRankTableViewCell.xib */; };
 		3DDACFB31FC8139C0057BD9B /* NGGUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDACFB21FC8139C0057BD9B /* NGGUserInfoViewController.m */; };
 		3DDACFB71FC82F3B0057BD9B /* NGGCommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDACFB61FC82F3B0057BD9B /* NGGCommonTableViewCell.m */; };
+		3DE5387F1FDA697D004D80AA /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3D65B8ED1FD94175006F98CE /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3DE538801FDA6BD9004D80AA /* pop.framework in Sources */ = {isa = PBXBuildFile; fileRef = 3D65B8ED1FD94175006F98CE /* pop.framework */; };
 		3DF60B3B1FD126FA00FE26E9 /* NGGPreGameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF60B391FD126F900FE26E9 /* NGGPreGameTableViewCell.m */; };
 		3DF60B3E1FD12AE400FE26E9 /* NGGGameListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF60B3D1FD12AE400FE26E9 /* NGGGameListModel.m */; };
 		3DF60B411FD12F8100FE26E9 /* NGGLeagueModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF60B401FD12F8100FE26E9 /* NGGLeagueModel.m */; };
@@ -259,7 +274,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3D35EE4F1FB2FD8000E01659 /* pop.framework in Embed Frameworks */,
+				3DE5387F1FDA697D004D80AA /* pop.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -321,6 +336,35 @@
 		3D07BEC41FD698BB00BC4A64 /* NGGOptionCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGOptionCollectionViewCell.m; sourceTree = "<group>"; };
 		3D07BEC51FD698BB00BC4A64 /* NGGOptionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGOptionCollectionViewCell.xib; sourceTree = "<group>"; };
 		3D07BEC81FD79F4200BC4A64 /* NGGEnum.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGEnum.h; sourceTree = "<group>"; };
+		3D07BECF1FD7C80D00BC4A64 /* NGGShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGShopViewController.m; sourceTree = "<group>"; };
+		3D07BED01FD7C80D00BC4A64 /* NGGShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGShopViewController.h; sourceTree = "<group>"; };
+		3D07BED11FD7C80D00BC4A64 /* NGGShopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGGShopViewController.xib; sourceTree = "<group>"; };
+		3D07BED91FD7D1DC00BC4A64 /* NGGShopClassifyCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGGShopClassifyCollectionViewCell.xib; sourceTree = "<group>"; };
+		3D07BEDA1FD7D1DC00BC4A64 /* NGGShopClassifyCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGShopClassifyCollectionViewCell.m; sourceTree = "<group>"; };
+		3D07BEDB1FD7D1DC00BC4A64 /* NGGShopClassifyCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGShopClassifyCollectionViewCell.h; sourceTree = "<group>"; };
+		3D07BEDE1FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGShopItemCollectionViewCell.h; sourceTree = "<group>"; };
+		3D07BEDF1FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGShopItemCollectionViewCell.m; sourceTree = "<group>"; };
+		3D07BEE01FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGShopItemCollectionViewCell.xib; sourceTree = "<group>"; };
+		3D07BEE31FD8D8A500BC4A64 /* NGGGoodsDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGoodsDetailViewController.h; sourceTree = "<group>"; };
+		3D07BEE41FD8D8A500BC4A64 /* NGGGoodsDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGoodsDetailViewController.m; sourceTree = "<group>"; };
+		3D07BEE51FD8D8A500BC4A64 /* NGGGoodsDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGGoodsDetailViewController.xib; sourceTree = "<group>"; };
+		3D07BEE91FD90B9600BC4A64 /* SCLAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLAlertView.h; sourceTree = "<group>"; };
+		3D07BEEA1FD90B9600BC4A64 /* SCLAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLAlertView.m; sourceTree = "<group>"; };
+		3D07BEEB1FD90B9600BC4A64 /* SCLAlertViewResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLAlertViewResponder.h; sourceTree = "<group>"; };
+		3D07BEEC1FD90B9600BC4A64 /* SCLAlertViewResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewResponder.m; sourceTree = "<group>"; };
+		3D07BEED1FD90B9600BC4A64 /* SCLAlertViewStyleKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLAlertViewStyleKit.h; sourceTree = "<group>"; };
+		3D07BEEE1FD90B9600BC4A64 /* SCLAlertViewStyleKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLAlertViewStyleKit.m; sourceTree = "<group>"; };
+		3D07BEEF1FD90B9600BC4A64 /* SCLButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLButton.h; sourceTree = "<group>"; };
+		3D07BEF01FD90B9600BC4A64 /* SCLButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLButton.m; sourceTree = "<group>"; };
+		3D07BEF11FD90B9600BC4A64 /* SCLMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLMacros.h; sourceTree = "<group>"; };
+		3D07BEF21FD90B9600BC4A64 /* SCLSwitchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLSwitchView.h; sourceTree = "<group>"; };
+		3D07BEF31FD90B9600BC4A64 /* SCLSwitchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLSwitchView.m; sourceTree = "<group>"; };
+		3D07BEF41FD90B9600BC4A64 /* SCLTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLTextView.h; sourceTree = "<group>"; };
+		3D07BEF51FD90B9600BC4A64 /* SCLTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLTextView.m; sourceTree = "<group>"; };
+		3D07BEF61FD90B9600BC4A64 /* SCLTimerDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCLTimerDisplay.h; sourceTree = "<group>"; };
+		3D07BEF71FD90B9600BC4A64 /* SCLTimerDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCLTimerDisplay.m; sourceTree = "<group>"; };
+		3D07BEF81FD90B9600BC4A64 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		3D07BEF91FD90B9600BC4A64 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		3D0BEAA51FC55B7800EC14A9 /* NGGRankHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGRankHeaderView.xib; sourceTree = "<group>"; };
 		3D0BEAA71FC55BA100EC14A9 /* NGGRankHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGRankHeaderView.h; sourceTree = "<group>"; };
 		3D0BEAA81FC55BA100EC14A9 /* NGGRankHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGRankHeaderView.m; sourceTree = "<group>"; };
@@ -393,7 +437,6 @@
 		3D35ECC21FB2F78800E01659 /* NGGUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGUserViewController.h; sourceTree = "<group>"; };
 		3D35ECC31FB2F78800E01659 /* NGGUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGUserViewController.m; sourceTree = "<group>"; };
 		3D35ECC41FB2F78800E01659 /* NGG-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NGG-Prefix.pch"; sourceTree = "<group>"; };
-		3D35ECC51FB2F78800E01659 /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pop.framework; sourceTree = "<group>"; };
 		3D35ECC91FB2F78800E01659 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		3D35ECCA1FB2F78800E01659 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		3D35ECCB1FB2F78800E01659 /* NGGSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGSocial.h; sourceTree = "<group>"; };
@@ -656,6 +699,7 @@
 		3D4B1BF21FC80E6100FBAB6C /* NGGSwitchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGSwitchTableViewCell.h; sourceTree = "<group>"; };
 		3D4B1BF31FC80E6100FBAB6C /* NGGSwitchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGSwitchTableViewCell.m; sourceTree = "<group>"; };
 		3D4B1BF41FC80E6100FBAB6C /* NGGSwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGSwitchTableViewCell.xib; sourceTree = "<group>"; };
+		3D65B8ED1FD94175006F98CE /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pop.framework; sourceTree = "<group>"; };
 		3D922EF61FD00EEB003AA7F1 /* NGGGameListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGameListView.h; sourceTree = "<group>"; };
 		3D922EF71FD00EEB003AA7F1 /* NGGGameListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGameListView.m; sourceTree = "<group>"; };
 		3D922EF91FD00F72003AA7F1 /* NGGGameListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGGameListView.xib; sourceTree = "<group>"; };
@@ -709,6 +753,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D35EE481FB2F90B00E01659 /* libz.tbd in Frameworks */,
 				3D35EE4A1FB2F91C00E01659 /* SystemConfiguration.framework in Frameworks */,
 				3D35EE421FB2F8F000E01659 /* Security.framework in Frameworks */,
 				3D35EE401FB2F8E400E01659 /* CoreTelephony.framework in Frameworks */,
@@ -718,14 +763,11 @@
 				3D35EE3B1FB2F8A400E01659 /* CoreGraphics.framework in Frameworks */,
 				3D07BEBF1FD6704300BC4A64 /* libicucore.tbd in Frameworks */,
 				3D35EE461FB2F90300E01659 /* libsqlite3.0.tbd in Frameworks */,
-				3D35EE481FB2F90B00E01659 /* libz.tbd in Frameworks */,
 				3D35EE3A1FB2F89400E01659 /* CFNetwork.framework in Frameworks */,
 				3D35EE391FB2F88500E01659 /* CoreText.framework in Frameworks */,
 				3D35EE381FB2F87E00E01659 /* ImageIO.framework in Frameworks */,
-				3D35EE4E1FB2FD8000E01659 /* pop.framework in Frameworks */,
 				3D35EE301FB2F83D00E01659 /* Photos.framework in Frameworks */,
 				3D35EDD31FB2F78900E01659 /* libWeiboSDK.a in Frameworks */,
-				3D35EDCD1FB2F78900E01659 /* pop.framework in Frameworks */,
 				3D35EDD11FB2F78900E01659 /* TencentOpenAPI.framework in Frameworks */,
 				3D35EE321FB2F85300E01659 /* libiconv.tbd in Frameworks */,
 				3D35EDD21FB2F78900E01659 /* libWeChatSDK.a in Frameworks */,
@@ -849,6 +891,49 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		3D07BEC91FD7C72B00BC4A64 /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				3D07BED01FD7C80D00BC4A64 /* NGGShopViewController.h */,
+				3D07BECF1FD7C80D00BC4A64 /* NGGShopViewController.m */,
+				3D07BEE31FD8D8A500BC4A64 /* NGGGoodsDetailViewController.h */,
+				3D07BEE41FD8D8A500BC4A64 /* NGGGoodsDetailViewController.m */,
+				3D07BEE51FD8D8A500BC4A64 /* NGGGoodsDetailViewController.xib */,
+				3D07BED11FD7C80D00BC4A64 /* NGGShopViewController.xib */,
+				3D07BEDB1FD7D1DC00BC4A64 /* NGGShopClassifyCollectionViewCell.h */,
+				3D07BEDA1FD7D1DC00BC4A64 /* NGGShopClassifyCollectionViewCell.m */,
+				3D07BED91FD7D1DC00BC4A64 /* NGGShopClassifyCollectionViewCell.xib */,
+				3D07BEDE1FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.h */,
+				3D07BEDF1FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.m */,
+				3D07BEE01FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.xib */,
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
+		3D07BEE81FD90B9600BC4A64 /* SCLAlertView */ = {
+			isa = PBXGroup;
+			children = (
+				3D07BEE91FD90B9600BC4A64 /* SCLAlertView.h */,
+				3D07BEEA1FD90B9600BC4A64 /* SCLAlertView.m */,
+				3D07BEEB1FD90B9600BC4A64 /* SCLAlertViewResponder.h */,
+				3D07BEEC1FD90B9600BC4A64 /* SCLAlertViewResponder.m */,
+				3D07BEED1FD90B9600BC4A64 /* SCLAlertViewStyleKit.h */,
+				3D07BEEE1FD90B9600BC4A64 /* SCLAlertViewStyleKit.m */,
+				3D07BEEF1FD90B9600BC4A64 /* SCLButton.h */,
+				3D07BEF01FD90B9600BC4A64 /* SCLButton.m */,
+				3D07BEF11FD90B9600BC4A64 /* SCLMacros.h */,
+				3D07BEF21FD90B9600BC4A64 /* SCLSwitchView.h */,
+				3D07BEF31FD90B9600BC4A64 /* SCLSwitchView.m */,
+				3D07BEF41FD90B9600BC4A64 /* SCLTextView.h */,
+				3D07BEF51FD90B9600BC4A64 /* SCLTextView.m */,
+				3D07BEF61FD90B9600BC4A64 /* SCLTimerDisplay.h */,
+				3D07BEF71FD90B9600BC4A64 /* SCLTimerDisplay.m */,
+				3D07BEF81FD90B9600BC4A64 /* UIImage+ImageEffects.h */,
+				3D07BEF91FD90B9600BC4A64 /* UIImage+ImageEffects.m */,
+			);
+			path = SCLAlertView;
+			sourceTree = "<group>";
+		};
 		3D25B4B01FB431EF00D20FB2 /* Analyse */ = {
 			isa = PBXGroup;
 			children = (
@@ -914,7 +999,6 @@
 				3D35EC841FB2F78800E01659 /* Info.plist */,
 				3D35EC851FB2F78800E01659 /* main.m */,
 				3D35EC7E1FB2F78800E01659 /* LaunchScreen.storyboard */,
-				3D35ECC51FB2F78800E01659 /* pop.framework */,
 			);
 			path = Sport;
 			sourceTree = "<group>";
@@ -963,6 +1047,7 @@
 		3D35EC8A1FB2F78800E01659 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				3D07BEC91FD7C72B00BC4A64 /* Shop */,
 				3D35EC8B1FB2F78800E01659 /* Home */,
 				3D35ECB01FB2F78800E01659 /* Login */,
 				3D35ECB71FB2F78800E01659 /* Result */,
@@ -1112,6 +1197,8 @@
 		3D35ECD91FB2F78900E01659 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				3D65B8ED1FD94175006F98CE /* pop.framework */,
+				3D07BEE81FD90B9600BC4A64 /* SCLAlertView */,
 				3D07BE771FD66E3400BC4A64 /* SocketRocket */,
 				3D35ECDA1FB2F78900E01659 /* AFNetworking */,
 				3D35ECE81FB2F78900E01659 /* DMComponents */,
@@ -1784,8 +1871,10 @@
 				3D35EE031FB2F78900E01659 /* MJRefresh.bundle in Resources */,
 				3DC56B921FC4432A00F67C32 /* NGGRankTableViewCell.xib in Resources */,
 				3D45CB711FCC0C14006EF330 /* NGGModifyPasswordViewController.xib in Resources */,
+				3D07BED31FD7C80D00BC4A64 /* NGGShopViewController.xib in Resources */,
 				3D4B1BD91FC6A0C600FBAB6C /* NGGUserViewController.xib in Resources */,
 				3D25B4AF1FB428A200D20FB2 /* NGGDetailAnalyseView.xib in Resources */,
+				3D07BEE21FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.xib in Resources */,
 				3D35EE571FB3073D00E01659 /* NGGGuessCollectionViewCell.xib in Resources */,
 				3D35EDE71FB2F78900E01659 /* DMPictureBrowserViewController.Bundle in Resources */,
 				3D35EDB91FB2F78900E01659 /* NGGHomeNoticeCollectionViewCell.xib in Resources */,
@@ -1793,9 +1882,11 @@
 				3D4B1BF61FC80E6100FBAB6C /* NGGSwitchTableViewCell.xib in Resources */,
 				3D25B4B61FB4327300D20FB2 /* NGGAnalyseHistoryView.xib in Resources */,
 				3D4B1BF11FC7F7E900FBAB6C /* NGGTextTableViewCell.xib in Resources */,
+				3D07BEE71FD8D8A600BC4A64 /* NGGGoodsDetailViewController.xib in Resources */,
 				3D35EDBB1FB2F78900E01659 /* NGGHomePageMenuCollectionViewCell.xib in Resources */,
 				3D35EDC91FB2F78900E01659 /* NGGTaskTableViewCell.xib in Resources */,
 				3D35EE0C1FB2F78900E01659 /* PSCarouselCollectionCell.xib in Resources */,
+				3D07BEDC1FD7D1DC00BC4A64 /* NGGShopClassifyCollectionViewCell.xib in Resources */,
 				3D35EDB31FB2F78900E01659 /* NGGHomeBannerCollectionViewCell.xib in Resources */,
 				3D07BEBB1FD66E3400BC4A64 /* Info.plist in Resources */,
 				3D35EDE01FB2F78900E01659 /* DMMultiImagePicker.bundle in Resources */,
@@ -1814,6 +1905,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DE538801FDA6BD9004D80AA /* pop.framework in Sources */,
 				3DF60B3B1FD126FA00FE26E9 /* NGGPreGameTableViewCell.m in Sources */,
 				3D35EDC71FB2F78900E01659 /* NGGResultViewController.m in Sources */,
 				3D35EDE81FB2F78900E01659 /* DMPictureModel.m in Sources */,
@@ -1836,8 +1928,10 @@
 				3D07BEB91FD66E3400BC4A64 /* NSRunLoop+SRWebSocket.m in Sources */,
 				3D35EDB01FB2F78900E01659 /* NGGHomeActivityHeaderReusableView.m in Sources */,
 				3D35EE601FB30A3B00E01659 /* NGGDetailHeaderReusableView.m in Sources */,
+				3D07BF001FD90B9600BC4A64 /* SCLTimerDisplay.m in Sources */,
 				3D25B4AD1FB4287600D20FB2 /* NGGDetailAnalyseView.m in Sources */,
 				3D07BE761FD66BF300BC4A64 /* NGGWebSocketHelper.m in Sources */,
+				3D07BEFD1FD90B9600BC4A64 /* SCLButton.m in Sources */,
 				3D07BEC21FD67BA200BC4A64 /* NGGGameModel.m in Sources */,
 				3D35EDC51FB2F78900E01659 /* NGGRegisterViewController.m in Sources */,
 				3D35EDDC1FB2F78900E01659 /* DMAssetGroupViewController.m in Sources */,
@@ -1867,6 +1961,7 @@
 				3D35EE121FB2F78900E01659 /* SDImageCache.m in Sources */,
 				3D35EDF51FB2F78900E01659 /* MJRefreshAutoFooter.m in Sources */,
 				3D35EDE31FB2F78900E01659 /* DMPhoto.m in Sources */,
+				3D07BEDD1FD7D1DC00BC4A64 /* NGGShopClassifyCollectionViewCell.m in Sources */,
 				3D35EDA61FB2F78900E01659 /* NGGTabBarController.m in Sources */,
 				3DC56B821FC42F5B00F67C32 /* NGGGameResultView.m in Sources */,
 				3D4B1BDD1FC7BF7F00FBAB6C /* NGGUser.m in Sources */,
@@ -1888,9 +1983,11 @@
 				3D35EDD91FB2F78900E01659 /* AFURLResponseSerialization.m in Sources */,
 				3D35EE071FB2F78900E01659 /* UIScrollView+MJRefresh.m in Sources */,
 				3D07BEAC1FD66E3400BC4A64 /* SRIOConsumerPool.m in Sources */,
+				3D07BEFA1FD90B9600BC4A64 /* SCLAlertView.m in Sources */,
 				3D35EDEE1FB2F78900E01659 /* MASLayoutConstraint.m in Sources */,
 				3D35EDAE1FB2F78900E01659 /* NGGGuessDetailViewController.m in Sources */,
 				3D35EDEB1FB2F78900E01659 /* MASCompositeConstraint.m in Sources */,
+				3D07BEFE1FD90B9600BC4A64 /* SCLSwitchView.m in Sources */,
 				3D07BEB31FD66E3400BC4A64 /* SRHTTPConnectMessage.m in Sources */,
 				3D35EE061FB2F78900E01659 /* UIScrollView+MJExtension.m in Sources */,
 				3D45CB751FCC1434006EF330 /* NGGMessageViewController.m in Sources */,
@@ -1901,6 +1998,7 @@
 				3D45CB851FCD380D006EF330 /* NGGExchangeViewController.m in Sources */,
 				3D35EDC81FB2F78900E01659 /* NGGTaskTableViewCell.m in Sources */,
 				3D07BEAF1FD66E3400BC4A64 /* SRPinningSecurityPolicy.m in Sources */,
+				3D07BEFB1FD90B9600BC4A64 /* SCLAlertViewResponder.m in Sources */,
 				3D35EDB21FB2F78900E01659 /* NGGHomeBannerCollectionViewCell.m in Sources */,
 				3D07BEB01FD66E3400BC4A64 /* SRConstants.m in Sources */,
 				3DC56B6A1FC3FEEC00F67C32 /* NGGRecentRecordView.m in Sources */,
@@ -1908,11 +2006,13 @@
 				3D35EE021FB2F78900E01659 /* MJRefreshStateHeader.m in Sources */,
 				3D35EE221FB2F78900E01659 /* UIImage+Blur.m in Sources */,
 				3D35EDEC1FB2F78900E01659 /* MASConstraint.m in Sources */,
+				3D07BEE61FD8D8A600BC4A64 /* NGGGoodsDetailViewController.m in Sources */,
 				3DC56B7D1FC421F000F67C32 /* NGGFollowGameTableViewCell.m in Sources */,
 				3D35EE231FB2F78900E01659 /* UIImage+ImageEffects.m in Sources */,
 				3D35EE201FB2F78900E01659 /* UIView+WebCache.m in Sources */,
 				3D35EE0A1FB2F78900E01659 /* SVProgressHUD.m in Sources */,
 				3D35EE1C1FB2F78900E01659 /* UIImage+MultiFormat.m in Sources */,
+				3D07BED21FD7C80D00BC4A64 /* NGGShopViewController.m in Sources */,
 				3D4B1BE01FC7C4F500FBAB6C /* NGGModel.m in Sources */,
 				3D45CB781FCC1CAC006EF330 /* NGGSystemMessageViewController.m in Sources */,
 				3D35EE261FB2F78900E01659 /* UIImageView+LBBlurredImage.m in Sources */,
@@ -1931,6 +2031,7 @@
 				3D45CB6C1FCC0128006EF330 /* UITextView+Placeholder.m in Sources */,
 				3D45CB8A1FCD5CF5006EF330 /* NGGRechargeViewController.m in Sources */,
 				3D35EE011FB2F78900E01659 /* MJRefreshNormalHeader.m in Sources */,
+				3D07BEFC1FD90B9600BC4A64 /* SCLAlertViewStyleKit.m in Sources */,
 				3DF60B411FD12F8100FE26E9 /* NGGLeagueModel.m in Sources */,
 				3D35EDFC1FB2F78900E01659 /* MJRefreshAutoStateFooter.m in Sources */,
 				3D07BEB21FD66E3400BC4A64 /* SRHash.m in Sources */,
@@ -1940,6 +2041,7 @@
 				3D35EDEF1FB2F78900E01659 /* MASViewAttribute.m in Sources */,
 				3D35EE251FB2F78900E01659 /* UIImage+Screenshot.m in Sources */,
 				3D07BEAD1FD66E3400BC4A64 /* SRProxyConnect.m in Sources */,
+				3D07BEFF1FD90B9600BC4A64 /* SCLTextView.m in Sources */,
 				3D35EE141FB2F78900E01659 /* SDWebImageCompat.m in Sources */,
 				3D35EDD71FB2F78900E01659 /* AFSecurityPolicy.m in Sources */,
 				3D07BEAE1FD66E3400BC4A64 /* SRRunLoopThread.m in Sources */,
@@ -1974,7 +2076,9 @@
 				3DF60B3E1FD12AE400FE26E9 /* NGGGameListModel.m in Sources */,
 				3D35EE5B1FB3085400E01659 /* NGGGuess2RowsCollectionViewCell.m in Sources */,
 				3D35EDD81FB2F78900E01659 /* AFURLRequestSerialization.m in Sources */,
+				3D07BF011FD90B9600BC4A64 /* UIImage+ImageEffects.m in Sources */,
 				3DC56B601FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.m in Sources */,
+				3D07BEE11FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.m in Sources */,
 				3D35EDE61FB2F78900E01659 /* DMPictureBrowerViewController.m in Sources */,
 				3D45CB5C1FCBF5F0006EF330 /* NGGModifyNicknameViewController.m in Sources */,
 				3D35EE211FB2F78900E01659 /* UIView+WebCacheOperation.m in Sources */,
@@ -2111,14 +2215,17 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sport/Sport.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = CD8Y6D6QYC;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Sport",
 					"$(PROJECT_DIR)/Sport/Social/AliPay15.4.1",
 					"$(PROJECT_DIR)/Sport/Social/QQ3.3.0",
+					"$(PROJECT_DIR)/Sport/ThirdParty",
 				);
 				GCC_PREFIX_HEADER = "Sport/NGG-Prefix.pch";
 				INFOPLIST_FILE = Sport/Info.plist;
@@ -2129,12 +2236,20 @@
 					"$(PROJECT_DIR)/Sport/Social/wechat1.8.0",
 					"$(PROJECT_DIR)/Sport/Social/Weibo3.2.2",
 				);
-				OTHER_LIBTOOLFLAGS = "-fobjc-arc -ObjC \"-Objc -all_load\"";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lc++",
+					"-ObjC",
+					"-fobjc-arc",
+					"\"-Objc -all_load\"",
+				);
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yyy.c001;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "588b3761-6623-4ad3-bdbc-4deba6cdd559";
 				PROVISIONING_PROFILE_SPECIFIER = 0001_dev.profile;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7s armv7";
 			};
 			name = Debug;
 		};
@@ -2144,14 +2259,17 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sport/Sport.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = CD8Y6D6QYC;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Sport",
 					"$(PROJECT_DIR)/Sport/Social/AliPay15.4.1",
 					"$(PROJECT_DIR)/Sport/Social/QQ3.3.0",
+					"$(PROJECT_DIR)/Sport/ThirdParty",
 				);
 				GCC_PREFIX_HEADER = "Sport/NGG-Prefix.pch";
 				INFOPLIST_FILE = Sport/Info.plist;
@@ -2162,11 +2280,20 @@
 					"$(PROJECT_DIR)/Sport/Social/wechat1.8.0",
 					"$(PROJECT_DIR)/Sport/Social/Weibo3.2.2",
 				);
-				OTHER_LIBTOOLFLAGS = "-fobjc-arc -ObjC \"-Objc -all_load\"";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = (
+					"-lc++",
+					"-ObjC",
+					"-fobjc-arc",
+					"\"-Objc -all_load\"",
+				);
+				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yyy.c001;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "87c890ac-b409-450f-a828-92acc08b6242";
+				PROVISIONING_PROFILE_SPECIFIER = c001;
 				TARGETED_DEVICE_FAMILY = 1;
+				VALID_ARCHS = "arm64 armv7s armv7";
 			};
 			name = Release;
 		};

@@ -50,4 +50,8 @@
 - (void)presentLoginViewControllerWithAlertView;
 - (void)presentLoginViewController;
 
+
+// show EmptyView
+- (void)showEmptyViewInView:(UIView *)view;
+
 @end

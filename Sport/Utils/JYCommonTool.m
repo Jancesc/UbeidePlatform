@@ -19,4 +19,9 @@
    return  [fmt stringFromDate:date];
 }
 
++ (CGFloat)calculateStringWidth:(NSString *) string maxSize:(CGSize)maxSize fontSize:(CGFloat)fontSize {
+    
+    CGRect rect = [string boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:fontSize]} context:nil];
+    return rect.size.width;
+}
 @end

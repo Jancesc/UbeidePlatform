@@ -17,6 +17,7 @@
 #import "NGGHTTPClient.h"
 #import "Masonry.h"
 #import "NGGLoginViewController.h"
+#import "NGGEmptyView.h"
 
 float NGGHudShortDuration = 0.5f;
 float NGGHudNormalDuration = 1.0f;
@@ -42,7 +43,8 @@ static NSOperationQueue *sRequestQueue = nil;
     
     //    UIView *_cover;
     
-    UIView *_tipsView;//提示用户未登录
+    
+    UIView *_emptyView;
     
 }
 
@@ -339,8 +341,16 @@ static NSOperationQueue *sRequestQueue = nil;
         
         [self presentViewController:nav animated:YES completion:nil];
     }
+}
+
+- (void)showEmptyViewInView:(UIView *)view {
     
+    if (_emptyView) {
+        
+        _emptyView = [[NGGEmptyView alloc] initWithFrame:view.bounds];
+    }
     
-    
+    _emptyView.frame = view.bounds;
+    [view addSubview:_emptyView];
 }
 @end

@@ -41,4 +41,6 @@
  */
 + (NSString *)dateFormatWithInterval:(NSInteger)intetval format:(NSString *)format;
 
++ (CGFloat)calculateStringWidth:(NSString *) string maxSize:(CGSize)maxSize fontSize:(CGFloat)fontSize;
+
 @end

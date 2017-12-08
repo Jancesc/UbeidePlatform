@@ -18,6 +18,7 @@
 #import "NGGTaskViewController.h"
 #import "NGGPreGuessListViewController.h"
 #import "NGGNavigationController.h"
+#import "SCLAlertView.h"
 
 static NSString *kBannerCellIdentifier = @"NGGHomeBannerCollectionViewCell";
 static NSString *kPageCellIdentifier = @"NGGHomePageMenuCollectionViewCell";

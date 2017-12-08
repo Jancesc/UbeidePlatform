@@ -284,6 +284,7 @@ static NSString *kGameDateCellIdentifier = @"NGGGameDateCell";
 }
 
 #pragma mark - UICollectionViewDataSource  && UICollectionViewDelagate
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
     return 1;

@@ -9,9 +9,9 @@
 #import "NGGTabBarController.h"
 #import "NGGNavigationController.h"
 #import "NGGHomeViewController.h"
-#import "NGGResultViewController.h"
 #import "NGGTaskViewController.h"
 #import "NGGUserViewController.h"
+#import "NGGShopViewController.h"
 
 @interface NGGTabBarController ()
 
@@ -38,17 +38,18 @@
     NGGHomeViewController *homeVC = [[NGGHomeViewController alloc] init];
     [self configueVCTabbarItem:homeVC title:@"投注大厅" imageName:@"tabbar_home" selectedImageName:@"tabbar_home_selected" tabbarName:@"投注大厅"];
     
-    NGGResultViewController *resultVC = [[NGGResultViewController alloc] init];
-    NGGNavigationController *resultNav = [self configueTabbarItem:resultVC title:@"开奖结果" imageName:@"tabbar_result" selectedImageName:@"tabbar_result_selected" tabbarName:@"开奖结果"];
-    
     NGGTaskViewController *taskVC = [[NGGTaskViewController alloc] init];
     NGGNavigationController *taskNav = [self configueTabbarItem:taskVC title:@"每日任务" imageName:@"tabbar_task" selectedImageName:@"tabbar_task_selected" tabbarName:@"每日任务"];
+    
+    
+    NGGShopViewController *shopVC = [[NGGShopViewController alloc] initWithNibName:@"NGGShopViewController" bundle:nil];
+    NGGNavigationController *shopNav = [self configueTabbarItem:shopVC title:@"金币抽奖" imageName:@"tabbar_shop" selectedImageName:@"tabbar_shop_selected" tabbarName:@"商城"];
     
     NGGUserViewController *userVC = [[NGGUserViewController alloc] initWithNibName:@"NGGUserViewController" bundle:nil];
     NGGNavigationController *userNav = [self configueTabbarItem:userVC title:@"个人中心" imageName:@"tabbar_user" selectedImageName:@"tabbar_user_selected" tabbarName:@"个人中心"];
 
     
-    [self setViewControllers:@[homeVC, resultNav, taskNav, userNav]];
+    [self setViewControllers:@[homeVC, taskNav, shopNav, userNav]];
 
     //设置tabbar为黑色
     [[UITabBar appearance] setBarTintColor:UIColorWithRGB(0xf1, 0xf1, 0xf1)];
