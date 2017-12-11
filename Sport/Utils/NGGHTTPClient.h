@@ -22,7 +22,7 @@ static NSString *const NGGHttpResponseErrorDomain = @"NGGHttpErrorDomain";
 
 + (NGGHTTPClient *)defaultClient;
 
-- (BOOL) netWorkReachabilityWithURLString:(NSString *) strUrl;
+- (AFNetworkReachabilityStatus)currentNetworkStatus;
 
 //API Request Methods
 - (void) getPath:(NSString *)path parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;

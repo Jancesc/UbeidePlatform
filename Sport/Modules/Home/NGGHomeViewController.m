@@ -219,8 +219,8 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     
     if (index == 1) {
         
-
-
+      AFNetworkReachabilityStatus status =  [[NGGHTTPClient defaultClient] currentNetworkStatus];
+        NSLog(@"%ld", (long)status);
     } else if (index == 2) {
         
         NGGTaskViewController *controller = [[NGGTaskViewController alloc] initWithNibName:@"NGGTaskViewController" bundle:nil];

@@ -36,6 +36,7 @@
         //响应结果序列化类型
         _manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         _baseURL = BASE_URL;
+        [self netWorkReachability];
     }
     return self;
 }
@@ -57,14 +58,15 @@
     [_manager invalidateSessionCancelingTasks:YES];
 }
 
-- (BOOL) netWorkReachabilityWithURLString:(NSString *) strUrl
-{
-    __block BOOL netState = NO;
+- (void) netWorkReachability {
     
+    __block BOOL netState = NO;
     [_manager.reachabilityManager startMonitoring];
     [_manager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         switch (status) {
             case AFNetworkReachabilityStatusReachableViaWWAN:
+                netState = YES;
+                break;
             case AFNetworkReachabilityStatusReachableViaWiFi:
                 netState = YES;
                 break;
@@ -75,7 +77,11 @@
         }
     }];
     
-    return netState;
+}
+
+- (AFNetworkReachabilityStatus)currentNetworkStatus {
+    
+    return [_manager.reachabilityManager networkReachabilityStatus];
 }
 
 #pragma mark - HTTP REQUEST METHODS

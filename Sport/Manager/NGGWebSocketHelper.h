@@ -8,10 +8,26 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol NGGWebSocketHelperDelegate
+
+//连接成功
+- (void)openSuccess;
+//连接断开
+- (void)closeSuccess;
+
+//无法连接服务器
+- (void)connectedFailed;
+
+@end
+
 @interface NGGWebSocketHelper : NSObject
 
 @property (nonatomic, strong) NSString *urlString;
 + (NGGWebSocketHelper *) shareHelper;
 
-- (void)SRWebSocketOpen;
+- (void)webSocketOpen;
+
+- (void)webSocketClose;
+
+- (void)sendData:(id)data;
 @end

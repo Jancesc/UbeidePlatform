@@ -260,6 +260,9 @@
 		3DDACFB71FC82F3B0057BD9B /* NGGCommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDACFB61FC82F3B0057BD9B /* NGGCommonTableViewCell.m */; };
 		3DE5387F1FDA697D004D80AA /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3D65B8ED1FD94175006F98CE /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3DE538801FDA6BD9004D80AA /* pop.framework in Sources */ = {isa = PBXBuildFile; fileRef = 3D65B8ED1FD94175006F98CE /* pop.framework */; };
+		3DE538841FDA7526004D80AA /* NGGPrizeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE538831FDA7526004D80AA /* NGGPrizeListViewController.m */; };
+		3DE538881FDA7676004D80AA /* NGGPrizeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE538861FDA7676004D80AA /* NGGPrizeTableViewCell.m */; };
+		3DE538891FDA7676004D80AA /* NGGPrizeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE538871FDA7676004D80AA /* NGGPrizeTableViewCell.xib */; };
 		3DF60B3B1FD126FA00FE26E9 /* NGGPreGameTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF60B391FD126F900FE26E9 /* NGGPreGameTableViewCell.m */; };
 		3DF60B3E1FD12AE400FE26E9 /* NGGGameListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF60B3D1FD12AE400FE26E9 /* NGGGameListModel.m */; };
 		3DF60B411FD12F8100FE26E9 /* NGGLeagueModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DF60B401FD12F8100FE26E9 /* NGGLeagueModel.m */; };
@@ -735,6 +738,11 @@
 		3DDACFB41FC814800057BD9B /* NGGCommonCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGCommonCell.h; sourceTree = "<group>"; };
 		3DDACFB51FC82F3B0057BD9B /* NGGCommonTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGCommonTableViewCell.h; sourceTree = "<group>"; };
 		3DDACFB61FC82F3B0057BD9B /* NGGCommonTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGCommonTableViewCell.m; sourceTree = "<group>"; };
+		3DE538821FDA7526004D80AA /* NGGPrizeListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGPrizeListViewController.h; sourceTree = "<group>"; };
+		3DE538831FDA7526004D80AA /* NGGPrizeListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGPrizeListViewController.m; sourceTree = "<group>"; };
+		3DE538851FDA7676004D80AA /* NGGPrizeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGPrizeTableViewCell.h; sourceTree = "<group>"; };
+		3DE538861FDA7676004D80AA /* NGGPrizeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGPrizeTableViewCell.m; sourceTree = "<group>"; };
+		3DE538871FDA7676004D80AA /* NGGPrizeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGPrizeTableViewCell.xib; sourceTree = "<group>"; };
 		3DF60B391FD126F900FE26E9 /* NGGPreGameTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGPreGameTableViewCell.m; sourceTree = "<group>"; };
 		3DF60B3A1FD126FA00FE26E9 /* NGGPreGameTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGPreGameTableViewCell.h; sourceTree = "<group>"; };
 		3DF60B3C1FD12AE400FE26E9 /* NGGGameListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGameListModel.h; sourceTree = "<group>"; };
@@ -1123,6 +1131,7 @@
 		3D35ECC11FB2F78800E01659 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				3DE538811FDA74A0004D80AA /* Prize */,
 				3D45CB931FCD706D006EF330 /* ConsumptionDetail */,
 				3D45CB871FCD5BE4006EF330 /* Recharge */,
 				3D45CB811FCD3758006EF330 /* Excharge */,
@@ -1776,6 +1785,18 @@
 			path = UserInfo;
 			sourceTree = "<group>";
 		};
+		3DE538811FDA74A0004D80AA /* Prize */ = {
+			isa = PBXGroup;
+			children = (
+				3DE538821FDA7526004D80AA /* NGGPrizeListViewController.h */,
+				3DE538831FDA7526004D80AA /* NGGPrizeListViewController.m */,
+				3DE538851FDA7676004D80AA /* NGGPrizeTableViewCell.h */,
+				3DE538861FDA7676004D80AA /* NGGPrizeTableViewCell.m */,
+				3DE538871FDA7676004D80AA /* NGGPrizeTableViewCell.xib */,
+			);
+			path = Prize;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1883,6 +1904,7 @@
 				3D25B4B61FB4327300D20FB2 /* NGGAnalyseHistoryView.xib in Resources */,
 				3D4B1BF11FC7F7E900FBAB6C /* NGGTextTableViewCell.xib in Resources */,
 				3D07BEE71FD8D8A600BC4A64 /* NGGGoodsDetailViewController.xib in Resources */,
+				3DE538891FDA7676004D80AA /* NGGPrizeTableViewCell.xib in Resources */,
 				3D35EDBB1FB2F78900E01659 /* NGGHomePageMenuCollectionViewCell.xib in Resources */,
 				3D35EDC91FB2F78900E01659 /* NGGTaskTableViewCell.xib in Resources */,
 				3D35EE0C1FB2F78900E01659 /* PSCarouselCollectionCell.xib in Resources */,
@@ -2025,6 +2047,7 @@
 				3D07BEB71FD66E3400BC4A64 /* SRSIMDHelpers.m in Sources */,
 				3D35EDC31FB2F78900E01659 /* NGGLoginViewController.m in Sources */,
 				3D35EDE51FB2F78900E01659 /* DMPhotoView.m in Sources */,
+				3DE538841FDA7526004D80AA /* NGGPrizeListViewController.m in Sources */,
 				3D35EE111FB2F78900E01659 /* NSImage+WebCache.m in Sources */,
 				3D07BEAB1FD66E3400BC4A64 /* SRIOConsumer.m in Sources */,
 				3D35EE271FB2F78900E01659 /* ZSMD5.m in Sources */,
@@ -2083,6 +2106,7 @@
 				3D45CB5C1FCBF5F0006EF330 /* NGGModifyNicknameViewController.m in Sources */,
 				3D35EE211FB2F78900E01659 /* UIView+WebCacheOperation.m in Sources */,
 				3D35EE051FB2F78900E01659 /* NSBundle+MJRefresh.m in Sources */,
+				3DE538881FDA7676004D80AA /* NGGPrizeTableViewCell.m in Sources */,
 				3DC56B911FC4432A00F67C32 /* NGGRankTableViewCell.m in Sources */,
 				3D35EDA51FB2F78900E01659 /* NGGNavigationController.m in Sources */,
 				3DC56B751FC4201000F67C32 /* NGGFollowGameView.m in Sources */,
