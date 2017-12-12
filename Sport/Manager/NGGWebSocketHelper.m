@@ -8,6 +8,7 @@
 
 #import "NGGWebSocketHelper.h"
 #import "SocketRocket.h"
+#import "SCLAlertView.h"
 
 #define NGGHeartbeatInterval 5
 #define NGGMaxHeartbeatCount 3
@@ -75,14 +76,6 @@
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
   
-    NSLog(@"连接失败，这里可以实现掉线自动重连，要注意以下几点");
-    NSLog(@"1.判断当前网络环境，如果断网了就不要连了，等待网络到来，在发起重连");
-    NSLog(@"2.判断调用层是否需要连接，例如用户都没在聊天界面，连接上去浪费流量");
-    NSLog(@"3.连接次数限制，如果连接失败了，重试10次左右就可以了，不然就死循环了。");
-    AFNetworkReachabilityStatus status = [[NGGHTTPClient defaultClient] currentNetworkStatus];
-    if (status == AFNetworkReachabilityStatusNotReachable) {
-        NSLog(@"确实是网络无连接");
-    }
     _socket = nil;
     //连接失败就重连
     [self reConnect];
@@ -125,6 +118,18 @@
         
         return;
     }
+    NSLog(@"连接失败，这里可以实现掉线自动重连，要注意以下几点");
+    NSLog(@"1.判断当前网络环境，如果断网了就不要连了，等待网络到来，在发起重连");
+    NSLog(@"2.判断调用层是否需要连接，例如用户都没在聊天界面，连接上去浪费流量");
+    NSLog(@"3.连接次数限制，如果连接失败了，重试10次左右就可以了，不然就死循环了。");
+    AFNetworkReachabilityStatus status = [[NGGHTTPClient defaultClient] currentNetworkStatus];
+    if (status == AFNetworkReachabilityStatusNotReachable) {
+        NSLog(@"确实是网络无连接");
+        SCLAlertView *alertView = [[SCLAlertView alloc] init];
+        [alertView showError:_delegate title:@"网络出错" subTitle:nil closeButtonTitle:@"好的" duration:3.0];
+        return;
+    }
+    
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(_reConnectTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         

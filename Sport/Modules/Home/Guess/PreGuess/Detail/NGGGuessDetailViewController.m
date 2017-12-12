@@ -44,7 +44,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     // Do any additional setup after loading the view from its nib.
     self.title = @"赛事";
     [self loadDetailInfo];
-    [[NGGWebSocketHelper shareHelper] SRWebSocketOpen];
+    [[NGGWebSocketHelper shareHelper] webSocketOpen];
 }
 
 - (void)didReceiveMemoryWarning {

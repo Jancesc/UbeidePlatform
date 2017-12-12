@@ -10,6 +10,7 @@
 #import "NGGTypeTableViewCell.h"
 #import "NGGPreGameTableViewCell.h"
 #import "NGGDateCollectionViewCell.h"
+#import "MJRefresh.h"
 
 static NSString *kTypeCellIdentifier = @"NGGTypeTableViewCell";
 static NSString *kGameCellIdentifier = @"NGGGameTableViewCell";
@@ -91,7 +92,7 @@ static NSString *kGameDateCellIdentifier = @"NGGGameDateCell";
     
     [_typeTableView reloadData];
     [_gameTableView reloadData];
-
+    _gameTableView.contentOffset = CGPointMake(0, 0);
     if ([_arrayOfLeague count] > 0) {
 
         [_typeTableView selectRowAtIndexPath:typeSelectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
@@ -198,6 +199,31 @@ static NSString *kGameDateCellIdentifier = @"NGGGameDateCell";
     _arrayOfGame = [gameArrayM copy];
     
     [self refreshUI];
+}
+
+- (void) setupLoadMoreFooter {
+    
+    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    _gameTableView.mj_footer = footer;
+}
+
+- (void)loadMoreData {
+    
+    NSIndexPath *selectedDateIndexPath = [[_dateCollectionView indexPathsForSelectedItems] firstObject];
+    NGGGameDateModel *model = _arrayOfDate[selectedDateIndexPath.item];
+    NSString *timeStamp = model.timeStamp;
+    if (timeStamp == nil) {//全部 为空
+        
+        timeStamp = @"0";
+    }
+    NSIndexPath *selectedLeagueIndex = [_typeTableView indexPathForSelectedRow];
+    NGGLeagueModel *leagueModel = _arrayOfLeague[selectedLeagueIndex.row];
+    NSString *leagueID = leagueModel.leagueID;
+    if (leagueID == nil) {//全部为空
+        
+        leagueID = @"0";
+    }
+    [_delegate gameListViewUpdateInfoWithLeagueID:leagueID timeStamp:timeStamp];
 }
 
 #pragma mark - UITableViewDataSource

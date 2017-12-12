@@ -10,4 +10,6 @@
 
 @interface NGGConsumptionDeatilViewController : NGGCommonViewController
 
+@property (nonatomic, assign) BOOL isBean;
+
 @end

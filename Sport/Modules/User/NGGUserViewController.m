@@ -15,6 +15,7 @@
 #import "NGGRechargeViewController.h"
 #import "NGGRegisterViewController.h"
 #import "UIImageView+WebCache.h"
+#import "NGGConsumptionDeatilViewController.h"
 
 @interface NGGUserViewController ()<UITableViewDataSource, UITableViewDelegate> {
    
@@ -272,6 +273,18 @@
     }  else if (indexPath.section == 1 && indexPath.row == 4) {
         
         NGGMessageViewController *controller = [[NGGMessageViewController alloc] initWithNibName:@"NGGMessageViewController" bundle:nil];
+        controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
+    } else if (indexPath.section == 1 && indexPath.row == 1) {
+        
+        NGGConsumptionDeatilViewController *controller = [[NGGConsumptionDeatilViewController alloc] initWithNibName:@"NGGConsumptionDeatilViewController" bundle:nil];
+        controller.isBean = NO;
+        controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
+    } else if (indexPath.section == 1 && indexPath.row == 2) {
+        
+        NGGConsumptionDeatilViewController *controller = [[NGGConsumptionDeatilViewController alloc] initWithNibName:@"NGGConsumptionDeatilViewController" bundle:nil];
+        controller.isBean = YES;
         controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
     }

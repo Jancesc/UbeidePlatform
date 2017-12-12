@@ -16,6 +16,7 @@
 #import "UIImage+Helpers.h"
 #import "NGGLoginSession.h"
 #import "NGGHTTPClient.h"
+#import "NGGEmptyView.h"
 
 #define NGGPrimaryColor UIColorWithRGB(0xed, 0x27, 0x27)
 

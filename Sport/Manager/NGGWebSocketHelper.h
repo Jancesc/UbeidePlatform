@@ -23,6 +23,9 @@
 @interface NGGWebSocketHelper : NSObject
 
 @property (nonatomic, strong) NSString *urlString;
+
+@property (nonatomic, strong) UIViewController <NGGWebSocketHelperDelegate> *delegate;
+
 + (NGGWebSocketHelper *) shareHelper;
 
 - (void)webSocketOpen;
@@ -30,4 +33,6 @@
 - (void)webSocketClose;
 
 - (void)sendData:(id)data;
+
+
 @end

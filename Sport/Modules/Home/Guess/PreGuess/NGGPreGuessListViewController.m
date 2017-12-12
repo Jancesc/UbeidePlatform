@@ -36,9 +36,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"赛前竞猜";
     [self configueUIComponents];
-    
+    if (_isLive) {
+        
+        self.title = @"滚球竞猜";
+        [_segmentControl setTitle:@"滚球" forSegmentAtIndex:0];
+    } else {
+        
+        self.title = @"赛前竞猜";
+
+    }
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(leftBarButtonClicked)];
     [self refreshUI];
     [self refreshData];

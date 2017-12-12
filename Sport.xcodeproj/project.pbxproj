@@ -239,6 +239,12 @@
 		3D4B1BF61FC80E6100FBAB6C /* NGGSwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D4B1BF41FC80E6100FBAB6C /* NGGSwitchTableViewCell.xib */; };
 		3D922EF81FD00EEB003AA7F1 /* NGGGameListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D922EF71FD00EEB003AA7F1 /* NGGGameListView.m */; };
 		3D922EFA1FD00F72003AA7F1 /* NGGGameListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D922EF91FD00F72003AA7F1 /* NGGGameListView.xib */; };
+		3DA19B2E1FDE742200B19257 /* NGGLiveGuessDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA19B2C1FDE742200B19257 /* NGGLiveGuessDetailViewController.m */; };
+		3DA19B2F1FDE742200B19257 /* NGGLiveGuessDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DA19B2D1FDE742200B19257 /* NGGLiveGuessDetailViewController.xib */; };
+		3DA19B351FDE8DFC00B19257 /* NGGTaskLotteryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA19B331FDE8DFC00B19257 /* NGGTaskLotteryViewController.m */; };
+		3DA19B361FDE8DFC00B19257 /* NGGTaskLotteryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DA19B341FDE8DFC00B19257 /* NGGTaskLotteryViewController.xib */; };
+		3DA19B3A1FDE986400B19257 /* NGGConsumptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA19B381FDE986400B19257 /* NGGConsumptionTableViewCell.m */; };
+		3DA19B3B1FDE986400B19257 /* NGGConsumptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DA19B391FDE986400B19257 /* NGGConsumptionTableViewCell.xib */; };
 		3DC56B601FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC56B5E1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.m */; };
 		3DC56B611FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC56B5F1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.xib */; };
 		3DC56B641FC3D9F700F67C32 /* NGGAnalyseHistoryheaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC56B631FC3D9F700F67C32 /* NGGAnalyseHistoryheaderView.m */; };
@@ -706,6 +712,15 @@
 		3D922EF61FD00EEB003AA7F1 /* NGGGameListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGameListView.h; sourceTree = "<group>"; };
 		3D922EF71FD00EEB003AA7F1 /* NGGGameListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGameListView.m; sourceTree = "<group>"; };
 		3D922EF91FD00F72003AA7F1 /* NGGGameListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGGameListView.xib; sourceTree = "<group>"; };
+		3DA19B2B1FDE742200B19257 /* NGGLiveGuessDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGLiveGuessDetailViewController.h; sourceTree = "<group>"; };
+		3DA19B2C1FDE742200B19257 /* NGGLiveGuessDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGLiveGuessDetailViewController.m; sourceTree = "<group>"; };
+		3DA19B2D1FDE742200B19257 /* NGGLiveGuessDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGLiveGuessDetailViewController.xib; sourceTree = "<group>"; };
+		3DA19B321FDE8DFC00B19257 /* NGGTaskLotteryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGTaskLotteryViewController.h; sourceTree = "<group>"; };
+		3DA19B331FDE8DFC00B19257 /* NGGTaskLotteryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGTaskLotteryViewController.m; sourceTree = "<group>"; };
+		3DA19B341FDE8DFC00B19257 /* NGGTaskLotteryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGTaskLotteryViewController.xib; sourceTree = "<group>"; };
+		3DA19B371FDE986400B19257 /* NGGConsumptionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGConsumptionTableViewCell.h; sourceTree = "<group>"; };
+		3DA19B381FDE986400B19257 /* NGGConsumptionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGConsumptionTableViewCell.m; sourceTree = "<group>"; };
+		3DA19B391FDE986400B19257 /* NGGConsumptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGConsumptionTableViewCell.xib; sourceTree = "<group>"; };
 		3DC56B5D1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGAnalyseHistoryTableViewCell.h; sourceTree = "<group>"; };
 		3DC56B5E1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGAnalyseHistoryTableViewCell.m; sourceTree = "<group>"; };
 		3DC56B5F1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGAnalyseHistoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -1068,7 +1083,7 @@
 		3D35EC8B1FB2F78800E01659 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				3D35EE511FB3048900E01659 /* PreGuess */,
+				3DA19B301FDE74F500B19257 /* Guess */,
 				3D35EC931FB2F78800E01659 /* NGGHomeActivityHeaderReusableView.h */,
 				3D35EC941FB2F78800E01659 /* NGGHomeActivityHeaderReusableView.m */,
 				3D35EC951FB2F78800E01659 /* NGGHomeActivityHeaderReusableView.xib */,
@@ -1124,6 +1139,9 @@
 				3D35ECBE1FB2F78800E01659 /* NGGTaskViewController.h */,
 				3D35ECBF1FB2F78800E01659 /* NGGTaskViewController.m */,
 				3D35ECC01FB2F78800E01659 /* NGGTaskViewController.xib */,
+				3DA19B321FDE8DFC00B19257 /* NGGTaskLotteryViewController.h */,
+				3DA19B331FDE8DFC00B19257 /* NGGTaskLotteryViewController.m */,
+				3DA19B341FDE8DFC00B19257 /* NGGTaskLotteryViewController.xib */,
 			);
 			path = Task;
 			sourceTree = "<group>";
@@ -1657,6 +1675,9 @@
 				3D45CB941FCD7156006EF330 /* NGGConsumptionDeatilViewController.h */,
 				3D45CB951FCD7156006EF330 /* NGGConsumptionDeatilViewController.m */,
 				3D45CB961FCD7156006EF330 /* NGGConsumptionDeatilViewController.xib */,
+				3DA19B371FDE986400B19257 /* NGGConsumptionTableViewCell.h */,
+				3DA19B381FDE986400B19257 /* NGGConsumptionTableViewCell.m */,
+				3DA19B391FDE986400B19257 /* NGGConsumptionTableViewCell.xib */,
 			);
 			path = ConsumptionDetail;
 			sourceTree = "<group>";
@@ -1716,6 +1737,25 @@
 				3D922EF91FD00F72003AA7F1 /* NGGGameListView.xib */,
 			);
 			path = "Game List";
+			sourceTree = "<group>";
+		};
+		3DA19B2A1FDE6AF900B19257 /* LiveGuess */ = {
+			isa = PBXGroup;
+			children = (
+				3DA19B2B1FDE742200B19257 /* NGGLiveGuessDetailViewController.h */,
+				3DA19B2C1FDE742200B19257 /* NGGLiveGuessDetailViewController.m */,
+				3DA19B2D1FDE742200B19257 /* NGGLiveGuessDetailViewController.xib */,
+			);
+			path = LiveGuess;
+			sourceTree = "<group>";
+		};
+		3DA19B301FDE74F500B19257 /* Guess */ = {
+			isa = PBXGroup;
+			children = (
+				3D35EE511FB3048900E01659 /* PreGuess */,
+				3DA19B2A1FDE6AF900B19257 /* LiveGuess */,
+			);
+			path = Guess;
 			sourceTree = "<group>";
 		};
 		3DC56B671FC3FB9F00F67C32 /* RecentRecord */ = {
@@ -1866,12 +1906,14 @@
 				3DC56B6C1FC3FF0A00F67C32 /* NGGRecentRecordView.xib in Resources */,
 				3D4B1BE61FC7CF9400FBAB6C /* NGGImageTableViewCell.xib in Resources */,
 				3D45CB981FCD7156006EF330 /* NGGConsumptionDeatilViewController.xib in Resources */,
+				3DA19B2F1FDE742200B19257 /* NGGLiveGuessDetailViewController.xib in Resources */,
 				3D45CB861FCD380D006EF330 /* NGGExchangeViewController.xib in Resources */,
 				3D35EDA91FB2F78900E01659 /* Info.plist in Resources */,
 				3D35EE611FB30A3B00E01659 /* NGGDetailHeaderReusableView.xib in Resources */,
 				3D35EDB51FB2F78900E01659 /* NGGHomeHeaderReusableView.xib in Resources */,
 				3DC56B7E1FC421F000F67C32 /* NGGFollowGameTableViewCell.xib in Resources */,
 				3D45CB7D1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.xib in Resources */,
+				3DA19B361FDE8DFC00B19257 /* NGGTaskLotteryViewController.xib in Resources */,
 				3D35EDCE1FB2F78900E01659 /* AlipaySDK.bundle in Resources */,
 				3D35EDC41FB2F78900E01659 /* NGGLoginViewController.xib in Resources */,
 				3D35EDC21FB2F78900E01659 /* NGGTypeTableViewCell.xib in Resources */,
@@ -1895,6 +1937,7 @@
 				3D07BED31FD7C80D00BC4A64 /* NGGShopViewController.xib in Resources */,
 				3D4B1BD91FC6A0C600FBAB6C /* NGGUserViewController.xib in Resources */,
 				3D25B4AF1FB428A200D20FB2 /* NGGDetailAnalyseView.xib in Resources */,
+				3DA19B3B1FDE986400B19257 /* NGGConsumptionTableViewCell.xib in Resources */,
 				3D07BEE21FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.xib in Resources */,
 				3D35EE571FB3073D00E01659 /* NGGGuessCollectionViewCell.xib in Resources */,
 				3D35EDE71FB2F78900E01659 /* DMPictureBrowserViewController.Bundle in Resources */,
@@ -1949,6 +1992,7 @@
 				3D35EE2B1FB2F78900E01659 /* ZSBlockAlertView.m in Sources */,
 				3D07BEB91FD66E3400BC4A64 /* NSRunLoop+SRWebSocket.m in Sources */,
 				3D35EDB01FB2F78900E01659 /* NGGHomeActivityHeaderReusableView.m in Sources */,
+				3DA19B3A1FDE986400B19257 /* NGGConsumptionTableViewCell.m in Sources */,
 				3D35EE601FB30A3B00E01659 /* NGGDetailHeaderReusableView.m in Sources */,
 				3D07BF001FD90B9600BC4A64 /* SCLTimerDisplay.m in Sources */,
 				3D25B4AD1FB4287600D20FB2 /* NGGDetailAnalyseView.m in Sources */,
@@ -1971,6 +2015,7 @@
 				3D35EDAB1FB2F78900E01659 /* NGGLoginSession.m in Sources */,
 				3D07BEBD1FD66E3400BC4A64 /* SRWebSocket.m in Sources */,
 				3D35EDDA1FB2F78900E01659 /* AFURLSessionManager.m in Sources */,
+				3DA19B2E1FDE742200B19257 /* NGGLiveGuessDetailViewController.m in Sources */,
 				3D45CB701FCC0C14006EF330 /* NGGModifyPasswordViewController.m in Sources */,
 				3D35EE561FB3073D00E01659 /* NGGGuessCollectionViewCell.m in Sources */,
 				3D35EDFA1FB2F78900E01659 /* MJRefreshAutoGifFooter.m in Sources */,
@@ -2013,6 +2058,7 @@
 				3D07BEB31FD66E3400BC4A64 /* SRHTTPConnectMessage.m in Sources */,
 				3D35EE061FB2F78900E01659 /* UIScrollView+MJExtension.m in Sources */,
 				3D45CB751FCC1434006EF330 /* NGGMessageViewController.m in Sources */,
+				3DA19B351FDE8DFC00B19257 /* NGGTaskLotteryViewController.m in Sources */,
 				3D07BEB41FD66E3400BC4A64 /* SRLog.m in Sources */,
 				3D07BE721FD4E0F900BC4A64 /* NGGDateCollectionViewCell.m in Sources */,
 				3D35EDF11FB2F78900E01659 /* NSArray+MASAdditions.m in Sources */,

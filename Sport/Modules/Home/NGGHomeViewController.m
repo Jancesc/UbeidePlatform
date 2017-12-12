@@ -214,13 +214,20 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     
     
 }
-
+static SCLAlertView *alertView;
 - (void)PageItemTapped:(NSInteger)index {
     
     if (index == 1) {
         
-      AFNetworkReachabilityStatus status =  [[NGGHTTPClient defaultClient] currentNetworkStatus];
-        NSLog(@"%ld", (long)status);
+        [self showLoadingHUDWithText:@""];
+        NGGPreGuessListViewController *controller = [[NGGPreGuessListViewController alloc] initWithNibName:@"NGGPreGuessListViewController" bundle:nil];
+        controller.isLive = YES;
+        controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        NGGNavigationController *nav = [[NGGNavigationController alloc] initWithRootViewController:controller];;
+        [self presentViewController:nav animated:YES completion:^{
+            
+            [self dismissHUD];
+        }];
     } else if (index == 2) {
         
         NGGTaskViewController *controller = [[NGGTaskViewController alloc] initWithNibName:@"NGGTaskViewController" bundle:nil];
@@ -230,12 +237,29 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
         
         [self showLoadingHUDWithText:@""];
         NGGPreGuessListViewController *controller = [[NGGPreGuessListViewController alloc] initWithNibName:@"NGGPreGuessListViewController" bundle:nil];
+        controller.isLive = NO;
         controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         NGGNavigationController *nav = [[NGGNavigationController alloc] initWithRootViewController:controller];;
         [self presentViewController:nav animated:YES completion:^{
             
             [self dismissHUD];
         }];
+    } else if (index == 5) {
+        
+        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
+        [alert setHorizontalButtons:YES];
+        [alert removeTopCircle];
+        SCLButton *button = [alert addButton:@"First Button" target:self selector:@selector(firstButton)];
+        button.buttonFormatBlock = ^NSDictionary* (void)
+        {
+            NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
+            buttonConfig[@"backgroundColor"] = NGGViceColor;
+            buttonConfig[@"textColor"] = [UIColor blackColor];
+            buttonConfig[@"font"] = [UIFont fontWithName:@"ComicSansMS" size:14];
+            
+            return buttonConfig;
+        };
+        [alert showSuccess:@"title" subTitle:@"subtitle" closeButtonTitle:@"cancle " duration:0.0f];
     }
     
 }

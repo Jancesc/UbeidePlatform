@@ -10,4 +10,6 @@
 
 @interface NGGPreGuessListViewController : NGGCommonViewController
 
+@property (nonatomic, assign) BOOL isLive;
+
 @end
