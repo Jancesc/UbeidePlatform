@@ -237,6 +237,12 @@
 		3D4B1BF11FC7F7E900FBAB6C /* NGGTextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D4B1BEF1FC7F7E900FBAB6C /* NGGTextTableViewCell.xib */; };
 		3D4B1BF51FC80E6100FBAB6C /* NGGSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4B1BF31FC80E6100FBAB6C /* NGGSwitchTableViewCell.m */; };
 		3D4B1BF61FC80E6100FBAB6C /* NGGSwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D4B1BF41FC80E6100FBAB6C /* NGGSwitchTableViewCell.xib */; };
+		3D74A2921FE1090F00108F06 /* NGGGuessDescriptionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D74A2901FE1090F00108F06 /* NGGGuessDescriptionCollectionViewCell.m */; };
+		3D74A2931FE1090F00108F06 /* NGGGuessDescriptionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D74A2911FE1090F00108F06 /* NGGGuessDescriptionCollectionViewCell.xib */; };
+		3D74A2961FE11D7C00108F06 /* NGGGuessOrderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D74A2951FE11D7C00108F06 /* NGGGuessOrderView.m */; };
+		3D74A2981FE11D9C00108F06 /* NGGGuessOrderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D74A2971FE11D9C00108F06 /* NGGGuessOrderView.xib */; };
+		3D74A29A1FE1223F00108F06 /* NGGGuessOrderDoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D74A2991FE1223F00108F06 /* NGGGuessOrderDoneView.xib */; };
+		3D74A29D1FE1225300108F06 /* NGGGuessOrderDoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D74A29C1FE1225300108F06 /* NGGGuessOrderDoneView.m */; };
 		3D922EF81FD00EEB003AA7F1 /* NGGGameListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D922EF71FD00EEB003AA7F1 /* NGGGameListView.m */; };
 		3D922EFA1FD00F72003AA7F1 /* NGGGameListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D922EF91FD00F72003AA7F1 /* NGGGameListView.xib */; };
 		3DA19B2E1FDE742200B19257 /* NGGLiveGuessDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA19B2C1FDE742200B19257 /* NGGLiveGuessDetailViewController.m */; };
@@ -711,6 +717,15 @@
 		3D4B1BF31FC80E6100FBAB6C /* NGGSwitchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGSwitchTableViewCell.m; sourceTree = "<group>"; };
 		3D4B1BF41FC80E6100FBAB6C /* NGGSwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGSwitchTableViewCell.xib; sourceTree = "<group>"; };
 		3D65B8ED1FD94175006F98CE /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pop.framework; sourceTree = "<group>"; };
+		3D74A28F1FE1090F00108F06 /* NGGGuessDescriptionCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGuessDescriptionCollectionViewCell.h; sourceTree = "<group>"; };
+		3D74A2901FE1090F00108F06 /* NGGGuessDescriptionCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGuessDescriptionCollectionViewCell.m; sourceTree = "<group>"; };
+		3D74A2911FE1090F00108F06 /* NGGGuessDescriptionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGGuessDescriptionCollectionViewCell.xib; sourceTree = "<group>"; };
+		3D74A2941FE11D7C00108F06 /* NGGGuessOrderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGuessOrderView.h; sourceTree = "<group>"; };
+		3D74A2951FE11D7C00108F06 /* NGGGuessOrderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGuessOrderView.m; sourceTree = "<group>"; };
+		3D74A2971FE11D9C00108F06 /* NGGGuessOrderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGGuessOrderView.xib; sourceTree = "<group>"; };
+		3D74A2991FE1223F00108F06 /* NGGGuessOrderDoneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGGuessOrderDoneView.xib; sourceTree = "<group>"; };
+		3D74A29B1FE1225300108F06 /* NGGGuessOrderDoneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGuessOrderDoneView.h; sourceTree = "<group>"; };
+		3D74A29C1FE1225300108F06 /* NGGGuessOrderDoneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGuessOrderDoneView.m; sourceTree = "<group>"; };
 		3D922EF61FD00EEB003AA7F1 /* NGGGameListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGameListView.h; sourceTree = "<group>"; };
 		3D922EF71FD00EEB003AA7F1 /* NGGGameListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGameListView.m; sourceTree = "<group>"; };
 		3D922EF91FD00F72003AA7F1 /* NGGGameListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGGameListView.xib; sourceTree = "<group>"; };
@@ -1625,6 +1640,9 @@
 				3D35EE581FB3085400E01659 /* NGGGuess2RowsCollectionViewCell.h */,
 				3D35EE591FB3085400E01659 /* NGGGuess2RowsCollectionViewCell.m */,
 				3D35EE5A1FB3085400E01659 /* NGGGuess2RowsCollectionViewCell.xib */,
+				3D74A28F1FE1090F00108F06 /* NGGGuessDescriptionCollectionViewCell.h */,
+				3D74A2901FE1090F00108F06 /* NGGGuessDescriptionCollectionViewCell.m */,
+				3D74A2911FE1090F00108F06 /* NGGGuessDescriptionCollectionViewCell.xib */,
 				3D07BEC31FD698BB00BC4A64 /* NGGOptionCollectionViewCell.h */,
 				3D07BEC41FD698BB00BC4A64 /* NGGOptionCollectionViewCell.m */,
 				3D07BEC51FD698BB00BC4A64 /* NGGOptionCollectionViewCell.xib */,
@@ -1637,6 +1655,12 @@
 				3DA19B3D1FDFCFAC00B19257 /* NGGGuessSectionModel.m */,
 				3DA19B3F1FDFCFDE00B19257 /* NGGGuessItemModel.h */,
 				3DA19B401FDFCFDE00B19257 /* NGGGuessItemModel.m */,
+				3D74A2941FE11D7C00108F06 /* NGGGuessOrderView.h */,
+				3D74A2951FE11D7C00108F06 /* NGGGuessOrderView.m */,
+				3D74A2971FE11D9C00108F06 /* NGGGuessOrderView.xib */,
+				3D74A29B1FE1225300108F06 /* NGGGuessOrderDoneView.h */,
+				3D74A29C1FE1225300108F06 /* NGGGuessOrderDoneView.m */,
+				3D74A2991FE1223F00108F06 /* NGGGuessOrderDoneView.xib */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -1927,6 +1951,7 @@
 				3D35EDCE1FB2F78900E01659 /* AlipaySDK.bundle in Resources */,
 				3D35EDC41FB2F78900E01659 /* NGGLoginViewController.xib in Resources */,
 				3D35EDC21FB2F78900E01659 /* NGGTypeTableViewCell.xib in Resources */,
+				3D74A2931FE1090F00108F06 /* NGGGuessDescriptionCollectionViewCell.xib in Resources */,
 				3D35EDD41FB2F78900E01659 /* WeiboSDK.bundle in Resources */,
 				3D35EDA31FB2F78900E01659 /* Assets.xcassets in Resources */,
 				3D0BEAA61FC55B7800EC14A9 /* NGGRankHeaderView.xib in Resources */,
@@ -1948,6 +1973,7 @@
 				3D4B1BD91FC6A0C600FBAB6C /* NGGUserViewController.xib in Resources */,
 				3D25B4AF1FB428A200D20FB2 /* NGGDetailAnalyseView.xib in Resources */,
 				3DA19B3B1FDE986400B19257 /* NGGConsumptionTableViewCell.xib in Resources */,
+				3D74A29A1FE1223F00108F06 /* NGGGuessOrderDoneView.xib in Resources */,
 				3D07BEE21FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.xib in Resources */,
 				3D35EE571FB3073D00E01659 /* NGGGuessCollectionViewCell.xib in Resources */,
 				3D35EDE71FB2F78900E01659 /* DMPictureBrowserViewController.Bundle in Resources */,
@@ -1970,6 +1996,7 @@
 				3D07BE731FD4E0F900BC4A64 /* NGGDateCollectionViewCell.xib in Resources */,
 				3D35EDB11FB2F78900E01659 /* NGGHomeActivityHeaderReusableView.xib in Resources */,
 				3D35EE5C1FB3085400E01659 /* NGGGuess2RowsCollectionViewCell.xib in Resources */,
+				3D74A2981FE11D9C00108F06 /* NGGGuessOrderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2092,6 +2119,7 @@
 				3D35EE0A1FB2F78900E01659 /* SVProgressHUD.m in Sources */,
 				3D35EE1C1FB2F78900E01659 /* UIImage+MultiFormat.m in Sources */,
 				3D07BED21FD7C80D00BC4A64 /* NGGShopViewController.m in Sources */,
+				3D74A29D1FE1225300108F06 /* NGGGuessOrderDoneView.m in Sources */,
 				3D4B1BE01FC7C4F500FBAB6C /* NGGModel.m in Sources */,
 				3D45CB781FCC1CAC006EF330 /* NGGSystemMessageViewController.m in Sources */,
 				3D35EE261FB2F78900E01659 /* UIImageView+LBBlurredImage.m in Sources */,
@@ -2148,6 +2176,7 @@
 				3D35EDE21FB2F78900E01659 /* DMPhotoBrowserViewController.m in Sources */,
 				3D35EE091FB2F78900E01659 /* MBProgressHUD.m in Sources */,
 				3D35EE191FB2F78900E01659 /* SDWebImagePrefetcher.m in Sources */,
+				3D74A2961FE11D7C00108F06 /* NGGGuessOrderView.m in Sources */,
 				3DF60B441FD1492F00FE26E9 /* JYCommonTool.m in Sources */,
 				3D45CB7C1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.m in Sources */,
 				3D35EE161FB2F78900E01659 /* SDWebImageDownloader.m in Sources */,
@@ -2164,6 +2193,7 @@
 				3D45CB5C1FCBF5F0006EF330 /* NGGModifyNicknameViewController.m in Sources */,
 				3D35EE211FB2F78900E01659 /* UIView+WebCacheOperation.m in Sources */,
 				3D35EE051FB2F78900E01659 /* NSBundle+MJRefresh.m in Sources */,
+				3D74A2921FE1090F00108F06 /* NGGGuessDescriptionCollectionViewCell.m in Sources */,
 				3DE538881FDA7676004D80AA /* NGGPrizeTableViewCell.m in Sources */,
 				3DC56B911FC4432A00F67C32 /* NGGRankTableViewCell.m in Sources */,
 				3D35EDA51FB2F78900E01659 /* NGGNavigationController.m in Sources */,

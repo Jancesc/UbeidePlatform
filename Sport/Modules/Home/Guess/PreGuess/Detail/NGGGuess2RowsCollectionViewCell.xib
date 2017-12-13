@@ -101,6 +101,7 @@
             <connections>
                 <outlet property="_aboveLabel" destination="OMg-LE-gxh" id="9Wp-JN-ykh"/>
                 <outlet property="_bottomLabel" destination="El5-fd-J34" id="BO8-QT-a6n"/>
+                <outlet property="_disableView" destination="ym9-Hs-UNu" id="172-42-0oU"/>
             </connections>
             <point key="canvasLocation" x="60" y="54.5"/>
         </collectionViewCell>

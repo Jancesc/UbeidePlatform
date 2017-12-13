@@ -11,7 +11,7 @@
 @interface NGGGuessCollectionViewCell() {
     
     __weak IBOutlet UILabel *_titleLabel;
-    __weak IBOutlet UIView *_disableVIew;
+    __weak IBOutlet UIView *_disableView;
 }
 
 @end
@@ -23,6 +23,8 @@
     // Initialization code
     self.layer.cornerRadius = 4.f;
     self.layer.masksToBounds = YES;
+    _disableView.hidden = YES;
+
 }
 
 @end

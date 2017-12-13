@@ -16,9 +16,14 @@
 #import "NGGDetailAnalyseView.h"
 #import "NGGGameModel.h"
 #import "NGGWebSocketHelper.h"
+#import "NGGGuessDescriptionCollectionViewCell.h"
+#import "NGGGuessOrderView.h"
+#import "NGGGuessOrderDoneView.h"
 
 static NSString *kGuessCellIdentifier = @"NGGGuessCollectionViewCell";
 static NSString *kGuess2RowsCellIdentifier = @"NGGGuess2RowsCollectionViewCell";
+static NSString *kDescriptionCellIdentifier = @"NGGDescriptionCellIdentifier";
+
 static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
 @interface NGGLiveGuessDetailViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NGGWebSocketHelperDelegate> {
@@ -30,7 +35,10 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     __weak IBOutlet UICollectionView *_collectionView;
     WKWebView *_liveWebView;
     __weak IBOutlet UIView *_webviewBG;
-    //    http://h5.leida310.com:8079/animation/index.php?id=2163646
+    
+    UIView *_makeOrderView;
+    UIView *_resultView;
+
 }
 
 @property (nonatomic, strong) NGGGameModel *gameModel;
@@ -47,9 +55,9 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"赛事";
+    [self configueUIComponents];
     [NGGWebSocketHelper shareHelper].delegate = self;;
     [[NGGWebSocketHelper shareHelper] webSocketOpen];
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -60,13 +68,10 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 - (void)viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
-    [self configueUIComponents];
+   
     SRReadyState state = [[NGGWebSocketHelper shareHelper] socketStatus];
-    if (state == SR_OPEN) {
-        
-        [self loadDetailInfo];
-    } else if (state == SR_CLOSED ||
-               state == SR_CLOSING) {
+    if (state == SR_CLOSED ||
+        state == SR_CLOSING) {
         
         [[NGGWebSocketHelper shareHelper] webSocketOpen];
     }
@@ -81,7 +86,6 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
 - (void)loadDetailInfo {
     
-    [self showLoadingHUDWithText:nil];
     NSDictionary *params = @{@"match_id" : _model.matchID, @"method" : @"game.gameDetail"};
     NGGLoginSession *session = [NGGLoginSession activeSession];
     NSMutableDictionary *inputParams = [params mutableCopy];
@@ -94,20 +98,6 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:&error];
     NSString *jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
     [[NGGWebSocketHelper shareHelper] sendData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]];
-//    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.gameDetail" parameters:@{@"match_id" : _model.matchID} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
-//
-//        [self dismissHUD];
-//        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
-//
-//            [self showErrorHUDWithText:msg];
-//        }];
-//        if (dict) {
-//
-//        }
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//
-//        [self dismissHUD];
-//    }];
 }
 
 #pragma mark - private methods
@@ -126,11 +116,17 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     
     [_collectionView registerNib:[UINib nibWithNibName:@"NGGGuessCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kGuessCellIdentifier];
     [_collectionView registerNib:[UINib nibWithNibName:@"NGGGuess2RowsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kGuess2RowsCellIdentifier];
+    [_collectionView registerNib:[UINib nibWithNibName:@"NGGGuessDescriptionCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kDescriptionCellIdentifier];
     [_collectionView registerNib:[UINib nibWithNibName:@"NGGDetailHeaderReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kDetailHeaderIdentifier];
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
     _collectionView.backgroundColor = NGGSeparatorColor;
     _collectionView.contentInset = UIEdgeInsetsMake(0, 0, 15, 0);
+    
+    _liveWebView = [[WKWebView alloc] initWithFrame:_webviewBG.bounds];
+    [_liveWebView loadRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://h5.leida310.com:8079/animation/index.php?id=2163646"]]];
+    [_webviewBG addSubview:_liveWebView];
+    
     _analyseView = [[[NSBundle mainBundle] loadNibNamed:@"NGGDetailAnalyseView" owner:nil options:nil] lastObject];
     _analyseView.hidden = YES;
     [self.view addSubview:_analyseView];
@@ -140,13 +136,29 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
         make.left.bottom.right.equalTo(self.view);
     }];
     
-    _liveWebView = [[WKWebView alloc] initWithFrame:_webviewBG.bounds];
-    [_liveWebView loadRequest:[[NSURLRequest alloc] initWithURL:[NSURL URLWithString:@"http://h5.leida310.com:8079/animation/index.php?id=2163646"]]];
-    [_webviewBG addSubview:_liveWebView];
+    _makeOrderView = [[[NSBundle mainBundle] loadNibNamed:@"NGGGuessOrderView" owner:nil options:nil] lastObject];
+    [self.view addSubview:_makeOrderView];
+    [_makeOrderView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.bottom.equalTo(self.view);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(140.f);
+
+    }];
+    
+//    _analyseView = [[[NSBundle mainBundle] loadNibNamed:@"NGGDetailAnalyseView" owner:nil options:nil] lastObject];
+//    _analyseView.hidden = YES;
+//    [self.view addSubview:_analyseView];
+//    [_analyseView mas_makeConstraints:^(MASConstraintMaker *make) {
+//
+//        make.top.equalTo(_collectionView.mas_top);
+//        make.left.bottom.right.equalTo(self.view);
+//    }];
 }
 
 - (void)refreshUI {
     
+    [_collectionView reloadData];
 }
 
 #pragma mark - button actions
@@ -184,7 +196,13 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.section == 2) {
+    if (indexPath.row == 1) {
+      
+        NGGGuessDescriptionCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kDescriptionCellIdentifier forIndexPath:indexPath];
+        NGGGuessSectionModel *sectionModel = _gameModel.arrayOfSection[indexPath.section];
+        cell.model = sectionModel.arrayOfItem [indexPath.item];
+        return cell;
+    }else if (indexPath.section == 0) {
         
         NGGGuess2RowsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kGuess2RowsCellIdentifier forIndexPath:indexPath];
         NGGGuessSectionModel *sectionModel = _gameModel.arrayOfSection[indexPath.section];

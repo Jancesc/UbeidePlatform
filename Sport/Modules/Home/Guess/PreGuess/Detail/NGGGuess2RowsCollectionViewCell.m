@@ -12,6 +12,7 @@
     
     __weak IBOutlet UILabel *_aboveLabel;
     __weak IBOutlet UILabel *_bottomLabel;
+    __weak IBOutlet UIView *_disableView;
 
     
 }
@@ -24,6 +25,7 @@
     // Initialization code
     self.layer.cornerRadius = 4.f;
     self.layer.masksToBounds = YES;
+    _disableView.hidden = YES;
 }
 
 @end

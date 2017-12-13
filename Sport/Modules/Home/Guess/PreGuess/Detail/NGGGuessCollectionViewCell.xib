@@ -56,7 +56,7 @@
             </constraints>
             <size key="customSize" width="134" height="76"/>
             <connections>
-                <outlet property="_disableVIew" destination="Xy8-AT-1tJ" id="CTN-PP-IDE"/>
+                <outlet property="_disableView" destination="Xy8-AT-1tJ" id="Jna-tH-iFr"/>
                 <outlet property="_titleLabel" destination="gij-uL-YB2" id="Fuf-aC-qN9"/>
             </connections>
             <point key="canvasLocation" x="-66" y="47"/>
