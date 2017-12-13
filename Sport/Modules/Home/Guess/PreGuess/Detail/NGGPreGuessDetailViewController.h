@@ -1,5 +1,5 @@
 //
-//  NGGGuessDetailViewController.h
+//  NGGPreGuessDetailViewController.h
 //  sport
 //
 //  Created by Jan on 06/11/2017.
@@ -9,7 +9,7 @@
 #import "NGGCommonViewController.h"
 #import "NGGGameListModel.h"
 
-@interface NGGGuessDetailViewController : NGGCommonViewController
+@interface NGGPreGuessDetailViewController : NGGCommonViewController
 
 @property (nonatomic, strong) NGGGameListModel *model;
 

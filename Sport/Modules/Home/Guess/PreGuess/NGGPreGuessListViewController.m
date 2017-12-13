@@ -6,19 +6,18 @@
 //  Copyright © 2017 NGG. All rights reserved.
 //
 #import "NGGPreGuessListViewController.h"
-#import "NGGGuessDetailViewController.h"
+#import "NGGPreGuessDetailViewController.h"
 #import "NGGGameResultView.h"
 #import "Masonry.h"
 #import "NGGRankView.h"
 #import "NGGGameListView.h"
+#import "NGGLiveGuessDetailViewController.h"
 
 @interface NGGPreGuessListViewController ()<UITableViewDelegate, UITableViewDataSource, NGGGameListViewDelegate, NGGGameResultViewDelegate, NGGRankViewDelegate> {
     
     NGGGameResultView *_resultView;
     NGGRankView *_rankView;
     NGGGameListView *_gameListView;
-    
-    NGGGuessDetailViewController *_detailController;
 }
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
@@ -44,12 +43,10 @@
     } else {
         
         self.title = @"赛前竞猜";
-
     }
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(leftBarButtonClicked)];
     [self refreshUI];
     [self refreshData];
-    _detailController = [[NGGGuessDetailViewController alloc] initWithNibName:@"NGGGuessDetailViewController" bundle:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -251,8 +248,17 @@
 
 - (void)gameListViewDidSelectCellWithModel:(NGGGameListModel *)model {
     
-    _detailController.model = model;
-    [self.navigationController pushViewController:_detailController animated:YES];
+    if (_isLive) {
+        
+        NGGLiveGuessDetailViewController *controller  = [[NGGLiveGuessDetailViewController alloc] initWithNibName:@"NGGLiveGuessDetailViewController" bundle:nil];
+        controller.model = model;
+        [self.navigationController pushViewController:controller animated:YES];
+    } else {
+        
+        NGGPreGuessDetailViewController *controller =  [[NGGPreGuessDetailViewController alloc] initWithNibName:@"NGGPreGuessDetailViewController" bundle:nil];
+        controller.model = model;
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 #pragma mark - NGGGameResultViewDelegate

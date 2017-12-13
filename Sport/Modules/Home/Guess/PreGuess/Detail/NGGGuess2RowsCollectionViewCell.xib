@@ -100,7 +100,7 @@
             <size key="customSize" width="120" height="55"/>
             <connections>
                 <outlet property="_aboveLabel" destination="OMg-LE-gxh" id="9Wp-JN-ykh"/>
-                <outlet property="_bottoomLabel" destination="El5-fd-J34" id="6K3-L1-Kee"/>
+                <outlet property="_bottomLabel" destination="El5-fd-J34" id="BO8-QT-a6n"/>
             </connections>
             <point key="canvasLocation" x="60" y="54.5"/>
         </collectionViewCell>

@@ -300,6 +300,7 @@ static NSString *kGameDateCellIdentifier = @"NGGGameDateCell";
         }
     } else if ([tableView isEqual:_gameTableView]) {
         
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
         NGGGameListModel *model = _arrayOfGame[indexPath.row];
         if (_delegate && [_delegate respondsToSelector:@selector(gameListViewDidSelectCellWithModel:)]) {
             

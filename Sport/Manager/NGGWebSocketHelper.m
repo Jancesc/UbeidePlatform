@@ -7,12 +7,11 @@
 //
 
 #import "NGGWebSocketHelper.h"
-#import "SocketRocket.h"
 #import "SCLAlertView.h"
 
 #define NGGHeartbeatInterval 5
 #define NGGMaxHeartbeatCount 3
-#define NGGWebSocketURL @"ws://112.74.82.47:2000"
+#define NGGWebSocketURL @"ws://wx7.bigh5.com:9502"
 
 @interface NGGWebSocketHelper()<SRWebSocketDelegate> {
     
@@ -58,6 +57,11 @@
         
         [_socket close];
         _socket = nil;
+        
+        if (_delegate && [_delegate respondsToSelector:@selector(closeSuccess)]) {
+            
+            [_delegate closeSuccess];
+        }
     }
     //断开连接时销毁心跳
     [self destoryHeartBeat];
@@ -71,7 +75,11 @@
     _reConnectTime = 0;
     //开启心跳 心跳是发送pong的消息 我这里根据后台的要求发送data给后台
     [self initHeartBeat];
-//    [[NSNotificationCenter defaultCenter] postNotificationName:kWebSocketDidOpenNote object:nil];
+
+    if (_delegate && [_delegate respondsToSelector:@selector(openSuccess)]) {
+        
+        [_delegate openSuccess];
+    }
 }
 
 - (void)webSocket:(SRWebSocket *)webSocket didFailWithError:(NSError *)error {
@@ -96,15 +104,19 @@
  */
 -(void)webSocket:(SRWebSocket *)webSocket didReceivePong:(NSData *)pongPayload{
               
-    
+    _heartHeartMissCount = 0;
     NSString *reply = [[NSString alloc] initWithData:pongPayload encoding:NSUTF8StringEncoding];
-    NSLog(@"reply===%@",reply);
+//    NSLog(@"reply===%@",reply);
 }
           
 - (void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message  {
     
     //收到服务器发过来的数据 这里的数据可以和后台约定一个格式 我约定的就是一个字符串 收到以后发送通知到外层 根据类型 实现不同的操作
-    NSLog(@"%@",message);
+    NSLog(@"接收到数据");
+    if (_delegate && [_delegate respondsToSelector:@selector(didReceiveData:)]) {
+        
+        [_delegate didReceiveData:message];
+    }
 }
           
 #pragma mark - methods
@@ -116,6 +128,10 @@
     //超过一分钟就不再重连 所以只会重连5次 2^5 = 64
     if (_reConnectTime > 64) {
         
+        if (_delegate && [_delegate respondsToSelector:@selector(connectedFailed)]) {
+            
+            [_delegate connectedFailed];
+        }
         return;
     }
     NSLog(@"连接失败，这里可以实现掉线自动重连，要注意以下几点");
@@ -166,7 +182,7 @@
         [self reConnect];
         return;
     }
-    NSLog(@"heart");
+//    NSLog(@"heart");
     //和服务端约定好发送什么作为心跳标识，尽可能的减小心跳包大小
     [self ping];
 }
@@ -186,7 +202,17 @@
     
     [_socket sendPing:nil error:nil];
 }
-          
+
+- (SRReadyState)socketStatus {
+    
+    if (_socket) {
+        
+        return _socket.readyState;
+    } else {
+        
+        return SR_CLOSED;
+    }
+}
 #define WeakSelf(ws) __weak __typeof(&*self)weakSelf = self
 - (void)sendData:(id)data {
     

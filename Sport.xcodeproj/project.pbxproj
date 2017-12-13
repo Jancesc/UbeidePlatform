@@ -65,8 +65,8 @@
 		3D35EDA91FB2F78900E01659 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3D35EC841FB2F78800E01659 /* Info.plist */; };
 		3D35EDAA1FB2F78900E01659 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EC851FB2F78800E01659 /* main.m */; };
 		3D35EDAB1FB2F78900E01659 /* NGGLoginSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EC891FB2F78800E01659 /* NGGLoginSession.m */; };
-		3D35EDAE1FB2F78900E01659 /* NGGGuessDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EC911FB2F78800E01659 /* NGGGuessDetailViewController.m */; };
-		3D35EDAF1FB2F78900E01659 /* NGGGuessDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D35EC921FB2F78800E01659 /* NGGGuessDetailViewController.xib */; };
+		3D35EDAE1FB2F78900E01659 /* NGGPreGuessDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EC911FB2F78800E01659 /* NGGPreGuessDetailViewController.m */; };
+		3D35EDAF1FB2F78900E01659 /* NGGPreGuessDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D35EC921FB2F78800E01659 /* NGGPreGuessDetailViewController.xib */; };
 		3D35EDB01FB2F78900E01659 /* NGGHomeActivityHeaderReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EC941FB2F78800E01659 /* NGGHomeActivityHeaderReusableView.m */; };
 		3D35EDB11FB2F78900E01659 /* NGGHomeActivityHeaderReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D35EC951FB2F78800E01659 /* NGGHomeActivityHeaderReusableView.xib */; };
 		3D35EDB21FB2F78900E01659 /* NGGHomeBannerCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EC971FB2F78800E01659 /* NGGHomeBannerCollectionViewCell.m */; };
@@ -245,6 +245,8 @@
 		3DA19B361FDE8DFC00B19257 /* NGGTaskLotteryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DA19B341FDE8DFC00B19257 /* NGGTaskLotteryViewController.xib */; };
 		3DA19B3A1FDE986400B19257 /* NGGConsumptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA19B381FDE986400B19257 /* NGGConsumptionTableViewCell.m */; };
 		3DA19B3B1FDE986400B19257 /* NGGConsumptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DA19B391FDE986400B19257 /* NGGConsumptionTableViewCell.xib */; };
+		3DA19B3E1FDFCFAC00B19257 /* NGGGuessSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA19B3D1FDFCFAC00B19257 /* NGGGuessSectionModel.m */; };
+		3DA19B411FDFCFDE00B19257 /* NGGGuessItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA19B401FDFCFDE00B19257 /* NGGGuessItemModel.m */; };
 		3DC56B601FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC56B5E1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.m */; };
 		3DC56B611FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC56B5F1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.xib */; };
 		3DC56B641FC3D9F700F67C32 /* NGGAnalyseHistoryheaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC56B631FC3D9F700F67C32 /* NGGAnalyseHistoryheaderView.m */; };
@@ -399,9 +401,9 @@
 		3D35EC851FB2F78800E01659 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3D35EC881FB2F78800E01659 /* NGGLoginSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGLoginSession.h; sourceTree = "<group>"; };
 		3D35EC891FB2F78800E01659 /* NGGLoginSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGLoginSession.m; sourceTree = "<group>"; };
-		3D35EC901FB2F78800E01659 /* NGGGuessDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGGuessDetailViewController.h; sourceTree = "<group>"; };
-		3D35EC911FB2F78800E01659 /* NGGGuessDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGGuessDetailViewController.m; sourceTree = "<group>"; };
-		3D35EC921FB2F78800E01659 /* NGGGuessDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGGGuessDetailViewController.xib; sourceTree = "<group>"; };
+		3D35EC901FB2F78800E01659 /* NGGPreGuessDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGPreGuessDetailViewController.h; sourceTree = "<group>"; };
+		3D35EC911FB2F78800E01659 /* NGGPreGuessDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGPreGuessDetailViewController.m; sourceTree = "<group>"; };
+		3D35EC921FB2F78800E01659 /* NGGPreGuessDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGGPreGuessDetailViewController.xib; sourceTree = "<group>"; };
 		3D35EC931FB2F78800E01659 /* NGGHomeActivityHeaderReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGHomeActivityHeaderReusableView.h; sourceTree = "<group>"; };
 		3D35EC941FB2F78800E01659 /* NGGHomeActivityHeaderReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGHomeActivityHeaderReusableView.m; sourceTree = "<group>"; };
 		3D35EC951FB2F78800E01659 /* NGGHomeActivityHeaderReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGGHomeActivityHeaderReusableView.xib; sourceTree = "<group>"; };
@@ -721,6 +723,10 @@
 		3DA19B371FDE986400B19257 /* NGGConsumptionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGConsumptionTableViewCell.h; sourceTree = "<group>"; };
 		3DA19B381FDE986400B19257 /* NGGConsumptionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGConsumptionTableViewCell.m; sourceTree = "<group>"; };
 		3DA19B391FDE986400B19257 /* NGGConsumptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGConsumptionTableViewCell.xib; sourceTree = "<group>"; };
+		3DA19B3C1FDFCFAC00B19257 /* NGGGuessSectionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGuessSectionModel.h; sourceTree = "<group>"; };
+		3DA19B3D1FDFCFAC00B19257 /* NGGGuessSectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGuessSectionModel.m; sourceTree = "<group>"; };
+		3DA19B3F1FDFCFDE00B19257 /* NGGGuessItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGuessItemModel.h; sourceTree = "<group>"; };
+		3DA19B401FDFCFDE00B19257 /* NGGGuessItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGuessItemModel.m; sourceTree = "<group>"; };
 		3DC56B5D1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGAnalyseHistoryTableViewCell.h; sourceTree = "<group>"; };
 		3DC56B5E1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGAnalyseHistoryTableViewCell.m; sourceTree = "<group>"; };
 		3DC56B5F1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGAnalyseHistoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -1610,9 +1616,9 @@
 			isa = PBXGroup;
 			children = (
 				3D25B4B01FB431EF00D20FB2 /* Analyse */,
-				3D35EC901FB2F78800E01659 /* NGGGuessDetailViewController.h */,
-				3D35EC911FB2F78800E01659 /* NGGGuessDetailViewController.m */,
-				3D35EC921FB2F78800E01659 /* NGGGuessDetailViewController.xib */,
+				3D35EC901FB2F78800E01659 /* NGGPreGuessDetailViewController.h */,
+				3D35EC911FB2F78800E01659 /* NGGPreGuessDetailViewController.m */,
+				3D35EC921FB2F78800E01659 /* NGGPreGuessDetailViewController.xib */,
 				3D35EE531FB3073D00E01659 /* NGGGuessCollectionViewCell.h */,
 				3D35EE541FB3073D00E01659 /* NGGGuessCollectionViewCell.m */,
 				3D35EE551FB3073D00E01659 /* NGGGuessCollectionViewCell.xib */,
@@ -1627,6 +1633,10 @@
 				3D35EE5F1FB30A3B00E01659 /* NGGDetailHeaderReusableView.xib */,
 				3D07BEC01FD67BA200BC4A64 /* NGGGameModel.h */,
 				3D07BEC11FD67BA200BC4A64 /* NGGGameModel.m */,
+				3DA19B3C1FDFCFAC00B19257 /* NGGGuessSectionModel.h */,
+				3DA19B3D1FDFCFAC00B19257 /* NGGGuessSectionModel.m */,
+				3DA19B3F1FDFCFDE00B19257 /* NGGGuessItemModel.h */,
+				3DA19B401FDFCFDE00B19257 /* NGGGuessItemModel.m */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -1869,7 +1879,7 @@
 				TargetAttributes = {
 					3D35EC581FB2F73A00E01659 = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
 								enabled = 1;
@@ -1924,7 +1934,7 @@
 				3D35EDEA1FB2F78900E01659 /* Info.plist in Resources */,
 				3D922EFA1FD00F72003AA7F1 /* NGGGameListView.xib in Resources */,
 				3D35EDCB1FB2F78900E01659 /* NGGTaskViewController.xib in Resources */,
-				3D35EDAF1FB2F78900E01659 /* NGGGuessDetailViewController.xib in Resources */,
+				3D35EDAF1FB2F78900E01659 /* NGGPreGuessDetailViewController.xib in Resources */,
 				3DC56B611FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.xib in Resources */,
 				3D07BEC71FD698BB00BC4A64 /* NGGOptionCollectionViewCell.xib in Resources */,
 				3DC56B661FC3DA0A00F67C32 /* NGGAnalyseHistoryheaderView.xib in Resources */,
@@ -2052,7 +2062,7 @@
 				3D07BEAC1FD66E3400BC4A64 /* SRIOConsumerPool.m in Sources */,
 				3D07BEFA1FD90B9600BC4A64 /* SCLAlertView.m in Sources */,
 				3D35EDEE1FB2F78900E01659 /* MASLayoutConstraint.m in Sources */,
-				3D35EDAE1FB2F78900E01659 /* NGGGuessDetailViewController.m in Sources */,
+				3D35EDAE1FB2F78900E01659 /* NGGPreGuessDetailViewController.m in Sources */,
 				3D35EDEB1FB2F78900E01659 /* MASCompositeConstraint.m in Sources */,
 				3D07BEFE1FD90B9600BC4A64 /* SCLSwitchView.m in Sources */,
 				3D07BEB31FD66E3400BC4A64 /* SRHTTPConnectMessage.m in Sources */,
@@ -2069,6 +2079,7 @@
 				3D07BEFB1FD90B9600BC4A64 /* SCLAlertViewResponder.m in Sources */,
 				3D35EDB21FB2F78900E01659 /* NGGHomeBannerCollectionViewCell.m in Sources */,
 				3D07BEB01FD66E3400BC4A64 /* SRConstants.m in Sources */,
+				3DA19B3E1FDFCFAC00B19257 /* NGGGuessSectionModel.m in Sources */,
 				3DC56B6A1FC3FEEC00F67C32 /* NGGRecentRecordView.m in Sources */,
 				3D35EDF71FB2F78900E01659 /* MJRefreshComponent.m in Sources */,
 				3D35EE021FB2F78900E01659 /* MJRefreshStateHeader.m in Sources */,
@@ -2140,6 +2151,7 @@
 				3DF60B441FD1492F00FE26E9 /* JYCommonTool.m in Sources */,
 				3D45CB7C1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.m in Sources */,
 				3D35EE161FB2F78900E01659 /* SDWebImageDownloader.m in Sources */,
+				3DA19B411FDFCFDE00B19257 /* NGGGuessItemModel.m in Sources */,
 				3D35EDD01FB2F78900E01659 /* NGGSocial.m in Sources */,
 				3D35EDF91FB2F78900E01659 /* MJRefreshHeader.m in Sources */,
 				3DF60B3E1FD12AE400FE26E9 /* NGGGameListModel.m in Sources */,
@@ -2286,7 +2298,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sport/Sport.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CD8Y6D6QYC;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_BITCODE = NO;
@@ -2316,8 +2328,8 @@
 				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yyy.c001;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "588b3761-6623-4ad3-bdbc-4deba6cdd559";
-				PROVISIONING_PROFILE_SPECIFIER = 0001_dev.profile;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7s armv7";
 			};
@@ -2329,8 +2341,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Sport/Sport.entitlements;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CD8Y6D6QYC;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = NO;
 				ENABLE_BITCODE = NO;
@@ -2360,8 +2372,8 @@
 				OTHER_LIBTOOLFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yyy.c001;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "87c890ac-b409-450f-a828-92acc08b6242";
-				PROVISIONING_PROFILE_SPECIFIER = c001;
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "arm64 armv7s armv7";
 			};

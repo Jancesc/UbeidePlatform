@@ -53,9 +53,19 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - TAB_BAR_HEIGHT - STATUS_BAR_HEIGHT) collectionViewLayout:flowLayout];
     } else {
         
-       _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT - TAB_BAR_HEIGHT) collectionViewLayout:flowLayout];
+       _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - TAB_BAR_HEIGHT) collectionViewLayout:flowLayout];
         
     }
+    
+    UIView *statusbarBG = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, STATUS_BAR_HEIGHT)];
+    statusbarBG.backgroundColor = NGGPrimaryColor;
+    
+    UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+    visualEffectView.frame = statusbarBG.bounds;
+    visualEffectView.alpha = 0.6;
+    [statusbarBG addSubview:visualEffectView];
+    [self.view addSubview:statusbarBG];
+    
     [_collectionView registerNib:[UINib nibWithNibName:@"NGGHomeBannerCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kBannerCellIdentifier];
     [_collectionView registerNib:[UINib nibWithNibName:@"NGGHomePageMenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kPageCellIdentifier];
     [_collectionView registerNib:[UINib nibWithNibName:@"NGGHomeNoticeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kNoticeCellIdentifier];
@@ -69,7 +79,7 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     }
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
-    _collectionView.backgroundColor = [UIColor whiteColor];
+    _collectionView.backgroundColor = [UIColor clearColor];
     _collectionView.showsVerticalScrollIndicator = NO;
     [self.view addSubview:_collectionView];
 }
@@ -78,7 +88,7 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.view.backgroundColor = NGGPrimaryColor;
+//    self.view.backgroundColor = NGGPrimaryColor;
 //    [self configureNavigationBar];
 }
 
@@ -264,10 +274,6 @@ static SCLAlertView *alertView;
     
 }
 
--(BOOL)prefersStatusBarHidden {
-    
-    return YES;
-}
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {

@@ -33,4 +33,6 @@ static NSString *const NGGHttpResponseErrorDomain = @"NGGHttpErrorDomain";
 
 - (void) postPath:(NSString *)path parameters:(id)parameters constructingBodyWithBlock:(void (^)(id <AFMultipartFormData> formData))block success:(void (^)(NSURLSessionDataTask *task, id responseObject))success failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 
+- (NSDictionary *) signedParametersWithParameters:(NSDictionary *) parameters;
+
 @end

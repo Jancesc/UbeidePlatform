@@ -1,12 +1,12 @@
 //
-//  NGGGuessDetailViewController.m
+//  NGGPreGuessDetailViewController.m
 //  sport
 //
 //  Created by Jan on 06/11/2017.
 //  Copyright © 2017 NGG. All rights reserved.
 //
 
-#import "NGGGuessDetailViewController.h"
+#import "NGGPreGuessDetailViewController.h"
 #import "Masonry.h"
 #import <pop/pop.h>
 #import "NGGGuessCollectionViewCell.h"
@@ -20,7 +20,7 @@ static NSString *kGuessCellIdentifier = @"NGGGuessCollectionViewCell";
 static NSString *kGuess2RowsCellIdentifier = @"NGGGuess2RowsCollectionViewCell";
 static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
-@interface NGGGuessDetailViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
+@interface NGGPreGuessDetailViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
     
     __weak IBOutlet UIButton *_guessButton;
     __weak IBOutlet UIButton *_liveButton;
@@ -35,14 +35,14 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
 @end
 
-@implementation NGGGuessDetailViewController
+@implementation NGGPreGuessDetailViewController
 
 #pragma mark - view life circle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"赛事";
+    self.title = @"赛前";
     [self loadDetailInfo];
     [[NGGWebSocketHelper shareHelper] webSocketOpen];
 }

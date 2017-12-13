@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SocketRocket.h"
 
 @protocol NGGWebSocketHelperDelegate
 
@@ -17,6 +18,8 @@
 
 //无法连接服务器
 - (void)connectedFailed;
+
+- (void)didReceiveData:(id)data;
 
 @end
 
@@ -34,5 +37,6 @@
 
 - (void)sendData:(id)data;
 
+- (SRReadyState)socketStatus;
 
 @end

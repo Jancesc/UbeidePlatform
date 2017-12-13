@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NGGGuessItemModel.h"
 
 @interface NGGGuess2RowsCollectionViewCell : UICollectionViewCell
+
+@property (nonatomic, strong) NGGGuessItemModel *model;
 
 @end

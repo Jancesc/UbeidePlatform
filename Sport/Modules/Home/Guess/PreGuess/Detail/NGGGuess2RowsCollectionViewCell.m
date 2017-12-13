@@ -11,7 +11,7 @@
 @interface NGGGuess2RowsCollectionViewCell() {
     
     __weak IBOutlet UILabel *_aboveLabel;
-    __weak IBOutlet UILabel *_bottoomLabel;
+    __weak IBOutlet UILabel *_bottomLabel;
 
     
 }
