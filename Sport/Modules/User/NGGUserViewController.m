@@ -102,7 +102,6 @@
     }
     
     [_unloginHeaderRegisterButton setBackgroundImage:[UIImage imageWithColor:NGGPrimaryColor] forState:UIControlStateNormal];
-    
     [_unloginHeaderLoginButton addTarget:self action:@selector(loginAction) forControlEvents:UIControlEventTouchUpInside];
     [_unloginHeaderRegisterButton addTarget:self action:@selector(registerAction) forControlEvents:UIControlEventTouchUpInside];
     [_loginedHeaderUserInfoButton setBackgroundImage:[UIImage imageWithColor:[NGGColor999 colorWithAlphaComponent:0.2]] forState:UIControlStateHighlighted];

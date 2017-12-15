@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ZSBlockAlertView : UIAlertView<UIAlertViewDelegate>
+@interface ZSBlockAlertView : NSObject
+
+//ZSBlockAlertView *alert = [[ZSBlockAlertView alloc] initWithTitle:nil message:text delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+
+- (instancetype)initWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelName otherButtonTitles:(NSArray<NSString *> *)otherNames;
 
 - (void) setClickHandler:(void (^)(NSInteger index)) handler;
+
+- (void) show;
 
 @end

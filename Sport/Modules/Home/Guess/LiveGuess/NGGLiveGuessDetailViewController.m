@@ -294,8 +294,8 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     }];
     if (dict) {
         
-        _gameModel = [[NGGGameModel alloc] initWithInfo:dict];
-        [self refreshUI];
+//        _gameModel = [[NGGGameModel alloc] initWithInfo:dict];
+//        [self refreshUI];
     }
 }
 @end

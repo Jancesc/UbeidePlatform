@@ -1,11 +1,11 @@
 //
-//  NGGPreGuessListViewController.m
+//  NGGGuessListViewController.m
 //  sport
 //
 //  Created by Jan on 27/10/2017.
 //  Copyright © 2017 NGG. All rights reserved.
 //
-#import "NGGPreGuessListViewController.h"
+#import "NGGGuessListViewController.h"
 #import "NGGPreGuessDetailViewController.h"
 #import "NGGGameResultView.h"
 #import "Masonry.h"
@@ -13,7 +13,7 @@
 #import "NGGGameListView.h"
 #import "NGGLiveGuessDetailViewController.h"
 
-@interface NGGPreGuessListViewController ()<UITableViewDelegate, UITableViewDataSource, NGGGameListViewDelegate, NGGGameResultViewDelegate, NGGRankViewDelegate> {
+@interface NGGGuessListViewController ()<UITableViewDelegate, UITableViewDataSource, NGGGameListViewDelegate, NGGGameResultViewDelegate, NGGRankViewDelegate> {
     
     NGGGameResultView *_resultView;
     NGGRankView *_rankView;
@@ -21,14 +21,12 @@
 }
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentControl;
-
-@property (strong, nonatomic)  NSDictionary *dictionaryOfGameList;
 @property (strong, nonatomic)  NSMutableArray *arrayOfGameResult;
 @property (strong, nonatomic)  NSDictionary *dictionaryOfRank;
 
 @end
 
-@implementation NGGPreGuessListViewController
+@implementation NGGGuessListViewController
 
 #pragma mark - view life circle
 
@@ -74,6 +72,7 @@
     _gameListView.hidden = NO;
     _gameListView.backgroundColor = [UIColor whiteColor];
     _gameListView.delegate = self;
+    _gameListView.superController = self;
     [self.view addSubview:_gameListView];
     [_gameListView mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -121,8 +120,6 @@
             _gameListView.hidden = NO;
             _resultView.hidden = YES;
             _rankView.hidden = YES;
-            _gameListView.dictionaryOfGameList = _dictionaryOfGameList;
-      
             break;
         case 1:
             _gameListView.hidden = YES;
@@ -152,7 +149,6 @@
     NSInteger index = _segmentControl.selectedSegmentIndex;
     switch (index) {
         case 0:
-            [self loadGameListInfo:nil];
             break;
         case 1:
             [self loadGameResult];
@@ -163,26 +159,6 @@
     }
 }
 
-- (void)loadGameListInfo:(NSDictionary *)params {
-    
-    [self showLoadingHUDWithText:nil];
-    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.gameList" parameters:params willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-        [self dismissHUD];
-        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
-            
-            [self showErrorHUDWithText:msg];
-        }];
-        if (dict) {
-            
-            _dictionaryOfGameList = dict;
-            [self refreshUI];
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-       
-        [self dismissHUD];
-    }];
-}
 
 - (void)loadGameResult {
     
@@ -240,11 +216,6 @@
 }
 
 #pragma mark - NGGGameListViewDelegate
-
-- (void)gameListViewUpdateInfoWithLeagueID:(NSString *)leagueID timeStamp:(NSString *)timeStamp {
-    
-    [self loadGameListInfo:@{@"cid" : leagueID, @"mt" : timeStamp}];
-}
 
 - (void)gameListViewDidSelectCellWithModel:(NGGGameListModel *)model {
     

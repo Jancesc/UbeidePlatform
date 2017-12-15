@@ -15,7 +15,7 @@
     if (self = [super initWithInfo:dict]) {
         
         _matchID = [dict stringForKey:@"match_id"];
-        _leagueName = [dict stringForKey:@"c_full_name"];
+        _leagueName = [dict stringForKey:@"c_name"];
         _homeName = [dict stringForKey:@"h_name"];
         _awayName = [dict stringForKey:@"a_name"];
         _timeString = [dict stringForKey:@"match_time"];

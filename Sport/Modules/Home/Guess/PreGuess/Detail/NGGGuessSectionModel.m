@@ -12,6 +12,7 @@
 
 //"title": "胜平负",
 //"explain": "全场90分钟（含伤停补时）的比赛结果",
+//"type": "ttg",
 //"items":
 
 -(instancetype)initWithInfo:(NSDictionary *)dict {
@@ -20,7 +21,7 @@
         
         _title = [dict stringForKey:@"title"];
         _detail = [dict stringForKey:@"explain"];
-        
+        _type = [dict stringForKey:@"type"];
         NSArray *itemArray = [dict arrayForKey:@"items"];
         NSMutableArray *arrayM = [NSMutableArray array];
         for (NSInteger index = 0; index < [itemArray count]; index++) {

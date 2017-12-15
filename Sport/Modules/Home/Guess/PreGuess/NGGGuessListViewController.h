@@ -1,5 +1,5 @@
 //
-//  NGGPreGuessListViewController.h
+//  NGGGuessListViewController.h
 //  sport
 //
 //  Created by Jan on 27/10/2017.
@@ -8,7 +8,7 @@
 
 #import "NGGCommonViewController.h"
 
-@interface NGGPreGuessListViewController : NGGCommonViewController
+@interface NGGGuessListViewController : NGGCommonViewController
 
 @property (nonatomic, assign) BOOL isLive;
 

@@ -16,7 +16,7 @@
 #import "NGGHomeItemCollectionViewCell.h"
 #import "NGGHomeHeaderReusableView.h"
 #import "NGGTaskViewController.h"
-#import "NGGPreGuessListViewController.h"
+#import "NGGGuessListViewController.h"
 #import "NGGNavigationController.h"
 #import "SCLAlertView.h"
 
@@ -230,7 +230,7 @@ static SCLAlertView *alertView;
     if (index == 1) {
         
         [self showLoadingHUDWithText:@""];
-        NGGPreGuessListViewController *controller = [[NGGPreGuessListViewController alloc] initWithNibName:@"NGGPreGuessListViewController" bundle:nil];
+        NGGGuessListViewController *controller = [[NGGGuessListViewController alloc] initWithNibName:@"NGGGuessListViewController" bundle:nil];
         controller.isLive = YES;
         controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         NGGNavigationController *nav = [[NGGNavigationController alloc] initWithRootViewController:controller];;
@@ -246,7 +246,7 @@ static SCLAlertView *alertView;
     } else if (index == 4) {
         
         [self showLoadingHUDWithText:@""];
-        NGGPreGuessListViewController *controller = [[NGGPreGuessListViewController alloc] initWithNibName:@"NGGPreGuessListViewController" bundle:nil];
+        NGGGuessListViewController *controller = [[NGGGuessListViewController alloc] initWithNibName:@"NGGGuessListViewController" bundle:nil];
         controller.isLive = NO;
         controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
         NGGNavigationController *nav = [[NGGNavigationController alloc] initWithRootViewController:controller];;

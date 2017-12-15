@@ -244,6 +244,7 @@
                 <outlet property="_allInButton" destination="v4r-de-iXU" id="vLV-c0-KCg"/>
                 <outlet property="_beanLabel" destination="dmN-ew-B1g" id="8Zr-yN-z5u"/>
                 <outlet property="_clearButton" destination="Bi3-pc-KTH" id="hF3-PT-IU8"/>
+                <outlet property="_closeButton" destination="38G-cb-nE8" id="10T-2b-vTr"/>
                 <outlet property="_confirmButton" destination="tdw-QO-743" id="nFc-i7-wwO"/>
                 <outlet property="_oddsLabel" destination="Trd-Av-CtZ" id="azc-eM-WrK"/>
                 <outlet property="_profitLabel" destination="xUp-dJ-09s" id="Lcq-ka-Z3V"/>

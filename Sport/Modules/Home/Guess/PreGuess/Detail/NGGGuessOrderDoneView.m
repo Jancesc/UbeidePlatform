@@ -17,7 +17,9 @@
     __weak IBOutlet UILabel *_profitLabel;
     __weak IBOutlet UILabel *_timeLabel;
     __weak IBOutlet UILabel *_principleLabel;
-
+    __weak IBOutlet UIButton *_additionButton;
+    __weak IBOutlet UIButton *_closeButton;
+    
 }
 @end
 

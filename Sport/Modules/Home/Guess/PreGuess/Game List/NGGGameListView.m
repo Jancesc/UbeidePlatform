@@ -27,7 +27,7 @@ static NSString *kGameDateCellIdentifier = @"NGGGameDateCell";
 
 @property (nonatomic, strong) NSArray<NGGLeagueModel *> *arrayOfLeague;
 @property (nonatomic, strong) NSArray<NGGGameListModel *> *arrayOfGame;
-@property (nonatomic, strong) NSArray *arrayOfDate;
+@property (nonatomic, strong) NSArray<NGGGameDateModel *> *arrayOfDate;
 
 @end
 
@@ -37,6 +37,7 @@ static NSString *kGameDateCellIdentifier = @"NGGGameDateCell";
     
     [super awakeFromNib];
     [self configueUIComponents];
+    [self loadDateInfo];
 }
 
 
@@ -70,90 +71,88 @@ static NSString *kGameDateCellIdentifier = @"NGGGameDateCell";
     [_dateCollectionView registerNib:[UINib nibWithNibName:@"NGGDateCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kGameDateCellIdentifier];
 }
 
-- (void)setDictionaryOfGameList:(NSDictionary *)dictionaryOfGameList {
-
-    _dictionaryOfGameList = dictionaryOfGameList;
-    if (_arrayOfDate == nil) {//初始化
+///刷新日期数据以及联赛数据
+- (void)loadDateInfo {
+    
+    NSDictionary *params = nil;
+    NSIndexPath *selectedDateIndexPath = [[_dateCollectionView indexPathsForSelectedItems] firstObject];
+    if (selectedDateIndexPath) {
         
-        [self initData];
-    } else {
-        
-        [self refreshData];
+        NGGGameDateModel *dateModel = _arrayOfDate[selectedDateIndexPath.row];
+        params = @{@"mt" : dateModel.timeStamp};
     }
+    
+    [_superController showLoadingHUDWithText:nil];
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.gameList" parameters:params willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [_superController dismissHUD];
+        NSDictionary *dict = [_superController dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [_superController showErrorHUDWithText:msg];
+        }];
+        if (dict) {
+            
+            NSArray *gameListArray = [dict arrayForKey:@"list"];
+            NSArray *leagueListArray = [dict arrayForKey:@"classify"];
+            NSArray *dateArray = [dict arrayForKey:@"date"];
+            
+            NSMutableArray *dateArrayM = [NSMutableArray arrayWithCapacity:[dateArray count] + 1];
+            NSInteger allGame = 0;
+            for (NSInteger index = 0; index < [dateArray count]; index++) {
+                
+                NGGGameDateModel *dateModel = [[NGGGameDateModel alloc] initWithInfo:dateArray[index]];
+                allGame += dateModel.count.integerValue;
+                [dateArrayM addObject:dateModel];
+            }
+            if ([dateArray count] > 0) {
+                
+                NGGGameDateModel *dateAllModel = [[NGGGameDateModel alloc] init];
+                dateAllModel.dateName = @"全部";
+                dateAllModel.timeStamp = @"0";
+                dateAllModel.count = @(allGame).stringValue;
+                [dateArrayM insertObject:dateAllModel atIndex:0];
+            }
+            _arrayOfDate = [dateArrayM copy];
+            
+            NSMutableArray *leagueArrayM = [NSMutableArray arrayWithCapacity:[leagueListArray count]];
+            for (NSInteger index = 0; index < [leagueListArray count]; index++) {
+                
+                NGGLeagueModel *leagueModel = [[NGGLeagueModel alloc] initWithInfo:leagueListArray[index]];
+                [leagueArrayM addObject:leagueModel];
+            }
+            if ([leagueArrayM count] > 0) {
+                
+                NGGLeagueModel *leagueAllModel = [[NGGLeagueModel alloc] init];
+                leagueAllModel.leagueName = @"所有联赛";
+                leagueAllModel.leagueID = @"0";
+                [leagueArrayM insertObject:leagueAllModel atIndex:0];
+            }
+            _arrayOfLeague = [leagueArrayM copy];
+            
+            NSMutableArray *gameArrayM = [NSMutableArray arrayWithCapacity:[gameListArray count]];
+            
+            for (NSInteger index = 0; index < [gameListArray count]; index++) {
+                
+                NGGGameListModel *gameModel = [[NGGGameListModel alloc] initWithInfo:gameListArray[index]];
+                [gameArrayM addObject:gameModel];
+            }
+            _arrayOfGame = [gameArrayM copy];
+            [self refreshUIForDateInfo];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [_superController dismissHUD];
+    }];
 }
 
-- (void)refreshUI {
-    
-    NSIndexPath *typeSelectedIndexPath = [_typeTableView indexPathForSelectedRow];
-    if (typeSelectedIndexPath == nil) {
+- (void)refreshUIForDateInfo {
+   
+    NSIndexPath *selectedDateIndexPath = [[_dateCollectionView indexPathsForSelectedItems] firstObject];
+    if (selectedDateIndexPath == nil) {
         
-        typeSelectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        selectedDateIndexPath = [NSIndexPath indexPathForItem:0 inSection:0];
     }
     
-    [_typeTableView reloadData];
-    [_gameTableView reloadData];
-    _gameTableView.contentOffset = CGPointMake(0, 0);
-    if ([_arrayOfLeague count] > 0) {
-
-        [_typeTableView selectRowAtIndexPath:typeSelectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
-        UITableViewCell *cell = [_typeTableView cellForRowAtIndexPath:typeSelectedIndexPath];
-        [cell setSelected:YES animated:NO];
-    }
-}
-
-///初始化日期数据以及联赛数据
-- (void)initData {
-    
-    if (_dictionaryOfGameList == nil) return;
-        
-    NSArray *gameListArray = [_dictionaryOfGameList arrayForKey:@"list"];
-    NSArray *leagueListArray = [_dictionaryOfGameList arrayForKey:@"classify"];
-    NSArray *dateArray = [_dictionaryOfGameList arrayForKey:@"date"];
-    
-    NSMutableArray *dateArrayM = [NSMutableArray arrayWithCapacity:[dateArray count] + 1];
-    NSInteger allGame = 0;
-    for (NSInteger index = 0; index < [dateArray count]; index++) {
-        
-        NGGGameDateModel *dateModel = [[NGGGameDateModel alloc] initWithInfo:dateArray[index]];
-        allGame += dateModel.count.integerValue;
-        [dateArrayM addObject:dateModel];
-    }
-    if ([dateArray count] > 0) {
-        
-        NGGGameDateModel *dateAllModel = [[NGGGameDateModel alloc] init];
-        dateAllModel.dateName = @"全部";
-        dateAllModel.count = @(allGame).stringValue;
-        [dateArrayM insertObject:dateAllModel atIndex:0];
-    }
-    _arrayOfDate = [dateArrayM copy];
-    
-    NSMutableArray *leagueArrayM = [NSMutableArray arrayWithCapacity:[leagueListArray count]];
-    for (NSInteger index = 0; index < [leagueListArray count]; index++) {
-        
-        NGGLeagueModel *leagueModel = [[NGGLeagueModel alloc] initWithInfo:leagueListArray[index]];
-        [leagueArrayM addObject:leagueModel];
-    }
-    if ([leagueArrayM count] > 0) {
-        
-        NGGLeagueModel *leagueAllModel = [[NGGLeagueModel alloc] init];
-        leagueAllModel.leagueName = @"所有联赛";
-        [leagueArrayM insertObject:leagueAllModel atIndex:0];
-    }
-    _arrayOfLeague = [leagueArrayM copy];
-    
-    NSMutableArray *gameArrayM = [NSMutableArray arrayWithCapacity:[gameListArray count]];
-    
-    for (NSInteger index = 0; index < [gameListArray count]; index++) {
-        
-        NGGGameListModel *gameModel = [[NGGGameListModel alloc] initWithInfo:gameListArray[index]];
-        [gameArrayM addObject:gameModel];
-    }
-    _arrayOfGame = [gameArrayM copy];
-    [self initFreshUI];
-}
-
-- (void)initFreshUI {
-
     [_typeTableView reloadData];
     [_gameTableView reloadData];
     [_dateCollectionView reloadData];
@@ -167,39 +166,102 @@ static NSString *kGameDateCellIdentifier = @"NGGGameDateCell";
     
     if ([_arrayOfDate count] > 0) {
         
-        [_dateCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForItem:0 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+        [_dateCollectionView selectItemAtIndexPath:selectedDateIndexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
+    }
+    
+    if ([_arrayOfGame count] > 0 &&
+        [_arrayOfGame count] % NGGMaxCountPerPage == 0) {
+        
+        [self setupLoadMoreFooter];
+    } else {
+        
+        _gameTableView.mj_footer = nil;
     }
 }
 
-- (void)refreshData {
+- (void)loadTypeInfo {
     
-    NSArray *gameListArray = [_dictionaryOfGameList arrayForKey:@"list"];
-    NSArray *leagueListArray = [_dictionaryOfGameList arrayForKey:@"classify"];
-    NSMutableArray *leagueArrayM = [NSMutableArray arrayWithCapacity:[leagueListArray count]];
-    for (NSInteger index = 0; index < [leagueListArray count]; index++) {
+    NSIndexPath *selectedDateIndexPath = [[_dateCollectionView indexPathsForSelectedItems] firstObject];
+    NGGGameDateModel *dateModel = _arrayOfDate[selectedDateIndexPath.row];
+    
+    NSIndexPath *selectedLeagueIndexPath = [_typeTableView indexPathForSelectedRow];
+    NGGLeagueModel *leagueModel = _arrayOfLeague[selectedLeagueIndexPath.row];
+    
+    [_superController showLoadingHUDWithText:nil];
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.gameList" parameters:@{@"mt" : dateModel.timeStamp, @"c_type" : leagueModel.leagueID} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        NGGLeagueModel *leagueModel = [[NGGLeagueModel alloc] initWithInfo:leagueListArray[index]];
-        [leagueArrayM addObject:leagueModel];
-    }
-    if ([leagueArrayM count] > 0) {
+        [_superController dismissHUD];
+        NSDictionary *dict = [_superController dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [_superController showErrorHUDWithText:msg];
+        }];
+        if (dict) {
+            
+            ///
+            NSArray *gameListArray = [dict arrayForKey:@"list"];
+            NSArray *leagueListArray = [dict arrayForKey:@"classify"];
+            NSMutableArray *leagueArrayM = [NSMutableArray arrayWithCapacity:[leagueListArray count]];
+            for (NSInteger index = 0; index < [leagueListArray count]; index++) {
+                
+                NGGLeagueModel *leagueModel = [[NGGLeagueModel alloc] initWithInfo:leagueListArray[index]];
+                [leagueArrayM addObject:leagueModel];
+            }
+            if ([leagueArrayM count] > 0) {
+                
+                NGGLeagueModel *leagueAllModel = [[NGGLeagueModel alloc] init];
+                leagueAllModel.leagueName = @"所有联赛";
+                leagueAllModel.leagueID = @"0";
+                [leagueArrayM insertObject:leagueAllModel atIndex:0];
+            }
+            _arrayOfLeague = [leagueArrayM copy];
+            
+            NSMutableArray *gameArrayM = [NSMutableArray arrayWithCapacity:[gameListArray count]];
+            
+            for (NSInteger index = 0; index < [gameListArray count]; index++) {
+                
+                NGGGameListModel *gameModel = [[NGGGameListModel alloc] initWithInfo:gameListArray[index]];
+                [gameArrayM addObject:gameModel];
+            }
+            _arrayOfGame = [gameArrayM copy];
+            
+            [self refreshUIForTypeInfo];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        NGGLeagueModel *leagueAllModel = [[NGGLeagueModel alloc] init];
-        leagueAllModel.leagueName = @"所有联赛";
-        [leagueArrayM insertObject:leagueAllModel atIndex:0];
-    }
-    _arrayOfLeague = [leagueArrayM copy];
-    
-    NSMutableArray *gameArrayM = [NSMutableArray arrayWithCapacity:[gameListArray count]];
-    
-    for (NSInteger index = 0; index < [gameListArray count]; index++) {
-        
-        NGGGameListModel *gameModel = [[NGGGameListModel alloc] initWithInfo:gameListArray[index]];
-        [gameArrayM addObject:gameModel];
-    }
-    _arrayOfGame = [gameArrayM copy];
-    
-    [self refreshUI];
+        [_superController dismissHUD];
+    }];
+
 }
+
+
+- (void)refreshUIForTypeInfo {
+    
+    NSIndexPath *typeSelectedIndexPath = [_typeTableView indexPathForSelectedRow];
+    if (typeSelectedIndexPath == nil) {
+        
+        typeSelectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    }
+    
+    [_typeTableView reloadData];
+    [_gameTableView reloadData];
+    _gameTableView.contentOffset = CGPointMake(0, 0);
+    if ([_arrayOfLeague count] > 0) {
+        
+        [_typeTableView selectRowAtIndexPath:typeSelectedIndexPath animated:NO scrollPosition:UITableViewScrollPositionNone];
+        UITableViewCell *cell = [_typeTableView cellForRowAtIndexPath:typeSelectedIndexPath];
+        [cell setSelected:YES animated:NO];
+    }
+    
+    if ([_arrayOfGame count] > 0 &&
+        [_arrayOfGame count] % NGGMaxCountPerPage == 0) {
+        
+        [self setupLoadMoreFooter];
+    } else {
+        
+        _gameTableView.mj_footer = nil;
+    }
+}
+
 
 - (void) setupLoadMoreFooter {
     
@@ -210,20 +272,42 @@ static NSString *kGameDateCellIdentifier = @"NGGGameDateCell";
 - (void)loadMoreData {
     
     NSIndexPath *selectedDateIndexPath = [[_dateCollectionView indexPathsForSelectedItems] firstObject];
-    NGGGameDateModel *model = _arrayOfDate[selectedDateIndexPath.item];
-    NSString *timeStamp = model.timeStamp;
-    if (timeStamp == nil) {//全部 为空
+    NGGGameDateModel *dateModel = _arrayOfDate[selectedDateIndexPath.item];
+
+    NSIndexPath *selectedLeagueIndexPath = [_typeTableView indexPathForSelectedRow];
+    NGGLeagueModel *leagueModel = _arrayOfLeague[selectedLeagueIndexPath.row];
+    
+    NSInteger page = (NSInteger)([_arrayOfGame count] / NGGMaxCountPerPage) + 1;
+
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.gameList" parameters:@{@"mt" : dateModel.timeStamp, @"c_type" : leagueModel.leagueID, @"page" : @(page)} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        timeStamp = @"0";
-    }
-    NSIndexPath *selectedLeagueIndex = [_typeTableView indexPathForSelectedRow];
-    NGGLeagueModel *leagueModel = _arrayOfLeague[selectedLeagueIndex.row];
-    NSString *leagueID = leagueModel.leagueID;
-    if (leagueID == nil) {//全部为空
+        [_gameTableView.mj_footer endRefreshing];
+        NSDictionary *dict = [_superController dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [_superController showErrorHUDWithText:msg];
+        }];
+        if (dict) {
+            
+            ///
+            NSArray *gameListArray = [dict arrayForKey:@"list"];
+            NSMutableArray *gameArrayM = [[NSMutableArray alloc] initWithArray:_arrayOfGame];
+            for (NSInteger index = 0; index < [gameListArray count]; index++) {
+                
+                NGGGameListModel *gameModel = [[NGGGameListModel alloc] initWithInfo:gameListArray[index]];
+                [gameArrayM addObject:gameModel];
+            }
+            _arrayOfGame = [gameArrayM copy];
+            [_gameTableView reloadData];
+            
+            if ([gameListArray count] < NGGMaxCountPerPage) {
+                
+                _gameTableView.mj_footer = nil;
+            }
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        leagueID = @"0";
-    }
-    [_delegate gameListViewUpdateInfoWithLeagueID:leagueID timeStamp:timeStamp];
+        [_gameTableView.mj_footer endRefreshing];
+    }];
 }
 
 #pragma mark - UITableViewDataSource
@@ -273,31 +357,35 @@ static NSString *kGameDateCellIdentifier = @"NGGGameDateCell";
 
 - (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
+    if ([_gameTableView isEqual:tableView]) {
+        
+        if ([_arrayOfGame count] > 0) {
+            
+            return 0.5f;
+        }
+    }
     return 0.01f;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    
+    if ([_gameTableView isEqual:tableView]) {
+        
+        if ([_arrayOfGame count] > 0) {
+            
+            UIView *footerSeparator = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
+            footerSeparator.backgroundColor = NGGSeparatorColor;
+            return footerSeparator;
+        }
+    }
+    return nil;
+}
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if ([tableView isEqual:_typeTableView]) {
         
-        if (_delegate && [_delegate respondsToSelector:@selector(gameListViewUpdateInfoWithLeagueID:timeStamp:)]) {
-            
-            NSIndexPath *selectedDateIndexPath = [[_dateCollectionView indexPathsForSelectedItems] firstObject];
-            NGGGameDateModel *model = _arrayOfDate[selectedDateIndexPath.item];
-            NSString *timeStamp = model.timeStamp;
-            if (timeStamp == nil) {//全部 为空
-                
-                timeStamp = @"0";
-            }
-            NGGLeagueModel *leagueModel = _arrayOfLeague[indexPath.row];
-            NSString *leagueID = leagueModel.leagueID;
-            if (leagueID == nil) {//全部为空
-                
-                leagueID = @"0";
-            }
-            [_delegate gameListViewUpdateInfoWithLeagueID:leagueID timeStamp:timeStamp];
-        }
+        [self loadTypeInfo];
     } else if ([tableView isEqual:_gameTableView]) {
         
         [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -307,7 +395,6 @@ static NSString *kGameDateCellIdentifier = @"NGGGameDateCell";
             [_delegate gameListViewDidSelectCellWithModel:model];
         }
     }
-    
 }
 
 #pragma mark - UICollectionViewDataSource  && UICollectionViewDelagate
@@ -335,22 +422,8 @@ static NSString *kGameDateCellIdentifier = @"NGGGameDateCell";
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    
-    NGGGameDateModel *model = _arrayOfDate[indexPath.row];
-    if (_arrayOfLeague.count > 0) {
-        
-        [_typeTableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionNone];
-    }
-    
-    if (_delegate && [_delegate respondsToSelector:@selector(gameListViewUpdateInfoWithLeagueID:timeStamp:)]) {
-        
-        NSString *timeStamp = model.timeStamp;
-        if (timeStamp == nil) {
-            
-            timeStamp = @"0";
-        }
-        [_delegate gameListViewUpdateInfoWithLeagueID:@"0" timeStamp:timeStamp];
-    }
+
+    [self loadDateInfo];
 }
 
 @end

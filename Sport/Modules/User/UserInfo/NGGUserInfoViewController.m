@@ -14,7 +14,6 @@
 #import "NGGModifyPasswordViewController.h"
 #import "NGGMessageViewController.h"
 #import "ZSBlockAlertView.h"
-
 @interface NGGUserInfoViewController()<UITableViewDelegate, UITableViewDataSource,UIActionSheetDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate> {
     
     UITableView *_tableView;
@@ -62,9 +61,9 @@
     UIView *footetView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 70)];
     [footetView setBackgroundColor:[UIColor clearColor]];
     _logoutButton  = [[UIButton alloc] initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, 50)];
-    [_logoutButton setBackgroundImage:[UIImage imageWithColor:NGGViceColor] forState:UIControlStateNormal];
+    [_logoutButton setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
     [_logoutButton setTitle:@"退出当前账号" forState:UIControlStateNormal];
-    _logoutButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    _logoutButton.titleLabel.font = [UIFont systemFontOfSize:15];
     [_logoutButton setTitleColor:NGGColor666 forState:UIControlStateNormal];
     [_logoutButton addTarget:self action:@selector(logoutButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [footetView addSubview:_logoutButton];
@@ -123,6 +122,7 @@
 #pragma mark - button actions
 
 - (void)logoutButtonClicked:(UIButton *) button {
+    
     
     [NGGLoginSession destroyActiveSession];
     [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidLogoutNotificationName object:nil];
@@ -210,7 +210,7 @@
         UIUserNotificationType type = [[UIApplication sharedApplication] currentUserNotificationSettings].types;
         if (type == UIUserNotificationTypeNone) { //并未打开开关
             
-            ZSBlockAlertView *alertView = [[ZSBlockAlertView alloc] initWithTitle:@"设置推送权限" message:@"需要先打开推送权限，才能及时推送比赛结果" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            ZSBlockAlertView *alertView = [[ZSBlockAlertView alloc] initWithTitle:@"设置推送权限" message:@"需要先打开推送权限，才能及时推送比赛结果" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"]];
             [alertView setClickHandler:^(NSInteger index) {
                 
                 if (index == 1) {
@@ -365,6 +365,7 @@
         controller.allowsEditing = YES;
         controller.delegate = self;
         controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        controller.navigationBar.tintColor = [UIColor whiteColor];
         [self presentViewController:controller animated:YES completion:nil];
     }
     else if (1 == buttonIndex)
@@ -373,10 +374,11 @@
         controller.allowsEditing = YES;
         controller.delegate = self;
         controller.sourceType = UIImagePickerControllerSourceTypeCamera;
+        controller.navigationBar.tintColor = [UIColor whiteColor];
         [self presentViewController:controller animated:YES completion:nil];
     }
-    
 }
+
 @end
 
 

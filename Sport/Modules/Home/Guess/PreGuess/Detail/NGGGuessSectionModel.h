@@ -13,5 +13,6 @@
 
 @property (nonatomic,strong) NSString *title;
 @property (nonatomic,strong) NSString *detail;
+@property (nonatomic,strong) NSString *type;
 @property (nonatomic,strong) NSArray <NGGGuessItemModel *> *arrayOfItem;
 @end

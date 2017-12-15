@@ -31,7 +31,13 @@
     _model = model;
     _weekLabel.text = model.dateName;
     _countLabel.text = [NSString stringWithFormat:@"(%@)", _model.count];
-    _dateLabel.text = [JYCommonTool dateFormatWithInterval:_model.timeStamp.integerValue format:@"hh/mm"];
+    if (!isStringEmpty(_model.timeStamp) && ![_model.timeStamp isEqualToString:@"0"]) {
+        
+        _dateLabel.text = [JYCommonTool dateFormatWithInterval:_model.timeStamp.integerValue format:@"hh/mm"];
+    } else {
+        
+        _dateLabel.text = nil;
+    }
 }
 
 - (void)setSelected:(BOOL)selected {

@@ -9,17 +9,17 @@
 #import <UIKit/UIKit.h>
 #import "NGGGameListModel.h"
 #import "NGGLeagueModel.h"
+#import "NGGGuessListViewController.h"
 
 @protocol NGGGameListViewDelegate <NSObject>
-
-///nil 为选择全部
-- (void)gameListViewUpdateInfoWithLeagueID:(NSString *)leagueID timeStamp:(NSString *)timeStamp;
 
 - (void)gameListViewDidSelectCellWithModel:(NGGGameListModel *)model;
 
 @end
 
 @interface NGGGameListView : UIView
-@property (nonatomic, strong)NSDictionary *dictionaryOfGameList;
-@property (nonatomic, weak) id <NGGGameListViewDelegate> delegate;
+
+@property (nonatomic, weak) NGGGuessListViewController <NGGGameListViewDelegate> *delegate;
+@property (nonatomic, weak) NGGGuessListViewController *superController;
+
 @end

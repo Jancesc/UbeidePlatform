@@ -124,7 +124,7 @@ static NSOperationQueue *sRequestQueue = nil;
 
 - (void)showAlertText:(NSString *)text completion:(void (^)(void))completion
 {
-    ZSBlockAlertView *alert = [[ZSBlockAlertView alloc] initWithTitle:nil message:text delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+    ZSBlockAlertView *alert = [[ZSBlockAlertView alloc] initWithTitle:nil message:text cancelButtonTitle:@"确定" otherButtonTitles:nil];
     [alert setClickHandler:^(NSInteger index) {
         if (completion) {
             completion();

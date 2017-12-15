@@ -81,8 +81,8 @@
 		3D35EDBB1FB2F78900E01659 /* NGGHomePageMenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D35ECA41FB2F78800E01659 /* NGGHomePageMenuCollectionViewCell.xib */; };
 		3D35EDBC1FB2F78900E01659 /* NGGHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ECA61FB2F78800E01659 /* NGGHomeViewController.m */; };
 		3D35EDBE1FB2F78900E01659 /* NGGPreGameTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D35ECA91FB2F78800E01659 /* NGGPreGameTableViewCell.xib */; };
-		3D35EDBF1FB2F78900E01659 /* NGGPreGuessListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ECAB1FB2F78800E01659 /* NGGPreGuessListViewController.m */; };
-		3D35EDC01FB2F78900E01659 /* NGGPreGuessListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D35ECAC1FB2F78800E01659 /* NGGPreGuessListViewController.xib */; };
+		3D35EDBF1FB2F78900E01659 /* NGGGuessListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ECAB1FB2F78800E01659 /* NGGGuessListViewController.m */; };
+		3D35EDC01FB2F78900E01659 /* NGGGuessListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D35ECAC1FB2F78800E01659 /* NGGGuessListViewController.xib */; };
 		3D35EDC11FB2F78900E01659 /* NGGTypeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ECAE1FB2F78800E01659 /* NGGTypeTableViewCell.m */; };
 		3D35EDC21FB2F78900E01659 /* NGGTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D35ECAF1FB2F78800E01659 /* NGGTypeTableViewCell.xib */; };
 		3D35EDC31FB2F78900E01659 /* NGGLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ECB21FB2F78800E01659 /* NGGLoginViewController.m */; };
@@ -431,9 +431,9 @@
 		3D35ECA51FB2F78800E01659 /* NGGHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGHomeViewController.h; sourceTree = "<group>"; };
 		3D35ECA61FB2F78800E01659 /* NGGHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGHomeViewController.m; sourceTree = "<group>"; };
 		3D35ECA91FB2F78800E01659 /* NGGPreGameTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGGPreGameTableViewCell.xib; sourceTree = "<group>"; };
-		3D35ECAA1FB2F78800E01659 /* NGGPreGuessListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGPreGuessListViewController.h; sourceTree = "<group>"; };
-		3D35ECAB1FB2F78800E01659 /* NGGPreGuessListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGPreGuessListViewController.m; sourceTree = "<group>"; };
-		3D35ECAC1FB2F78800E01659 /* NGGPreGuessListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGGPreGuessListViewController.xib; sourceTree = "<group>"; };
+		3D35ECAA1FB2F78800E01659 /* NGGGuessListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGGuessListViewController.h; sourceTree = "<group>"; };
+		3D35ECAB1FB2F78800E01659 /* NGGGuessListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGGuessListViewController.m; sourceTree = "<group>"; };
+		3D35ECAC1FB2F78800E01659 /* NGGGuessListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGGGuessListViewController.xib; sourceTree = "<group>"; };
 		3D35ECAD1FB2F78800E01659 /* NGGTypeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGTypeTableViewCell.h; sourceTree = "<group>"; };
 		3D35ECAE1FB2F78800E01659 /* NGGTypeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGTypeTableViewCell.m; sourceTree = "<group>"; };
 		3D35ECAF1FB2F78800E01659 /* NGGTypeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGGTypeTableViewCell.xib; sourceTree = "<group>"; };
@@ -1620,9 +1620,9 @@
 				3DC56B8A1FC442CD00F67C32 /* Rank */,
 				3DC56B7F1FC42F0400F67C32 /* Result */,
 				3D35EE521FB3070F00E01659 /* Detail */,
-				3D35ECAA1FB2F78800E01659 /* NGGPreGuessListViewController.h */,
-				3D35ECAB1FB2F78800E01659 /* NGGPreGuessListViewController.m */,
-				3D35ECAC1FB2F78800E01659 /* NGGPreGuessListViewController.xib */,
+				3D35ECAA1FB2F78800E01659 /* NGGGuessListViewController.h */,
+				3D35ECAB1FB2F78800E01659 /* NGGGuessListViewController.m */,
+				3D35ECAC1FB2F78800E01659 /* NGGGuessListViewController.xib */,
 			);
 			path = PreGuess;
 			sourceTree = "<group>";
@@ -1935,7 +1935,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3D35EDC01FB2F78900E01659 /* NGGPreGuessListViewController.xib in Resources */,
+				3D35EDC01FB2F78900E01659 /* NGGGuessListViewController.xib in Resources */,
 				3DC56B711FC4103100F67C32 /* NGGRecentRecordCollectionViewCell.xib in Resources */,
 				3DC56B6C1FC3FF0A00F67C32 /* NGGRecentRecordView.xib in Resources */,
 				3D4B1BE61FC7CF9400FBAB6C /* NGGImageTableViewCell.xib in Resources */,
@@ -2127,7 +2127,7 @@
 				3DC56B701FC4103100F67C32 /* NGGRecentRecordCollectionViewCell.m in Sources */,
 				3D35EE1E1FB2F78900E01659 /* UIImageView+HighlightedWebCache.m in Sources */,
 				3D35EDBA1FB2F78900E01659 /* NGGHomePageMenuCollectionViewCell.m in Sources */,
-				3D35EDBF1FB2F78900E01659 /* NGGPreGuessListViewController.m in Sources */,
+				3D35EDBF1FB2F78900E01659 /* NGGGuessListViewController.m in Sources */,
 				3D45CB801FCD10FA006EF330 /* NGGEmptyView.m in Sources */,
 				3D07BEB71FD66E3400BC4A64 /* SRSIMDHelpers.m in Sources */,
 				3D35EDC31FB2F78900E01659 /* NGGLoginViewController.m in Sources */,

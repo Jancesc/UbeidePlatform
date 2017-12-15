@@ -7,7 +7,6 @@
 //
 
 #import "NGGWebSocketHelper.h"
-#import "SCLAlertView.h"
 
 #define NGGHeartbeatInterval 5
 #define NGGMaxHeartbeatCount 3
@@ -141,8 +140,7 @@
     AFNetworkReachabilityStatus status = [[NGGHTTPClient defaultClient] currentNetworkStatus];
     if (status == AFNetworkReachabilityStatusNotReachable) {
         NSLog(@"确实是网络无连接");
-        SCLAlertView *alertView = [[SCLAlertView alloc] init];
-        [alertView showError:_delegate title:@"网络出错" subTitle:nil closeButtonTitle:@"好的" duration:3.0];
+      
         return;
     }
     
