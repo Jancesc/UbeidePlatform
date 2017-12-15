@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NGGGuessSectionModel.h"
 
 @interface NGGDetailHeaderReusableView : UICollectionReusableView
 
+@property (nonatomic, strong) NGGGuessSectionModel *model;
 @end

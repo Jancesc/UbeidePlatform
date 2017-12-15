@@ -14,4 +14,6 @@
 @property (nonatomic,strong) NSString *title;
 @property (nonatomic,strong) NSString *odds;
 
+@property (nonatomic,assign) BOOL isGuessed;
+
 @end

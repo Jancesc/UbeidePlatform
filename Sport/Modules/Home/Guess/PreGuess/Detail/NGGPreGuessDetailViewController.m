@@ -15,22 +15,29 @@
 #import "NGGDetailAnalyseView.h"
 #import "NGGGameModel.h"
 #import "NGGWebSocketHelper.h"
+#import "NGGGuessDescriptionCollectionViewCell.h"
+#import "NGGGuessOrderView.h"
+#import "NGGGuessOrderDoneView.h"
+#import "MJRefresh.h"
 
 static NSString *kGuessCellIdentifier = @"NGGGuessCollectionViewCell";
 static NSString *kGuess2RowsCellIdentifier = @"NGGGuess2RowsCollectionViewCell";
+static NSString *kDescriptionCellIdentifier = @"NGGDescriptionCellIdentifier";
 static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
-@interface NGGPreGuessDetailViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
+@interface NGGPreGuessDetailViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NGGWebSocketHelperDelegate> {
     
     __weak IBOutlet UIButton *_guessButton;
     __weak IBOutlet UIButton *_liveButton;
     __weak IBOutlet UIButton *_analyseButton;
     __weak IBOutlet UIView *_pageSwitchTipsView;
     __weak IBOutlet UICollectionView *_collectionView;
+    
+    UIView *_makeOrderView;
+    UIView *_resultView;
 }
 
 @property (nonatomic, strong) NGGGameModel *gameModel;
-
 @property (nonatomic, strong) UIView *analyseView;
 
 @end
@@ -43,7 +50,8 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"赛前";
-    [self loadDetailInfo];
+    [self configueUIComponents];
+    [NGGWebSocketHelper shareHelper].delegate = self;;
     [[NGGWebSocketHelper shareHelper] webSocketOpen];
 }
 
@@ -55,26 +63,36 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 - (void)viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
-    [self configueUIComponents];
+    SRReadyState state = [[NGGWebSocketHelper shareHelper] socketStatus];
+    if (state == SR_CLOSED ||
+        state == SR_CLOSING) {
+        
+        [[NGGWebSocketHelper shareHelper] webSocketOpen];
+    }
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    
+    [super viewDidDisappear:animated];
+    
+    [NGGWebSocketHelper shareHelper].delegate = nil;
+    [[NGGWebSocketHelper shareHelper] webSocketClose];
 }
 
 - (void)loadDetailInfo {
     
-    [self showLoadingHUDWithText:nil];
-    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.gameDetail" parameters:@{@"match_id" : _model.matchID} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-        [self dismissHUD];
-        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
-            
-            [self showErrorHUDWithText:msg];
-        }];
-        if (dict) {
-            
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-       
-        [self dismissHUD];
-    }];
+    NSDictionary *params = @{@"match_id" : _model.matchID, @"method" : @"game.gameDetail"};
+    NGGLoginSession *session = [NGGLoginSession activeSession];
+    NSMutableDictionary *inputParams = [params mutableCopy];
+    if (session) {
+        [inputParams setObject:session.currentUser.token forKey:@"token"];
+        [inputParams setObject:session.currentUser.uid forKey:@"uid"];
+    }
+    params = [[NGGHTTPClient defaultClient] signedParametersWithParameters:inputParams];
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:&error];
+    NSString *jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+    [[NGGWebSocketHelper shareHelper] sendData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
 #pragma mark - private methods
@@ -93,25 +111,67 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     
     [_collectionView registerNib:[UINib nibWithNibName:@"NGGGuessCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kGuessCellIdentifier];
     [_collectionView registerNib:[UINib nibWithNibName:@"NGGGuess2RowsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kGuess2RowsCellIdentifier];
+    [_collectionView registerNib:[UINib nibWithNibName:@"NGGGuessDescriptionCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kDescriptionCellIdentifier];
     [_collectionView registerNib:[UINib nibWithNibName:@"NGGDetailHeaderReusableView" bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kDetailHeaderIdentifier];
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
     _collectionView.backgroundColor = NGGSeparatorColor;
     _collectionView.contentInset = UIEdgeInsetsMake(0, 0, 15, 0);
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
+    _collectionView.mj_header = header;
+    
     _analyseView = [[[NSBundle mainBundle] loadNibNamed:@"NGGDetailAnalyseView" owner:nil options:nil] lastObject];
     _analyseView.hidden = YES;
     [self.view addSubview:_analyseView];
     [_analyseView mas_makeConstraints:^(MASConstraintMaker *make) {
-
+        
+        make.top.equalTo(_collectionView.mas_top);
+        make.left.bottom.right.equalTo(self.view);
+    }];
+    
+    _makeOrderView = [[[NSBundle mainBundle] loadNibNamed:@"NGGGuessOrderView" owner:nil options:nil] lastObject];
+    _makeOrderView.hidden = YES;
+    [self.view addSubview:_makeOrderView];
+    [_makeOrderView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.bottom.equalTo(self.view);
+        make.left.right.equalTo(self.view);
+        make.height.mas_equalTo(140.f);
+        
+    }];
+    
+    _analyseView = [[[NSBundle mainBundle] loadNibNamed:@"NGGDetailAnalyseView" owner:nil options:nil] lastObject];
+    _analyseView.hidden = YES;
+    [self.view addSubview:_analyseView];
+    [_analyseView mas_makeConstraints:^(MASConstraintMaker *make) {
+    
         make.top.equalTo(_collectionView.mas_top);
         make.left.bottom.right.equalTo(self.view);
     }];
 }
 
+- (void)refreshUI {
+    
+    [_collectionView reloadData];
+    [_collectionView.mj_header endRefreshing];
+}
+
+- (void)refreshData {
+    
+    SRReadyState state = [[NGGWebSocketHelper shareHelper] socketStatus];
+    if(state == SR_OPEN ){
+        
+        [self loadDetailInfo];
+    } else if (state == SR_CLOSED ||
+              state == SR_CLOSING) {
+        
+        [[NGGWebSocketHelper shareHelper] webSocketOpen];
+    }
+}
 #pragma mark - button actions
 
 - (void)pageButtonClicked:(UIButton *) button {
-   
+    
     _guessButton.selected = NO;
     _liveButton.selected = NO;
     _analyseButton.selected = NO;
@@ -131,101 +191,134 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     
-    return 4;
+    return [_gameModel.arrayOfSection count];
 }
-    
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-        if (section == 0) {
-            
-            return 3;
-        } else if (section == 1) {
-            
-            return 2;
-        } else if (section == 2) {
-            
-            return 6;
-        } else if (section == 3) {
-            
-            return 3;
-        }
-    return 0;
-}
     
+    NGGGuessSectionModel *sectionModel = _gameModel.arrayOfSection[section];
+    return [sectionModel.arrayOfItem count];
+}
+
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-        if (indexPath.section == 2) {
-            
-            NGGGuess2RowsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kGuess2RowsCellIdentifier forIndexPath:indexPath];
-            return cell;
-        } else if (indexPath.section == 1  || indexPath.section == 0 || indexPath.section == 3) {
-          
-            NGGGuessCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kGuessCellIdentifier forIndexPath:indexPath];
-            return cell;
-        }
-        return nil;
+    NGGGuessSectionModel *sectionModel = _gameModel.arrayOfSection[indexPath.section];
+    if (sectionModel.itemCellType == NGGGuessDetailCellTypeNormal) {
+        
+        NGGGuessCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kGuessCellIdentifier forIndexPath:indexPath];
+        NGGGuessItemModel *model = sectionModel.arrayOfItem [indexPath.item];
+        model.isGuessed = YES;
+        cell.model = model;
+        return cell;
+    } else if (sectionModel.itemCellType == NGGGuessDetailCellType2Rows) {
+        
+        NGGGuess2RowsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kGuess2RowsCellIdentifier forIndexPath:indexPath];
+        cell.model = sectionModel.arrayOfItem [indexPath.item];
+        return cell;
+    } else {
+
+        NGGGuessDescriptionCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kDescriptionCellIdentifier forIndexPath:indexPath];
+        cell.model = sectionModel.arrayOfItem [indexPath.item];
+        return cell;
     }
-    
+    return nil;
+}
+
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
     
     if (kind == UICollectionElementKindSectionHeader) {
         
         NGGDetailHeaderReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kDetailHeaderIdentifier forIndexPath:indexPath];
+        view.model = _gameModel.arrayOfSection[indexPath.section];
         return view;
     }
     return nil;
 }
-    
+
 #pragma mark - UICollectionViewDelegateFlowLayout
-    
+
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.section == 0) {
-        return CGSizeMake((SCREEN_WIDTH - 40) / 3.0, 40);
+    NGGGuessSectionModel *sectionModel = _gameModel.arrayOfSection[indexPath.section];
+    if (sectionModel.itemCellType == NGGGuessDetailCellTypeNormal) {
+        
+        return  CGSizeMake((SCREEN_WIDTH - 40) / 3.0, 40);
+    } else if (sectionModel.itemCellType == NGGGuessDetailCellType2Rows) {
+        
+        return  CGSizeMake((SCREEN_WIDTH - 50) / 4.0, 40);
+    } else {
+        
+        return  CGSizeMake((SCREEN_WIDTH - 40) / 3.0, 40);
     }
-    else if (indexPath.section == 1)
-    {
-        return CGSizeMake((SCREEN_WIDTH - 35) / 2.0, 40);
-    }
-    else if (indexPath.section == 2)
-    {
-        return CGSizeMake((SCREEN_WIDTH - 45) / 4.0, 40);
-    }
-    else if (indexPath.section == 3) {
-        return CGSizeMake((SCREEN_WIDTH - 40) / 3.0, 40);
-    }
-    return CGSizeMake(SCREEN_WIDTH, 0);
+    
 }
 - (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-
-        return CGSizeMake(SCREEN_WIDTH, 40);
+    
+    return CGSizeMake(SCREEN_WIDTH, 40);
 }
 
 - (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
-   
+    
     return CGSizeMake(SCREEN_WIDTH, 0);
 }
-    
-    
+
 - (UIEdgeInsets) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     
     return UIEdgeInsetsMake(0, 15, 0, 15);
 }
-    
+
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-        //    NSInteger section = indexPath.section;
-        //    NSInteger item = indexPath.item;
-        //    NSDictionary *selectedCity = nil;
-        //    if (section == 2) {
-        //        selectedCity = [_arrayOfRecentCities objectAtIndex:item];
-        //    }
-        //    else if (section == 3)
-        //    {
-        //        selectedCity = [_arrayOfServingCities objectAtIndex:item];
-        //    }
-        //
-        //    [self handleSelectCity:selectedCity];
-    }
+    //    NSInteger section = indexPath.section;
+    //    NSInteger item = indexPath.item;
+    //    NSDictionary *selectedCity = nil;
+    //    if (section == 2) {
+    //        selectedCity = [_arrayOfRecentCities objectAtIndex:item];
+    //    }
+    //    else if (section == 3)
+    //    {
+    //        selectedCity = [_arrayOfServingCities objectAtIndex:item];
+    //    }
+    //
+    //    [self handleSelectCity:selectedCity];
+}
 
+- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+}
+
+#pragma mark - NGGWebSocketHelperDelegate
+//连接成功
+- (void)openSuccess {
+    
+    [self loadDetailInfo];
+}
+//连接断开
+- (void)closeSuccess {
+    
+}
+
+//无法连接服务器
+- (void)connectedFailed {
+    
+}
+
+- (void)didReceiveData:(id)data {
+    
+    [self dismissHUD];
+    NSData *tmpdata = [data dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *responseObject = [NSJSONSerialization JSONObjectWithData:tmpdata options:0 error:nil];
+    
+    NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+        
+        [self showErrorHUDWithText:msg];
+    }];
+    if (dict) {
+        
+        _gameModel = [[NGGGameModel alloc] initWithInfo:dict];
+        [self refreshUI];
+    }
+}
 @end

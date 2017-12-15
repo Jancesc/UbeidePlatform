@@ -8,11 +8,14 @@
 
 #import "NGGModel.h"
 #import "NGGGuessItemModel.h"
+#import "NGGEnum.h"
 
 @interface NGGGuessSectionModel : NGGModel
 
-@property (nonatomic,strong) NSString *title;
-@property (nonatomic,strong) NSString *detail;
-@property (nonatomic,strong) NSString *type;
+@property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *detail;
+@property (nonatomic, strong) NSString *type;
+@property (nonatomic, assign) NGGGuessDetailCellType itemCellType;
+
 @property (nonatomic,strong) NSArray <NGGGuessItemModel *> *arrayOfItem;
 @end

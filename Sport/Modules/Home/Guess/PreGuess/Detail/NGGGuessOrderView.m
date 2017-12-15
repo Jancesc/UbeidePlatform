@@ -51,18 +51,18 @@
     [_10000Button addTarget:self action:@selector(orderButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [_allInButton addTarget:self action:@selector(orderButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-    ZSBlockAlertView *alert = [[ZSBlockAlertView alloc] initWithTitle:@"提示" message:@"金豆不足，无法完成投注，请充值" cancelButtonTitle:@"取消" otherButtonTitles:@[@"充值"]];
-    [alert setClickHandler:^(NSInteger index) {
-       
-        if (index == 0) {
-           
-            NSLog(@"0");
-        } else {
-            
-            NSLog(@"%ld", index);
-        }
-    }];
-    [alert show];
+//    ZSBlockAlertView *alert = [[ZSBlockAlertView alloc] initWithTitle:@"提示" message:@"金豆不足，无法完成投注，请充值" cancelButtonTitle:@"取消" otherButtonTitles:@[@"充值"]];
+//    [alert setClickHandler:^(NSInteger index) {
+//
+//        if (index == 0) {
+//
+//            NSLog(@"0");
+//        } else {
+//
+//            NSLog(@"%ld", index);
+//        }
+//    }];
+//    [alert show];
     _textField.userInteractionEnabled = NO;
 
 }
