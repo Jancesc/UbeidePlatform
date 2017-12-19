@@ -19,13 +19,15 @@
 #import "NGGGuessOrderView.h"
 #import "NGGGuessOrderDoneView.h"
 #import "MJRefresh.h"
+#import "SCLAlertView.h"
+#import "NGGRechargeViewController.h"
 
 static NSString *kGuessCellIdentifier = @"NGGGuessCollectionViewCell";
 static NSString *kGuess2RowsCellIdentifier = @"NGGGuess2RowsCollectionViewCell";
 static NSString *kDescriptionCellIdentifier = @"NGGDescriptionCellIdentifier";
 static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
-@interface NGGPreGuessDetailViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NGGWebSocketHelperDelegate> {
+@interface NGGPreGuessDetailViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NGGWebSocketHelperDelegate, NGGGuessOrderViewDelegate> {
     
     __weak IBOutlet UIButton *_guessButton;
     __weak IBOutlet UIButton *_liveButton;
@@ -33,8 +35,8 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     __weak IBOutlet UIView *_pageSwitchTipsView;
     __weak IBOutlet UICollectionView *_collectionView;
     
-    UIView *_makeOrderView;
-    UIView *_resultView;
+    NGGGuessOrderView *_makeOrderView;
+    NGGGuessOrderDoneView *_resultView;
 }
 
 @property (nonatomic, strong) NGGGameModel *gameModel;
@@ -53,6 +55,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     [self configueUIComponents];
     [NGGWebSocketHelper shareHelper].delegate = self;;
     [[NGGWebSocketHelper shareHelper] webSocketOpen];
+    [NSUserDefaults standardUserDefaults];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,7 +73,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
         [[NGGWebSocketHelper shareHelper] webSocketOpen];
     }
 }
-
+    
 - (void)viewDidDisappear:(BOOL)animated {
     
     [super viewDidDisappear:animated];
@@ -130,6 +133,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     }];
     
     _makeOrderView = [[[NSBundle mainBundle] loadNibNamed:@"NGGGuessOrderView" owner:nil options:nil] lastObject];
+    _makeOrderView.delegate = self;
     _makeOrderView.hidden = YES;
     [self.view addSubview:_makeOrderView];
     [_makeOrderView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -139,21 +143,15 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
         make.height.mas_equalTo(140.f);
         
     }];
-    
-    _analyseView = [[[NSBundle mainBundle] loadNibNamed:@"NGGDetailAnalyseView" owner:nil options:nil] lastObject];
-    _analyseView.hidden = YES;
-    [self.view addSubview:_analyseView];
-    [_analyseView mas_makeConstraints:^(MASConstraintMaker *make) {
-    
-        make.top.equalTo(_collectionView.mas_top);
-        make.left.bottom.right.equalTo(self.view);
-    }];
 }
 
 - (void)refreshUI {
     
     [_collectionView reloadData];
     [_collectionView.mj_header endRefreshing];
+    
+    [self hideMakeOrderView];
+    [self hideOrderDoneView];
 }
 
 - (void)refreshData {
@@ -168,6 +166,57 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
         [[NGGWebSocketHelper shareHelper] webSocketOpen];
     }
 }
+
+- (void)showMakeOrderView {
+    
+    NSIndexPath *selectedIndexPath = [[_collectionView indexPathsForSelectedItems] firstObject];
+    NGGGuessSectionModel *sectionModel = _gameModel.arrayOfSection[selectedIndexPath.section];
+    NGGGuessItemModel *itemModel = sectionModel.arrayOfItem[selectedIndexPath.item];
+    [_makeOrderView updateWithItemModel:itemModel sectionModel:sectionModel];
+    
+    _makeOrderView.hidden = NO;
+    _resultView.hidden = YES;
+}
+
+- (void)hideMakeOrderView {
+    
+    _makeOrderView.hidden = YES;
+}
+
+- (void)showOrderDoneView {
+    
+    
+}
+
+- (void)hideOrderDoneView {
+    
+    [self showLoadingHUDWithText:nil];
+}
+
+- (void)updateGuessRecord {
+    
+//    uid    string    Y    uid
+//    token    string    Y    token
+//    match_id    string    Y    比赛id
+    [self showLoadingHUDWithText:nil];
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.playRecord" parameters:@{@"match_id" : _gameModel.matchID} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self dismissHUD];
+        [self dismissHUD];
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showErrorHUDWithText:msg];
+        }];
+        if (dict) {
+            
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [self dismissHUD];
+    }];
+    
+}
+
 #pragma mark - button actions
 
 - (void)pageButtonClicked:(UIButton *) button {
@@ -270,22 +319,46 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    //    NSInteger section = indexPath.section;
-    //    NSInteger item = indexPath.item;
-    //    NSDictionary *selectedCity = nil;
-    //    if (section == 2) {
-    //        selectedCity = [_arrayOfRecentCities objectAtIndex:item];
-    //    }
-    //    else if (section == 3)
-    //    {
-    //        selectedCity = [_arrayOfServingCities objectAtIndex:item];
-    //    }
-    //
-    //    [self handleSelectCity:selectedCity];
+    [collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
+    [self showMakeOrderView];
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     
+    
+}
+
+#pragma mark - NGGGuessOrderViewDelegate
+
+- (void)guessOrderViewDidClickRechargeButton {
+    
+    NGGRechargeViewController *controller = [[NGGRechargeViewController alloc] init];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void) guessOrderViewMakeOrder:(NSString *)count itemModel:(NGGGuessItemModel *)itemModel sectionModel:(NGGGuessSectionModel *)sectionModel {
+    
+//    uid    string    Y    uid
+//    token    string    Y    token
+//    item    string    Y    投注项，详情返回的item
+//    match_id    string    Y    比赛id
+//    bean    string    Y    投注金豆数，10的倍数
+//
+    [self showLoadingHUDWithText:nil];
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.playGame" parameters:@{@"item" : itemModel.itemID, @"match_id" : _gameModel.matchID, @"bean" : count} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        BOOL success = [self noData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showErrorHUDWithText:msg];
+        }];
+        if (success) {
+            
+            [self updateGuessRecord];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [self dismissHUD];
+    }];
     
 }
 

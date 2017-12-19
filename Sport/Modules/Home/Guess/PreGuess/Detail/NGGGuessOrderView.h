@@ -10,15 +10,17 @@
 #import "NGGGuessItemModel.h"
 #import "NGGGuessSectionModel.h"
 
-@protocol NGGGuessOrderViewDelegate
+@protocol NGGGuessOrderViewDelegate <NSObject>
 
-- (void) guessOrderViewDidClickCloseButton;
+- (void)guessOrderViewDidClickRechargeButton;
 
-- (void) guessOrderViewMakeOrder:(NSString *)count ;
+- (void) guessOrderViewMakeOrder:(NSString *)count itemModel:(NGGGuessItemModel *)itemModel sectionModel:(NGGGuessSectionModel *)sectionModel;
 
 @end
 
 @interface NGGGuessOrderView : UIView
 
 - (void) updateWithItemModel:(NGGGuessItemModel *)itemModel sectionModel:(NGGGuessSectionModel *)sectionModel;
+
+@property (nonatomic, strong) id <NGGGuessOrderViewDelegate> delegate;
 @end

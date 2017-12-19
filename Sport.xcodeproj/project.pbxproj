@@ -253,6 +253,11 @@
 		3DA19B3B1FDE986400B19257 /* NGGConsumptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DA19B391FDE986400B19257 /* NGGConsumptionTableViewCell.xib */; };
 		3DA19B3E1FDFCFAC00B19257 /* NGGGuessSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA19B3D1FDFCFAC00B19257 /* NGGGuessSectionModel.m */; };
 		3DA19B411FDFCFDE00B19257 /* NGGGuessItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA19B401FDFCFDE00B19257 /* NGGGuessItemModel.m */; };
+		3DA285201FE7BD200093E726 /* NGGGuessRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA2851E1FE7BD200093E726 /* NGGGuessRecordViewController.m */; };
+		3DA285211FE7BD200093E726 /* NGGGuessRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DA2851F1FE7BD200093E726 /* NGGGuessRecordViewController.xib */; };
+		3DA285241FE7CCC60093E726 /* NGGGuessRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA285231FE7CCC60093E726 /* NGGGuessRecordModel.m */; };
+		3DA285281FE7CEA60093E726 /* NGGGuessRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA285261FE7CEA60093E726 /* NGGGuessRecordTableViewCell.m */; };
+		3DA285291FE7CEA60093E726 /* NGGGuessRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DA285271FE7CEA60093E726 /* NGGGuessRecordTableViewCell.xib */; };
 		3DC56B601FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC56B5E1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.m */; };
 		3DC56B611FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC56B5F1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.xib */; };
 		3DC56B641FC3D9F700F67C32 /* NGGAnalyseHistoryheaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC56B631FC3D9F700F67C32 /* NGGAnalyseHistoryheaderView.m */; };
@@ -742,6 +747,14 @@
 		3DA19B3D1FDFCFAC00B19257 /* NGGGuessSectionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGuessSectionModel.m; sourceTree = "<group>"; };
 		3DA19B3F1FDFCFDE00B19257 /* NGGGuessItemModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGuessItemModel.h; sourceTree = "<group>"; };
 		3DA19B401FDFCFDE00B19257 /* NGGGuessItemModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGuessItemModel.m; sourceTree = "<group>"; };
+		3DA2851D1FE7BD200093E726 /* NGGGuessRecordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGuessRecordViewController.h; sourceTree = "<group>"; };
+		3DA2851E1FE7BD200093E726 /* NGGGuessRecordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGuessRecordViewController.m; sourceTree = "<group>"; };
+		3DA2851F1FE7BD200093E726 /* NGGGuessRecordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGGuessRecordViewController.xib; sourceTree = "<group>"; };
+		3DA285221FE7CCC60093E726 /* NGGGuessRecordModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGuessRecordModel.h; sourceTree = "<group>"; };
+		3DA285231FE7CCC60093E726 /* NGGGuessRecordModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGuessRecordModel.m; sourceTree = "<group>"; };
+		3DA285251FE7CEA60093E726 /* NGGGuessRecordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGuessRecordTableViewCell.h; sourceTree = "<group>"; };
+		3DA285261FE7CEA60093E726 /* NGGGuessRecordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGuessRecordTableViewCell.m; sourceTree = "<group>"; };
+		3DA285271FE7CEA60093E726 /* NGGGuessRecordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGGuessRecordTableViewCell.xib; sourceTree = "<group>"; };
 		3DC56B5D1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGAnalyseHistoryTableViewCell.h; sourceTree = "<group>"; };
 		3DC56B5E1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGAnalyseHistoryTableViewCell.m; sourceTree = "<group>"; };
 		3DC56B5F1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGAnalyseHistoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -1661,6 +1674,14 @@
 				3D74A29B1FE1225300108F06 /* NGGGuessOrderDoneView.h */,
 				3D74A29C1FE1225300108F06 /* NGGGuessOrderDoneView.m */,
 				3D74A2991FE1223F00108F06 /* NGGGuessOrderDoneView.xib */,
+				3DA2851D1FE7BD200093E726 /* NGGGuessRecordViewController.h */,
+				3DA2851E1FE7BD200093E726 /* NGGGuessRecordViewController.m */,
+				3DA2851F1FE7BD200093E726 /* NGGGuessRecordViewController.xib */,
+				3DA285251FE7CEA60093E726 /* NGGGuessRecordTableViewCell.h */,
+				3DA285261FE7CEA60093E726 /* NGGGuessRecordTableViewCell.m */,
+				3DA285271FE7CEA60093E726 /* NGGGuessRecordTableViewCell.xib */,
+				3DA285221FE7CCC60093E726 /* NGGGuessRecordModel.h */,
+				3DA285231FE7CCC60093E726 /* NGGGuessRecordModel.m */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -1956,6 +1977,7 @@
 				3D35EDA31FB2F78900E01659 /* Assets.xcassets in Resources */,
 				3D0BEAA61FC55B7800EC14A9 /* NGGRankHeaderView.xib in Resources */,
 				3D35EDBE1FB2F78900E01659 /* NGGPreGameTableViewCell.xib in Resources */,
+				3DA285291FE7CEA60093E726 /* NGGGuessRecordTableViewCell.xib in Resources */,
 				3D35EDEA1FB2F78900E01659 /* Info.plist in Resources */,
 				3D922EFA1FD00F72003AA7F1 /* NGGGameListView.xib in Resources */,
 				3D35EDCB1FB2F78900E01659 /* NGGTaskViewController.xib in Resources */,
@@ -1979,6 +2001,7 @@
 				3D35EDE71FB2F78900E01659 /* DMPictureBrowserViewController.Bundle in Resources */,
 				3D35EDB91FB2F78900E01659 /* NGGHomeNoticeCollectionViewCell.xib in Resources */,
 				3D45CB8F1FCD5D14006EF330 /* NGGRechargeCollectionViewCell.xib in Resources */,
+				3DA285211FE7BD200093E726 /* NGGGuessRecordViewController.xib in Resources */,
 				3D4B1BF61FC80E6100FBAB6C /* NGGSwitchTableViewCell.xib in Resources */,
 				3D25B4B61FB4327300D20FB2 /* NGGAnalyseHistoryView.xib in Resources */,
 				3D4B1BF11FC7F7E900FBAB6C /* NGGTextTableViewCell.xib in Resources */,
@@ -2013,6 +2036,7 @@
 				3D35EDE81FB2F78900E01659 /* DMPictureModel.m in Sources */,
 				3D35EDAA1FB2F78900E01659 /* main.m in Sources */,
 				3D922EF81FD00EEB003AA7F1 /* NGGGameListView.m in Sources */,
+				3DA285201FE7BD200093E726 /* NGGGuessRecordViewController.m in Sources */,
 				3D07BEAA1FD66E3400BC4A64 /* SRDelegateController.m in Sources */,
 				3D07BEB51FD66E3400BC4A64 /* SRMutex.m in Sources */,
 				3D35EE2A1FB2F78900E01659 /* NSDictionary+Extension.m in Sources */,
@@ -2119,6 +2143,7 @@
 				3D35EE0A1FB2F78900E01659 /* SVProgressHUD.m in Sources */,
 				3D35EE1C1FB2F78900E01659 /* UIImage+MultiFormat.m in Sources */,
 				3D07BED21FD7C80D00BC4A64 /* NGGShopViewController.m in Sources */,
+				3DA285241FE7CCC60093E726 /* NGGGuessRecordModel.m in Sources */,
 				3D74A29D1FE1225300108F06 /* NGGGuessOrderDoneView.m in Sources */,
 				3D4B1BE01FC7C4F500FBAB6C /* NGGModel.m in Sources */,
 				3D45CB781FCC1CAC006EF330 /* NGGSystemMessageViewController.m in Sources */,
@@ -2146,6 +2171,7 @@
 				3D07BEBA1FD66E3400BC4A64 /* NSURLRequest+SRWebSocket.m in Sources */,
 				3D35EDF81FB2F78900E01659 /* MJRefreshFooter.m in Sources */,
 				3D35EE081FB2F78900E01659 /* UIView+MJExtension.m in Sources */,
+				3DA285281FE7CEA60093E726 /* NGGGuessRecordTableViewCell.m in Sources */,
 				3D35EDEF1FB2F78900E01659 /* MASViewAttribute.m in Sources */,
 				3D35EE251FB2F78900E01659 /* UIImage+Screenshot.m in Sources */,
 				3D07BEAD1FD66E3400BC4A64 /* SRProxyConnect.m in Sources */,
