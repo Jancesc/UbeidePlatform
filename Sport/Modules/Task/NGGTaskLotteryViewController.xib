@@ -18,6 +18,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NGGTaskLotteryViewController">
             <connections>
+                <outlet property="_closeButton" destination="eaZ-eJ-aX7" id="Lu7-Le-6A6"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

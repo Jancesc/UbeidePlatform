@@ -9,15 +9,32 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-Italic</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NGGLiveGuessDetailViewController">
             <connections>
                 <outlet property="_analyseButton" destination="EPy-pV-hdc" id="mlC-nN-wws"/>
+                <outlet property="_awayImageView" destination="lpq-MM-CVF" id="5IG-oE-DeF"/>
+                <outlet property="_awayLabel" destination="9RK-Ij-Ndj" id="Y8q-6w-jDe"/>
+                <outlet property="_awayScore" destination="nV0-wx-zc2" id="vS3-6s-5Cd"/>
+                <outlet property="_beanLabel" destination="4r2-XR-Fyy" id="CN8-et-jPA"/>
                 <outlet property="_collectionView" destination="4Uz-JS-OPe" id="Sxv-K4-acy"/>
+                <outlet property="_dateLabel" destination="ceM-dK-Ccb" id="oVp-nH-qCm"/>
                 <outlet property="_guessButton" destination="u64-Ej-ov4" id="Txp-ug-rYr"/>
+                <outlet property="_helpButton" destination="e2y-56-yy9" id="G6P-E9-zaQ"/>
+                <outlet property="_homeImageView" destination="s0n-s6-KQH" id="pN2-Xh-tvz"/>
+                <outlet property="_homeLabel" destination="oLn-ne-0xp" id="0Ek-EX-eEV"/>
+                <outlet property="_homeScore" destination="PE4-6B-2pS" id="iU5-8v-rko"/>
                 <outlet property="_liveButton" destination="hr4-kv-lUZ" id="4tG-jb-dWu"/>
+                <outlet property="_moreBeanButton" destination="MQJ-C8-mBP" id="lfU-8c-FO8"/>
                 <outlet property="_pageSwitchTipsView" destination="bAs-dQ-aHs" id="e4Y-7o-bol"/>
-                <outlet property="_webviewBG" destination="bOM-7F-Wae" id="pgL-HM-k36"/>
+                <outlet property="_recordButton" destination="oe6-BZ-UmJ" id="dpp-1i-0uJ"/>
+                <outlet property="_statusLabel" destination="LC4-6Q-2FC" id="dKG-N9-6VD"/>
+                <outlet property="_webViewBG" destination="bOM-7F-Wae" id="DbO-2P-L0c"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -32,12 +49,12 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EPf-fX-iUS">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="25"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未开赛" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCE-VT-9KU">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCE-VT-9KU">
                                     <rect key="frame" x="157" y="0.0" width="60" height="25"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="60" id="WVH-Ot-DxC"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <fontDescription key="fontDescription" name="HelveticaNeue-Italic" family="Helvetica Neue" pointSize="17"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -46,7 +63,7 @@
                                     <constraints>
                                         <constraint firstAttribute="width" constant="25" id="dJu-qA-g16"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -67,7 +84,7 @@
                                     <constraints>
                                         <constraint firstAttribute="width" constant="25" id="bXZ-U7-F4I"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>

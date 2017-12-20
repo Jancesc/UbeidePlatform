@@ -79,9 +79,9 @@
                                         <segment title="转盘"/>
                                     </segments>
                                 </segmentedControl>
-                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HrB-zI-6Pp">
+                                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="HrB-zI-6Pp">
                                     <rect key="frame" x="5" y="167" width="456.33333333333331" height="589.66666666666663"/>
-                                    <color key="backgroundColor" red="0.99607843139999996" green="0.66274509800000003" blue="0.01176470588" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                     <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </tableView>
                             </subviews>

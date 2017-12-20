@@ -73,9 +73,8 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     self.title = @"赛前";
     [self configueUIComponents];
     _dictionaryOfGuessed = [NSMutableDictionary dictionary];
-    [NGGWebSocketHelper shareHelper].delegate = self;;
+    [NGGWebSocketHelper shareHelper].delegate = self;
     [[NGGWebSocketHelper shareHelper] webSocketOpen];
-    [NSUserDefaults standardUserDefaults];
 }
 
 - (void)didReceiveMemoryWarning {

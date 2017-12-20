@@ -241,8 +241,8 @@ static SCLAlertView *alertView;
     } else if (index == 2) {
         
         NGGTaskViewController *controller = [[NGGTaskViewController alloc] initWithNibName:@"NGGTaskViewController" bundle:nil];
-        controller.hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:controller animated:YES];
+        [self.tabBarController addChildViewController:controller];
+        [self.tabBarController.view  addSubview:controller.view];
     } else if (index == 4) {
         
         [self showLoadingHUDWithText:@""];

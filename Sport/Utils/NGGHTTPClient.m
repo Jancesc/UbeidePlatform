@@ -6,6 +6,7 @@
 
 #import "NGGHTTPClient.h"
 #import "EncodingTools.h"
+#import "SVProgressHUD.h"
 
 #pragma mark - Constants Definition
 
@@ -60,23 +61,24 @@
 
 - (void) netWorkReachability {
     
-    __block BOOL netState = NO;
     [_manager.reachabilityManager startMonitoring];
     [_manager.reachabilityManager setReachabilityStatusChangeBlock:^(AFNetworkReachabilityStatus status) {
         switch (status) {
             case AFNetworkReachabilityStatusReachableViaWWAN:
-                netState = YES;
+                
+                [SVProgressHUD showSuccessWithStatus:@"正在使用移动网络" duration:1.0];
                 break;
             case AFNetworkReachabilityStatusReachableViaWiFi:
-                netState = YES;
+                [SVProgressHUD showSuccessWithStatus:@"正在使用WiFi" duration:1.0];
+
                 break;
             case AFNetworkReachabilityStatusNotReachable:
-                netState = NO;
+                [SVProgressHUD showErrorWithStatus:@"当前无网络连接" duration:1.0];
+
             default:
                 break;
         }
     }];
-    
 }
 
 - (AFNetworkReachabilityStatus)currentNetworkStatus {

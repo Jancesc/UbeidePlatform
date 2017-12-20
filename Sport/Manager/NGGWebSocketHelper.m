@@ -7,6 +7,8 @@
 //
 
 #import "NGGWebSocketHelper.h"
+#import "SVProgressHUD.h"
+#import "ZSBlockAlertView.h"
 
 #define NGGHeartbeatInterval 5
 #define NGGMaxHeartbeatCount 3
@@ -91,8 +93,14 @@
 - (void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean {
     
     NSLog(@"被关闭连接，code:%ld,reason:%@,wasClean:%d",code,reason,wasClean);
-    //断开连接 同时销毁心跳
-    [self webSocketClose];
+    if (wasClean == NO) {
+        
+        [self reConnect];
+    } else {
+        
+        //断开连接 同时销毁心跳
+        [self webSocketClose];
+    }
 }
           
 /*
@@ -131,6 +139,13 @@
             
             [_delegate connectedFailed];
         }
+        ZSBlockAlertView *alertView = [[ZSBlockAlertView alloc] initWithTitle:@"网络出错" message:@"网络不稳定，请检查手机网络" cancelButtonTitle:nil otherButtonTitles:@[@"重新连接"]];
+        [alertView setClickHandler:^(NSInteger index) {
+            
+            _reConnectTime = 0;
+            [self reConnect];
+        }];
+        [alertView show];
         return;
     }
     NSLog(@"连接失败，这里可以实现掉线自动重连，要注意以下几点");
@@ -139,8 +154,15 @@
     NSLog(@"3.连接次数限制，如果连接失败了，重试10次左右就可以了，不然就死循环了。");
     AFNetworkReachabilityStatus status = [[NGGHTTPClient defaultClient] currentNetworkStatus];
     if (status == AFNetworkReachabilityStatusNotReachable) {
-        NSLog(@"确实是网络无连接");
       
+        NSLog(@"确实是网络无连接");
+        ZSBlockAlertView *alertView = [[ZSBlockAlertView alloc] initWithTitle:@"网络出错" message:@"网络不稳定，请检查手机网络" cancelButtonTitle:nil otherButtonTitles:@[@"重新连接"]];
+        [alertView setClickHandler:^(NSInteger index) {
+            
+            _reConnectTime = 0;
+            [self reConnect];
+        }];
+        [alertView show];
         return;
     }
     

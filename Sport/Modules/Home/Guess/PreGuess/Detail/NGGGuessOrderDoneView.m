@@ -42,8 +42,7 @@
     _beanLabel.text = [NSString stringWithFormat:@"剩余：%@金豆", [info stringForKey:@"bean"]];
     _timeLabel.text = [NSString stringWithFormat:@"已投%@次", [info stringForKey:@"guessCount"]];
     _principleLabel.text = [NSString stringWithFormat:@"本金%@", [info stringForKey:@"money"]];
-    
-    _profitLabel.text = [NSString stringWithFormat:@"猜中盈利%@", [JYCommonTool stringDisposeWithFloat:[info floatForKey:@"profit"]]];
+      _profitLabel.text = [NSString stringWithFormat:@"猜中盈利%@", [JYCommonTool stringDisposeWithFloat:[info floatForKey:@"profit"]]];
 }
 
 - (void)awakeFromNib {
@@ -53,7 +52,6 @@
     [_closeButton addTarget:self action:@selector(closeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [_additionButton setBackgroundImage:[UIImage imageWithColor:NGGViceColor] forState:UIControlStateNormal];
 }
-    
 #pragma mark - button actions
 
 - (void)handleAdditionButtonClicked:(UIButton *) button {

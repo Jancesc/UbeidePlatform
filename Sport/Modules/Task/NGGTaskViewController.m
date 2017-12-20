@@ -12,6 +12,7 @@
 
 static NSString *kTaskCellIdentifier = @"NGGTaskTableViewCell";
 
+static NSArray *kArrayOfTask;
 @interface NGGTaskViewController ()<UITableViewDelegate, UITableViewDataSource> {
     
     __weak IBOutlet UIView *_taskView;
@@ -20,7 +21,6 @@ static NSString *kTaskCellIdentifier = @"NGGTaskTableViewCell";
     __weak IBOutlet UIButton *_beanButton;
     __weak IBOutlet UISegmentedControl *_segmentControl;
     __weak IBOutlet UITableView *_tableView;
-   
     __weak IBOutlet UIView *_lotteryView;
     __weak IBOutlet UIImageView *_lotteryFlashView;
     __weak IBOutlet UIButton *_button_0;
@@ -30,11 +30,14 @@ static NSString *kTaskCellIdentifier = @"NGGTaskTableViewCell";
 
 @implementation NGGTaskViewController
 
+#pragma mark - view life circle
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.view.frame = SCREEN_BOUNDS;
     self.navigationController.navigationBar.hidden = YES;
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor clearColor];
     [self setupUIComponents];
     
 }
@@ -55,21 +58,22 @@ static NSString *kTaskCellIdentifier = @"NGGTaskTableViewCell";
     _closeButton.clipsToBounds = YES;
     _closeButton.layer.borderWidth = 1.f;
     _closeButton.layer.borderColor = [NGGPrimaryColor CGColor];
-    [_closeButton setBackgroundImage:[UIImage imageWithColor:[NGGPrimaryColor colorWithAlphaComponent:0.7]] forState:UIControlStateNormal];
-    
+    [_closeButton setBackgroundImage:[UIImage imageWithColor:[NGGPrimaryColor colorWithAlphaComponent:0.85]] forState:UIControlStateNormal];
+    [_closeButton addTarget:self action:@selector(closeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [_segmentControl setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     [_segmentControl setBackgroundImage:[UIImage imageWithColor:NGGViceColor] forState:UIControlStateSelected barMetrics:UIBarMetricsDefault];
-//    [_segmentControl setBackgroundImage:[UIImage imageWithColor:NGGViceColor] forState:UIControlStateHighlighted barMetrics:UIBarMetricsDefault];
     _segmentControl.tintColor = NGGSeparatorColor;
     [_segmentControl setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName : [UIFont systemFontOfSize:16]} forState:UIControlStateNormal];
     [_segmentControl setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor], NSFontAttributeName : [UIFont systemFontOfSize:16]} forState:UIControlStateSelected];
     [_segmentControl setSelectedSegmentIndex:0];
+    [_segmentControl addTarget:self action:@selector(segmentControlValueChanged:) forControlEvents:UIControlEventValueChanged];
+
     _segmentControl.layer.borderColor = [NGGSeparatorColor CGColor];
     _segmentControl.layer.cornerRadius = 5.f;
     _segmentControl.clipsToBounds = YES;
     _segmentControl.layer.borderWidth = 1.f;
     
-    _tableView.separatorColor = NGGSeparatorColor;
+    _tableView.separatorColor = NGGColorCCC;
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     _tableView.rowHeight = 70.f;
@@ -77,13 +81,18 @@ static NSString *kTaskCellIdentifier = @"NGGTaskTableViewCell";
     _tableView.dataSource = self;
     _tableView.showsVerticalScrollIndicator = YES;
     [_tableView registerNib:[UINib nibWithNibName:@"NGGTaskTableViewCell" bundle:nil] forCellReuseIdentifier:kTaskCellIdentifier];
+    _tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0);
     _tableView.hidden = YES;
 
     [self startLightFlash];
-    
-    
+    _lotteryView.hidden = YES;
+    _tableView.hidden = NO;
 }
 
+- (BOOL)prefersStatusBarHidden {
+    
+    return YES;
+}
 
 static UIImage *image_0, *image_1;
 
@@ -121,6 +130,49 @@ static UIImage *image_0, *image_1;
 - (void)stopLightFlash {
     
 }
+
+- (void)loadTaskInfo {
+    
+    [self showLoadingHUDWithText:nil];
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=home.task" parameters:nil willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self dismissHUD];
+        NSArray *dataArray = [self arrayData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showErrorHUDWithText:msg];
+        }];
+        if (dataArray) {
+            
+            kArrayOfTask = dataArray;
+            [_tableView reloadData];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+      
+        [self dismissHUD];
+    }];
+}
+
+#pragma mark - button actions
+
+- (void)closeButtonClicked:(UIButton *) button {
+    
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
+}
+
+- (void)segmentControlValueChanged:(UISegmentedControl *) segmentControl {
+    
+    if (segmentControl.selectedSegmentIndex == 0) {
+        
+        _lotteryView.hidden = YES;
+        _tableView.hidden = NO;
+        [self loadTaskInfo];
+    } else {
+        
+        _lotteryView.hidden = NO;
+        _tableView.hidden = YES;
+    }
+}
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -130,13 +182,14 @@ static UIImage *image_0, *image_1;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 10;;
-    
+    return [kArrayOfTask count];;
+
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTaskCellIdentifier forIndexPath:indexPath];
+    NGGTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTaskCellIdentifier forIndexPath:indexPath];
+    cell.cellInfo = kArrayOfTask[indexPath.row];
     return cell;
 }
 
@@ -146,39 +199,21 @@ static UIImage *image_0, *image_1;
     return 0.01f;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return nil;
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView *seperator = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 1)];
+    seperator.backgroundColor = NGGColorCCC;
+    return seperator;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 0.01f;
+    return 1.f;
 }
-
-//- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//
-//    return 70.f;
-//}
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    //    [_tableView deselectRowAtIndexPath:indexPath animated:YES];
-    //    if (indexPath.row == 0)
-    //    {
-    //        DMAgencyAddBankAccountViewController *controller =
-    //        [[DMAgencyAddBankAccountViewController alloc] initWithNibName:@"DMAgencyAddBankAccountViewController" bundle:nil];
-    //        controller.delegate = self;
-    //        [self.navigationController pushViewController:controller animated:YES];
-    //    }
-    //    else if (indexPath.row == 1)
-    //    {
-    //        DMAgencyAddAliPayAccountViewController *contoller = [[DMAgencyAddAliPayAccountViewController alloc] initWithNibName:@"DMAgencyAddAliPayAccountViewController" bundle:nil];
-    //        contoller.delegate = self;
-    //        [self.navigationController pushViewController:contoller animated:YES];
-    //    }
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
