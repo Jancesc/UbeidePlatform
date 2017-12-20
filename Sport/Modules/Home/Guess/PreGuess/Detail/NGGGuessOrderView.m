@@ -9,6 +9,8 @@
 #import "NGGGuessOrderView.h"
 #import "ZSBlockAlertView.h"
 #import "SCLAlertView.h"
+#import "JYCommonTool.h"
+#import "SVProgressHUD.h"
 
 @interface NGGGuessOrderView () {
     
@@ -64,7 +66,7 @@
     _sectionModel = sectionModel;
     
     _titleLabel.text = itemModel.title;
-    _oddsLabel.text = itemModel.odds;
+    _oddsLabel.text = [NSString stringWithFormat:@"@%@", itemModel.odds];
     _sectionLabel.text = [NSString stringWithFormat:@"(%@)", _sectionModel.title];
     
     NGGUser *currentUser = [NGGLoginSession activeSession].currentUser;
@@ -175,8 +177,8 @@
     }
 
     _textField.text = @(orderCount).stringValue;
-    CGFloat profit = orderCount * _itemModel.odds.floatValue;
-    _profitLabel.text = [NSString stringWithFormat:@"预计盈利：%.2f", profit];
+    CGFloat profit = orderCount * _itemModel.odds.doubleValue;
+    _profitLabel.text = [NSString stringWithFormat:@"预计盈利：%@", [JYCommonTool stringDisposeWithFloat:profit]];
 
 }
 
@@ -201,6 +203,11 @@
 
 - (void)confirmButtonClicked:(UIButton *) button {
     
+    if (isStringEmpty(_textField.text)) {
+        
+        [SVProgressHUD showErrorWithStatus:@"请先输入投注金额"];
+        return;
+    }
     [self showMakeOrderAlert];
 }
 @end

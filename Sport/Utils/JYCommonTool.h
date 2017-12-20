@@ -43,4 +43,10 @@
 
 + (CGFloat)calculateStringWidth:(NSString *) string maxSize:(CGSize)maxSize fontSize:(CGFloat)fontSize;
 
+
+/*
+ *把float类型小数点后的0去掉
+ */
++ (NSString *)stringDisposeWithFloat:(float)floatValue;
+
 @end

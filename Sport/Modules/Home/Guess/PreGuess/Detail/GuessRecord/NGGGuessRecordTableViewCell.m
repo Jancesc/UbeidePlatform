@@ -7,6 +7,8 @@
 //
 
 #import "NGGGuessRecordTableViewCell.h"
+#import "JYCommonTool.h"
+
 @interface NGGGuessRecordTableViewCell () {
     
     __weak IBOutlet UILabel *_timeLabel;
@@ -36,12 +38,12 @@
     
     _model = model;
     
-    _timeLabel.text = _model.timeStamp;
+    _timeLabel.text = [JYCommonTool dateFormatWithInterval:_model.timeStamp.integerValue format:@"hh:mm"];
     _typeLabel.text = _model.sectionName;
     _itemLabel.text = _model.itemName;
-    _oddsLabel.text = _model.odds;
+    _oddsLabel.text = [JYCommonTool stringDisposeWithFloat:_model.odds.floatValue];
     _countLabel.text = _model.money;
-    _profitLabel.text = _model.profit;
+    _profitLabel.text = [JYCommonTool stringDisposeWithFloat:_model.profit.floatValue];
 }
 
 @end

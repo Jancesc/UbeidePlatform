@@ -10,19 +10,29 @@
 
 @implementation NGGGameModel
 
-//"match_id": "2047622",
-//"start_time": "1512123606",
-//"h_name": "墨尔雄心",
-//"a_name": "珀斯光荣",
+//"bean": "1000",
+//"match_id": "102285",
+//"match_time": "1513540800",
+//"h_name": "里昂",
+//"a_name": "马赛",
+//"score": "1:2",
+//"status": "0",
 //"list": [
 -(instancetype)initWithInfo:(NSDictionary *)dict {
     
     if (self == [super initWithInfo:dict]) {
         
         _matchID = [dict stringForKey:@"match_id"];
-        _startTime = [dict stringForKey:@"start_time"];
+        _startTime = [dict stringForKey:@"match_time"];
         _homeName = [dict stringForKey:@"h_name"];
         _awayName = [dict stringForKey:@"a_name"];
+        _score = [dict stringForKey:@"score"];
+        _status = [dict stringForKey:@"status"];
+        
+        
+        [[NGGLoginSession activeSession] updateUserInfo:@{@"bean" : dict[@"bean"]}];
+        [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidModifyUserInfoNotificationName object:nil];
+        
         NSArray *sectionArray = [dict arrayForKey:@"list"];
         NSMutableArray *arrayM = [NSMutableArray array];
         for (NSInteger index = 0; index < [sectionArray count]; index++) {

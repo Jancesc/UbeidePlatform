@@ -13,10 +13,22 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NGGPreGuessDetailViewController">
             <connections>
                 <outlet property="_analyseButton" destination="cs1-Gf-4pR" id="58v-DY-we7"/>
+                <outlet property="_awayImageView" destination="cNv-NI-vKn" id="kaa-Pp-YEQ"/>
+                <outlet property="_awayLabel" destination="kcN-j9-M2W" id="qhO-Mp-alX"/>
+                <outlet property="_awayScore" destination="Gsk-9U-sLM" id="yDq-iO-hUv"/>
+                <outlet property="_beanLabel" destination="IMa-u5-obn" id="kb3-5B-XWq"/>
                 <outlet property="_collectionView" destination="4Yn-1v-xEw" id="cR9-5x-X48"/>
+                <outlet property="_dateLabel" destination="gRe-cK-o3u" id="FxW-GD-i15"/>
                 <outlet property="_guessButton" destination="djj-sf-T8F" id="7pV-S1-vHS"/>
+                <outlet property="_helpButton" destination="pFf-bu-FMf" id="mQT-zZ-0U1"/>
+                <outlet property="_homeImageView" destination="pf6-fd-2X6" id="otr-aV-CxO"/>
+                <outlet property="_homeLabel" destination="VAB-AX-heV" id="Trp-GC-eJc"/>
+                <outlet property="_homeScore" destination="due-f9-1de" id="YgE-he-Nmx"/>
                 <outlet property="_liveButton" destination="zaq-9q-fVL" id="aFn-12-31L"/>
+                <outlet property="_moreBeanButton" destination="wJr-Ld-gMa" id="bfA-5X-loN"/>
                 <outlet property="_pageSwitchTipsView" destination="jNj-Av-Gfx" id="Y1V-kv-8ci"/>
+                <outlet property="_recordButton" destination="xLK-UU-W1U" id="U9F-a9-55x"/>
+                <outlet property="_statusLabel" destination="DJn-I2-ryF" id="Tpr-qB-k57"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -31,7 +43,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C1F-sK-C5t">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="25"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未开赛" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rz1-Lw-207">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VS" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rz1-Lw-207">
                                     <rect key="frame" x="157" y="0.0" width="60" height="25"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="60" id="WTw-YE-ARL"/>
@@ -261,8 +273,8 @@
                                         <constraint firstAttribute="width" constant="20" id="O9d-Ro-J14"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10000金豆" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IMa-u5-obn">
-                                    <rect key="frame" x="30" y="0.0" width="70" height="40"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IMa-u5-obn">
+                                    <rect key="frame" x="30" y="0.0" width="13" height="40"/>
                                     <constraints>
                                         <constraint firstAttribute="width" priority="250" constant="60" id="HpU-zf-WdX"/>
                                     </constraints>
@@ -271,7 +283,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wJr-Ld-gMa">
-                                    <rect key="frame" x="100" y="1" width="40" height="39"/>
+                                    <rect key="frame" x="43" y="1" width="40" height="39"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="40" id="xS3-tB-wIQ"/>
                                     </constraints>

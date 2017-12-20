@@ -20,7 +20,7 @@
 
 #define NGGPrimaryColor UIColorWithRGB(0xed, 0x27, 0x27)
 #define NGGViceColor UIColorWithRGB(0xfd, 0xbf, 0x2c)
-#define NGGThirdColor UIColorWithRGB(0x4f, 0xe4, 0x06)
+#define NGGThirdColor UIColorWithRGB(0x47, 0xb2, 0x6b)
 
 #define NGGGlobalBGColor UIColorWithRGB(0xf0, 0xf0, 0xf0)
 #define NGGButtonDisableColor UIColorWithRGB(0xcc, 0xcc, 0xcc)

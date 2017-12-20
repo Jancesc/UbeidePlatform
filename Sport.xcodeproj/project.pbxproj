@@ -1643,6 +1643,7 @@
 		3D35EE521FB3070F00E01659 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				3DA2852A1FE91E3F0093E726 /* GuessRecord */,
 				3D25B4B01FB431EF00D20FB2 /* Analyse */,
 				3D35EC901FB2F78800E01659 /* NGGPreGuessDetailViewController.h */,
 				3D35EC911FB2F78800E01659 /* NGGPreGuessDetailViewController.m */,
@@ -1674,14 +1675,6 @@
 				3D74A29B1FE1225300108F06 /* NGGGuessOrderDoneView.h */,
 				3D74A29C1FE1225300108F06 /* NGGGuessOrderDoneView.m */,
 				3D74A2991FE1223F00108F06 /* NGGGuessOrderDoneView.xib */,
-				3DA2851D1FE7BD200093E726 /* NGGGuessRecordViewController.h */,
-				3DA2851E1FE7BD200093E726 /* NGGGuessRecordViewController.m */,
-				3DA2851F1FE7BD200093E726 /* NGGGuessRecordViewController.xib */,
-				3DA285251FE7CEA60093E726 /* NGGGuessRecordTableViewCell.h */,
-				3DA285261FE7CEA60093E726 /* NGGGuessRecordTableViewCell.m */,
-				3DA285271FE7CEA60093E726 /* NGGGuessRecordTableViewCell.xib */,
-				3DA285221FE7CCC60093E726 /* NGGGuessRecordModel.h */,
-				3DA285231FE7CCC60093E726 /* NGGGuessRecordModel.m */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -1811,6 +1804,21 @@
 				3DA19B2A1FDE6AF900B19257 /* LiveGuess */,
 			);
 			path = Guess;
+			sourceTree = "<group>";
+		};
+		3DA2852A1FE91E3F0093E726 /* GuessRecord */ = {
+			isa = PBXGroup;
+			children = (
+				3DA2851D1FE7BD200093E726 /* NGGGuessRecordViewController.h */,
+				3DA2851E1FE7BD200093E726 /* NGGGuessRecordViewController.m */,
+				3DA2851F1FE7BD200093E726 /* NGGGuessRecordViewController.xib */,
+				3DA285251FE7CEA60093E726 /* NGGGuessRecordTableViewCell.h */,
+				3DA285261FE7CEA60093E726 /* NGGGuessRecordTableViewCell.m */,
+				3DA285271FE7CEA60093E726 /* NGGGuessRecordTableViewCell.xib */,
+				3DA285221FE7CCC60093E726 /* NGGGuessRecordModel.h */,
+				3DA285231FE7CCC60093E726 /* NGGGuessRecordModel.m */,
+			);
+			path = GuessRecord;
 			sourceTree = "<group>";
 		};
 		3DC56B671FC3FB9F00F67C32 /* RecentRecord */ = {

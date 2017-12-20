@@ -7,6 +7,7 @@
 //
 
 #import "NGGGuessOrderDoneView.h"
+#import "JYCommonTool.h"
 
 @interface NGGGuessOrderDoneView () {
     
@@ -25,12 +26,47 @@
 
 @implementation NGGGuessOrderDoneView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (void)updateGuessOrderDoneViewWithInfo:(NSDictionary *)info {
+    
+//    @"itemName" : model.itemName,
+//    @"odds" : model.odds,
+//    @"bean" : currentUser.bean,
+//    @"itemSection" : model.sectionName,
+//    @"guessCount" : @(count).stringValue,
+//    @"money" : moneyString,
+//    @"profit" : profitString,
+    
+    _titleLabel.text = [info stringForKey:@"itemName"];
+    _oddsLabel.text = [NSString stringWithFormat:@"@%@", [info stringForKey:@"odds"]];
+    _sectionLabel.text = [NSString stringWithFormat:@"(%@)", [info stringForKey:@"itemSection"]];
+    _beanLabel.text = [NSString stringWithFormat:@"剩余：%@金豆", [info stringForKey:@"bean"]];
+    _timeLabel.text = [NSString stringWithFormat:@"已投%@次", [info stringForKey:@"guessCount"]];
+    _principleLabel.text = [NSString stringWithFormat:@"本金%@", [info stringForKey:@"money"]];
+    
+    _profitLabel.text = [NSString stringWithFormat:@"猜中盈利%@", [JYCommonTool stringDisposeWithFloat:[info floatForKey:@"profit"]]];
 }
-*/
+
+- (void)awakeFromNib {
+    
+    [super awakeFromNib];
+    [_additionButton addTarget:self action:@selector(handleAdditionButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [_closeButton addTarget:self action:@selector(closeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [_additionButton setBackgroundImage:[UIImage imageWithColor:NGGViceColor] forState:UIControlStateNormal];
+}
+    
+#pragma mark - button actions
+
+- (void)handleAdditionButtonClicked:(UIButton *) button {
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(guessOrderDoneViewDidClickAdditionButton)]) {
+        
+        [_delegate guessOrderDoneViewDidClickAdditionButton];
+    }
+}
+
+- (void)closeButtonClicked:(UIButton *) button {
+    
+    self.hidden = YES;
+}
 
 @end

@@ -20,7 +20,6 @@
         _itemID = [dict stringForKey:@"item"];
         _title = [dict stringForKey:@"title"];
         _odds = [dict stringForKey:@"odds"];
-
     }
     return self;
 }

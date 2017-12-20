@@ -16,5 +16,6 @@
 @property (nonatomic,strong) NSString *odds;
 @property (nonatomic,strong) NSString *money;
 @property (nonatomic,strong) NSString *profit;
+@property (nonatomic,strong) NSString *itemID;
 
 @end

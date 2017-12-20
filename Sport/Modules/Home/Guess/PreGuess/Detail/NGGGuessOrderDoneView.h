@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol NGGGuessOrderDoneViewDelegate <NSObject>
+
+- (void)guessOrderDoneViewDidClickAdditionButton;
+
+@end
+
 @interface NGGGuessOrderDoneView : UIView
+
+@property (nonatomic, strong) id <NGGGuessOrderDoneViewDelegate> delegate;
+
+- (void)updateGuessOrderDoneViewWithInfo:(NSDictionary *)info;
 
 @end
