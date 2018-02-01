@@ -345,7 +345,7 @@ static NSOperationQueue *sRequestQueue = nil;
 
 - (void)showEmptyViewInView:(UIView *)view {
     
-    if (_emptyView) {
+    if (_emptyView == nil) {
         
         _emptyView = [[NGGEmptyView alloc] initWithFrame:view.bounds];
     }
@@ -353,4 +353,13 @@ static NSOperationQueue *sRequestQueue = nil;
     _emptyView.frame = view.bounds;
     [view addSubview:_emptyView];
 }
+
+- (void)dismissEmptyView {
+    
+    if (_emptyView && _emptyView.superview) {
+        
+        [_emptyView removeFromSuperview];
+    }
+}
+
 @end

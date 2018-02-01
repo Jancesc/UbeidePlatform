@@ -47,7 +47,8 @@
     _model = model;
     _aboveLabel.text = model.title;
     _bottomLabel.text = model.odds;
-    
+    _disableView.hidden = model.guessable;
+
     if (_model.isGuessed) {
         
         [self updateUIForGuessed];

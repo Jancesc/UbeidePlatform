@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -27,7 +27,7 @@
 			<string>Social</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wxffbb158f276a034b</string>
+				<string>wxf9f835efedc68448</string>
 				<string>wb3330737535</string>
 				<string>tencent1104818852</string>
 				<string>NGGSport</string>
@@ -43,7 +43,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1.0.0</string>
+	<string>1.0.1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>qqmap</string>

@@ -47,7 +47,7 @@ static NSString *kGuessRecordCellIdentifier = @"guessRecordCell";
         
         _tableView.userInteractionEnabled = NO;
     }
-    [_tableView reloadData];
+    [self refreshUI];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -73,39 +73,107 @@ static NSString *kGuessRecordCellIdentifier = @"guessRecordCell";
         // Fallback on earlier versions
     }
     [self.view addSubview:_tableView];
-    
-    _homeLabel.text = _gameModel.homeName;
-    _awayLabel.text = _gameModel.awayName;
-    _scoreLabel.text = _gameModel.score;
-    _timeLabel.text = [JYCommonTool dateFormatWithInterval:_gameModel.startTime.integerValue format:@"yyyy-MM-dd HH:mm"];
-    if (_gameModel.profit < 0) {
-        
-        _profitLabel.textColor = NGGPrimaryColor;
-    } else {
-        
-        _profitLabel.textColor = NGGThirdColor;
-    }
-    _profitLabel.text = [JYCommonTool stringDisposeWithFloat:_gameModel.profit];
-    
-    _totalGuessLabel.text = [JYCommonTool stringDisposeWithFloat:_gameModel.count];
-    
-    if (_gameModel.winCount < 0) {
-        
-        _totalWinLabel.textColor = NGGPrimaryColor;
-    } else {
-        
-        _totalWinLabel.textColor = NGGThirdColor;
-    }
-    
-    _totalWinLabel.text = [JYCommonTool stringDisposeWithFloat:_gameModel.winCount];
-
-    if ([_arrayOfRecord count] == 0) {
-        
-        NGGEmptyView *emptyView = [[NGGEmptyView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, VIEW_H(_tableView))];
-        _tableView.backgroundView = emptyView;
-    }
 }
 
+- (void)setGameID:(NSString *)gameID {
+    
+    _gameID = gameID;
+    [self loadRecord];
+}
+
+- (void)loadRecord {
+    
+    [self showLoadingHUDWithText:nil];
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.playRecord" parameters:@{@"match_id" : _gameID} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self dismissHUD];
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showErrorHUDWithText:msg];
+        }];
+        if (dict) {
+            //            "h_name": "里昂",
+            //            "a_name": "马赛",
+            //            "match_time": "1513540800",
+            //            "score": "1:2",
+            //            "status": "0",
+            //            "profit": -10100,
+            //            "bean_total": 10100,
+            //            "win_total": 0
+            NSDictionary *gameInfo = [dict dictionaryForKey:@"match"];
+            _gameModel = [NGGGameModel new];
+            _gameModel.homeName = [gameInfo stringForKey:@"h_name"];
+            _gameModel.awayName = [gameInfo stringForKey:@"a_name"];
+            _gameModel.startTime = [gameInfo stringForKey:@"match_time"];
+            
+            NSArray *scoreArray = [gameInfo arrayForKey:@"score"];
+            if ([scoreArray count] == 0) {
+                
+                scoreArray = @[@"0", @"0"];
+            }
+            _gameModel.homeScore = [scoreArray firstObject];
+            _gameModel.awayScore = [scoreArray lastObject];
+            _gameModel.status = [dict stringForKey:@"status"];
+            _gameModel.profit = [dict floatForKey:@"profit"];
+            _gameModel.count = [dict floatForKey:@"bean_total"];
+            _gameModel.winCount = [dict floatForKey:@"win_total"];
+            
+            NSArray *guessedArray = [dict arrayForKey:@"record"];
+            NSMutableArray *arrayM = [NSMutableArray array];
+            for (NSInteger index = 0; index < [guessedArray count]; index++) {
+                
+                NGGGuessRecordModel *model = [[NGGGuessRecordModel alloc] initWithInfo:guessedArray[index]];
+                [arrayM addObject:model];
+            }
+            
+            _arrayOfRecord = [arrayM copy];
+            [self refreshUI];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [self dismissHUD];
+    }];
+}
+
+- (void)refreshUI {
+    
+    [_tableView reloadData];
+    
+    if (_gameModel) {
+        
+        _homeLabel.text = _gameModel.homeName;
+        _awayLabel.text = _gameModel.awayName;
+        _scoreLabel.text = [NSString stringWithFormat:@"%@ : %@", _gameModel.homeScore, _gameModel.awayScore];
+        _timeLabel.text = [JYCommonTool dateFormatWithInterval:_gameModel.startTime.integerValue format:@"yyyy-MM-dd HH:mm"];
+        
+        if (_gameModel.profit < 0) {
+            
+            _profitLabel.textColor = NGGPrimaryColor;
+        } else {
+            
+            _profitLabel.textColor = NGGThirdColor;
+        }
+        _profitLabel.text = [JYCommonTool stringDisposeWithFloat:_gameModel.profit];
+        
+        _totalGuessLabel.text = [JYCommonTool stringDisposeWithFloat:_gameModel.count];
+        
+        if (_gameModel.winCount < 0) {
+            
+            _totalWinLabel.textColor = NGGPrimaryColor;
+        } else {
+            
+            _totalWinLabel.textColor = NGGThirdColor;
+        }
+        
+        _totalWinLabel.text = [JYCommonTool stringDisposeWithFloat:_gameModel.winCount];
+        
+        if ([_arrayOfRecord count] == 0) {
+            
+            NGGEmptyView *emptyView = [[NGGEmptyView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, VIEW_H(_tableView))];
+            _tableView.backgroundView = emptyView;
+        }
+    }
+}
 #pragma mark - UITableViewDataSource && UITableViewDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

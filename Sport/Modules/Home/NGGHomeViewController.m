@@ -19,6 +19,10 @@
 #import "NGGGuessListViewController.h"
 #import "NGGNavigationController.h"
 #import "SCLAlertView.h"
+#import "NGGH5GameViewController.h"
+#import "MJRefresh.h"
+#import "UIImageView+WebCache.h"
+#import "JYCommonTool.h"
 
 static NSString *kBannerCellIdentifier = @"NGGHomeBannerCollectionViewCell";
 static NSString *kPageCellIdentifier = @"NGGHomePageMenuCollectionViewCell";
@@ -30,11 +34,18 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
 @interface NGGHomeViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
     
     UICollectionView *_collectionView;
-    UIPageControl *_pageControl;
-    UILabel *_noticelabel;
-    UIView *_networkFailedView;
     UICollectionViewFlowLayout *_flowLayout;
+    
+    UIImageView *_logoImageView;
+    UIImageView *_avatarImageView;
+    UILabel *_nicknameLabel;
+    UILabel *_coinLabel;
+    UILabel *_beanLabel;
+    UIImageView *_beanImageView;
 }
+
+@property (nonatomic, strong) NSArray *arrayOfNotice;
+@property (nonatomic, strong) NSArray *arrayOfBanner;
 
 @end
 
@@ -47,25 +58,24 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     self.view = [[UIView alloc] initWithFrame:SCREEN_BOUNDS];
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - TAB_BAR_HEIGHT - STATUS_BAR_HEIGHT) collectionViewLayout:flowLayout];
+    _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + NAVIGATION_BAR_HEIGHT + 15, SCREEN_WIDTH, SCREEN_HEIGHT - TAB_BAR_HEIGHT - STATUS_BAR_HEIGHT) collectionViewLayout:flowLayout];
     if (isIphoneX) {
         
         _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - TAB_BAR_HEIGHT - STATUS_BAR_HEIGHT) collectionViewLayout:flowLayout];
     } else {
         
-       _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - TAB_BAR_HEIGHT) collectionViewLayout:flowLayout];
+       _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + NAVIGATION_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - TAB_BAR_HEIGHT- (STATUS_BAR_HEIGHT + NAVIGATION_BAR_HEIGHT)) collectionViewLayout:flowLayout];
         
     }
     
-    UIView *statusbarBG = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, STATUS_BAR_HEIGHT)];
-    statusbarBG.backgroundColor = NGGPrimaryColor;
+//    UIView *statusbarBG = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, STATUS_BAR_HEIGHT)];
+//    statusbarBG.backgroundColor = NGGPrimaryColor;
     
-    UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
-    visualEffectView.frame = statusbarBG.bounds;
-    visualEffectView.alpha = 0.6;
-    [statusbarBG addSubview:visualEffectView];
-    [self.view addSubview:statusbarBG];
-    
+//    UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc] initWithEffect:[UIBlurEffect effectWithStyle:UIBlurEffectStyleLight]];
+//    visualEffectView.frame = statusbarBG.bounds;
+//    visualEffectView.alpha = 0.6;
+//    [statusbarBG addSubview:visualEffectView];
+//    [self.view addSubview:statusbarBG];
     [_collectionView registerNib:[UINib nibWithNibName:@"NGGHomeBannerCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kBannerCellIdentifier];
     [_collectionView registerNib:[UINib nibWithNibName:@"NGGHomePageMenuCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kPageCellIdentifier];
     [_collectionView registerNib:[UINib nibWithNibName:@"NGGHomeNoticeCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kNoticeCellIdentifier];
@@ -81,6 +91,8 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     _collectionView.delegate = self;
     _collectionView.backgroundColor = [UIColor clearColor];
     _collectionView.showsVerticalScrollIndicator = NO;
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHomePageData)];
+    _collectionView.mj_header = header;
     [self.view addSubview:_collectionView];
 }
 
@@ -89,19 +101,8 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     // Do any additional setup after loading the view.
     self.automaticallyAdjustsScrollViewInsets = NO;
 //    self.view.backgroundColor = NGGPrimaryColor;
-//    [self configureNavigationBar];
-}
-
--(void)viewDidAppear:(BOOL)animated {
-    
-    [super viewDidAppear:animated];
-    self.navigationController.navigationBar.hidden = YES;
-}
-
--(void)viewDidDisappear:(BOOL)animated {
-    
-    [super viewDidDisappear:animated];
-//    self.navigationController.navigationBar.hidden = NO;
+    [self configureNavigationBar];
+    [self refreshHomePageData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -113,15 +114,12 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     
     self.navigationItem.title = nil;
     
-    UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 100, 44)];
-//    rightView.backgroundColor = NGGRandomColor;
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithCustomView:rightView];
-    UIBarButtonItem *rightFixedSpace = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:NULL];
-    rightFixedSpace.width = -15;
-    self.navigationItem.rightBarButtonItems = @[rightFixedSpace,rightBarButton];
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 50)];
+    
+    UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(100, 0, VIEW_W(titleView) - 110, 50)];
 
     CGFloat buttonWidth = 45;
-    UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(VIEW_W(rightView) - buttonWidth, 0, buttonWidth, 44)];
+    UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(VIEW_W(rightView) - buttonWidth, 0, buttonWidth, 50)];
     [shareButton setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
     [rightView addSubview:shareButton];
     
@@ -135,12 +133,14 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
         make.width.mas_equalTo(5).with.priority(800);
         make.height.mas_equalTo(20);
     }];
+    
     [nameLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
     nameLabel.textColor = [UIColor whiteColor];
     nameLabel.textAlignment = NSTextAlignmentRight;
-    nameLabel.text = @"游客6930000000065";
+    nameLabel.text = @"游客，你好";
     nameLabel.font = [UIFont systemFontOfSize:12];
-
+    _nicknameLabel = nameLabel;
+    
     UILabel *goldLabel = [[UILabel alloc] init];
     [rightView addSubview:goldLabel];
     [goldLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -153,8 +153,9 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     [goldLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
     goldLabel.textColor = [UIColor whiteColor];
     goldLabel.textAlignment = NSTextAlignmentRight;
-    goldLabel.text = @"50";
+    goldLabel.text = @"0 ";
     goldLabel.font = [UIFont systemFontOfSize:12];
+    _coinLabel = goldLabel;
     
     UIImageView *goldImageView = [[UIImageView alloc] init];
     [rightView addSubview:goldImageView];
@@ -180,8 +181,9 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     [beanLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisHorizontal];
     beanLabel.textColor = [UIColor whiteColor];
     beanLabel.textAlignment = NSTextAlignmentRight;
-    beanLabel.text = @"1200000";
+    beanLabel.text = @"0 ";
     beanLabel.font = [UIFont systemFontOfSize:12];
+    _beanLabel = beanLabel;
     
     UIImageView *beanImageView = [[UIImageView alloc] init];
     [rightView addSubview:beanImageView];
@@ -194,14 +196,19 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     }];
     beanImageView.contentMode = UIViewContentModeScaleAspectFit;
     beanImageView.image = [UIImage imageNamed:@"home_bean"];
-
+    _beanImageView = beanImageView;
     UIImageView *avatarImageView = [[UIImageView alloc] init];
     [rightView addSubview:avatarImageView];
+   
+    CGFloat nameWidth = [JYCommonTool calculateStringWidth:_nicknameLabel.text maxSize:CGSizeMake(VIEW_W(titleView) - 250, 20) fontSize:12];
+    CGFloat coinWidth = [JYCommonTool calculateStringWidth:_coinLabel.text maxSize:CGSizeMake(VIEW_W(titleView) - 250, 20) fontSize:12];
+    CGFloat beanWidth = [JYCommonTool calculateStringWidth:_beanLabel.text maxSize:CGSizeMake(VIEW_W(titleView) - 250, 20) fontSize:12];
+    CGFloat bottomWidth = 22 + coinWidth + beanWidth;
     [avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         
         make.top.bottom.equalTo(rightView);
         make.width.mas_equalTo(30);
-        if (nameLabel.text.length > (beanLabel.text.length + goldLabel.text.length + 3)) {
+        if (nameWidth > bottomWidth) {
             
             make.right.equalTo(nameLabel.mas_left).with.offset(-7);
         } else {
@@ -213,18 +220,110 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     avatarImageView.contentMode = UIViewContentModeScaleAspectFit;
     avatarImageView.layer.masksToBounds = YES;
     avatarImageView.layer.cornerRadius = 15;
+    _avatarImageView = avatarImageView;
+    
     UIImageView *logoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     logoView.image = [UIImage imageNamed:@"icon"];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:logoView];;
+    _logoImageView = logoView;
+    
+    self.navigationItem.titleView = titleView;
+    [titleView addSubview:rightView];
+    [titleView addSubview:logoView];
 }
 
 #pragma mark - private methods
+
+- (void)refreshHomePageData {
+    
+    [self showLoadingHUDWithText:nil];
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=home.index" parameters:nil willContainsLoginSession:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [_collectionView.mj_header endRefreshing];
+        [self dismissHUD];
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showErrorHUDWithText:msg];
+        }];
+        if (dict) {
+            _arrayOfBanner = [dict arrayForKey:@"banner"];
+            _arrayOfNotice = [dict arrayForKey:@"notice"];
+            [self refreshUI];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [_collectionView.mj_header endRefreshing];
+        [self dismissHUD];
+    }];
+    
+}
+
+- (void)updateUserInfo {
+    
+    if ([NGGLoginSession activeSession].currentUser) {
+        
+        [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=user.userInfo" parameters:nil willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+            
+            [self dismissHUD];
+            NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+                
+                [self showErrorHUDWithText:msg];
+            }];
+            if (dict) {
+                
+                NGGUser *currentUser = [NGGLoginSession activeSession].currentUser;
+                currentUser.uid = dict[@"uid"];
+                currentUser.phone = dict[@"phone"];
+                currentUser.nickname = dict[@"nickname"];
+                currentUser.avatarURL = dict[@"avatar_img"];
+                currentUser.sex = dict[@"sex"];
+                currentUser.coin = dict[@"coin"];
+                currentUser.bean = dict[@"bean"];
+                currentUser.point = dict[@"score"];
+                currentUser.invitationCode = dict[@"Invite_code"];
+                [self refreshUI];
+            }
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            
+        }];
+    }
+}
+
+- (void)refreshUI {
+    
+    [_collectionView reloadData];
+    
+    NGGUser *currentUser = [NGGLoginSession activeSession].currentUser;
+    if (currentUser) {
+  
+        NSURL *avatarURL = [[NSURL alloc] initWithString:currentUser.avatarURL];
+        [_avatarImageView sd_setImageWithURL:avatarURL placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
+        _nicknameLabel.text = currentUser.nickname;
+        _beanLabel.text = currentUser.bean;
+        _coinLabel.text = currentUser.coin;
+        
+        CGFloat nameWidth = [JYCommonTool calculateStringWidth:_nicknameLabel.text maxSize:CGSizeMake(SCREEN_WIDTH - 280, 20) fontSize:12];
+        CGFloat coinWidth = [JYCommonTool calculateStringWidth:_coinLabel.text maxSize:CGSizeMake(SCREEN_WIDTH - 280, 20) fontSize:12];
+        CGFloat beanWidth = [JYCommonTool calculateStringWidth:_beanLabel.text maxSize:CGSizeMake(SCREEN_WIDTH - 280, 20) fontSize:12];
+        CGFloat bottomWidth = 22 + coinWidth + beanWidth;
+        
+        [_avatarImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+            if (nameWidth > bottomWidth) {
+                
+                make.right.equalTo(_nicknameLabel.mas_left).with.offset(-7);
+            } else {
+                make.right.equalTo(_beanImageView.mas_left).with.offset(-7);
+                
+            }
+        }];
+    }
+}
 
 - (void)bannerImageTapped:(NSInteger)index {
     
     
 }
-static SCLAlertView *alertView;
+
 - (void)PageItemTapped:(NSInteger)index {
     
     if (index == 1) {
@@ -256,20 +355,12 @@ static SCLAlertView *alertView;
         }];
     } else if (index == 5) {
         
-        SCLAlertView *alert = [[SCLAlertView alloc] initWithNewWindow];
-        [alert setHorizontalButtons:YES];
-        [alert removeTopCircle];
-        SCLButton *button = [alert addButton:@"First Button" target:self selector:@selector(firstButton)];
-        button.buttonFormatBlock = ^NSDictionary* (void)
-        {
-            NSMutableDictionary *buttonConfig = [[NSMutableDictionary alloc] init];
-            buttonConfig[@"backgroundColor"] = NGGViceColor;
-            buttonConfig[@"textColor"] = [UIColor blackColor];
-            buttonConfig[@"font"] = [UIFont fontWithName:@"ComicSansMS" size:14];
+        NGGH5GameViewController *controller = [NGGH5GameViewController new];
+        controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+
+        [self presentViewController:controller animated:YES completion:^{
             
-            return buttonConfig;
-        };
-        [alert showSuccess:@"title" subTitle:@"subtitle" closeButtonTitle:@"cancle " duration:0.0f];
+        }];
     }
     
 }
@@ -292,21 +383,27 @@ static SCLAlertView *alertView;
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section == 0) {
-        
+
         NGGHomeBannerCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kBannerCellIdentifier forIndexPath:indexPath];
-        cell.arrayOfURL = @[@"http://att.bbs.duowan.com/forum/month_0907/20090716_0548c4e0d479a47db1119C2GlGesPGeH.jpg",
-                            @"http://img.61gequ.com/allimg/170227/149516-1F22G62045230.jpg"];
         
+        NSMutableArray *arrayM= [NSMutableArray array];
+        for(NSInteger index = 0; index < [_arrayOfBanner count]; index++) {
+
+            NSDictionary *noticeDict = _arrayOfBanner[index];
+            [arrayM addObject:[noticeDict stringForKey:@"pic"]];
+        }
+        cell.arrayOfURL = [arrayM copy];
+
         NGGWeakSelf
         cell.imageTappedHandler = ^(NSInteger index) {
-            
-            
+
+
             [weakSelf bannerImageTapped:index];
         };
-        
+
         return cell;
     } else if (indexPath.section == 1) {
-        
+    
         NGGHomePageMenuCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kPageCellIdentifier forIndexPath:indexPath];
         
         NGGWeakSelf
@@ -318,8 +415,14 @@ static SCLAlertView *alertView;
     } else if (indexPath.section == 2) {
         
         NGGHomeNoticeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kNoticeCellIdentifier forIndexPath:indexPath];
-        cell.arrayOfNotice = @[@"http://att.bbs.duowan.com/forum/month_0907/20090716_0548c4e0d479a47db1119C2GlGesPGeH.jpg",
-                               @"http://img.61gequ.com/allimg/170227/149516-1F22G62045230.jpg"];
+        NSMutableArray *arrayM= [NSMutableArray array];
+        for(NSInteger index = 0; index < [_arrayOfNotice count]; index++) {
+            
+            NSDictionary *noticeDict = _arrayOfNotice[index];
+            [arrayM addObject:[noticeDict stringForKey:@"notice"]];
+        }
+        
+        cell.arrayOfNotice = [arrayM copy];
         return cell;
     } else if (indexPath.section == 3) {
         
@@ -335,12 +438,7 @@ static SCLAlertView *alertView;
     
     if (kind == UICollectionElementKindSectionHeader) {
        
-        if (indexPath.section == 0) {
-            
-            NGGHomeHeaderReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kHomeHeaderIdentifier forIndexPath:indexPath];
-            return view;
-        }
-        else if (indexPath.section == 3) {
+         if (indexPath.section == 3) {
             
             NGGHomeActivityHeaderReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kActivityHeaderReusableViewIdentifier forIndexPath:indexPath];
             return view;
@@ -372,10 +470,7 @@ static SCLAlertView *alertView;
 }
 - (CGSize) collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    if (section == 0) {
-        
-        return CGSizeMake(SCREEN_WIDTH, 50);
-    } else  if (section == 3) {
+    if (section == 3) {
         
          return CGSizeMake(SCREEN_WIDTH, 40);
     }

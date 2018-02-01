@@ -12,6 +12,7 @@
 #import "NGGTaskViewController.h"
 #import "NGGUserViewController.h"
 #import "NGGShopViewController.h"
+#import "NGGNavigationBar.h"
 
 @interface NGGTabBarController ()
 
@@ -36,20 +37,25 @@
 - (void)configure {
 
     NGGHomeViewController *homeVC = [[NGGHomeViewController alloc] init];
-    [self configueVCTabbarItem:homeVC title:@"投注大厅" imageName:@"tabbar_home" selectedImageName:@"tabbar_home_selected" tabbarName:@"投注大厅"];
+    NGGNavigationController *homeNav = [[NGGNavigationController alloc] initWithNavigationBarClass:[NGGNavigationBar class] toolbarClass:[UIToolbar class]];
+    
+    NGGNavigationBar *bar = (NGGNavigationBar *)homeNav.navigationBar;
+    bar.changeBarHeight = YES;
+    [homeNav pushViewController:homeVC animated:NO];
+    [self configueVCTabbarItem:homeNav title:nil imageName:@"tabbar_home" selectedImageName:@"tabbar_home_selected" tabbarName:@"投注大厅"];
     
     NGGTaskViewController *taskVC = [[NGGTaskViewController alloc] init];
     NGGNavigationController *taskNav = [self configueTabbarItem:taskVC title:@"每日任务" imageName:@"tabbar_task" selectedImageName:@"tabbar_task_selected" tabbarName:@"每日任务"];
     
     
     NGGShopViewController *shopVC = [[NGGShopViewController alloc] initWithNibName:@"NGGShopViewController" bundle:nil];
-    NGGNavigationController *shopNav = [self configueTabbarItem:shopVC title:@"金币抽奖" imageName:@"tabbar_shop" selectedImageName:@"tabbar_shop_selected" tabbarName:@"商城"];
+    NGGNavigationController *shopNav = [self configueTabbarItem:shopVC title:@"金豆抽奖" imageName:@"tabbar_shop" selectedImageName:@"tabbar_shop_selected" tabbarName:@"商城"];
     
     NGGUserViewController *userVC = [[NGGUserViewController alloc] initWithNibName:@"NGGUserViewController" bundle:nil];
     NGGNavigationController *userNav = [self configueTabbarItem:userVC title:@"个人中心" imageName:@"tabbar_user" selectedImageName:@"tabbar_user_selected" tabbarName:@"个人中心"];
 
     
-    [self setViewControllers:@[homeVC, taskNav, shopNav, userNav]];
+    [self setViewControllers:@[homeNav, shopNav, userNav]];
 
     //设置tabbar为黑色
     [[UITabBar appearance] setBarTintColor:UIColorWithRGB(0xf1, 0xf1, 0xf1)];
@@ -84,7 +90,8 @@
     selectedImage = [selectedImage imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     childVC.tabBarItem.selectedImage = selectedImage;
     
-    NGGNavigationController *nav = [[NGGNavigationController alloc] initWithRootViewController:childVC];
+    NGGNavigationController *nav = [[NGGNavigationController alloc] initWithNavigationBarClass:[NGGNavigationBar class] toolbarClass:[UIToolbar class]];
+    [nav pushViewController:childVC animated:NO];
     
     return nav;
 }

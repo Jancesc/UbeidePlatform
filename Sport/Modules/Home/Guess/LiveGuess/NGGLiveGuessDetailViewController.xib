@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -338,9 +338,18 @@
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bOM-7F-Wae">
                             <rect key="frame" x="0.0" y="50" width="375" height="115"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="detail_bg" translatesAutoresizingMaskIntoConstraints="NO" id="0p4-bh-tNv">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="115"/>
+                                </imageView>
+                            </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="0p4-bh-tNv" firstAttribute="leading" secondItem="bOM-7F-Wae" secondAttribute="leading" id="3lu-15-E11"/>
+                                <constraint firstAttribute="bottom" secondItem="0p4-bh-tNv" secondAttribute="bottom" id="JnI-6d-e91"/>
                                 <constraint firstAttribute="height" constant="115" id="OpL-ut-V1F"/>
+                                <constraint firstAttribute="trailing" secondItem="0p4-bh-tNv" secondAttribute="trailing" id="PgJ-0X-jsH"/>
+                                <constraint firstItem="0p4-bh-tNv" firstAttribute="top" secondItem="bOM-7F-Wae" secondAttribute="top" id="nAu-04-QLJ"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -387,6 +396,7 @@
         <image name="add" width="14" height="14"/>
         <image name="bean" width="43" height="43"/>
         <image name="clock" width="12" height="12"/>
+        <image name="detail_bg" width="378" height="155"/>
         <image name="detail_notice" width="18" height="15"/>
     </resources>
 </document>

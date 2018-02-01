@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="NGGHomeNoticeCollectionViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="501" height="305"/>
+            <rect key="frame" x="0.0" y="0.0" width="510" height="70"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="501" height="305"/>
+                <rect key="frame" x="0.0" y="0.0" width="510" height="70"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0N0-0v-Myq">
@@ -26,10 +26,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XcH-Hn-He8">
-                        <rect key="frame" x="0.0" y="0.0" width="106" height="305"/>
+                        <rect key="frame" x="0.0" y="0.0" width="106" height="70"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j1A-Lm-v1b">
-                                <rect key="frame" x="10" y="0.0" width="75" height="305"/>
+                                <rect key="frame" x="10" y="0.0" width="75" height="70"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="BD2-bH-uKL"/>
@@ -40,7 +40,7 @@
                                 </state>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ckO-Sv-saX">
-                                <rect key="frame" x="95" y="0.0" width="0.5" height="305"/>
+                                <rect key="frame" x="95" y="0.0" width="0.5" height="70"/>
                                 <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="0.5" id="6y7-yK-3iQ"/>
@@ -59,14 +59,14 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5G8-JD-WIx">
-                        <rect key="frame" x="0.0" y="0.0" width="501" height="1"/>
+                        <rect key="frame" x="0.0" y="0.0" width="510" height="1"/>
                         <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="0.5" id="KY6-im-1ng"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yVX-kA-xME">
-                        <rect key="frame" x="491" y="1" width="10" height="304"/>
+                        <rect key="frame" x="500" y="1" width="10" height="69"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="10" id="HdJ-pG-0d7"/>
@@ -86,11 +86,11 @@
                 <constraint firstAttribute="bottom" secondItem="XcH-Hn-He8" secondAttribute="bottom" id="gXD-IO-Twk"/>
                 <constraint firstAttribute="trailing" secondItem="5G8-JD-WIx" secondAttribute="trailing" id="wbs-8Z-4Gv"/>
             </constraints>
-            <size key="customSize" width="501" height="301"/>
+            <size key="customSize" width="510" height="66"/>
             <connections>
                 <outlet property="noticeLabel" destination="0N0-0v-Myq" id="FbE-iS-OFc"/>
             </connections>
-            <point key="canvasLocation" x="54.5" y="156.5"/>
+            <point key="canvasLocation" x="59" y="39"/>
         </collectionViewCell>
     </objects>
     <resources>

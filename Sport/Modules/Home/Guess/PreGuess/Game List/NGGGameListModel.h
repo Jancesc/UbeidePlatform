@@ -15,5 +15,6 @@
 @property (nonatomic, copy) NSString *homeName;
 @property (nonatomic, copy) NSString *awayName;
 @property (nonatomic, copy) NSString *timeString;
-
+@property (nonatomic, copy) NSString *homeLogo;
+@property (nonatomic, copy) NSString *awayLogo;
 @end

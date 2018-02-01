@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NGGRecordViewController">
+            <connections>
+                <outlet property="_segmentControl" destination="Mqf-by-toC" id="Po3-N6-Ypa"/>
+                <outlet property="_tableView" destination="auU-61-lER" id="OFw-yC-Fd1"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Mqf-by-toC">
+                    <rect key="frame" x="15" y="74" width="345" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="HqB-bF-hoR"/>
+                    </constraints>
+                    <segments>
+                        <segment title="赛前"/>
+                        <segment title="滚球"/>
+                    </segments>
+                </segmentedControl>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="auU-61-lER">
+                    <rect key="frame" x="0.0" y="119" width="375" height="548"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="0.91764705882352937" green="0.91764705882352937" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="auU-61-lER" firstAttribute="top" secondItem="Mqf-by-toC" secondAttribute="bottom" constant="10" id="Hkc-SP-mL7"/>
+                <constraint firstItem="Mqf-by-toC" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="74" id="Kkf-nf-8z3"/>
+                <constraint firstAttribute="trailing" secondItem="auU-61-lER" secondAttribute="trailing" id="LFf-RH-fDR"/>
+                <constraint firstAttribute="bottom" secondItem="auU-61-lER" secondAttribute="bottom" id="YKV-OE-QpN"/>
+                <constraint firstItem="auU-61-lER" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="iip-Dx-eIV"/>
+                <constraint firstAttribute="trailing" secondItem="Mqf-by-toC" secondAttribute="trailing" constant="15" id="mhs-Xg-rl0"/>
+                <constraint firstItem="Mqf-by-toC" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="nR6-F3-VDT"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

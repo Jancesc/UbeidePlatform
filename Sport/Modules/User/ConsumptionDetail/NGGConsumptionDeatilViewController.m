@@ -24,8 +24,8 @@ static NSString *kNGGConsumptionCellIdentifier = @"NGGConsumptionTableViewCell";
 }
 
 @property (nonatomic, strong) NSString *URL;
-@property (nonatomic, strong) NSArray *arrayOfReceive;
-@property (nonatomic, strong) NSArray *arrayOfSpent;
+@property (nonatomic, strong) NSMutableArray *arrayOfReceive;
+@property (nonatomic, strong) NSMutableArray *arrayOfSpent;
 
 @end
 
@@ -81,7 +81,7 @@ static NSString *kNGGConsumptionCellIdentifier = @"NGGConsumptionTableViewCell";
     _segmentControl.clipsToBounds = YES;
     _segmentControl.layer.borderWidth = 1.f;
     [_segmentControl addTarget:self action:@selector(segmentControlValueChanged:) forControlEvents:UIControlEventValueChanged];
-    _tableView.separatorColor = NGGSeparatorColor;
+    _tableView.separatorColor = NGGColorCCC;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     _tableView.rowHeight = 60.f;
     _tableView.delegate = self;
@@ -103,8 +103,13 @@ static NSString *kNGGConsumptionCellIdentifier = @"NGGConsumptionTableViewCell";
     footerLabel.textAlignment = NSTextAlignmentCenter;
     _footerLabel = footerLabel;
     
-    NGGEmptyView *emptyView = [[NGGEmptyView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, VIEW_H(_tableView))];
-    _tableView.backgroundView = emptyView;
+    UIView *separator = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
+    separator.backgroundColor = NGGColorCCC;
+    [footerLabel addSubview:separator];
+    
+//
+//    NGGEmptyView *emptyView = [[NGGEmptyView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, VIEW_H(_tableView))];
+//    _tableView.backgroundView = emptyView;
 }
 
 #pragma mark - private methods
@@ -124,23 +129,28 @@ static NSString *kNGGConsumptionCellIdentifier = @"NGGConsumptionTableViewCell";
     [[NGGHTTPClient defaultClient] postPath:_URL parameters:params willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [_tableView.mj_footer endRefreshing];
-        NSArray *dataArray = [self arrayData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
             
             [self showErrorHUDWithText:msg];
         }];
-        if (dataArray) {
+        
+        if (dict) {
             
+            NSArray *dataArray = nil;
             if (_segmentControl.selectedSegmentIndex == 0) {
                 
-                _arrayOfReceive = dataArray;
+                dataArray = [dict arrayForKey:@"income"];
+                [_arrayOfReceive addObjectsFromArray: dataArray];
             } else {
                 
-                _arrayOfSpent = dataArray;
+                dataArray = [dict arrayForKey:@"consume"];
+                [_arrayOfSpent addObjectsFromArray: dataArray];
             }
+            
             [_tableView reloadData];
-            if ([dataArray count] <NGGMaxCountPerPage) {
+            if ([dataArray count] < NGGMaxCountPerPage) {
                 
-                [_tableView.mj_footer endRefreshing];
+                _tableView.mj_footer = nil;
                 _tableView.tableFooterView = _footerLabel;
             }
         }
@@ -158,20 +168,42 @@ static NSString *kNGGConsumptionCellIdentifier = @"NGGConsumptionTableViewCell";
     [[NGGHTTPClient defaultClient] postPath:_URL parameters:params willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [self dismissHUD];
-        NSArray *dataArray = [self arrayData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
             
             [self showErrorHUDWithText:msg];
         }];
-        if (dataArray) {
-            
-            if (_segmentControl.selectedSegmentIndex == 0) {
-                
-                _arrayOfReceive = dataArray;
+        if (dict) {
+
+            if (_isBean) {
+                _countLabel.text = [dict stringForKey:@"bean"];
             } else {
                 
-                _arrayOfSpent = dataArray;
+                _countLabel.text = [dict stringForKey:@"coin"];
             }
+            
+            NSArray *dataArray = nil;
+            if (_segmentControl.selectedSegmentIndex == 0) {
+                
+                dataArray = [dict arrayForKey:@"income"];
+                _arrayOfReceive = [dataArray mutableCopy];
+            } else {
+                
+                dataArray = [dict arrayForKey:@"consume"];
+                _arrayOfSpent = [dataArray mutableCopy];
+            }
+            
             [_tableView reloadData];
+
+            NSInteger arrayCount = [dataArray count];
+            if (arrayCount == 0) {
+                
+                [self showEmptyViewInView:_tableView];
+                _tableView.tableFooterView = nil;
+            } else {
+                
+                [self dismissEmptyView];
+            }
+            
             if ([dataArray count] == NGGMaxCountPerPage) {
                 
                 [self setupLoadMoreFooter];
@@ -190,9 +222,26 @@ static NSString *kNGGConsumptionCellIdentifier = @"NGGConsumptionTableViewCell";
     
     [_tableView reloadData];
     NSArray *array = _segmentControl.selectedSegmentIndex == 0 ? _arrayOfReceive : _arrayOfSpent;
+    NSInteger arrayCount = [array count];
     if (array == nil) {
         
         [self loadData];
+    }
+    if (arrayCount == 0) {
+        
+        [self showEmptyViewInView:_tableView];
+        _tableView.tableFooterView = nil;
+    } else {
+        
+        [self dismissEmptyView];
+    }
+    
+    if (arrayCount > 0 && arrayCount % NGGMaxCountPerPage == 0) {
+        
+        [self setupLoadMoreFooter];
+    } else {
+        
+        _tableView.mj_footer = nil;
     }
 }
 
@@ -219,6 +268,12 @@ static NSString *kNGGConsumptionCellIdentifier = @"NGGConsumptionTableViewCell";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     
+//    NSArray *array = _segmentControl.selectedSegmentIndex == 0 ? _arrayOfReceive : _arrayOfSpent;
+//
+//    if ([array count] > 0) {
+//        
+//        return 1.0f;
+//    }
     return 0.01f;
 }
 
@@ -229,6 +284,14 @@ static NSString *kNGGConsumptionCellIdentifier = @"NGGConsumptionTableViewCell";
 
 - (nullable UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     
+//    NSArray *array = _segmentControl.selectedSegmentIndex == 0 ? _arrayOfReceive : _arrayOfSpent;
+//
+//    if ([array count] > 0) {
+//
+//        UIView *separator = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 0.5)];
+//        separator.backgroundColor = NGGSeparatorColor;
+//        return separator;
+//    }
     return nil;
 }
 

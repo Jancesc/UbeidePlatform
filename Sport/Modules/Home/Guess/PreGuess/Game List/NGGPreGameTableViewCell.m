@@ -8,6 +8,7 @@
 
 #import "NGGPreGameTableViewCell.h"
 #import "JYCommonTool.h"
+#import "UIImageView+WebCache.h"
 
 @interface NGGPreGameTableViewCell() {
 
@@ -47,10 +48,22 @@
 - (void)setModel:(NGGGameListModel *)model {
     
     _model = model;
-    _timeLabel.text = [JYCommonTool dateFormatWithInterval:_model.timeString.integerValue format:@"hh:mm"];
+    _timeLabel.text = [JYCommonTool dateFormatWithInterval:_model.timeString.integerValue format:@"HH:mm"];
     _homeLabel.text = _model.homeName;
     _awayLabel.text = _model.awayName;
     _leagueLabel.text = _model.leagueName;
+    [_awayImageView sd_setImageWithURL:[NSURL URLWithString:_model.awayLogo] placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
+    [_homeImageVIew sd_setImageWithURL:[NSURL URLWithString:_model.homeLogo] placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
+
+    NSInteger currentTimeStamp = [[NSDate date] timeIntervalSince1970];
+    NSInteger gameTimeStamp = model.timeString.integerValue;
+    if (gameTimeStamp - currentTimeStamp > 4 * 60) {
+        
+        [_liveButton setBackgroundImage:[UIImage imageWithColor:NGGColorCCC] forState:UIControlStateNormal];
+     } else {
+         
+         [_liveButton setBackgroundImage:[UIImage imageWithColor:NGGPrimaryColor] forState:UIControlStateNormal];
+     }
 }
 
 @end

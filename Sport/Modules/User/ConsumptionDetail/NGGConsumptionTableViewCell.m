@@ -7,6 +7,8 @@
 //
 
 #import "NGGConsumptionTableViewCell.h"
+#import "JYCommonTool.h"
+
 @interface NGGConsumptionTableViewCell (){
     
     __weak IBOutlet UILabel *_titleLabel;
@@ -29,6 +31,39 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)setCellInfo:(NSDictionary *)cellInfo {
+    
+//    "bean": "1000",
+//    "title": "金币兑换",
+//    "explain": "金币兑换获得金豆10000000",
+//    "ct": "1512165810"
+    _cellInfo = cellInfo;
+    _titleLabel.text = [cellInfo stringForKey:@"title"];
+    _descriptionLabel.text = [cellInfo stringForKey:@"explain"];
+
+    NSString *countString = nil;
+    if ([[cellInfo allKeys] containsObject:@"coin"]) {
+        
+        countString = [cellInfo stringForKey:@"coin"];
+    } else {
+     
+        countString = [cellInfo stringForKey:@"bean"];;
+    }
+    
+    if ([countString containsString:@"-"]) {
+       
+        _countLabel.textColor = NGGPrimaryColor;
+        _countLabel.text = countString;
+    } else {
+        
+        _countLabel.textColor = NGGThirdColor;
+        _countLabel.text = [NSString stringWithFormat:@"+%@", countString];
+    }
+    _timeLabel.text = [JYCommonTool dateFormatWithInterval:[cellInfo intForKey:@"ct"] format:@"HH:mm:ss"];
+    _dateLabel.text = [JYCommonTool dateFormatWithInterval:[cellInfo intForKey:@"ct"] format:@"yyyy:MM:dd"];
+
 }
 
 @end

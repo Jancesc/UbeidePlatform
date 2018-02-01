@@ -53,5 +53,5 @@
 
 // show EmptyView
 - (void)showEmptyViewInView:(UIView *)view;
-
+- (void)dismissEmptyView;
 @end

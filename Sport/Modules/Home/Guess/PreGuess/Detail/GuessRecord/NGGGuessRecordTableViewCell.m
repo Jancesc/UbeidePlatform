@@ -38,7 +38,7 @@
     
     _model = model;
     
-    _timeLabel.text = [JYCommonTool dateFormatWithInterval:_model.timeStamp.integerValue format:@"hh:mm"];
+    _timeLabel.text = [JYCommonTool dateFormatWithInterval:_model.timeStamp.integerValue format:@"HH:mm"];
     _typeLabel.text = _model.sectionName;
     _itemLabel.text = _model.itemName;
     _oddsLabel.text = [JYCommonTool stringDisposeWithFloat:_model.odds.floatValue];

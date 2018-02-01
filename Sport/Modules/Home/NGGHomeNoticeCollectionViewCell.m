@@ -34,20 +34,25 @@
     _index++;
     
     NGGWeakSelf
-    [UIView animateWithDuration:textWidth / 40 animations:^{
     
+    [UIView animateWithDuration:(SCREEN_WIDTH - 106 + textWidth) / 60.0 delay:0.5 options:UIViewAnimationOptionCurveLinear animations:^{
+       
         _noticeLabel.frame = cgrX(_noticeLabel.frame, 106 - textWidth);
     } completion:^(BOOL finished) {
-    
+
         [weakSelf noticeAnimation];
     }];
+   
 }
 
 - (void)setArrayOfNotice:(NSArray *)arrayOfNotice {
     
     _arrayOfNotice = arrayOfNotice;
     
-    [self noticeAnimation];
+    if ([_arrayOfNotice count] > 0) {
+       
+        [self noticeAnimation];
+    }
 }
 
 - (CGFloat)calculateLabelWidth:(NSString *)text {

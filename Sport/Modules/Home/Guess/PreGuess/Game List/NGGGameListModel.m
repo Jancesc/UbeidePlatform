@@ -14,12 +14,19 @@
     
     if (self = [super initWithInfo:dict]) {
         
+//        "match_id": "2704855",
+//        "c_name": "意杯",
+//        "h_name": "尤文图斯",
+//        "a_name": "热那亚",
+//        "match_time": "1513770300",
+//        "match_date": "2017-12-20"
         _matchID = [dict stringForKey:@"match_id"];
         _leagueName = [dict stringForKey:@"c_name"];
         _homeName = [dict stringForKey:@"h_name"];
         _awayName = [dict stringForKey:@"a_name"];
         _timeString = [dict stringForKey:@"match_time"];
-    }
+        _homeLogo = [dict stringForKey:@"h_logo"];
+        _awayLogo = [dict stringForKey:@"a_logo"];    }
     return self;
 }
 @end

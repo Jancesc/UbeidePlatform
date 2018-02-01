@@ -36,11 +36,12 @@
         
         make.bottom.equalTo(_carouselView.mas_bottom).with.offset(-7);
         make.height.mas_equalTo(10.f);
-        make.right.left.equalTo(self.contentView);
+        make.right.equalTo(self.contentView).with.offset(-10);
+        make.width.mas_equalTo(60.f);
     }];
     _pageControl.backgroundColor = [UIColor clearColor];
-    _pageControl.currentPageIndicatorTintColor = NGGPrimaryColor;
-    _pageControl.pageIndicatorTintColor = UIColorWithRGBA(0xcc, 0xcc, 0xcc, 120);
+    _pageControl.currentPageIndicatorTintColor = NGGViceColor;
+    _pageControl.pageIndicatorTintColor = UIColorWithRGBA(0xcc, 0xcc, 0xcc, 240);
     _pageControl.hidesForSinglePage = YES;
     _pageControl.userInteractionEnabled = NO;
     _pageControl.numberOfPages = [_arrayOfURL count];

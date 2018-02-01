@@ -123,10 +123,17 @@
 
 - (void)logoutButtonClicked:(UIButton *) button {
     
+    ZSBlockAlertView *alertView = [[ZSBlockAlertView alloc] initWithTitle:@"确定退出当前账号？" message:nil cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"]];
+    [alertView setClickHandler:^(NSInteger index) {
+       
+        if (index == 1) {
+            [NGGLoginSession destroyActiveSession];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidLogoutNotificationName object:nil];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+    }];
     
-    [NGGLoginSession destroyActiveSession];
-    [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidLogoutNotificationName object:nil];
-    [self.navigationController popViewControllerAnimated:YES];
+    [alertView show];
 }
 
 #pragma mark - private methods
@@ -149,7 +156,7 @@
         if (dict) {
             
             NSString *avatar = [dict stringForKey:@"avatar_img"];
-            [[NGGLoginSession activeSession] updateUserInfo:@{@"avatar_img" : avatar}];
+            [NGGLoginSession activeSession].currentUser.avatarURL= avatar;
             [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidModifyUserInfoNotificationName object:nil];
             [self refreshData];
         }
@@ -171,7 +178,7 @@
         }];
         if (dict) {
             
-            [[NGGLoginSession activeSession] updateUserInfo:@{@"nickname" : dict[@"nickname"]}];
+            [NGGLoginSession activeSession].currentUser.nickname= dict[@"nickname"];
             [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidModifyUserInfoNotificationName object:nil];
             [self refreshData];
         }
@@ -193,7 +200,7 @@
         }];
         if (dict) {
             
-            [[NGGLoginSession activeSession] updateUserInfo:@{@"sex" : dict[@"sex"]}];
+            [NGGLoginSession activeSession].currentUser.sex = dict[@"sex"];
             [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidModifyUserInfoNotificationName object:nil];
             [self refreshData];
         }

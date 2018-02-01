@@ -15,7 +15,7 @@
 #import <TencentOpenAPI/TencentOAuth.h>
 #import "QQ3.3.0/TencentOpenAPI.framework/Headers/QQApiInterface.h"
 
-#define NGGWechatID @"wxffbb158f276a034b"
+#define NGGWechatID @"wxf9f835efedc68448"
 #define NGGWeiboKey @"3330737535"
 #define NGGQQID @"1104818852"
 #define NGGAliPayScheme @"NGGSport"
@@ -62,27 +62,7 @@
     [WeiboSDK registerApp:NGGWeiboKey];
     _tencentOAuth = [[TencentOAuth alloc] initWithAppId:NGGQQID andDelegate:self];
 
-    //    //configure wechat
-//    NSString *wechatAppID = [self.configInfo objectForKey:@"WechatAppID"];
-//    if (wechatAppID != nil) {
-//        self.wechatAppID = wechatAppID;
-//    }
-//    
-//    //configure weibo
-//    NSString *weiboAppKey = [self.configInfo objectForKey:@"WeiboAppKey"];
-//    if (weiboAppKey != nil) {
-//        [WeiboSDK enableDebugMode:YES];
-//        if(![WeiboSDK registerApp:weiboAppKey])
-//            NSLog(@"WeiboSDK Register App failed");
-//        self.weiboAppKey = weiboAppKey;
-//    }
-//    
-//    //configure qq
-//    NSString *qqAppID = [self.configInfo objectForKey:@"QQAppID"];
-//    if (qqAppID != nil) {
-//        _tencentOAuth = [[TencentOAuth alloc] initWithAppId:qqAppID andDelegate:self];
-//        self.qqAppID = qqAppID;
-//    }
+
 }
 
 - (void)handleOpenURL:(NSURL *)url {

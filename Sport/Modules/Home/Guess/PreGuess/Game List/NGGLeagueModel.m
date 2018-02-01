@@ -14,9 +14,16 @@
     
     if (self = [super initWithInfo:dict]) {
         
-        _leagueID = [dict stringForKey:@"c_type"];
+        if (!isStringEmpty([dict stringForKey:@"c_id"])) {
+            
+            _leagueID = [dict stringForKey:@"c_id"];
+        } if (!isStringEmpty([dict stringForKey:@"c_type"])) {
+            
+            _leagueID = [dict stringForKey:@"c_type"];
+        }
         _leagueName = [dict stringForKey:@"c_name"];
         _count = [dict stringForKey:@"total"];
+        _leagueLogo = [dict stringForKey:@"c_logo"];
     }
     return self;
 }

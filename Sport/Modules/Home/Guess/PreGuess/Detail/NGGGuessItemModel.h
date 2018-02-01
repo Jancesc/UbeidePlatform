@@ -13,6 +13,7 @@
 @property (nonatomic,strong) NSString *itemID;
 @property (nonatomic,strong) NSString *title;
 @property (nonatomic,strong) NSString *odds;
+@property (nonatomic,assign) BOOL guessable;
 
 @property (nonatomic,assign) BOOL isGuessed;
 

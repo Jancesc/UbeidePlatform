@@ -46,16 +46,27 @@
 //    crs_w    string    比分-主胜
 //    crs_l    string    比分-平
 //    crs_d    string    比分-客胜
+    
+//    dxq    string    大小球
+//    asia    string    亚洲让球
+//    next    string    下一个进球
+
     if ([_type isEqualToString:@"had"] ||
-        [_type isEqualToString:@"hhad"]) {
+        [_type isEqualToString:@"hhad"] ||
+        [_type isEqualToString:@"next"]) {
         
         _itemCellType = NGGGuessDetailCellTypeNormal;
     } else if ([_type isEqualToString:@"hf"] ||
                [_type isEqualToString:@"ttg"] ||
                [_type isEqualToString:@"crs_w"] ||
                [_type isEqualToString:@"crs_l"] ||
-               [_type isEqualToString:@"crs_d"])
+               [_type isEqualToString:@"crs_d"]) {
         
         _itemCellType = NGGGuessDetailCellType2Rows;
+    } else {
+        
+        _itemCellType = NGGGuessDetailCellTypeDescription;
+    }
+        
 }
 @end

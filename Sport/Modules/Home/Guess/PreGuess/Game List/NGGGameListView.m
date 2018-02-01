@@ -29,6 +29,8 @@ static NSString *kGameDateCellIdentifier = @"NGGGameDateCell";
 @property (nonatomic, strong) NSArray<NGGGameListModel *> *arrayOfGame;
 @property (nonatomic, strong) NSArray<NGGGameDateModel *> *arrayOfDate;
 
+@property (nonatomic, strong) NSString *stringOfURL;
+
 @end
 
 @implementation NGGGameListView
@@ -36,10 +38,23 @@ static NSString *kGameDateCellIdentifier = @"NGGGameDateCell";
 - (void)awakeFromNib {
     
     [super awakeFromNib];
+    
     [self configueUIComponents];
-    [self loadDateInfo];
 }
 
+- (void)setSuperController:(NGGGuessListViewController *)superController {
+    
+    _superController = superController;
+    if (_superController.isLive) {
+        
+        _stringOfURL = @"/api.php?method=live.gameList";
+    } else {
+        
+        _stringOfURL = @"/api.php?method=game.gameList";
+    }
+    
+    [self loadDateInfo];
+}
 
 #pragma mark - private methods
 
@@ -83,7 +98,7 @@ static NSString *kGameDateCellIdentifier = @"NGGGameDateCell";
     }
     
     [_superController showLoadingHUDWithText:nil];
-    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.gameList" parameters:params willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[NGGHTTPClient defaultClient] postPath:_stringOfURL parameters:params willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [_superController dismissHUD];
         NSDictionary *dict = [_superController dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
@@ -188,7 +203,7 @@ static NSString *kGameDateCellIdentifier = @"NGGGameDateCell";
     NGGLeagueModel *leagueModel = _arrayOfLeague[selectedLeagueIndexPath.row];
     
     [_superController showLoadingHUDWithText:nil];
-    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.gameList" parameters:@{@"mt" : dateModel.timeStamp, @"c_type" : leagueModel.leagueID} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[NGGHTTPClient defaultClient] postPath:_stringOfURL parameters:@{@"mt" : dateModel.timeStamp, @"c_type" : leagueModel.leagueID, @"c_id" : leagueModel.leagueID} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [_superController dismissHUD];
         NSDictionary *dict = [_superController dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
@@ -279,7 +294,7 @@ static NSString *kGameDateCellIdentifier = @"NGGGameDateCell";
     
     NSInteger page = (NSInteger)([_arrayOfGame count] / NGGMaxCountPerPage) + 1;
 
-    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.gameList" parameters:@{@"mt" : dateModel.timeStamp, @"c_type" : leagueModel.leagueID, @"page" : @(page)} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[NGGHTTPClient defaultClient] postPath:_stringOfURL parameters:@{@"mt" : dateModel.timeStamp, @"c_type" : leagueModel.leagueID, @"c_id" : leagueModel.leagueID, @"page" : @(page)} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [_gameTableView.mj_footer endRefreshing];
         NSDictionary *dict = [_superController dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {

@@ -7,6 +7,9 @@
 //
 
 #import "NGGExchangeViewController.h"
+#import "JYCommonTool.h"
+#import "ZSBlockAlertView.h"
+#import "NGGRechargeViewController.h"
 
 @interface NGGExchangeViewController ()<UITextFieldDelegate> {
     
@@ -21,6 +24,8 @@
     __weak IBOutlet UIButton *_exchangeButton;
 }
 
+@property (nonatomic, assign) CGFloat coinCount;
+
 @end
 
 @implementation NGGExchangeViewController
@@ -31,7 +36,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self configueUIComponents];
-    
+    [self refreshUI];
+    self.title = @"金豆兑换";
     //监听键盘
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(handleKeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
@@ -67,8 +73,13 @@
     _textField.background= [UIImage imageWithColor:[UIColor whiteColor]];
     _textField.returnKeyType = UIReturnKeyDone;
     _textField.delegate = self;
+    [_textField addTarget:self action:@selector(textField1TextChange:) forControlEvents:UIControlEventEditingChanged];
+
     [_exchangeButton setBackgroundImage:[UIImage imageWithColor:NGGViceColor] forState:UIControlStateNormal];
     [_exchangeButton addTarget:self action:@selector(exchangeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    NGGUser *currentUser = [NGGLoginSession activeSession].currentUser;
+    _coinCount = currentUser.coin.floatValue;
 }
 
 - (void)configueButton:(UIButton *)button {
@@ -76,9 +87,10 @@
     [button setBackgroundImage:[UIImage imageWithColor:UIColorWithRGB(0xe0,0xe0 , 0xe0)] forState:UIControlStateDisabled];
     [button setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
     [button setBackgroundImage:[UIImage imageWithColor:UIColorWithRGB(0xea,0xea , 0xea)] forState:UIControlStateHighlighted];
-
     button.layer.cornerRadius = 4.f;
     button.layer.masksToBounds = YES;
+    
+    [button addTarget:self action:@selector(beanButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -86,12 +98,96 @@
     [_textField resignFirstResponder];
 }
 
+- (void)refreshUI {
+    
+    _balanceLabel.text = [NSString stringWithFormat:@"(账户余额%@)", [JYCommonTool stringDisposeWithFloat:_coinCount]];
+    
+    if (_coinCount == 1) {
+        
+        ZSBlockAlertView *alertView = [[ZSBlockAlertView alloc] initWithTitle:nil message:@"金币不足无法兑换金豆，请充值金币后兑换" cancelButtonTitle:@"取消" otherButtonTitles:@[@"充值"]];
+        [alertView setClickHandler:^(NSInteger index) {
+            
+            if (index == 1) {
+           
+                NGGRechargeViewController *controller = [[NGGRechargeViewController alloc] init];
+                [self.navigationController pushViewController:controller animated:YES];
+            }
+        }];
+        [alertView show];
+    }
+    
+    NSArray *buttonaArray = @[_button_0, _button_1, _button_2, _button_3, _button_4];
+    for (UIButton *button in buttonaArray) {
+        
+        button.enabled =  button.tag <= _coinCount * 100;
+      
+        
+    }
+}
+
+- (void)textField1TextChange:(UITextField *)textField{
+    
+    NSString *payCount = [JYCommonTool stringDisposeWithFloat:_textField.text.floatValue * 0.01];
+    _paymentLabel.text = [NSString stringWithFormat:@"支付金币:%@", payCount];
+}
 #pragma mark - button actions
 
 - (void)exchangeButtonClicked:(UIButton *) button {
     
+    NSString *payCount = nil;
+    if (!isStringEmpty(_textField.text)) {
+      
+        payCount = [JYCommonTool stringDisposeWithFloat:_textField.text.floatValue * 0.01];
+    } else {
+        
+        payCount = [[_paymentLabel.text componentsSeparatedByString:@":"] lastObject];
+    }
+    
+    if ([payCount containsString:@"."]) {
+        
+        [self showErrorHUDWithText:@"请输入100倍数的金豆"];
+        return;
+    } else if (payCount.floatValue > _coinCount) {
+        
+        ZSBlockAlertView *alertView = [[ZSBlockAlertView alloc] initWithTitle:nil message:@"金币不足无法兑换金豆，请充值金币后兑换" cancelButtonTitle:@"取消" otherButtonTitles:@[@"充值"]];
+        [alertView setClickHandler:^(NSInteger index) {
+            
+            if (index == 1) {
+                
+                NGGRechargeViewController *controller = [[NGGRechargeViewController alloc] init];
+                [self.navigationController pushViewController:controller animated:YES];
+            }
+        }];
+        [alertView show];
+    }
+    
+    [self showLoadingHUDWithText:nil];
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=user.exchangeBean" parameters:@{@"bean" : @(payCount.integerValue * 100)} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self dismissHUD];
+        BOOL success = [self noData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showErrorHUDWithText:msg];
+        }];
+        if (success) {
+            
+            [self showAlertText:@"恭喜你，兑换成功!" completion:nil];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+      
+        [self dismissHUD];
+    }];
 }
 
+
+- (void)beanButtonClicked:(UIButton *) button {
+    
+    [self.view endEditing:YES];
+    _textField.text = nil;
+    NSInteger payCount = button.tag * 0.01;
+    
+    _paymentLabel.text = [NSString stringWithFormat:@"支付金币:%ld", (long)payCount];
+}
 #pragma mark - Keyboard Notification
 
 - (void) handleKeyboardWillShow:(NSNotification *) notification{

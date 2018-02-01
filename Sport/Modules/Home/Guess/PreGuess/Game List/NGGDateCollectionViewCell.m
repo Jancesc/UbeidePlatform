@@ -33,7 +33,7 @@
     _countLabel.text = [NSString stringWithFormat:@"(%@)", _model.count];
     if (!isStringEmpty(_model.timeStamp) && ![_model.timeStamp isEqualToString:@"0"]) {
         
-        _dateLabel.text = [JYCommonTool dateFormatWithInterval:_model.timeStamp.integerValue format:@"hh/mm"];
+        _dateLabel.text = [JYCommonTool dateFormatWithInterval:_model.timeStamp.integerValue format:@"MM/dd"];
     } else {
         
         _dateLabel.text = nil;

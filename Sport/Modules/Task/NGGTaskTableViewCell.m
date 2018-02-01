@@ -50,7 +50,7 @@
     
     _titleLabel.text = [cellInfo stringForKey:@"title"];
     [_imageView sd_setImageWithURL:[NSURL URLWithString:[cellInfo stringForKey:@"title_pic"]] placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
-    _titleLabel.text = [cellInfo stringForKey:@"explain"];
+    _tipsLabel.text = [cellInfo stringForKey:@"explain"];
     
     NSInteger awardType = [cellInfo intForKey:@"award_type"];
     NSString *awardUnit = awardType == 1 ? @"积分" : @"金豆";

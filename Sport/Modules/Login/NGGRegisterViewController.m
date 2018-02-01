@@ -7,7 +7,7 @@
 //
 
 #import "NGGRegisterViewController.h"
-#import <pop/pop.h>
+#import "POP.h"
 
 @interface NGGRegisterViewController ()<UITextFieldDelegate> {
     

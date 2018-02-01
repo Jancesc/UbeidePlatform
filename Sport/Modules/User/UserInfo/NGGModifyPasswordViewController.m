@@ -7,7 +7,7 @@
 //
 
 #import "NGGModifyPasswordViewController.h"
-#import <pop/pop.h>
+#import "POP.h"
 
 @interface NGGModifyPasswordViewController ()<UITextFieldDelegate> {
 

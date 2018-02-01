@@ -56,6 +56,8 @@
         
         [self updateUIForNormal];
     }
+    
+    _disableView.hidden = model.guessable;
 }
 
 - (void)updateUIForNormal {

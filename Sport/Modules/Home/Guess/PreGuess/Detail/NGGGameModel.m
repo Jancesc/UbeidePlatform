@@ -18,6 +18,16 @@
 //"score": "1:2",
 //"status": "0",
 //"list": [
+
+//"bean": "40",
+//"match_id": "2453418",
+//"match_time": "1513770600",
+//"h_name": "巴黎圣日耳曼",
+//"a_name": "卡昂",
+//"score": [
+//          0,
+//          0
+//          ],
 -(instancetype)initWithInfo:(NSDictionary *)dict {
     
     if (self == [super initWithInfo:dict]) {
@@ -26,11 +36,20 @@
         _startTime = [dict stringForKey:@"match_time"];
         _homeName = [dict stringForKey:@"h_name"];
         _awayName = [dict stringForKey:@"a_name"];
-        _score = [dict stringForKey:@"score"];
         _status = [dict stringForKey:@"status"];
         
+        NSArray *scoreArray = [dict arrayForKey:@"score"];
+        if ([scoreArray count] > 1) {
+            
+            _homeScore = [scoreArray firstObject];
+            _awayScore = [scoreArray lastObject];
+        } else {
+            
+            _homeScore = @"0";
+            _awayScore = @"0";
+        }
         
-        [[NGGLoginSession activeSession] updateUserInfo:@{@"bean" : dict[@"bean"]}];
+        [NGGLoginSession activeSession].currentUser.bean = dict[@"bean"];
         [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidModifyUserInfoNotificationName object:nil];
         
         NSArray *sectionArray = [dict arrayForKey:@"list"];

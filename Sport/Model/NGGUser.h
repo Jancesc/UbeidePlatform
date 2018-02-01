@@ -27,7 +27,17 @@
 
 @property (nonatomic, strong) NSString *bean;
 
+//抽奖积分
+@property (nonatomic, strong) NSString *point;
+
 @property (nonatomic, strong) NSString *invitationCode;
+
+- (void)saveToDisk;
+
++ (NGGUser *)loadFromDisk;
+
+- (void)removeFromDisk;
+
 
 + (BOOL)gameResultNotificationEnable;
 

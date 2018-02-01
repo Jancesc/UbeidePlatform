@@ -7,7 +7,7 @@
 //
 
 #import "NGGNavigationController.h"
-
+#import "NGGNavigationBar.h"
 @interface NGGNavigationController ()
 
 @end
@@ -22,16 +22,18 @@
 //    
 //    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonBackgroundImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     
+
     self.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor whiteColor], NSFontAttributeName : [UIFont systemFontOfSize:18.f]};
     
     //设置navBar字体颜色
     //在plist里面, 加上View controller-based status bar appearance, 并且设置为NO
     self.navigationBar.barStyle = UIStatusBarStyleDefault;
-    [self.navigationBar setTintColor:NGGSeparatorColor];
+    [self.navigationBar setTintColor:[UIColor whiteColor]];
     
     //设置NavBar的背景颜色
+    [NGGNavigationBar appearance].barTintColor = NGGPrimaryColor;
     [UINavigationBar appearance].barTintColor = NGGPrimaryColor;
-    
+
     //隐藏navgationBar底部的黑线
     UIImageView *hairImageView = [self findHairlineImageViewUnder:self.view];
     if (hairImageView){

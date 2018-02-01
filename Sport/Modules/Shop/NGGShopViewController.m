@@ -9,10 +9,11 @@
 #import "NGGShopViewController.h"
 #import "NGGShopClassifyCollectionViewCell.h"
 #import "NGGShopItemCollectionViewCell.h"
-#import "MJRefresh.h"
+//#import "MJRefresh.h"
 #import "JYCommonTool.h"
 #import "NGGEmptyView.h"
 #import "NGGGoodsDetailViewController.h"
+#import "NGGPrizeListViewController.h"
 
 static NSString *kShopClassifyCellIdentifier = @"shopClassifyCellIdentifier";
 static NSString *kShopItemCellIdentifier = @"shopItemCellIdentifier";
@@ -21,6 +22,9 @@ static NSString *kShopItemCellIdentifier = @"shopItemCellIdentifier";
     
     __weak IBOutlet UICollectionView *_classifycollectionView;
     __weak IBOutlet UICollectionView *_itemCollectionView;
+  
+    __weak IBOutlet UILabel *_beanLabel;
+    __weak IBOutlet UIButton *_rewordButton;
 }
 
 @property (nonatomic, strong) NSArray *arrayOfClassify;
@@ -56,6 +60,20 @@ static NSString *kShopItemCellIdentifier = @"shopItemCellIdentifier";
     _itemCollectionView.delegate = self;
     _itemCollectionView.dataSource = self;
     [_itemCollectionView registerNib:[UINib nibWithNibName:@"NGGShopItemCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kShopItemCellIdentifier];
+    [_rewordButton addTarget:self action:@selector(rewordButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    NGGUser *currentUser = [NGGLoginSession activeSession].currentUser;
+    if (currentUser) {
+        
+        _beanLabel.text = [NSString stringWithFormat:@"我的金豆: %@", currentUser.bean];
+    } else {
+        
+        _beanLabel.text = [NSString stringWithFormat:@"我的金豆: 0"];
+    }
 }
 
 #pragma mark - private methods
@@ -75,13 +93,13 @@ static NSString *kShopItemCellIdentifier = @"shopItemCellIdentifier";
     }
     
     [_itemCollectionView reloadData];
-    if ([_arrayOfGoods count] % NGGMaxCountPerPage == 0 && [_arrayOfGoods count] > 0) {
-        
-        [self setupLoadMoreFooter];
-    } else {
-        
-        _itemCollectionView.mj_footer = nil;
-    }
+//    if ([_arrayOfGoods count] % NGGMaxCountPerPage == 0 && [_arrayOfGoods count] > 0) {
+//        
+//        [self setupLoadMoreFooter];
+//    } else {
+//        
+//        _itemCollectionView.mj_footer = nil;
+//    }
     
     if ([_arrayOfGoods count] == 0) {
         
@@ -91,11 +109,11 @@ static NSString *kShopItemCellIdentifier = @"shopItemCellIdentifier";
     
 }
 
-- (void) setupLoadMoreFooter {
-    
-    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
-    _itemCollectionView.mj_footer = footer;
-}
+//- (void) setupLoadMoreFooter {
+//
+//    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+//    _itemCollectionView.mj_footer = footer;
+//}
 
 - (void)loadData {
     
@@ -142,34 +160,42 @@ static NSString *kShopItemCellIdentifier = @"shopItemCellIdentifier";
 
 - (void)loadMoreData {
     
-    NSInteger page = (NSInteger)([_arrayOfGoods count] / NGGMaxCountPerPage) + 1;
-    NSIndexPath *selectedIndexPath = [[_classifycollectionView indexPathsForSelectedItems] firstObject];
-    NSDictionary *selectedClassifyDict = _arrayOfClassify[selectedIndexPath.row];
-    NSString *classifyID = [selectedClassifyDict stringForKey:@"id"];
-    
-    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=goods.init" parameters:@{@"cid" : classifyID, @"page" : @(page)} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-        [_itemCollectionView.mj_footer endRefreshing];
-        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
-            
-            [self showErrorHUDWithText:msg];
-        }];
-        if (dict) {
-            
-            NSArray *goodsArray = [dict arrayForKey:@"goods"];
-            if ([goodsArray count] != NGGMaxCountPerPage) {
-                
-                [_itemCollectionView.mj_footer endRefreshingWithNoMoreData];
-            }
-            [_arrayOfGoods addObjectsFromArray:goodsArray];
-            [self refreshUI];
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
-        [_itemCollectionView.mj_footer endRefreshing];
-    }];
+//    NSInteger page = (NSInteger)([_arrayOfGoods count] / NGGMaxCountPerPage) + 1;
+//    NSIndexPath *selectedIndexPath = [[_classifycollectionView indexPathsForSelectedItems] firstObject];
+//    NSDictionary *selectedClassifyDict = _arrayOfClassify[selectedIndexPath.row];
+//    NSString *classifyID = [selectedClassifyDict stringForKey:@"id"];
+//
+//    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=goods.init" parameters:@{@"cid" : classifyID, @"page" : @(page)} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+//
+//        [_itemCollectionView.mj_footer endRefreshing];
+//        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+//
+//            [self showErrorHUDWithText:msg];
+//        }];
+//        if (dict) {
+//
+//            NSArray *goodsArray = [dict arrayForKey:@"goods"];
+//            if ([goodsArray count] != NGGMaxCountPerPage) {
+//
+//                [_itemCollectionView.mj_footer endRefreshingWithNoMoreData];
+//            }
+//            [_arrayOfGoods addObjectsFromArray:goodsArray];
+//            [self refreshUI];
+//        }
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//
+//        [_itemCollectionView.mj_footer endRefreshing];
+//    }];
 }
 
+#pragma mark - button actions
+
+- (void)rewordButtonClicked:(UIButton *) button {
+    
+    NGGPrizeListViewController *controller = [[NGGPrizeListViewController alloc] init];
+    controller.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
 
 #pragma mark - UICollectionViewDataSource  && UICollectionViewDelagate
 

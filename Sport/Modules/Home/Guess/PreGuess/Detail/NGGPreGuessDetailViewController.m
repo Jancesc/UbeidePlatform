@@ -8,7 +8,7 @@
 
 #import "NGGPreGuessDetailViewController.h"
 #import "Masonry.h"
-#import <pop/pop.h>
+#import "POP.h"
 #import "NGGGuessCollectionViewCell.h"
 #import "NGGGuess2RowsCollectionViewCell.h"
 #import "NGGDetailHeaderReusableView.h"
@@ -192,7 +192,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     _beanLabel.text = [NSString stringWithFormat:@"%@金豆", [NGGLoginSession activeSession].currentUser.bean];
     _homeLabel.text = _gameModel.homeName;
     _awayLabel.text = _gameModel.awayName;
-    _dateLabel.text = [JYCommonTool dateFormatWithInterval:_gameModel.startTime.integerValue format:@"MM月dd日 hh:mm开赛"];
+    _dateLabel.text = [JYCommonTool dateFormatWithInterval:_gameModel.startTime.integerValue format:@"MM月dd日 HH:mm开赛"];
     
 //    比赛状态，0未开赛 1取消 2关闭 3完结 4赛果录入 5彩果计算完毕;ps：3之后都算比赛结束
     NSInteger status = _gameModel.status.integerValue;
@@ -302,7 +302,20 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 //                "profit": -10100,
 //                "bean_total": 10100,
 //                "win_total": 0
-                _gameModel.score = [dict stringForKey:@"score"];
+                NSArray *scoreArray = [dict arrayForKey:@"score"];
+                if ([scoreArray count] > 1) {
+                    
+                    _gameModel.homeScore = [scoreArray firstObject];
+                    _gameModel.awayScore = [scoreArray lastObject];
+                } else {
+                    
+                    _gameModel.homeScore = @"0";
+                    _gameModel.awayScore = @"0";
+                }
+                
+                _homeScore.text = _gameModel.homeScore;
+                _awayScore.text = _gameModel.awayScore;
+                
                 _gameModel.status = [dict stringForKey:@"status"];
                 _gameModel.profit = [dict floatForKey:@"profit"];
                 _gameModel.count = [dict floatForKey:@"bean_total"];
@@ -396,6 +409,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     
     NGGGuessSectionModel *sectionModel = _gameModel.arrayOfSection[indexPath.section];
     NGGGuessItemModel *itemModel = sectionModel.arrayOfItem [indexPath.item];
+    itemModel.guessable = YES;
     if (_dictionaryOfGuessed[itemModel.itemID]) {
         itemModel.isGuessed = YES;
     } else {
@@ -510,7 +524,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
         }];
         if (dict) {
             
-            [[NGGLoginSession activeSession] updateUserInfo:@{@"bean" : dict[@"bean"]}];
+            [NGGLoginSession activeSession].currentUser.bean = dict[@"bean"];
             [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidModifyUserInfoNotificationName object:nil];
             [self updateGuessRecord];
         }

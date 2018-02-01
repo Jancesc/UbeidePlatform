@@ -7,6 +7,7 @@
 //
 
 #import "NGGTypeTableViewCell.h"
+#import "UIImageView+WebCache.h"
 
 @interface NGGTypeTableViewCell () {
     
@@ -51,5 +52,7 @@
         
         _countLabel.text = nil;
     }
+    [_logoView sd_setImageWithURL:[NSURL URLWithString:model.leagueLogo] placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
+    
 }
 @end

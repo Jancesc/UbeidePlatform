@@ -45,11 +45,25 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(leftBarButtonClicked)];
     [self refreshUI];
     [self refreshData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserLogined) name:NGGUserDidLoginNotificationName object:nil];
+}
+
+- (void)dealloc {
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)handleUserLogined {
+    
+    [self refreshUI];
+    [self refreshData];
+    _gameListView.superController = self;
 }
 
 - (void)configueUIComponents {
@@ -165,7 +179,6 @@
     NSInteger page = (NSInteger)([_arrayOfGameResult count] / NGGMaxCountPerPage) + 1;
     if (page == 1) {
         
-        [self showLoadingHUDWithText:nil];
     }
     [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.gameResult" parameters:@{@"page" : @(page)} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
         
@@ -191,7 +204,6 @@
 
 - (void)loadGameRank {
     
-    [self showLoadingHUDWithText:nil];
     [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.ranking" parameters:nil willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [self dismissHUD];
@@ -221,6 +233,13 @@
     
     if (_isLive) {
         
+        NSInteger currentTimeStamp = [[NSDate date] timeIntervalSince1970];
+        NSInteger gameTimeStamp = model.timeString.integerValue;
+        if (gameTimeStamp - currentTimeStamp > 4 * 60) {
+            
+            [self showErrorHUDWithText:@"比赛未开始" duration:0.75];
+            return;
+        }
         NGGLiveGuessDetailViewController *controller  = [[NGGLiveGuessDetailViewController alloc] initWithNibName:@"NGGLiveGuessDetailViewController" bundle:nil];
         controller.model = model;
         [self.navigationController pushViewController:controller animated:YES];

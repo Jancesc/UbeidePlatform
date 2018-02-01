@@ -11,7 +11,7 @@ NSString *const NGGUserDidLoginNotificationName = @"NGGUserDidLoginNotificationN
 NSString *const NGGUserDidLogoutNotificationName = @"NGGUserDidLogoutNotificationName";
 NSString *const NGGUserDidModifyUserInfoNotificationName = @"NGGUserDidModifyUserInfoNotificationName";
 
-static NSString *const kNGGSavedLoginInfoUserDefaultsKey = @"NGGSavedLoginInfoUserDefaultsKey";
+//static NSString *const kNGGSavedLoginInfoUserDefaultsKey = @"NGGSavedLoginInfoUserDefaultsKey";
 
 static NGGLoginSession *_activeSession = nil;
 
@@ -29,11 +29,11 @@ static NGGLoginSession *_activeSession = nil;
         return _activeSession;
     }
     
-    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    NSDictionary *savedLoginInfo = [standardUserDefaults dictionaryForKey:kNGGSavedLoginInfoUserDefaultsKey];
-    if (savedLoginInfo) {
-       
-        _activeSession = [NGGLoginSession newSessionWithLoginInformation:savedLoginInfo];
+    NGGUser *user = [NGGUser loadFromDisk];
+    if (user) {
+      
+        _activeSession = [NGGLoginSession new];
+        _activeSession.currentUser = user;
     }
     
     return _activeSession;
@@ -42,38 +42,28 @@ static NGGLoginSession *_activeSession = nil;
 + (void)destroyActiveSession
 {
     if (_activeSession) {
+        
+        [_activeSession.currentUser removeFromDisk];
         _activeSession = nil;
     }
-    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    [standardUserDefaults removeObjectForKey:kNGGSavedLoginInfoUserDefaultsKey];
-    [standardUserDefaults synchronize];
 }
 
-+ (NGGLoginSession *)newSessionWithLoginInformation:(NSDictionary *)info
-{
++ (NGGLoginSession *)newSessionWithLoginInformation:(NSDictionary *)info {
+    
     NGGLoginSession *session = [NGGLoginSession new];
-   
     session.currentUser = [[NGGUser alloc] initWithInfo:info];
-    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    [standardUserDefaults setObject:info forKey:kNGGSavedLoginInfoUserDefaultsKey];
-    [standardUserDefaults synchronize];
+    _activeSession = session;
+    
     return session;
 }
 
-- (void)updateUserInfo:(NSDictionary *)userInfo
-{
-    NSUserDefaults *standardUserDefaults = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *infoM = [NSMutableDictionary dictionaryWithDictionary:[standardUserDefaults dictionaryForKey:kNGGSavedLoginInfoUserDefaultsKey]];
-    NSArray *keyArray = [userInfo allKeys];
-    for (NSString *key in keyArray) {
-        
-        [infoM setObject:userInfo[key] forKey:key];
-    }
+
+-(void)saveUserInfo {
     
-    NSDictionary *finalInfo = [infoM copy];
-    _currentUser = [[NGGUser alloc] initWithInfo:finalInfo];
-    [standardUserDefaults setObject:finalInfo forKey:kNGGSavedLoginInfoUserDefaultsKey];
-    [standardUserDefaults synchronize];
+    if (_currentUser) {
+        
+        [_currentUser saveToDisk];
+    }
 }
 
 - (NGGUser *)currentUser {

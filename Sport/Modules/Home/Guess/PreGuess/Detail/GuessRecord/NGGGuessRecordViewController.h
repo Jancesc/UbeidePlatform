@@ -14,4 +14,8 @@
 
 @property (nonatomic, strong) NSArray <NGGGuessRecordModel *> *arrayOfRecord;
 @property (nonatomic, strong) NGGGameModel *gameModel;
+
+//另一种方式
+@property (nonatomic, strong) NSString *gameID;
+
 @end

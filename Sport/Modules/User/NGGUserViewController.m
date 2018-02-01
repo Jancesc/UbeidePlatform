@@ -16,6 +16,8 @@
 #import "NGGRegisterViewController.h"
 #import "UIImageView+WebCache.h"
 #import "NGGConsumptionDeatilViewController.h"
+#import "NGGPrizeListViewController.h"
+#import "NGGRecordViewController.h"
 
 @interface NGGUserViewController ()<UITableViewDataSource, UITableViewDelegate> {
    
@@ -82,7 +84,7 @@
 
     _tableView.separatorColor = NGGSeparatorColor;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-    _tableView.rowHeight = 50.f;
+    _tableView.rowHeight = 55.f;
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.showsVerticalScrollIndicator = YES;
@@ -284,6 +286,16 @@
         
         NGGConsumptionDeatilViewController *controller = [[NGGConsumptionDeatilViewController alloc] initWithNibName:@"NGGConsumptionDeatilViewController" bundle:nil];
         controller.isBean = YES;
+        controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
+    } else if (indexPath.section == 1 && indexPath.row == 0) {
+        
+        NGGPrizeListViewController *controller = [[NGGPrizeListViewController alloc] init];
+        controller.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:controller animated:YES];
+    } else if (indexPath.section == 1 && indexPath.row == 3) {
+        
+        NGGRecordViewController *controller = [[NGGRecordViewController alloc] initWithNibName:@"NGGRecordViewController" bundle:nil];
         controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
     }

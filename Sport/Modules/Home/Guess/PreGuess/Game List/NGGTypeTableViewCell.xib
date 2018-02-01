@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PremierLeague" translatesAutoresizingMaskIntoConstraints="NO" id="2LS-sI-YdU">
-                        <rect key="frame" x="3" y="0.0" width="22" height="72.5"/>
+                        <rect key="frame" x="6" y="0.0" width="22" height="72.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="22" id="gqL-14-DWk"/>
                         </constraints>
@@ -49,7 +49,7 @@
                 <color key="backgroundColor" red="0.95294117647058818" green="0.95686274509803915" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="TAU-jk-7xN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="0qs-cT-AEx"/>
-                    <constraint firstItem="2LS-sI-YdU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="3" id="FCV-vL-DSx"/>
+                    <constraint firstItem="2LS-sI-YdU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="6" id="FCV-vL-DSx"/>
                     <constraint firstAttribute="bottom" secondItem="PhG-XP-FCo" secondAttribute="bottom" id="MK5-c5-hue"/>
                     <constraint firstItem="Gs0-3V-S1U" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="daC-rX-XhM"/>
                     <constraint firstItem="TAU-jk-7xN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="e3M-HT-Wvm"/>
@@ -59,7 +59,7 @@
                     <constraint firstItem="2LS-sI-YdU" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="kYj-vc-wNK"/>
                     <constraint firstItem="PhG-XP-FCo" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="mhp-rg-pbJ"/>
                     <constraint firstAttribute="bottom" secondItem="Gs0-3V-S1U" secondAttribute="bottom" id="qBQ-hr-ySq"/>
-                    <constraint firstItem="Gs0-3V-S1U" firstAttribute="leading" secondItem="2LS-sI-YdU" secondAttribute="trailing" constant="10" id="sUX-Tl-GXj"/>
+                    <constraint firstItem="Gs0-3V-S1U" firstAttribute="leading" secondItem="2LS-sI-YdU" secondAttribute="trailing" constant="7" id="sUX-Tl-GXj"/>
                     <constraint firstAttribute="bottom" secondItem="TAU-jk-7xN" secondAttribute="bottom" id="zKc-CA-w96"/>
                 </constraints>
             </tableViewCellContentView>

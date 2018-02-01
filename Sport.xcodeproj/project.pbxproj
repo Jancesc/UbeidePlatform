@@ -56,6 +56,14 @@
 		3D25B4AF1FB428A200D20FB2 /* NGGDetailAnalyseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D25B4AE1FB428A200D20FB2 /* NGGDetailAnalyseView.xib */; };
 		3D25B4B41FB4325D00D20FB2 /* NGGAnalyseHistoryView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D25B4B31FB4325D00D20FB2 /* NGGAnalyseHistoryView.m */; };
 		3D25B4B61FB4327300D20FB2 /* NGGAnalyseHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D25B4B51FB4327300D20FB2 /* NGGAnalyseHistoryView.xib */; };
+		3D35176F202162CD00F89D16 /* WebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D351768202162CD00F89D16 /* WebViewJavascriptBridge.m */; };
+		3D351770202162CD00F89D16 /* WebViewJavascriptBridge_JS.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35176A202162CD00F89D16 /* WebViewJavascriptBridge_JS.m */; };
+		3D351771202162CD00F89D16 /* WebViewJavascriptBridgeBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35176C202162CD00F89D16 /* WebViewJavascriptBridgeBase.m */; };
+		3D351772202162CD00F89D16 /* WKWebViewJavascriptBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35176E202162CD00F89D16 /* WKWebViewJavascriptBridge.m */; };
+		3D3517742021644400F89D16 /* ExampleApp.html in Resources */ = {isa = PBXBuildFile; fileRef = 3D3517732021644400F89D16 /* ExampleApp.html */; };
+		3D3517772021661100F89D16 /* NGGWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3517762021661100F89D16 /* NGGWebViewController.m */; };
+		3D35177A2021664E00F89D16 /* NGGH5GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3517792021664E00F89D16 /* NGGH5GameViewController.m */; };
+		3D3517802021C06B00F89D16 /* NGGNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35177F2021C06B00F89D16 /* NGGNavigationBar.m */; };
 		3D35EDA21FB2F78900E01659 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EC751FB2F78800E01659 /* AppDelegate.m */; };
 		3D35EDA31FB2F78900E01659 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D35EC761FB2F78800E01659 /* Assets.xcassets */; };
 		3D35EDA41FB2F78900E01659 /* NGGCommonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35EC791FB2F78800E01659 /* NGGCommonViewController.m */; };
@@ -243,12 +251,30 @@
 		3D74A2981FE11D9C00108F06 /* NGGGuessOrderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D74A2971FE11D9C00108F06 /* NGGGuessOrderView.xib */; };
 		3D74A29A1FE1223F00108F06 /* NGGGuessOrderDoneView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D74A2991FE1223F00108F06 /* NGGGuessOrderDoneView.xib */; };
 		3D74A29D1FE1225300108F06 /* NGGGuessOrderDoneView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D74A29C1FE1225300108F06 /* NGGGuessOrderDoneView.m */; };
+		3D84398C20034A9400DE29EA /* NGGRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D84398920034A9400DE29EA /* NGGRecordViewController.m */; };
+		3D84398D20034A9400DE29EA /* NGGRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D84398A20034A9400DE29EA /* NGGRecordViewController.xib */; };
 		3D922EF81FD00EEB003AA7F1 /* NGGGameListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D922EF71FD00EEB003AA7F1 /* NGGGameListView.m */; };
 		3D922EFA1FD00F72003AA7F1 /* NGGGameListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D922EF91FD00F72003AA7F1 /* NGGGameListView.xib */; };
+		3DA121F81FEB933300FF0738 /* POPAnimatableProperty.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121C71FEB933200FF0738 /* POPAnimatableProperty.mm */; };
+		3DA121F91FEB933300FF0738 /* POPAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121C91FEB933200FF0738 /* POPAnimation.mm */; };
+		3DA121FA1FEB933300FF0738 /* POPAnimationEvent.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121CB1FEB933200FF0738 /* POPAnimationEvent.mm */; };
+		3DA121FB1FEB933300FF0738 /* POPAnimationExtras.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121CE1FEB933200FF0738 /* POPAnimationExtras.mm */; };
+		3DA121FC1FEB933300FF0738 /* POPAnimationRuntime.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121D21FEB933200FF0738 /* POPAnimationRuntime.mm */; };
+		3DA121FD1FEB933300FF0738 /* POPAnimationTracer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121D41FEB933200FF0738 /* POPAnimationTracer.mm */; };
+		3DA121FE1FEB933300FF0738 /* POPAnimator.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121D71FEB933200FF0738 /* POPAnimator.mm */; };
+		3DA121FF1FEB933300FF0738 /* POPBasicAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121DA1FEB933200FF0738 /* POPBasicAnimation.mm */; };
+		3DA122001FEB933300FF0738 /* POPCGUtils.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121DD1FEB933200FF0738 /* POPCGUtils.mm */; };
+		3DA122011FEB933300FF0738 /* POPCustomAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121DF1FEB933200FF0738 /* POPCustomAnimation.mm */; };
+		3DA122021FEB933300FF0738 /* POPDecayAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121E11FEB933200FF0738 /* POPDecayAnimation.mm */; };
+		3DA122031FEB933300FF0738 /* POPGeometry.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121E51FEB933200FF0738 /* POPGeometry.mm */; };
+		3DA122041FEB933300FF0738 /* POPLayerExtras.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121E71FEB933200FF0738 /* POPLayerExtras.mm */; };
+		3DA122051FEB933300FF0738 /* POPMath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121E91FEB933200FF0738 /* POPMath.mm */; };
+		3DA122061FEB933300FF0738 /* POPPropertyAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121EB1FEB933200FF0738 /* POPPropertyAnimation.mm */; };
+		3DA122071FEB933300FF0738 /* POPSpringAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121EE1FEB933200FF0738 /* POPSpringAnimation.mm */; };
+		3DA122081FEB933300FF0738 /* POPVector.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121F21FEB933200FF0738 /* POPVector.mm */; };
+		3DA122091FEB933300FF0738 /* TransformationMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121F51FEB933200FF0738 /* TransformationMatrix.cpp */; };
 		3DA19B2E1FDE742200B19257 /* NGGLiveGuessDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA19B2C1FDE742200B19257 /* NGGLiveGuessDetailViewController.m */; };
 		3DA19B2F1FDE742200B19257 /* NGGLiveGuessDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DA19B2D1FDE742200B19257 /* NGGLiveGuessDetailViewController.xib */; };
-		3DA19B351FDE8DFC00B19257 /* NGGTaskLotteryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA19B331FDE8DFC00B19257 /* NGGTaskLotteryViewController.m */; };
-		3DA19B361FDE8DFC00B19257 /* NGGTaskLotteryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DA19B341FDE8DFC00B19257 /* NGGTaskLotteryViewController.xib */; };
 		3DA19B3A1FDE986400B19257 /* NGGConsumptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA19B381FDE986400B19257 /* NGGConsumptionTableViewCell.m */; };
 		3DA19B3B1FDE986400B19257 /* NGGConsumptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DA19B391FDE986400B19257 /* NGGConsumptionTableViewCell.xib */; };
 		3DA19B3E1FDFCFAC00B19257 /* NGGGuessSectionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA19B3D1FDFCFAC00B19257 /* NGGGuessSectionModel.m */; };
@@ -258,6 +284,10 @@
 		3DA285241FE7CCC60093E726 /* NGGGuessRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA285231FE7CCC60093E726 /* NGGGuessRecordModel.m */; };
 		3DA285281FE7CEA60093E726 /* NGGGuessRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA285261FE7CEA60093E726 /* NGGGuessRecordTableViewCell.m */; };
 		3DA285291FE7CEA60093E726 /* NGGGuessRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DA285271FE7CEA60093E726 /* NGGGuessRecordTableViewCell.xib */; };
+		3DB56B411FF39430009D8880 /* NGGGoodsDescriptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DB56B3F1FF39430009D8880 /* NGGGoodsDescriptionViewController.m */; };
+		3DB56B421FF39430009D8880 /* NGGGoodsDescriptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DB56B401FF39430009D8880 /* NGGGoodsDescriptionViewController.xib */; };
+		3DBA1EA31FF4FCDC0023D599 /* NGGRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA1EA11FF4FCDC0023D599 /* NGGRecordTableViewCell.m */; };
+		3DBA1EA41FF4FCDC0023D599 /* NGGRecordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DBA1EA21FF4FCDC0023D599 /* NGGRecordTableViewCell.xib */; };
 		3DC56B601FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC56B5E1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.m */; };
 		3DC56B611FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC56B5F1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.xib */; };
 		3DC56B641FC3D9F700F67C32 /* NGGAnalyseHistoryheaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DC56B631FC3D9F700F67C32 /* NGGAnalyseHistoryheaderView.m */; };
@@ -277,8 +307,6 @@
 		3DC56B921FC4432A00F67C32 /* NGGRankTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DC56B901FC4432A00F67C32 /* NGGRankTableViewCell.xib */; };
 		3DDACFB31FC8139C0057BD9B /* NGGUserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDACFB21FC8139C0057BD9B /* NGGUserInfoViewController.m */; };
 		3DDACFB71FC82F3B0057BD9B /* NGGCommonTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DDACFB61FC82F3B0057BD9B /* NGGCommonTableViewCell.m */; };
-		3DE5387F1FDA697D004D80AA /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3D65B8ED1FD94175006F98CE /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		3DE538801FDA6BD9004D80AA /* pop.framework in Sources */ = {isa = PBXBuildFile; fileRef = 3D65B8ED1FD94175006F98CE /* pop.framework */; };
 		3DE538841FDA7526004D80AA /* NGGPrizeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE538831FDA7526004D80AA /* NGGPrizeListViewController.m */; };
 		3DE538881FDA7676004D80AA /* NGGPrizeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE538861FDA7676004D80AA /* NGGPrizeTableViewCell.m */; };
 		3DE538891FDA7676004D80AA /* NGGPrizeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3DE538871FDA7676004D80AA /* NGGPrizeTableViewCell.xib */; };
@@ -296,7 +324,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				3DE5387F1FDA697D004D80AA /* pop.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,6 +423,21 @@
 		3D25B4B21FB4325D00D20FB2 /* NGGAnalyseHistoryView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGAnalyseHistoryView.h; sourceTree = "<group>"; };
 		3D25B4B31FB4325D00D20FB2 /* NGGAnalyseHistoryView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGAnalyseHistoryView.m; sourceTree = "<group>"; };
 		3D25B4B51FB4327300D20FB2 /* NGGAnalyseHistoryView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGAnalyseHistoryView.xib; sourceTree = "<group>"; };
+		3D351767202162CD00F89D16 /* WebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge.h; sourceTree = "<group>"; };
+		3D351768202162CD00F89D16 /* WebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge.m; sourceTree = "<group>"; };
+		3D351769202162CD00F89D16 /* WebViewJavascriptBridge_JS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridge_JS.h; sourceTree = "<group>"; };
+		3D35176A202162CD00F89D16 /* WebViewJavascriptBridge_JS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridge_JS.m; sourceTree = "<group>"; };
+		3D35176B202162CD00F89D16 /* WebViewJavascriptBridgeBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewJavascriptBridgeBase.h; sourceTree = "<group>"; };
+		3D35176C202162CD00F89D16 /* WebViewJavascriptBridgeBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewJavascriptBridgeBase.m; sourceTree = "<group>"; };
+		3D35176D202162CD00F89D16 /* WKWebViewJavascriptBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKWebViewJavascriptBridge.h; sourceTree = "<group>"; };
+		3D35176E202162CD00F89D16 /* WKWebViewJavascriptBridge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKWebViewJavascriptBridge.m; sourceTree = "<group>"; };
+		3D3517732021644400F89D16 /* ExampleApp.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = ExampleApp.html; sourceTree = "<group>"; };
+		3D3517752021661100F89D16 /* NGGWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGWebViewController.h; sourceTree = "<group>"; };
+		3D3517762021661100F89D16 /* NGGWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGWebViewController.m; sourceTree = "<group>"; };
+		3D3517782021664E00F89D16 /* NGGH5GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGH5GameViewController.h; sourceTree = "<group>"; };
+		3D3517792021664E00F89D16 /* NGGH5GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGH5GameViewController.m; sourceTree = "<group>"; };
+		3D35177E2021C06B00F89D16 /* NGGNavigationBar.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGNavigationBar.h; sourceTree = "<group>"; };
+		3D35177F2021C06B00F89D16 /* NGGNavigationBar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGNavigationBar.m; sourceTree = "<group>"; };
 		3D35EC591FB2F73A00E01659 /* Sport.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sport.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D35EC741FB2F78800E01659 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3D35EC751FB2F78800E01659 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -721,7 +763,6 @@
 		3D4B1BF21FC80E6100FBAB6C /* NGGSwitchTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGSwitchTableViewCell.h; sourceTree = "<group>"; };
 		3D4B1BF31FC80E6100FBAB6C /* NGGSwitchTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGSwitchTableViewCell.m; sourceTree = "<group>"; };
 		3D4B1BF41FC80E6100FBAB6C /* NGGSwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGSwitchTableViewCell.xib; sourceTree = "<group>"; };
-		3D65B8ED1FD94175006F98CE /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = pop.framework; sourceTree = "<group>"; };
 		3D74A28F1FE1090F00108F06 /* NGGGuessDescriptionCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGuessDescriptionCollectionViewCell.h; sourceTree = "<group>"; };
 		3D74A2901FE1090F00108F06 /* NGGGuessDescriptionCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGuessDescriptionCollectionViewCell.m; sourceTree = "<group>"; };
 		3D74A2911FE1090F00108F06 /* NGGGuessDescriptionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGGuessDescriptionCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -731,15 +772,66 @@
 		3D74A2991FE1223F00108F06 /* NGGGuessOrderDoneView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGGuessOrderDoneView.xib; sourceTree = "<group>"; };
 		3D74A29B1FE1225300108F06 /* NGGGuessOrderDoneView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGuessOrderDoneView.h; sourceTree = "<group>"; };
 		3D74A29C1FE1225300108F06 /* NGGGuessOrderDoneView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGuessOrderDoneView.m; sourceTree = "<group>"; };
+		3D84398920034A9400DE29EA /* NGGRecordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGRecordViewController.m; sourceTree = "<group>"; };
+		3D84398A20034A9400DE29EA /* NGGRecordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NGGRecordViewController.xib; sourceTree = "<group>"; };
+		3D84398B20034A9400DE29EA /* NGGRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGRecordViewController.h; sourceTree = "<group>"; };
 		3D922EF61FD00EEB003AA7F1 /* NGGGameListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGameListView.h; sourceTree = "<group>"; };
 		3D922EF71FD00EEB003AA7F1 /* NGGGameListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGameListView.m; sourceTree = "<group>"; };
 		3D922EF91FD00F72003AA7F1 /* NGGGameListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGGameListView.xib; sourceTree = "<group>"; };
+		3DA121C41FEB933200FF0738 /* POP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POP.h; sourceTree = "<group>"; };
+		3DA121C51FEB933200FF0738 /* POPAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPAction.h; sourceTree = "<group>"; };
+		3DA121C61FEB933200FF0738 /* POPAnimatableProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPAnimatableProperty.h; sourceTree = "<group>"; };
+		3DA121C71FEB933200FF0738 /* POPAnimatableProperty.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; fileEncoding = 4; path = POPAnimatableProperty.mm; sourceTree = "<group>"; };
+		3DA121C81FEB933200FF0738 /* POPAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPAnimation.h; sourceTree = "<group>"; };
+		3DA121C91FEB933200FF0738 /* POPAnimation.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = POPAnimation.mm; sourceTree = "<group>"; };
+		3DA121CA1FEB933200FF0738 /* POPAnimationEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPAnimationEvent.h; sourceTree = "<group>"; };
+		3DA121CB1FEB933200FF0738 /* POPAnimationEvent.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = POPAnimationEvent.mm; sourceTree = "<group>"; };
+		3DA121CC1FEB933200FF0738 /* POPAnimationEventInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPAnimationEventInternal.h; sourceTree = "<group>"; };
+		3DA121CD1FEB933200FF0738 /* POPAnimationExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPAnimationExtras.h; sourceTree = "<group>"; };
+		3DA121CE1FEB933200FF0738 /* POPAnimationExtras.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = POPAnimationExtras.mm; sourceTree = "<group>"; };
+		3DA121CF1FEB933200FF0738 /* POPAnimationInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPAnimationInternal.h; sourceTree = "<group>"; };
+		3DA121D01FEB933200FF0738 /* POPAnimationPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPAnimationPrivate.h; sourceTree = "<group>"; };
+		3DA121D11FEB933200FF0738 /* POPAnimationRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPAnimationRuntime.h; sourceTree = "<group>"; };
+		3DA121D21FEB933200FF0738 /* POPAnimationRuntime.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = POPAnimationRuntime.mm; sourceTree = "<group>"; };
+		3DA121D31FEB933200FF0738 /* POPAnimationTracer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPAnimationTracer.h; sourceTree = "<group>"; };
+		3DA121D41FEB933200FF0738 /* POPAnimationTracer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = POPAnimationTracer.mm; sourceTree = "<group>"; };
+		3DA121D51FEB933200FF0738 /* POPAnimationTracerInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPAnimationTracerInternal.h; sourceTree = "<group>"; };
+		3DA121D61FEB933200FF0738 /* POPAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPAnimator.h; sourceTree = "<group>"; };
+		3DA121D71FEB933200FF0738 /* POPAnimator.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = POPAnimator.mm; sourceTree = "<group>"; };
+		3DA121D81FEB933200FF0738 /* POPAnimatorPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPAnimatorPrivate.h; sourceTree = "<group>"; };
+		3DA121D91FEB933200FF0738 /* POPBasicAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPBasicAnimation.h; sourceTree = "<group>"; };
+		3DA121DA1FEB933200FF0738 /* POPBasicAnimation.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = POPBasicAnimation.mm; sourceTree = "<group>"; };
+		3DA121DB1FEB933200FF0738 /* POPBasicAnimationInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPBasicAnimationInternal.h; sourceTree = "<group>"; };
+		3DA121DC1FEB933200FF0738 /* POPCGUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPCGUtils.h; sourceTree = "<group>"; };
+		3DA121DD1FEB933200FF0738 /* POPCGUtils.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = POPCGUtils.mm; sourceTree = "<group>"; };
+		3DA121DE1FEB933200FF0738 /* POPCustomAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPCustomAnimation.h; sourceTree = "<group>"; };
+		3DA121DF1FEB933200FF0738 /* POPCustomAnimation.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = POPCustomAnimation.mm; sourceTree = "<group>"; };
+		3DA121E01FEB933200FF0738 /* POPDecayAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPDecayAnimation.h; sourceTree = "<group>"; };
+		3DA121E11FEB933200FF0738 /* POPDecayAnimation.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = POPDecayAnimation.mm; sourceTree = "<group>"; };
+		3DA121E21FEB933200FF0738 /* POPDecayAnimationInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPDecayAnimationInternal.h; sourceTree = "<group>"; };
+		3DA121E31FEB933200FF0738 /* POPDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPDefines.h; sourceTree = "<group>"; };
+		3DA121E41FEB933200FF0738 /* POPGeometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPGeometry.h; sourceTree = "<group>"; };
+		3DA121E51FEB933200FF0738 /* POPGeometry.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = POPGeometry.mm; sourceTree = "<group>"; };
+		3DA121E61FEB933200FF0738 /* POPLayerExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPLayerExtras.h; sourceTree = "<group>"; };
+		3DA121E71FEB933200FF0738 /* POPLayerExtras.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = POPLayerExtras.mm; sourceTree = "<group>"; };
+		3DA121E81FEB933200FF0738 /* POPMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPMath.h; sourceTree = "<group>"; };
+		3DA121E91FEB933200FF0738 /* POPMath.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = POPMath.mm; sourceTree = "<group>"; };
+		3DA121EA1FEB933200FF0738 /* POPPropertyAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPPropertyAnimation.h; sourceTree = "<group>"; };
+		3DA121EB1FEB933200FF0738 /* POPPropertyAnimation.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = POPPropertyAnimation.mm; sourceTree = "<group>"; };
+		3DA121EC1FEB933200FF0738 /* POPPropertyAnimationInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPPropertyAnimationInternal.h; sourceTree = "<group>"; };
+		3DA121ED1FEB933200FF0738 /* POPSpringAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPSpringAnimation.h; sourceTree = "<group>"; };
+		3DA121EE1FEB933200FF0738 /* POPSpringAnimation.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = POPSpringAnimation.mm; sourceTree = "<group>"; };
+		3DA121EF1FEB933200FF0738 /* POPSpringAnimationInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPSpringAnimationInternal.h; sourceTree = "<group>"; };
+		3DA121F01FEB933200FF0738 /* POPSpringSolver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPSpringSolver.h; sourceTree = "<group>"; };
+		3DA121F11FEB933200FF0738 /* POPVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPVector.h; sourceTree = "<group>"; };
+		3DA121F21FEB933200FF0738 /* POPVector.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = POPVector.mm; sourceTree = "<group>"; };
+		3DA121F41FEB933200FF0738 /* FloatConversion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatConversion.h; sourceTree = "<group>"; };
+		3DA121F51FEB933200FF0738 /* TransformationMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TransformationMatrix.cpp; sourceTree = "<group>"; };
+		3DA121F61FEB933200FF0738 /* TransformationMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformationMatrix.h; sourceTree = "<group>"; };
+		3DA121F71FEB933200FF0738 /* UnitBezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitBezier.h; sourceTree = "<group>"; };
 		3DA19B2B1FDE742200B19257 /* NGGLiveGuessDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGLiveGuessDetailViewController.h; sourceTree = "<group>"; };
 		3DA19B2C1FDE742200B19257 /* NGGLiveGuessDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGLiveGuessDetailViewController.m; sourceTree = "<group>"; };
 		3DA19B2D1FDE742200B19257 /* NGGLiveGuessDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGLiveGuessDetailViewController.xib; sourceTree = "<group>"; };
-		3DA19B321FDE8DFC00B19257 /* NGGTaskLotteryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGTaskLotteryViewController.h; sourceTree = "<group>"; };
-		3DA19B331FDE8DFC00B19257 /* NGGTaskLotteryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGTaskLotteryViewController.m; sourceTree = "<group>"; };
-		3DA19B341FDE8DFC00B19257 /* NGGTaskLotteryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGTaskLotteryViewController.xib; sourceTree = "<group>"; };
 		3DA19B371FDE986400B19257 /* NGGConsumptionTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGConsumptionTableViewCell.h; sourceTree = "<group>"; };
 		3DA19B381FDE986400B19257 /* NGGConsumptionTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGConsumptionTableViewCell.m; sourceTree = "<group>"; };
 		3DA19B391FDE986400B19257 /* NGGConsumptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGConsumptionTableViewCell.xib; sourceTree = "<group>"; };
@@ -755,6 +847,12 @@
 		3DA285251FE7CEA60093E726 /* NGGGuessRecordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGuessRecordTableViewCell.h; sourceTree = "<group>"; };
 		3DA285261FE7CEA60093E726 /* NGGGuessRecordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGuessRecordTableViewCell.m; sourceTree = "<group>"; };
 		3DA285271FE7CEA60093E726 /* NGGGuessRecordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGGuessRecordTableViewCell.xib; sourceTree = "<group>"; };
+		3DB56B3E1FF39430009D8880 /* NGGGoodsDescriptionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGoodsDescriptionViewController.h; sourceTree = "<group>"; };
+		3DB56B3F1FF39430009D8880 /* NGGGoodsDescriptionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGoodsDescriptionViewController.m; sourceTree = "<group>"; };
+		3DB56B401FF39430009D8880 /* NGGGoodsDescriptionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGGoodsDescriptionViewController.xib; sourceTree = "<group>"; };
+		3DBA1EA01FF4FCDC0023D599 /* NGGRecordTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGRecordTableViewCell.h; sourceTree = "<group>"; };
+		3DBA1EA11FF4FCDC0023D599 /* NGGRecordTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGRecordTableViewCell.m; sourceTree = "<group>"; };
+		3DBA1EA21FF4FCDC0023D599 /* NGGRecordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGRecordTableViewCell.xib; sourceTree = "<group>"; };
 		3DC56B5D1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGAnalyseHistoryTableViewCell.h; sourceTree = "<group>"; };
 		3DC56B5E1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGAnalyseHistoryTableViewCell.m; sourceTree = "<group>"; };
 		3DC56B5F1FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGAnalyseHistoryTableViewCell.xib; sourceTree = "<group>"; };
@@ -953,16 +1051,19 @@
 			children = (
 				3D07BED01FD7C80D00BC4A64 /* NGGShopViewController.h */,
 				3D07BECF1FD7C80D00BC4A64 /* NGGShopViewController.m */,
+				3D07BED11FD7C80D00BC4A64 /* NGGShopViewController.xib */,
 				3D07BEE31FD8D8A500BC4A64 /* NGGGoodsDetailViewController.h */,
 				3D07BEE41FD8D8A500BC4A64 /* NGGGoodsDetailViewController.m */,
 				3D07BEE51FD8D8A500BC4A64 /* NGGGoodsDetailViewController.xib */,
-				3D07BED11FD7C80D00BC4A64 /* NGGShopViewController.xib */,
 				3D07BEDB1FD7D1DC00BC4A64 /* NGGShopClassifyCollectionViewCell.h */,
 				3D07BEDA1FD7D1DC00BC4A64 /* NGGShopClassifyCollectionViewCell.m */,
 				3D07BED91FD7D1DC00BC4A64 /* NGGShopClassifyCollectionViewCell.xib */,
 				3D07BEDE1FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.h */,
 				3D07BEDF1FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.m */,
 				3D07BEE01FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.xib */,
+				3DB56B3E1FF39430009D8880 /* NGGGoodsDescriptionViewController.h */,
+				3DB56B3F1FF39430009D8880 /* NGGGoodsDescriptionViewController.m */,
+				3DB56B401FF39430009D8880 /* NGGGoodsDescriptionViewController.xib */,
 			);
 			path = Shop;
 			sourceTree = "<group>";
@@ -1020,6 +1121,31 @@
 			path = History;
 			sourceTree = "<group>";
 		};
+		3D351765202158C500F89D16 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				3D3517732021644400F89D16 /* ExampleApp.html */,
+				3D3517782021664E00F89D16 /* NGGH5GameViewController.h */,
+				3D3517792021664E00F89D16 /* NGGH5GameViewController.m */,
+			);
+			path = Web;
+			sourceTree = "<group>";
+		};
+		3D351766202162CD00F89D16 /* WebViewJavascriptBridge */ = {
+			isa = PBXGroup;
+			children = (
+				3D351767202162CD00F89D16 /* WebViewJavascriptBridge.h */,
+				3D351768202162CD00F89D16 /* WebViewJavascriptBridge.m */,
+				3D351769202162CD00F89D16 /* WebViewJavascriptBridge_JS.h */,
+				3D35176A202162CD00F89D16 /* WebViewJavascriptBridge_JS.m */,
+				3D35176B202162CD00F89D16 /* WebViewJavascriptBridgeBase.h */,
+				3D35176C202162CD00F89D16 /* WebViewJavascriptBridgeBase.m */,
+				3D35176D202162CD00F89D16 /* WKWebViewJavascriptBridge.h */,
+				3D35176E202162CD00F89D16 /* WKWebViewJavascriptBridge.m */,
+			);
+			path = WebViewJavascriptBridge;
+			sourceTree = "<group>";
+		};
 		3D35EC501FB2F73A00E01659 = {
 			isa = PBXGroup;
 			children = (
@@ -1040,6 +1166,7 @@
 		3D35EC721FB2F78800E01659 /* Sport */ = {
 			isa = PBXGroup;
 			children = (
+				3D351765202158C500F89D16 /* Web */,
 				3DF6E6301FCFE2DD009CB3E3 /* Sport.entitlements */,
 				3D4B1BDA1FC7BF5700FBAB6C /* Model */,
 				3D35EC761FB2F78800E01659 /* Assets.xcassets */,
@@ -1078,6 +1205,10 @@
 				3D35EC7B1FB2F78800E01659 /* NGGNavigationController.m */,
 				3D35EC7C1FB2F78800E01659 /* NGGTabBarController.h */,
 				3D35EC7D1FB2F78800E01659 /* NGGTabBarController.m */,
+				3D3517752021661100F89D16 /* NGGWebViewController.h */,
+				3D3517762021661100F89D16 /* NGGWebViewController.m */,
+				3D35177E2021C06B00F89D16 /* NGGNavigationBar.h */,
+				3D35177F2021C06B00F89D16 /* NGGNavigationBar.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1173,9 +1304,6 @@
 				3D35ECBE1FB2F78800E01659 /* NGGTaskViewController.h */,
 				3D35ECBF1FB2F78800E01659 /* NGGTaskViewController.m */,
 				3D35ECC01FB2F78800E01659 /* NGGTaskViewController.xib */,
-				3DA19B321FDE8DFC00B19257 /* NGGTaskLotteryViewController.h */,
-				3DA19B331FDE8DFC00B19257 /* NGGTaskLotteryViewController.m */,
-				3DA19B341FDE8DFC00B19257 /* NGGTaskLotteryViewController.xib */,
 			);
 			path = Task;
 			sourceTree = "<group>";
@@ -1183,6 +1311,7 @@
 		3D35ECC11FB2F78800E01659 /* User */ = {
 			isa = PBXGroup;
 			children = (
+				3DBA1E9A1FF4F81F0023D599 /* Record */,
 				3DE538811FDA74A0004D80AA /* Prize */,
 				3D45CB931FCD706D006EF330 /* ConsumptionDetail */,
 				3D45CB871FCD5BE4006EF330 /* Recharge */,
@@ -1258,7 +1387,8 @@
 		3D35ECD91FB2F78900E01659 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				3D65B8ED1FD94175006F98CE /* pop.framework */,
+				3D351766202162CD00F89D16 /* WebViewJavascriptBridge */,
+				3DA121C31FEB933200FF0738 /* pop */,
 				3D07BEE81FD90B9600BC4A64 /* SCLAlertView */,
 				3D07BE771FD66E3400BC4A64 /* SocketRocket */,
 				3D35ECDA1FB2F78900E01659 /* AFNetworking */,
@@ -1787,6 +1917,72 @@
 			path = "Game List";
 			sourceTree = "<group>";
 		};
+		3DA121C31FEB933200FF0738 /* pop */ = {
+			isa = PBXGroup;
+			children = (
+				3DA121C41FEB933200FF0738 /* POP.h */,
+				3DA121C51FEB933200FF0738 /* POPAction.h */,
+				3DA121C61FEB933200FF0738 /* POPAnimatableProperty.h */,
+				3DA121C71FEB933200FF0738 /* POPAnimatableProperty.mm */,
+				3DA121C81FEB933200FF0738 /* POPAnimation.h */,
+				3DA121C91FEB933200FF0738 /* POPAnimation.mm */,
+				3DA121CA1FEB933200FF0738 /* POPAnimationEvent.h */,
+				3DA121CB1FEB933200FF0738 /* POPAnimationEvent.mm */,
+				3DA121CC1FEB933200FF0738 /* POPAnimationEventInternal.h */,
+				3DA121CD1FEB933200FF0738 /* POPAnimationExtras.h */,
+				3DA121CE1FEB933200FF0738 /* POPAnimationExtras.mm */,
+				3DA121CF1FEB933200FF0738 /* POPAnimationInternal.h */,
+				3DA121D01FEB933200FF0738 /* POPAnimationPrivate.h */,
+				3DA121D11FEB933200FF0738 /* POPAnimationRuntime.h */,
+				3DA121D21FEB933200FF0738 /* POPAnimationRuntime.mm */,
+				3DA121D31FEB933200FF0738 /* POPAnimationTracer.h */,
+				3DA121D41FEB933200FF0738 /* POPAnimationTracer.mm */,
+				3DA121D51FEB933200FF0738 /* POPAnimationTracerInternal.h */,
+				3DA121D61FEB933200FF0738 /* POPAnimator.h */,
+				3DA121D71FEB933200FF0738 /* POPAnimator.mm */,
+				3DA121D81FEB933200FF0738 /* POPAnimatorPrivate.h */,
+				3DA121D91FEB933200FF0738 /* POPBasicAnimation.h */,
+				3DA121DA1FEB933200FF0738 /* POPBasicAnimation.mm */,
+				3DA121DB1FEB933200FF0738 /* POPBasicAnimationInternal.h */,
+				3DA121DC1FEB933200FF0738 /* POPCGUtils.h */,
+				3DA121DD1FEB933200FF0738 /* POPCGUtils.mm */,
+				3DA121DE1FEB933200FF0738 /* POPCustomAnimation.h */,
+				3DA121DF1FEB933200FF0738 /* POPCustomAnimation.mm */,
+				3DA121E01FEB933200FF0738 /* POPDecayAnimation.h */,
+				3DA121E11FEB933200FF0738 /* POPDecayAnimation.mm */,
+				3DA121E21FEB933200FF0738 /* POPDecayAnimationInternal.h */,
+				3DA121E31FEB933200FF0738 /* POPDefines.h */,
+				3DA121E41FEB933200FF0738 /* POPGeometry.h */,
+				3DA121E51FEB933200FF0738 /* POPGeometry.mm */,
+				3DA121E61FEB933200FF0738 /* POPLayerExtras.h */,
+				3DA121E71FEB933200FF0738 /* POPLayerExtras.mm */,
+				3DA121E81FEB933200FF0738 /* POPMath.h */,
+				3DA121E91FEB933200FF0738 /* POPMath.mm */,
+				3DA121EA1FEB933200FF0738 /* POPPropertyAnimation.h */,
+				3DA121EB1FEB933200FF0738 /* POPPropertyAnimation.mm */,
+				3DA121EC1FEB933200FF0738 /* POPPropertyAnimationInternal.h */,
+				3DA121ED1FEB933200FF0738 /* POPSpringAnimation.h */,
+				3DA121EE1FEB933200FF0738 /* POPSpringAnimation.mm */,
+				3DA121EF1FEB933200FF0738 /* POPSpringAnimationInternal.h */,
+				3DA121F01FEB933200FF0738 /* POPSpringSolver.h */,
+				3DA121F11FEB933200FF0738 /* POPVector.h */,
+				3DA121F21FEB933200FF0738 /* POPVector.mm */,
+				3DA121F31FEB933200FF0738 /* WebCore */,
+			);
+			path = pop;
+			sourceTree = "<group>";
+		};
+		3DA121F31FEB933200FF0738 /* WebCore */ = {
+			isa = PBXGroup;
+			children = (
+				3DA121F41FEB933200FF0738 /* FloatConversion.h */,
+				3DA121F51FEB933200FF0738 /* TransformationMatrix.cpp */,
+				3DA121F61FEB933200FF0738 /* TransformationMatrix.h */,
+				3DA121F71FEB933200FF0738 /* UnitBezier.h */,
+			);
+			path = WebCore;
+			sourceTree = "<group>";
+		};
 		3DA19B2A1FDE6AF900B19257 /* LiveGuess */ = {
 			isa = PBXGroup;
 			children = (
@@ -1819,6 +2015,19 @@
 				3DA285231FE7CCC60093E726 /* NGGGuessRecordModel.m */,
 			);
 			path = GuessRecord;
+			sourceTree = "<group>";
+		};
+		3DBA1E9A1FF4F81F0023D599 /* Record */ = {
+			isa = PBXGroup;
+			children = (
+				3D84398B20034A9400DE29EA /* NGGRecordViewController.h */,
+				3D84398920034A9400DE29EA /* NGGRecordViewController.m */,
+				3D84398A20034A9400DE29EA /* NGGRecordViewController.xib */,
+				3DBA1EA01FF4FCDC0023D599 /* NGGRecordTableViewCell.h */,
+				3DBA1EA11FF4FCDC0023D599 /* NGGRecordTableViewCell.m */,
+				3DBA1EA21FF4FCDC0023D599 /* NGGRecordTableViewCell.xib */,
+			);
+			path = Record;
 			sourceTree = "<group>";
 		};
 		3DC56B671FC3FB9F00F67C32 /* RecentRecord */ = {
@@ -1935,7 +2144,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Push = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -1964,6 +2173,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D84398D20034A9400DE29EA /* NGGRecordViewController.xib in Resources */,
 				3D35EDC01FB2F78900E01659 /* NGGGuessListViewController.xib in Resources */,
 				3DC56B711FC4103100F67C32 /* NGGRecentRecordCollectionViewCell.xib in Resources */,
 				3DC56B6C1FC3FF0A00F67C32 /* NGGRecentRecordView.xib in Resources */,
@@ -1976,12 +2186,12 @@
 				3D35EDB51FB2F78900E01659 /* NGGHomeHeaderReusableView.xib in Resources */,
 				3DC56B7E1FC421F000F67C32 /* NGGFollowGameTableViewCell.xib in Resources */,
 				3D45CB7D1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.xib in Resources */,
-				3DA19B361FDE8DFC00B19257 /* NGGTaskLotteryViewController.xib in Resources */,
 				3D35EDCE1FB2F78900E01659 /* AlipaySDK.bundle in Resources */,
 				3D35EDC41FB2F78900E01659 /* NGGLoginViewController.xib in Resources */,
 				3D35EDC21FB2F78900E01659 /* NGGTypeTableViewCell.xib in Resources */,
 				3D74A2931FE1090F00108F06 /* NGGGuessDescriptionCollectionViewCell.xib in Resources */,
 				3D35EDD41FB2F78900E01659 /* WeiboSDK.bundle in Resources */,
+				3DB56B421FF39430009D8880 /* NGGGoodsDescriptionViewController.xib in Resources */,
 				3D35EDA31FB2F78900E01659 /* Assets.xcassets in Resources */,
 				3D0BEAA61FC55B7800EC14A9 /* NGGRankHeaderView.xib in Resources */,
 				3D35EDBE1FB2F78900E01659 /* NGGPreGameTableViewCell.xib in Resources */,
@@ -2002,6 +2212,7 @@
 				3D07BED31FD7C80D00BC4A64 /* NGGShopViewController.xib in Resources */,
 				3D4B1BD91FC6A0C600FBAB6C /* NGGUserViewController.xib in Resources */,
 				3D25B4AF1FB428A200D20FB2 /* NGGDetailAnalyseView.xib in Resources */,
+				3D3517742021644400F89D16 /* ExampleApp.html in Resources */,
 				3DA19B3B1FDE986400B19257 /* NGGConsumptionTableViewCell.xib in Resources */,
 				3D74A29A1FE1223F00108F06 /* NGGGuessOrderDoneView.xib in Resources */,
 				3D07BEE21FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.xib in Resources */,
@@ -2020,6 +2231,7 @@
 				3D35EE0C1FB2F78900E01659 /* PSCarouselCollectionCell.xib in Resources */,
 				3D07BEDC1FD7D1DC00BC4A64 /* NGGShopClassifyCollectionViewCell.xib in Resources */,
 				3D35EDB31FB2F78900E01659 /* NGGHomeBannerCollectionViewCell.xib in Resources */,
+				3DBA1EA41FF4FCDC0023D599 /* NGGRecordTableViewCell.xib in Resources */,
 				3D07BEBB1FD66E3400BC4A64 /* Info.plist in Resources */,
 				3D35EDE01FB2F78900E01659 /* DMMultiImagePicker.bundle in Resources */,
 				3D35EDA71FB2F78900E01659 /* LaunchScreen.storyboard in Resources */,
@@ -2038,8 +2250,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3DE538801FDA6BD9004D80AA /* pop.framework in Sources */,
 				3DF60B3B1FD126FA00FE26E9 /* NGGPreGameTableViewCell.m in Sources */,
+				3D35177A2021664E00F89D16 /* NGGH5GameViewController.m in Sources */,
 				3D35EDC71FB2F78900E01659 /* NGGResultViewController.m in Sources */,
 				3D35EDE81FB2F78900E01659 /* DMPictureModel.m in Sources */,
 				3D35EDAA1FB2F78900E01659 /* main.m in Sources */,
@@ -2052,14 +2264,17 @@
 				3D35EDB61FB2F78900E01659 /* NGGHomeItemCollectionViewCell.m in Sources */,
 				3D35EE101FB2F78900E01659 /* NSData+ImageContentType.m in Sources */,
 				3D35EDE91FB2F78900E01659 /* DMPictureView.m in Sources */,
+				3DA121F91FEB933300FF0738 /* POPAnimation.mm in Sources */,
 				3D35EDED1FB2F78900E01659 /* MASConstraintMaker.m in Sources */,
 				3D35EDF01FB2F78900E01659 /* MASViewConstraint.m in Sources */,
 				3D4B1BF01FC7F7E900FBAB6C /* NGGTextTableViewCell.m in Sources */,
 				3D35EDB81FB2F78900E01659 /* NGGHomeNoticeCollectionViewCell.m in Sources */,
 				3DC56B881FC42FC000F67C32 /* NGGGameResultTableViewCell.m in Sources */,
+				3D3517802021C06B00F89D16 /* NGGNavigationBar.m in Sources */,
 				3D35EDF31FB2F78900E01659 /* View+MASAdditions.m in Sources */,
 				3D35EE2B1FB2F78900E01659 /* ZSBlockAlertView.m in Sources */,
 				3D07BEB91FD66E3400BC4A64 /* NSRunLoop+SRWebSocket.m in Sources */,
+				3D3517772021661100F89D16 /* NGGWebViewController.m in Sources */,
 				3D35EDB01FB2F78900E01659 /* NGGHomeActivityHeaderReusableView.m in Sources */,
 				3DA19B3A1FDE986400B19257 /* NGGConsumptionTableViewCell.m in Sources */,
 				3D35EE601FB30A3B00E01659 /* NGGDetailHeaderReusableView.m in Sources */,
@@ -2076,6 +2291,7 @@
 				3D07BEC61FD698BB00BC4A64 /* NGGOptionCollectionViewCell.m in Sources */,
 				3D07BEB81FD66E3400BC4A64 /* SRURLUtilities.m in Sources */,
 				3D35EE241FB2F78900E01659 /* UIImage+ImageWithColor.m in Sources */,
+				3D351770202162CD00F89D16 /* WebViewJavascriptBridge_JS.m in Sources */,
 				3D07BEB61FD66E3400BC4A64 /* SRRandom.m in Sources */,
 				3D35EDF21FB2F78900E01659 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				3D35EDFD1FB2F78900E01659 /* MJRefreshBackGifFooter.m in Sources */,
@@ -2085,15 +2301,21 @@
 				3D07BEBD1FD66E3400BC4A64 /* SRWebSocket.m in Sources */,
 				3D35EDDA1FB2F78900E01659 /* AFURLSessionManager.m in Sources */,
 				3DA19B2E1FDE742200B19257 /* NGGLiveGuessDetailViewController.m in Sources */,
+				3DA122061FEB933300FF0738 /* POPPropertyAnimation.mm in Sources */,
 				3D45CB701FCC0C14006EF330 /* NGGModifyPasswordViewController.m in Sources */,
 				3D35EE561FB3073D00E01659 /* NGGGuessCollectionViewCell.m in Sources */,
 				3D35EDFA1FB2F78900E01659 /* MJRefreshAutoGifFooter.m in Sources */,
 				3D35EDBC1FB2F78900E01659 /* NGGHomeViewController.m in Sources */,
 				3D35EDD61FB2F78900E01659 /* AFNetworkReachabilityManager.m in Sources */,
 				3D35EDDD1FB2F78900E01659 /* DMAssetModel.m in Sources */,
+				3DA122051FEB933300FF0738 /* POPMath.mm in Sources */,
+				3D351772202162CD00F89D16 /* WKWebViewJavascriptBridge.m in Sources */,
 				3D25B4B41FB4325D00D20FB2 /* NGGAnalyseHistoryView.m in Sources */,
 				3D35EE291FB2F78900E01659 /* NGGHTTPClient.m in Sources */,
+				3DA121FB1FEB933300FF0738 /* POPAnimationExtras.mm in Sources */,
 				3D35EE041FB2F78900E01659 /* MJRefreshConst.m in Sources */,
+				3DA121FC1FEB933300FF0738 /* POPAnimationRuntime.mm in Sources */,
+				3DA121FF1FEB933300FF0738 /* POPBasicAnimation.mm in Sources */,
 				3D35EE121FB2F78900E01659 /* SDImageCache.m in Sources */,
 				3D35EDF51FB2F78900E01659 /* MJRefreshAutoFooter.m in Sources */,
 				3D35EDE31FB2F78900E01659 /* DMPhoto.m in Sources */,
@@ -2102,6 +2324,7 @@
 				3DC56B821FC42F5B00F67C32 /* NGGGameResultView.m in Sources */,
 				3D4B1BDD1FC7BF7F00FBAB6C /* NGGUser.m in Sources */,
 				3D45CB971FCD7156006EF330 /* NGGConsumptionDeatilViewController.m in Sources */,
+				3DBA1EA31FF4FCDC0023D599 /* NGGRecordTableViewCell.m in Sources */,
 				3DC56B641FC3D9F700F67C32 /* NGGAnalyseHistoryheaderView.m in Sources */,
 				3D35EE151FB2F78900E01659 /* SDWebImageDecoder.m in Sources */,
 				3D35EDA41FB2F78900E01659 /* NGGCommonViewController.m in Sources */,
@@ -2114,26 +2337,30 @@
 				3D35EE1B1FB2F78900E01659 /* UIImage+GIF.m in Sources */,
 				3D35EE001FB2F78900E01659 /* MJRefreshGifHeader.m in Sources */,
 				3D07BEB11FD66E3400BC4A64 /* SRError.m in Sources */,
+				3DA121FE1FEB933300FF0738 /* POPAnimator.mm in Sources */,
 				3D07BEBC1FD66E3400BC4A64 /* SRSecurityPolicy.m in Sources */,
 				3D35EE0F1FB2F78900E01659 /* MKAnnotationView+WebCache.m in Sources */,
 				3D35EDD91FB2F78900E01659 /* AFURLResponseSerialization.m in Sources */,
 				3D35EE071FB2F78900E01659 /* UIScrollView+MJRefresh.m in Sources */,
 				3D07BEAC1FD66E3400BC4A64 /* SRIOConsumerPool.m in Sources */,
 				3D07BEFA1FD90B9600BC4A64 /* SCLAlertView.m in Sources */,
+				3DA122031FEB933300FF0738 /* POPGeometry.mm in Sources */,
 				3D35EDEE1FB2F78900E01659 /* MASLayoutConstraint.m in Sources */,
 				3D35EDAE1FB2F78900E01659 /* NGGPreGuessDetailViewController.m in Sources */,
 				3D35EDEB1FB2F78900E01659 /* MASCompositeConstraint.m in Sources */,
+				3DB56B411FF39430009D8880 /* NGGGoodsDescriptionViewController.m in Sources */,
 				3D07BEFE1FD90B9600BC4A64 /* SCLSwitchView.m in Sources */,
 				3D07BEB31FD66E3400BC4A64 /* SRHTTPConnectMessage.m in Sources */,
 				3D35EE061FB2F78900E01659 /* UIScrollView+MJExtension.m in Sources */,
 				3D45CB751FCC1434006EF330 /* NGGMessageViewController.m in Sources */,
-				3DA19B351FDE8DFC00B19257 /* NGGTaskLotteryViewController.m in Sources */,
 				3D07BEB41FD66E3400BC4A64 /* SRLog.m in Sources */,
 				3D07BE721FD4E0F900BC4A64 /* NGGDateCollectionViewCell.m in Sources */,
 				3D35EDF11FB2F78900E01659 /* NSArray+MASAdditions.m in Sources */,
 				3D35EDF61FB2F78900E01659 /* MJRefreshBackFooter.m in Sources */,
 				3D45CB851FCD380D006EF330 /* NGGExchangeViewController.m in Sources */,
+				3DA122081FEB933300FF0738 /* POPVector.mm in Sources */,
 				3D35EDC81FB2F78900E01659 /* NGGTaskTableViewCell.m in Sources */,
+				3D84398C20034A9400DE29EA /* NGGRecordViewController.m in Sources */,
 				3D07BEAF1FD66E3400BC4A64 /* SRPinningSecurityPolicy.m in Sources */,
 				3D07BEFB1FD90B9600BC4A64 /* SCLAlertViewResponder.m in Sources */,
 				3D35EDB21FB2F78900E01659 /* NGGHomeBannerCollectionViewCell.m in Sources */,
@@ -2143,6 +2370,8 @@
 				3D35EDF71FB2F78900E01659 /* MJRefreshComponent.m in Sources */,
 				3D35EE021FB2F78900E01659 /* MJRefreshStateHeader.m in Sources */,
 				3D35EE221FB2F78900E01659 /* UIImage+Blur.m in Sources */,
+				3DA121FA1FEB933300FF0738 /* POPAnimationEvent.mm in Sources */,
+				3DA122011FEB933300FF0738 /* POPCustomAnimation.mm in Sources */,
 				3D35EDEC1FB2F78900E01659 /* MASConstraint.m in Sources */,
 				3D07BEE61FD8D8A600BC4A64 /* NGGGoodsDetailViewController.m in Sources */,
 				3DC56B7D1FC421F000F67C32 /* NGGFollowGameTableViewCell.m in Sources */,
@@ -2154,6 +2383,7 @@
 				3DA285241FE7CCC60093E726 /* NGGGuessRecordModel.m in Sources */,
 				3D74A29D1FE1225300108F06 /* NGGGuessOrderDoneView.m in Sources */,
 				3D4B1BE01FC7C4F500FBAB6C /* NGGModel.m in Sources */,
+				3DA122071FEB933300FF0738 /* POPSpringAnimation.mm in Sources */,
 				3D45CB781FCC1CAC006EF330 /* NGGSystemMessageViewController.m in Sources */,
 				3D35EE261FB2F78900E01659 /* UIImageView+LBBlurredImage.m in Sources */,
 				3D35EDCA1FB2F78900E01659 /* NGGTaskViewController.m in Sources */,
@@ -2166,13 +2396,17 @@
 				3D35EDC31FB2F78900E01659 /* NGGLoginViewController.m in Sources */,
 				3D35EDE51FB2F78900E01659 /* DMPhotoView.m in Sources */,
 				3DE538841FDA7526004D80AA /* NGGPrizeListViewController.m in Sources */,
+				3DA122091FEB933300FF0738 /* TransformationMatrix.cpp in Sources */,
 				3D35EE111FB2F78900E01659 /* NSImage+WebCache.m in Sources */,
+				3DA121FD1FEB933300FF0738 /* POPAnimationTracer.mm in Sources */,
 				3D07BEAB1FD66E3400BC4A64 /* SRIOConsumer.m in Sources */,
+				3D35176F202162CD00F89D16 /* WebViewJavascriptBridge.m in Sources */,
 				3D35EE271FB2F78900E01659 /* ZSMD5.m in Sources */,
 				3D45CB6C1FCC0128006EF330 /* UITextView+Placeholder.m in Sources */,
 				3D45CB8A1FCD5CF5006EF330 /* NGGRechargeViewController.m in Sources */,
 				3D35EE011FB2F78900E01659 /* MJRefreshNormalHeader.m in Sources */,
 				3D07BEFC1FD90B9600BC4A64 /* SCLAlertViewStyleKit.m in Sources */,
+				3DA121F81FEB933300FF0738 /* POPAnimatableProperty.mm in Sources */,
 				3DF60B411FD12F8100FE26E9 /* NGGLeagueModel.m in Sources */,
 				3D35EDFC1FB2F78900E01659 /* MJRefreshAutoStateFooter.m in Sources */,
 				3D07BEB21FD66E3400BC4A64 /* SRHash.m in Sources */,
@@ -2185,10 +2419,13 @@
 				3D07BEAD1FD66E3400BC4A64 /* SRProxyConnect.m in Sources */,
 				3D07BEFF1FD90B9600BC4A64 /* SCLTextView.m in Sources */,
 				3D35EE141FB2F78900E01659 /* SDWebImageCompat.m in Sources */,
+				3DA122041FEB933300FF0738 /* POPLayerExtras.mm in Sources */,
 				3D35EDD71FB2F78900E01659 /* AFSecurityPolicy.m in Sources */,
 				3D07BEAE1FD66E3400BC4A64 /* SRRunLoopThread.m in Sources */,
 				3D35EDFB1FB2F78900E01659 /* MJRefreshAutoNormalFooter.m in Sources */,
 				3D35EE171FB2F78900E01659 /* SDWebImageDownloaderOperation.m in Sources */,
+				3D351771202162CD00F89D16 /* WebViewJavascriptBridgeBase.m in Sources */,
+				3DA122021FEB933300FF0738 /* POPDecayAnimation.mm in Sources */,
 				3D35EDFE1FB2F78900E01659 /* MJRefreshBackNormalFooter.m in Sources */,
 				3D35EE1F1FB2F78900E01659 /* UIImageView+WebCache.m in Sources */,
 				3D35EDCC1FB2F78900E01659 /* NGGUserViewController.m in Sources */,
@@ -2222,6 +2459,7 @@
 				3D35EDD81FB2F78900E01659 /* AFURLRequestSerialization.m in Sources */,
 				3D07BF011FD90B9600BC4A64 /* UIImage+ImageEffects.m in Sources */,
 				3DC56B601FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.m in Sources */,
+				3DA122001FEB933300FF0738 /* POPCGUtils.mm in Sources */,
 				3D07BEE11FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.m in Sources */,
 				3D35EDE61FB2F78900E01659 /* DMPictureBrowerViewController.m in Sources */,
 				3D45CB5C1FCBF5F0006EF330 /* NGGModifyNicknameViewController.m in Sources */,
@@ -2360,7 +2598,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Sport/Sport.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CD8Y6D6QYC;
@@ -2382,7 +2619,7 @@
 					"$(PROJECT_DIR)/Sport/Social/wechat1.8.0",
 					"$(PROJECT_DIR)/Sport/Social/Weibo3.2.2",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-lc++",
 					"-ObjC",
@@ -2390,7 +2627,7 @@
 					"\"-Objc -all_load\"",
 				);
 				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yyy.c001;
+				PRODUCT_BUNDLE_IDENTIFIER = com.damaiapp.enterprise.DMSys1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2404,7 +2641,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Sport/Sport.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CD8Y6D6QYC;
@@ -2426,7 +2662,7 @@
 					"$(PROJECT_DIR)/Sport/Social/wechat1.8.0",
 					"$(PROJECT_DIR)/Sport/Social/Weibo3.2.2",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-lc++",
 					"-ObjC",
@@ -2434,7 +2670,7 @@
 					"\"-Objc -all_load\"",
 				);
 				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yyy.c001;
+				PRODUCT_BUNDLE_IDENTIFIER = com.damaiapp.enterprise.DMSys1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
