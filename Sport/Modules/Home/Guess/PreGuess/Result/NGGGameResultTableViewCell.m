@@ -27,6 +27,8 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -44,7 +46,7 @@
     _awayNameLabel.text = [cellInfo stringForKey:@"a_name"];
     _homeResultLabel.text =  [@([scoreArray[0] integerValue]) stringValue];
     _awayResultLabel.text =   [@([scoreArray[1] integerValue]) stringValue];;
-    _timeLabel.text = [JYCommonTool dateFormatWithInterval:[cellInfo intForKey:@"match_time"] format:@"yyyy-MM-dd"];
+    _timeLabel.text = [JYCommonTool dateFormatWithInterval:[cellInfo intForKey:@"match_time"] format:@"yyyy-MM-dd HH:mm"];
     [_homeLogo sd_setImageWithURL:[NSURL URLWithString:[cellInfo stringForKey:@"h_logo"]] placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
     [_awayLogo sd_setImageWithURL:[NSURL URLWithString:[cellInfo stringForKey:@"a_logo"]] placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
 }

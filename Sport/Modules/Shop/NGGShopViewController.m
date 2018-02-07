@@ -125,10 +125,8 @@ static NSString *kShopItemCellIdentifier = @"shopItemCellIdentifier";
         
         params = @{@"cid" : classifyID};
     }
-    [self showLoadingHUDWithText:nil];
     [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=goods.init" parameters:params willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        [self dismissHUD];
         NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
             
             [self showErrorHUDWithText:msg];
@@ -154,7 +152,6 @@ static NSString *kShopItemCellIdentifier = @"shopItemCellIdentifier";
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        [self dismissHUD];
     }];
 }
 

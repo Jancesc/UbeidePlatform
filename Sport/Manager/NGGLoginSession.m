@@ -53,7 +53,7 @@ static NGGLoginSession *_activeSession = nil;
     NGGLoginSession *session = [NGGLoginSession new];
     session.currentUser = [[NGGUser alloc] initWithInfo:info];
     _activeSession = session;
-    
+    [session.currentUser saveToDisk];
     return session;
 }
 

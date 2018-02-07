@@ -76,6 +76,10 @@
 
 - (void)updateUIForSelected {
     
+    if (_model.isGuessed) {
+        [self updateUIForGuessed];
+        return;
+    }
     _titleLabel.textColor = [UIColor whiteColor];
     _oddsLabel.textColor = [UIColor whiteColor];
     self.backgroundColor = NGGThirdColor;

@@ -11,5 +11,5 @@
 
 @interface NGGGuessCollectionViewCell : UICollectionViewCell
 @property (nonatomic, strong) NGGGuessItemModel *model;
-
+- (void)updateUIForSelected;
 @end

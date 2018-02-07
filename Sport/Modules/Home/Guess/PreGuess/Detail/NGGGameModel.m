@@ -37,6 +37,9 @@
         _homeName = [dict stringForKey:@"h_name"];
         _awayName = [dict stringForKey:@"a_name"];
         _status = [dict stringForKey:@"status"];
+        _homeLogo = [dict stringForKey:@"h_logo"];
+        _awayLogo = [dict stringForKey:@"a_logo"];
+        _duration = [dict stringForKey:@"duration"];
         
         NSArray *scoreArray = [dict arrayForKey:@"score"];
         if ([scoreArray count] > 1) {

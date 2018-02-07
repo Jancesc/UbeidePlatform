@@ -176,6 +176,10 @@
         return;
     }
 
+    if (orderCount > 50000) {
+        orderCount = 50000;
+        [SVProgressHUD showErrorWithStatus:@"最高投注50000"];
+    }
     _textField.text = @(orderCount).stringValue;
     CGFloat profit = orderCount * _itemModel.odds.doubleValue;
     _profitLabel.text = [NSString stringWithFormat:@"预计盈利：%@", [JYCommonTool stringDisposeWithFloat:profit]];
@@ -209,5 +213,10 @@
         return;
     }
     [self showMakeOrderAlert];
+}
+
+- (NGGGuessItemModel *) currentItemModel {
+    
+    return _itemModel;
 }
 @end

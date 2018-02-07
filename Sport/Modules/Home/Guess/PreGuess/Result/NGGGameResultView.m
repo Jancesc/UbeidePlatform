@@ -33,7 +33,7 @@ static NSString *kGameResultTableViewCellIdentidier = @"gameResultTableViewCellI
 }
 
 - (void)configueUIComponents {
-    
+
     _tableView = [[UITableView alloc] initWithFrame:self.bounds style:UITableViewStylePlain];
     [self addSubview:_tableView];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -47,7 +47,7 @@ static NSString *kGameResultTableViewCellIdentidier = @"gameResultTableViewCellI
     }
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    _tableView.rowHeight = 165.f;
+    _tableView.rowHeight = 150.f;
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.showsVerticalScrollIndicator = YES;
@@ -63,7 +63,7 @@ static NSString *kGameResultTableViewCellIdentidier = @"gameResultTableViewCellI
 
 -(void)setArrayOfGameResult:(NSArray *)arrayOfGameResult {
     
-    if ([_arrayOfGameResult count] == 0 && [arrayOfGameResult count] == NGGMaxCountPerPage) {
+    if ([arrayOfGameResult count] != 0 && [arrayOfGameResult count] % NGGMaxCountPerPage == 0) {
         
         [self setupLoadMoreFooter];
     } else if ([arrayOfGameResult count] - [_arrayOfGameResult count] < NGGMaxCountPerPage) {
@@ -76,8 +76,8 @@ static NSString *kGameResultTableViewCellIdentidier = @"gameResultTableViewCellI
     [_tableView.mj_footer endRefreshing];
 }
 
-- (void) setupLoadMoreFooter
-{
+- (void) setupLoadMoreFooter {
+    
     MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     _tableView.mj_footer = footer;
 }

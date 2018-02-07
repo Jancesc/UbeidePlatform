@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -22,17 +22,8 @@
                         <constraint firstAttribute="height" constant="40" id="S0T-Up-Gx3"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="131345" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hqn-kw-vrO">
-                    <rect key="frame" x="240" y="0.0" width="60" height="123"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="60" id="o9p-VM-got"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                    <color key="textColor" red="0.89411764709999997" green="0.1019607843" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="游客69366" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Seh-ga-tdQ">
-                    <rect key="frame" x="70" y="0.0" width="60" height="123"/>
+                    <rect key="frame" x="70" y="0.0" width="70" height="123"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -44,13 +35,22 @@
                         <constraint firstAttribute="height" constant="1" id="dcn-ga-4Bw"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="七日盈利:榜外" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBi-io-aZj">
-                    <rect key="frame" x="138" y="-9" width="90" height="123"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="七日盈利:榜外" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBi-io-aZj">
+                    <rect key="frame" x="150" y="0.0" width="90" height="123"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="90" id="hdS-UH-ixw"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="131345" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Hqn-kw-vrO">
+                    <rect key="frame" x="250" y="0.0" width="60" height="123"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="o9p-VM-got"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <color key="textColor" red="0.89411764709999997" green="0.1019607843" blue="0.1333333333" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -63,7 +63,7 @@
                 <constraint firstItem="KQx-yT-MZy" firstAttribute="leading" secondItem="BE4-UD-iqt" secondAttribute="leading" id="XfZ-kZ-RMH"/>
                 <constraint firstItem="hwa-m0-JRb" firstAttribute="leading" secondItem="BE4-UD-iqt" secondAttribute="leading" constant="20" id="h77-vw-RRL"/>
                 <constraint firstAttribute="bottom" secondItem="GBi-io-aZj" secondAttribute="bottom" id="hO7-Wu-B0Q"/>
-                <constraint firstAttribute="trailing" secondItem="Hqn-kw-vrO" secondAttribute="trailing" constant="20" id="rDB-y7-enX"/>
+                <constraint firstAttribute="trailing" secondItem="Hqn-kw-vrO" secondAttribute="trailing" constant="10" id="rDB-y7-enX"/>
                 <constraint firstAttribute="bottom" secondItem="Hqn-kw-vrO" secondAttribute="bottom" id="sxd-hT-ssw"/>
                 <constraint firstAttribute="bottom" secondItem="KQx-yT-MZy" secondAttribute="bottom" id="wjw-oR-8iv"/>
                 <constraint firstItem="Hqn-kw-vrO" firstAttribute="top" secondItem="BE4-UD-iqt" secondAttribute="top" id="xXi-TU-qTo"/>
@@ -83,6 +83,6 @@
         </view>
     </objects>
     <resources>
-        <image name="avatar_placeholder" width="96" height="96"/>
+        <image name="avatar_placeholder" width="55" height="55"/>
     </resources>
 </document>

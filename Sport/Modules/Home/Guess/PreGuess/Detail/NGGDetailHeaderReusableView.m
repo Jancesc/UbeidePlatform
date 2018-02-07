@@ -27,7 +27,29 @@
     
     _model = model;
     
-    _titleLabel.text = model.title;
+    
+    if ([model.title containsString:@"("] && [model.title containsString:@")" ]) {
+        
+        NSMutableAttributedString *mAttrString = [[NSMutableAttributedString alloc] initWithString:model.title attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:15], NSForegroundColorAttributeName : NGGColor333}];
+        
+       if ([model.title containsString:@"+"]) {
+            
+            NSRange range = [model.title rangeOfString:@"+"];
+            NSRange colorRange = NSMakeRange(range.location, model.title.length - range.location -1);
+            [mAttrString addAttribute:NSForegroundColorAttributeName value:NGGThirdColor range:colorRange];
+        } else  if ([model.title containsString:@"-"]){
+            
+            NSRange range = [model.title rangeOfString:@"-"];
+            NSRange colorRange = NSMakeRange(range.location,  model.title.length - range.location -1);
+            [mAttrString addAttribute:NSForegroundColorAttributeName value:NGGPrimaryColor range:colorRange];
+        }
+        _titleLabel.attributedText = [mAttrString copy];
+
+        } else {
+            _titleLabel.attributedText = nil;
+            _titleLabel.text = model.title;
+
+        }
     _descriptionLabel.text = model.detail;
 }
 

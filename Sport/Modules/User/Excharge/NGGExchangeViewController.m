@@ -42,6 +42,11 @@
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
     [notificationCenter addObserver:self selector:@selector(handleKeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [notificationCenter addObserver:self selector:@selector(handleKeyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    
+    if (self.navigationController.viewControllers.count == 1) {
+        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(leftBarButtonItemClicked:)];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -189,6 +194,11 @@
     _paymentLabel.text = [NSString stringWithFormat:@"支付金币:%ld", (long)payCount];
 }
 #pragma mark - Keyboard Notification
+
+- (void)leftBarButtonItemClicked:(UIBarButtonItem *) button {
+    
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void) handleKeyboardWillShow:(NSNotification *) notification{
     

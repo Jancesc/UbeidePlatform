@@ -170,6 +170,7 @@ static NSString *kGameDateCellIdentifier = @"NGGGameDateCell";
     
     [_typeTableView reloadData];
     [_gameTableView reloadData];
+    _gameTableView.contentOffset = CGPointMake(0, 0);
     [_dateCollectionView reloadData];
     
     if ([_arrayOfLeague count] > 0) {

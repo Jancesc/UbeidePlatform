@@ -12,10 +12,15 @@
 #import "UIButton+WebCache.h"
 #import "UIImageView+WebCache.h"
 #import "JYCommonTool.h"
+#import "NGGRechargeViewController.h"
+#import "NGGExchangeViewController.h"
+#import "NGGGuessListViewController.h"
+#import "NGGNavigationController.h"
+
+static NSString *kLastFreeDrawKey = @"lastFreeDrawKey";
 
 static NSString *kTaskCellIdentifier = @"NGGTaskTableViewCell";
 
-static NSArray *kArrayOfTask;
 @interface NGGTaskViewController ()<UITableViewDelegate, UITableViewDataSource> {
     
     __weak IBOutlet UIView *_taskView;
@@ -48,19 +53,22 @@ static NSArray *kArrayOfTask;
     __weak IBOutlet UIButton *_lotteryButton_12;
     __weak IBOutlet UIButton *_lotteryButton_13;
     
+    __weak IBOutlet UIImageView *_lotteryCoverView;
+    
+    __weak IBOutlet UIButton *_freeDrawButton;
     __weak IBOutlet UIButton *_pointDrawButton;
     __weak IBOutlet UIButton *_beanDrawButton;
     CADisplayLink *_displayLink;
     NSInteger _animationFactor;
     NSInteger _aniIndex;
-    
+    NSInteger _openPrizeIndex;
+
     UIView *_coverView;
-    CGFloat _point;
-    CGFloat _bean;
 }
 
 @property (nonatomic, strong) NSArray *arrayOfLotteryButton;
 @property (nonatomic, strong) NSArray *arrayOfLotteryItem;
+@property (nonatomic, strong) NSMutableArray *arrayOfTask;
 
 @end
 
@@ -82,6 +90,8 @@ static NSArray *kArrayOfTask;
     
     [self setupUIComponents];
     [self loadTaskInfo];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserLogined) name:NGGUserDidLoginNotificationName object:nil];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,11 +99,10 @@ static NSArray *kArrayOfTask;
     // Dispose of any resources that can be recreated.
 }
 
-
-- (void)viewWillDisappear:(BOOL)animated {
+- (void)dealloc {
     
-    [super viewWillDisappear:animated];
     [self dismissDisplayLink];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)setupUIComponents {
@@ -155,12 +164,41 @@ static NSArray *kArrayOfTask;
     _beanDrawButton.titleLabel.adjustsFontSizeToFitWidth = YES;
     [_beanDrawButton addTarget:self action:@selector(lotteryButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 
+    [_freeDrawButton addTarget:self action:@selector(freeDrawButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    if ([self shouldShowFreeDrawButton]) {
+        
+        _freeDrawButton.hidden = NO;
+        _beanDrawButton.hidden = YES;
+        _pointDrawButton.hidden = YES;
+    } else {
+        
+        _freeDrawButton.hidden = YES;
+        _beanDrawButton.hidden = NO;
+        _pointDrawButton.hidden = NO;
+    }
+    
     _coverView = [[UIView alloc] initWithFrame:SCREEN_BOUNDS];
     _coverView.backgroundColor = [UIColor clearColor];
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissRewordView)];
     [_rewordView addGestureRecognizer:tapGestureRecognizer];
 
+    UIButton *firstButton = [_arrayOfLotteryButton firstObject];
+
+    _lotteryCoverView.frame = CGRectMake(0, 0, 1.5*VIEW_W(firstButton), 1.5 * VIEW_H(firstButton));
+    _lotteryCoverView.center = firstButton.center;
+}
+
+#pragma mark - private methods
+
+- (BOOL)shouldShowFreeDrawButton {
+    
+    NSInteger LastDrawInterval = [[NSUserDefaults standardUserDefaults] integerForKey:kLastFreeDrawKey];
+    NSInteger currentInterval = [[NSDate date] timeIntervalSince1970];
+    NSString *LastDrawDateString = [JYCommonTool dateFormatWithInterval:LastDrawInterval format:@"yyyy-MM-dd"];
+    NSString *currentDateString = [JYCommonTool dateFormatWithInterval:currentInterval format:@"yyyy-MM-dd"];
+    return ![LastDrawDateString isEqualToString:currentDateString];
 }
 
 - (BOOL)prefersStatusBarHidden {
@@ -207,25 +245,25 @@ static UIImage *image_0, *image_1;
 
 - (void)loadTaskInfo {
     
-    [self showLoadingHUDWithText:nil];
+    [self showAnimationLoadingHUDWithText:nil];
     [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=home.task" parameters:nil willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        [self dismissHUD];
+        [self dismissAnimationLoadingHUD];
         NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
             
             [self showErrorHUDWithText:msg];
         }];
         if (dict) {
-        
-            _point = [dict floatForKey:@"score"];
-            _bean = [dict floatForKey:@"bean"];
-            kArrayOfTask = [dict arrayForKey:@"list"];
+            [NGGLoginSession activeSession].currentUser.point = [dict stringForKey:@"score"];
+            [NGGLoginSession activeSession].currentUser.bean = [dict stringForKey:@"bean"];
+
+            _arrayOfTask = [[dict arrayForKey:@"list"] mutableCopy];;
             [self refreshUI];
             [self loadLotteryItems];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
       
-        [self dismissHUD];
+        [self dismissAnimationLoadingHUD];
     }];
 }
 
@@ -238,12 +276,22 @@ static UIImage *image_0, *image_1;
 
 - (void)showRewordView:(NSDictionary *)rewordInfo{
    
-    if (rewordInfo) {
+    if (_segmentControl.selectedSegmentIndex == 0) {//任务
+        NSInteger rewordType = [rewordInfo intForKey:@"award_type"];//奖励类型，1积分 2金豆
+        if (rewordType == 1) {
+            
+            _rewordImageView.image = [UIImage imageNamed:@"reword_point"];
+            _rewordDescLabel.text = [NSString stringWithFormat:@"%@积分", [rewordInfo stringForKey:@"quantity"]];
+        } else {
+            
+            _rewordImageView.image = [UIImage imageNamed:@"reword_bean"];
+            _rewordDescLabel.text = [NSString stringWithFormat:@"%@金币", [rewordInfo stringForKey:@"quantity"]];
+        }
+    } else {//抽奖
         
         [_rewordImageView sd_setImageWithURL:[NSURL URLWithString:[rewordInfo stringForKey:@"image"]] placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
         _rewordDescLabel.text = [rewordInfo stringForKey:@"title"];
     }
-
     _rewordView.transform = CGAffineTransformMakeScale(0.3, 0.3);
     _rewordView.alpha = 0.0;
     _rewordView.hidden = NO;
@@ -278,33 +326,33 @@ static UIImage *image_0, *image_1;
 
 - (void)loadLotteryItems {
     
-    [self showLoadingHUDWithText:nil];
+    [self dismissAnimationLoadingHUD];
     [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=home.turntable" parameters:nil willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        [self dismissHUD];
+        [self dismissAnimationLoadingHUD];
         NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
             
             [self showErrorHUDWithText:msg];
         }];
         if (dict) {
             
-            _point = [dict floatForKey:@"score"];
-            _bean = [dict floatForKey:@"bean"];
+            [NGGLoginSession activeSession].currentUser.point = [dict stringForKey:@"score"];
+            [NGGLoginSession activeSession].currentUser.bean = [dict stringForKey:@"bean"];
             NSArray *dataArray = [dict arrayForKey:@"list"];
             _arrayOfLotteryItem = dataArray;
             [self refreshUI];
     }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        [self dismissHUD];
+        [self dismissAnimationLoadingHUD];
     }];
 }
 
 - (void)updatePointAndBean {
     
     
-    NSString *beanString = [JYCommonTool stringDisposeWithFloat:_bean];
-    NSString *pointString = [JYCommonTool stringDisposeWithFloat:_point];
+    NSString *beanString = [JYCommonTool stringDisposeWithFloat:[NGGLoginSession activeSession].currentUser.bean.floatValue];
+    NSString *pointString = [JYCommonTool stringDisposeWithFloat:[NGGLoginSession activeSession].currentUser.point.floatValue];
     [_beanButton setTitle:beanString forState:UIControlStateNormal];
     [_pointButton setTitle:pointString forState:UIControlStateNormal];
 }
@@ -321,6 +369,75 @@ static UIImage *image_0, *image_1;
     [_tableView reloadData];
 }
 
+- (void)getReword:(NSDictionary *)rewordInfo {
+    
+    [self showAnimationLoadingHUDWithText:nil];
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=home.reward" parameters:@{@"task_id" : [rewordInfo stringForKey:@"id"]} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self dismissAnimationLoadingHUD];
+        [self dismissHUD];
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showErrorHUDWithText:msg];
+        }];
+        if (dict) {
+           
+            [NGGLoginSession activeSession].currentUser.bean = [dict stringForKey:@"bean"];
+            [NGGLoginSession activeSession].currentUser.point = [dict stringForKey:@"score"];
+            
+            NSMutableDictionary *rewordInfoM = [rewordInfo mutableCopy];
+            rewordInfoM[@"status"] = @"2";
+            [_arrayOfTask removeObject:rewordInfo];
+            [_arrayOfTask insertObject:[rewordInfoM copy] atIndex:0];
+            [self refreshUI];
+            [self showRewordView:rewordInfoM];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [self dismissAnimationLoadingHUD];
+    }];
+}
+
+- (void)jumpToTargetViewController:(NSInteger)taskType {
+
+    //类任务型，1每日签到 2每日充值 3每日投注 4每日兑换
+    switch (taskType) {
+        case 2: {
+            
+            NGGRechargeViewController *controller = [[NGGRechargeViewController alloc] init];
+            controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            NGGNavigationController *nav = [[NGGNavigationController alloc] initWithRootViewController:controller];;
+            [self.parentViewController presentViewController:nav animated:YES completion:nil];
+            break;
+        }
+        case 3: {
+            NGGGuessListViewController *controller = [[NGGGuessListViewController alloc] initWithNibName:@"NGGGuessListViewController" bundle:nil];
+            controller.isLive = NO;
+            controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            NGGNavigationController *nav = [[NGGNavigationController alloc] initWithRootViewController:controller];;
+            [self.parentViewController presentViewController:nav animated:YES completion:nil];
+            break;
+        }
+        case 4: {
+          
+            NGGExchangeViewController *controller = [[NGGExchangeViewController alloc] initWithNibName:@"NGGExchangeViewController" bundle:nil];
+            controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+            NGGNavigationController *nav = [[NGGNavigationController alloc] initWithRootViewController:controller];;
+            [self.parentViewController presentViewController:nav animated:YES completion:nil];
+            break;
+        }
+        default:
+            break;
+    }
+    
+    [self.view removeFromSuperview];
+    [self removeFromParentViewController];
+}
+
+- (void)handleUserLogined {
+    
+    [self loadTaskInfo];
+}
 #pragma mark - 开始绘制
 
 -(void)startDisplayLink {
@@ -330,21 +447,25 @@ static UIImage *image_0, *image_1;
         _displayLink = [CADisplayLink displayLinkWithTarget:self selector:@selector(lotteryAnimation:)];
         [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes]; /*将_CADisplayLink加入到RunLoop里面之后，selector就会被周期性的调用*/
         _aniIndex = 0;
-        _animationFactor = 36;
+        _animationFactor = 2;
         kCurrentButtonIndex = 0;
+        kSelectedIndex = -1;
+        _openPrizeIndex = -1;
         for (UIButton *button in _arrayOfLotteryButton) {
             
             [button setBackgroundImage:nil forState:UIControlStateNormal];
         }
         
         UIButton *firstButton = [_arrayOfLotteryButton firstObject];
-        [firstButton setBackgroundImage:[UIImage imageNamed:@"active"] forState:UIControlStateNormal];
+        _lotteryCoverView.frame = CGRectMake(0, 0, 1.5*VIEW_W(firstButton), 1.5 * VIEW_H(firstButton));
+        _lotteryCoverView.center = firstButton.center;
     }
     [self.view addSubview:_coverView];
 }
 
 static NSInteger kCurrentButtonIndex = 0;
 
+static NSInteger kSelectedIndex = -1;
 - (void)lotteryAnimation:(id) sender {
     
     _aniIndex++;
@@ -356,24 +477,70 @@ static NSInteger kCurrentButtonIndex = 0;
         kCurrentButtonIndex++;
         
         UIButton *button =  _arrayOfLotteryButton[kCurrentButtonIndex % 14];
-        [button setBackgroundImage:[UIImage imageNamed:@"active"] forState:UIControlStateNormal];
-        
-        if (kCurrentButtonIndex == 3) {
-            
-            _animationFactor = 24;
-        } else if (kCurrentButtonIndex == 8) {
-            
-            _animationFactor = 16;
-        } else if (kCurrentButtonIndex == 13) {
-            
-            _animationFactor = 10;
-        } else if (kCurrentButtonIndex == 20) {
-            
-            _animationFactor = 6;
-        } else if (kCurrentButtonIndex == 35) {
+        _lotteryCoverView.frame = CGRectMake(0, 0, 1.5*VIEW_W(button), 1.5 * VIEW_H(button));
+        _lotteryCoverView.center = button.center;
+        if (kCurrentButtonIndex == 100) {
             
             _animationFactor = 2;
             [self luckyDraw];
+        }
+        
+        if (kSelectedIndex >= 0) {//进入开奖动画
+            _openPrizeIndex++;
+
+            static dispatch_once_t predicate;
+            dispatch_once(&predicate, ^{
+               
+                _animationFactor = 15;
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    _animationFactor = 25;
+                });
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    
+                    _animationFactor = 30;
+                });
+            });
+        }
+            
+        if (_animationFactor == 30 && _openPrizeIndex % 14 == kSelectedIndex) {
+            
+            [self dismissDisplayLink];
+                    
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        
+                [self refreshUI];
+                NSDictionary *itemInfo = _arrayOfLotteryItem[kSelectedIndex];
+                NSDictionary *rewordInfo = @{
+                                               @"title" : [itemInfo stringForKey:@"title"],
+                                               @"image" : [itemInfo stringForKey:@"icon"],
+                                            };
+                [self showRewordView:rewordInfo];
+                });
+        }
+    }
+}
+
+- (void)slowAnimationToShowPrize:(NSDictionary *)dict {
+    
+    NSString *selectedID = [dict stringForKey:@"id"];
+    for (NSInteger index = 0; index < [_arrayOfLotteryItem count]; index++) {
+        
+        NSDictionary *itemInfo = _arrayOfLotteryItem[index];
+        if ([[itemInfo stringForKey:@"id"] isEqualToString:selectedID]) {
+            
+            [NGGLoginSession activeSession].currentUser.point = [dict stringForKey:@"score"];
+            [NGGLoginSession activeSession].currentUser.bean = [dict stringForKey:@"bean"];
+            kSelectedIndex = index;
+            if (_beanDrawButton.hidden && _pointDrawButton.hidden) {
+                
+                _pointDrawButton.hidden = NO;
+                _beanDrawButton.hidden = NO;
+                _freeDrawButton.hidden = YES;
+                [[NSUserDefaults standardUserDefaults] setInteger:[[NSDate date] timeIntervalSince1970] forKey:kLastFreeDrawKey];
+            }
+            
         }
     }
 }
@@ -391,48 +558,44 @@ static NSInteger kCurrentButtonIndex = 0;
     [preButton setBackgroundImage:nil forState:UIControlStateNormal];
  
     UIButton *button =  _arrayOfLotteryButton[selectedIndex % 14];
-    [button setBackgroundImage:[UIImage imageNamed:@"active"] forState:UIControlStateNormal];
+    _lotteryCoverView.frame = CGRectMake(0, 0, 1.5*VIEW_W(button), 1.5 * VIEW_H(button));
+    _lotteryCoverView.center = button.center;
 }
 
 - (void)luckyDraw {
     
 //    类型，免费抽奖：type=0或空；积分抽奖：type=1；金豆抽奖：type=2
 
-    NSString *type = @"1";
+    NSString *type = @"0";
+    
     if (_beanDrawButton.selected) {
         
         type = @"2";
+    } else {
+        
+        type = @"1";
     }
+    
     [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=home.LuckyDraw" parameters:@{@"type" : type} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [self dismissHUD];
         NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
             
+            if (code == 605) {//当前已经免费投注过了
+                _pointDrawButton.hidden = NO;
+                _beanDrawButton.hidden = NO;
+                _freeDrawButton.hidden = YES;
+                
+                [[NSUserDefaults standardUserDefaults] setInteger:[[NSDate date] timeIntervalSince1970] forKey:kLastFreeDrawKey];
+            }
             [self dismissDisplayLink];
             [self showAlertText:msg completion:^{
             
             }];
         }];
         if (dict) {
-            
-            NSString *selectedID = [dict stringForKey:@"id"];
-            for (NSInteger index = 0; index < [_arrayOfLotteryItem count]; index++) {
-                
-                NSDictionary *itemInfo = _arrayOfLotteryItem[index];
-                if ([[itemInfo stringForKey:@"id"] isEqualToString:selectedID]) {
-                    
-                    [self dismissDisplayLink];
-                    [self showSelectedLottery:index];
-                    
-                    _point = [dict floatForKey:@"score"];
-                    _bean = [dict floatForKey:@"bean"];
-                    NSDictionary *rewordInfo = @{
-                                                 @"title" : [dict stringForKey:@"title"],
-                                                 @"image" : [itemInfo stringForKey:@"icon"],
-                                                 };
-                    [self showRewordView:rewordInfo];
-                }
-            }
+           
+            [self slowAnimationToShowPrize:dict];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
@@ -455,7 +618,6 @@ static NSInteger kCurrentButtonIndex = 0;
         
         _lotteryView.hidden = YES;
         _tableView.hidden = NO;
-        [self loadTaskInfo];
     } else {
         
         _lotteryView.hidden = NO;
@@ -464,26 +626,30 @@ static NSInteger kCurrentButtonIndex = 0;
 }
 
 - (void)lotteryButtonClicked:(UIButton *) button {
- 
+    
+    CGFloat point = [NGGLoginSession activeSession].currentUser.point.floatValue;
+    CGFloat bean = [NGGLoginSession activeSession].currentUser.bean.floatValue;
     if ([button isEqual:_beanDrawButton]) {
         
-        if (_bean < 100) {
+        if (bean < 100) {
             
             [self showAlertText:@"金豆不足" completion:nil];
             return;
         } else {
             
-            _bean -= 100;
+            bean -= 100;
+            [NGGLoginSession activeSession].currentUser.bean = [JYCommonTool stringDisposeWithFloat:bean];
         }
     } else {
         
-        if (_point < 1000) {
+        if (point < 1000) {
             
             [self showAlertText:@"积分不足" completion:nil];
             return;
         } else {
             
-            _point -= 1000;
+            point -= 1000;
+            [NGGLoginSession activeSession].currentUser.point = [JYCommonTool stringDisposeWithFloat:point];
         }
     }
     
@@ -494,6 +660,10 @@ static NSInteger kCurrentButtonIndex = 0;
     [self startDisplayLink];
 }
 
+- (void)freeDrawButtonClicked:(UIButton *) button {
+    
+    [self startDisplayLink];
+}
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -503,14 +673,14 @@ static NSInteger kCurrentButtonIndex = 0;
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return [kArrayOfTask count];;
+    return [_arrayOfTask count];;
 
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NGGTaskTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kTaskCellIdentifier forIndexPath:indexPath];
-    cell.cellInfo = kArrayOfTask[indexPath.row];
+    cell.cellInfo = _arrayOfTask[indexPath.row];
     return cell;
 }
 
@@ -535,8 +705,27 @@ static NSInteger kCurrentButtonIndex = 0;
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
-    [self showRewordView:nil];
+    NSDictionary *cellInfo = _arrayOfTask[indexPath.row];
+    NSInteger status = [cellInfo intForKey:@"status"];
+    switch (status) {
+            
+        case 0: {//未完成
+            
+            NSInteger type = [cellInfo intForKey:@"type"];//类任务型，1每日签到 2每日充值 3每日投注 4每日兑换
+            [self jumpToTargetViewController:type];
+            break;
+        }
+        case 1: {//可领取
+            
+            [self getReword:cellInfo];
+            break;
+        }
+        case 2: {//已领取
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath

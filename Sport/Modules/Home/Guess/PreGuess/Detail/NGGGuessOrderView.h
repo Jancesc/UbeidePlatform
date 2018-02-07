@@ -21,6 +21,6 @@
 @interface NGGGuessOrderView : UIView
 
 - (void) updateWithItemModel:(NGGGuessItemModel *)itemModel sectionModel:(NGGGuessSectionModel *)sectionModel;
-
+- (NGGGuessItemModel *) currentItemModel;
 @property (nonatomic, strong) id <NGGGuessOrderViewDelegate> delegate;
 @end

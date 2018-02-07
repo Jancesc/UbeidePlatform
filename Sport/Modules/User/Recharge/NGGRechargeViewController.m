@@ -62,6 +62,11 @@ static NSString *kRechargeCollectionViewCellidentifier = @"NGGRechargeCollection
     // Do any additional setup after loading the view.
     [self configueData];
     self.title = @"充值中心";
+    
+    if (self.navigationController.viewControllers.count == 1) {
+        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(leftBarButtonItemClicked:)];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -69,6 +74,11 @@ static NSString *kRechargeCollectionViewCellidentifier = @"NGGRechargeCollection
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - button actions
+- (void)leftBarButtonItemClicked:(UIBarButtonItem *) button {
+    
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
 #pragma mark - private methods
 
 - (void)configueData {

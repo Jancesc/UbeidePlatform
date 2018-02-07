@@ -24,6 +24,8 @@
 #import "NGGGuessRecordModel.h"
 #import "NGGGuessRecordViewController.h"
 #import "JYCommonTool.h"
+#import "UIImageView+WebCache.h"
+#import "NGGExchangeViewController.h"
 
 static NSString *kGuessCellIdentifier = @"NGGGuessCollectionViewCell";
 static NSString *kGuess2RowsCellIdentifier = @"NGGGuess2RowsCollectionViewCell";
@@ -32,17 +34,10 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
 @interface NGGPreGuessDetailViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NGGWebSocketHelperDelegate, NGGGuessOrderViewDelegate, NGGGuessOrderDoneViewDelegate> {
     
-    __weak IBOutlet UIButton *_guessButton;
-    __weak IBOutlet UIButton *_liveButton;
-    __weak IBOutlet UIButton *_analyseButton;
-    __weak IBOutlet UIView *_pageSwitchTipsView;
     __weak IBOutlet UICollectionView *_collectionView;
-    
     __weak IBOutlet UILabel *_beanLabel;
     __weak IBOutlet UILabel *_homeLabel;
     __weak IBOutlet UILabel *_awayLabel;
-    __weak IBOutlet UILabel *_homeScore;
-    __weak IBOutlet UILabel *_awayScore;
     __weak IBOutlet UIImageView *_homeImageView;
     __weak IBOutlet UIImageView *_awayImageView;
     __weak IBOutlet UILabel *_dateLabel;
@@ -120,17 +115,15 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     [[NGGWebSocketHelper shareHelper] sendData: [jsonString dataUsingEncoding:NSUTF8StringEncoding]];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    [self refreshUI];
+}
+
 #pragma mark - private methods
 
 - (void)configueUIComponents {
-    
-    [_guessButton addTarget:self action:@selector(pageButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [_liveButton addTarget:self action:@selector(pageButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    [_analyseButton addTarget:self action:@selector(pageButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    _guessButton.selected = YES;
-    
-    CGFloat buttonWidth = (SCREEN_WIDTH - 50) / 3.0;
-    _pageSwitchTipsView.frame = CGRectMake(15, 42, buttonWidth, 3);
     
     [_collectionView registerNib:[UINib nibWithNibName:@"NGGGuessCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kGuessCellIdentifier];
     [_collectionView registerNib:[UINib nibWithNibName:@"NGGGuess2RowsCollectionViewCell" bundle:nil] forCellWithReuseIdentifier:kGuess2RowsCellIdentifier];
@@ -183,17 +176,43 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
 - (void)refreshUI {
     
+    NSIndexPath *selectedIndexPath = nil;
+    if ([[_collectionView indexPathsForSelectedItems] count] > 0) {
+        selectedIndexPath = [[_collectionView indexPathsForSelectedItems] firstObject];
+    }
     [_collectionView reloadData];
+    
+    if (selectedIndexPath) {
+        
+        [_collectionView selectItemAtIndexPath:selectedIndexPath animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+    }
+    
     [_collectionView.mj_header endRefreshing];
     
-    [self hideMakeOrderView];
-    [self hideOrderDoneView];
-    
+    if (_makeOrderView.hidden == NO) {//处于选择投注状态
+        
+        [self showMakeOrderView];
+        NSIndexPath *selectedIndexPath = [[_collectionView indexPathsForSelectedItems] firstObject];
+        NGGGuessSectionModel *newSectionModel = _gameModel.arrayOfSection[selectedIndexPath.section];
+        NGGGuessItemModel *newItemModel = newSectionModel.arrayOfItem[selectedIndexPath.item];
+        NGGGuessItemModel *oldItemModel = [_makeOrderView currentItemModel];
+        if (![newItemModel.odds isEqualToString:oldItemModel.odds]) {
+            
+            [self showAlertText:@"当前投注项赔率有更新，请确认再投注！" completion:^{
+                
+            }];
+        }
+    }
     _beanLabel.text = [NSString stringWithFormat:@"%@金豆", [NGGLoginSession activeSession].currentUser.bean];
     _homeLabel.text = _gameModel.homeName;
     _awayLabel.text = _gameModel.awayName;
     _dateLabel.text = [JYCommonTool dateFormatWithInterval:_gameModel.startTime.integerValue format:@"MM月dd日 HH:mm开赛"];
-    
+    NSURL *homeURL = [NSURL URLWithString:_gameModel.homeLogo];
+    NSURL *awayURL = [NSURL URLWithString:_gameModel.awayLogo];
+
+    [_homeImageView sd_setImageWithURL:homeURL placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
+    [_awayImageView sd_setImageWithURL:awayURL placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
+
 //    比赛状态，0未开赛 1取消 2关闭 3完结 4赛果录入 5彩果计算完毕;ps：3之后都算比赛结束
     NSInteger status = _gameModel.status.integerValue;
     _statusLabel.text = status == 0 ? @"未开赛" :
@@ -313,13 +332,10 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
                     _gameModel.awayScore = @"0";
                 }
                 
-                _homeScore.text = _gameModel.homeScore;
-                _awayScore.text = _gameModel.awayScore;
-                
-                _gameModel.status = [dict stringForKey:@"status"];
-                _gameModel.profit = [dict floatForKey:@"profit"];
-                _gameModel.count = [dict floatForKey:@"bean_total"];
-                _gameModel.winCount = [dict floatForKey:@"win_total"];
+                _gameModel.status = [dict[@"match"] stringForKey:@"status"];
+                _gameModel.profit = [dict[@"match"] stringForKey:@"profit"];
+                _gameModel.count = [dict[@"match"] stringForKey:@"bean_total"];
+                _gameModel.winCount = [dict[@"match"] stringForKey:@"win_total"];
             }
 //            bean = 100;
 //            ct = 1513653998;
@@ -342,43 +358,34 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
             _arrayOfGuessed = [arrayM copy];
         }
         
-        NSIndexPath *selectedIndexPath = [[_collectionView indexPathsForSelectedItems] firstObject];
         [self  refreshUI];
-        if (selectedIndexPath) {
-            
-            [_collectionView selectItemAtIndexPath:selectedIndexPath animated:NO scrollPosition:UICollectionViewScrollPositionNone];
-            [self showOrderDoneView];
-        }
+        [self showOrderDoneView];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
         [self dismissHUD];
     }];
 }
 
-#pragma mark - button actions
-
-- (void)pageButtonClicked:(UIButton *) button {
+- (void)getMoreBeans {
     
-    _guessButton.selected = NO;
-    _liveButton.selected = NO;
-    _analyseButton.selected = NO;
-    button.selected = YES;
-    
-    //红线的移动动画
-    CGFloat buttonWidth = (SCREEN_WIDTH - 50) / 3.0;
-    CGRect fromRect = _pageSwitchTipsView.frame;
-    CGRect toRect = CGRectMake(15 + (buttonWidth + 10) * button.tag, 42, buttonWidth, 3);
-    
-    POPBasicAnimation *basicAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPViewFrame];
-    basicAnimation.fromValue = [NSValue valueWithCGRect:fromRect];
-    basicAnimation.toValue =  [NSValue valueWithCGRect:toRect];
-    [_pageSwitchTipsView pop_addAnimation:basicAnimation forKey:@"move"];
+    if ([NGGLoginSession activeSession].currentUser.coin.integerValue > 0) {
+        
+        NGGExchangeViewController *controller = [[NGGExchangeViewController alloc] initWithNibName:@"NGGExchangeViewController" bundle:nil];
+        [self.navigationController pushViewController:controller animated:YES];
+    } else{
+     
+        NGGRechargeViewController *controller = [[NGGRechargeViewController alloc] init];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
+#pragma mark - button actions
+
 - (void)moreBeanButtonClicked:(UIButton *)button {
-    
-    NGGRechargeViewController *controller = [[NGGRechargeViewController alloc] init];
-    [self.navigationController pushViewController:controller animated:YES];}
+
+
+    [self getMoreBeans];
+}
 
 - (void)recordButtonClicked:(UIButton *) button {
     
@@ -407,6 +414,10 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
+    NSIndexPath *selectedIndexPath = nil;
+    if ([[_collectionView indexPathsForSelectedItems] count] > 0) {
+        selectedIndexPath = [[_collectionView indexPathsForSelectedItems] firstObject];
+    }
     NGGGuessSectionModel *sectionModel = _gameModel.arrayOfSection[indexPath.section];
     NGGGuessItemModel *itemModel = sectionModel.arrayOfItem [indexPath.item];
     itemModel.guessable = YES;
@@ -421,10 +432,18 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
         
         NGGGuessCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kGuessCellIdentifier forIndexPath:indexPath];
         cell.model = itemModel;
+        if (selectedIndexPath && selectedIndexPath.item == indexPath.item && selectedIndexPath.section == indexPath.section) {
+            
+            [cell updateUIForSelected];
+        }
         return cell;
     } else if (sectionModel.itemCellType == NGGGuessDetailCellType2Rows) {
         
         NGGGuess2RowsCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kGuess2RowsCellIdentifier forIndexPath:indexPath];
+        if (selectedIndexPath && selectedIndexPath.item == indexPath.item && selectedIndexPath.section == indexPath.section) {
+            
+            [cell updateUIForSelected];
+        }
         cell.model = itemModel;
         return cell;
     } else {
@@ -502,8 +521,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
 - (void)guessOrderViewDidClickRechargeButton {
     
-    NGGRechargeViewController *controller = [[NGGRechargeViewController alloc] init];
-    [self.navigationController pushViewController:controller animated:YES];
+    [self getMoreBeans];
 }
 
 - (void) guessOrderViewMakeOrder:(NSString *)count itemModel:(NGGGuessItemModel *)itemModel sectionModel:(NGGGuessSectionModel *)sectionModel {

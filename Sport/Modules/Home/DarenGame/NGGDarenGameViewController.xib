@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NGGDarenGameViewController">
+            <connections>
+                <outlet property="segmentControl" destination="NWc-Hw-Ypz" id="qmh-3l-sZ3"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1k4-2Z-WHp">
+                    <rect key="frame" x="0.0" y="64" width="375" height="70"/>
+                    <subviews>
+                        <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="NWc-Hw-Ypz">
+                            <rect key="frame" x="15" y="13" width="345" height="46"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="45" id="MYa-Xp-peF"/>
+                            </constraints>
+                            <segments>
+                                <segment title="盈利达人赛"/>
+                                <segment title="赛果"/>
+                                <segment title="排行榜"/>
+                            </segments>
+                            <color key="tintColor" red="0.99607843139999996" green="0.66274509800000003" blue="0.01176470588" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </segmentedControl>
+                    </subviews>
+                    <color key="backgroundColor" red="0.94509803920000002" green="0.94509803920000002" blue="0.94509803920000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="NWc-Hw-Ypz" firstAttribute="centerY" secondItem="1k4-2Z-WHp" secondAttribute="centerY" id="0xa-o3-vaA"/>
+                        <constraint firstAttribute="height" constant="70" id="JY9-8v-Z30"/>
+                        <constraint firstItem="NWc-Hw-Ypz" firstAttribute="leading" secondItem="1k4-2Z-WHp" secondAttribute="leading" constant="15" id="WFv-Hk-Yqk"/>
+                        <constraint firstAttribute="trailing" secondItem="NWc-Hw-Ypz" secondAttribute="trailing" constant="15" id="i7y-eP-10V"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="1k4-2Z-WHp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Axr-fC-rMa"/>
+                <constraint firstItem="1k4-2Z-WHp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="SXx-aC-XNa"/>
+                <constraint firstAttribute="trailing" secondItem="1k4-2Z-WHp" secondAttribute="trailing" id="m0O-bV-BZo"/>
+                <constraint firstItem="1k4-2Z-WHp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pmk-gC-pyB"/>
+            </constraints>
+        </view>
+    </objects>
+</document>

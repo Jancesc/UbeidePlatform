@@ -23,6 +23,7 @@
 #import "MJRefresh.h"
 #import "UIImageView+WebCache.h"
 #import "JYCommonTool.h"
+#import "NGGDarenGameViewController.h"
 
 static NSString *kBannerCellIdentifier = @"NGGHomeBannerCollectionViewCell";
 static NSString *kPageCellIdentifier = @"NGGHomePageMenuCollectionViewCell";
@@ -231,12 +232,18 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     [titleView addSubview:logoView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    [self refreshUI];
+}
+
 #pragma mark - private methods
 
 - (void)refreshHomePageData {
     
     [self showLoadingHUDWithText:nil];
-    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=home.index" parameters:nil willContainsLoginSession:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=home.index" parameters:nil willContainsLoginSession:NO success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [_collectionView.mj_header endRefreshing];
         [self dismissHUD];
@@ -332,7 +339,7 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
         NGGGuessListViewController *controller = [[NGGGuessListViewController alloc] initWithNibName:@"NGGGuessListViewController" bundle:nil];
         controller.isLive = YES;
         controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        NGGNavigationController *nav = [[NGGNavigationController alloc] initWithRootViewController:controller];;
+        NGGNavigationController *nav = [[NGGNavigationController alloc] initWithRootViewController:controller];
         [self presentViewController:nav animated:YES completion:^{
             
             [self dismissHUD];
@@ -342,6 +349,12 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
         NGGTaskViewController *controller = [[NGGTaskViewController alloc] initWithNibName:@"NGGTaskViewController" bundle:nil];
         [self.tabBarController addChildViewController:controller];
         [self.tabBarController.view  addSubview:controller.view];
+    } else if(index == 3) {
+        
+        NGGDarenGameViewController *controller =  [[NGGDarenGameViewController alloc] initWithNibName:@"NGGDarenGameViewController" bundle:nil];
+        NGGNavigationController *nav = [[NGGNavigationController alloc] initWithRootViewController:controller];
+        controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:nav animated:YES completion:nil];
     } else if (index == 4) {
         
         [self showLoadingHUDWithText:@""];

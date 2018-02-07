@@ -41,7 +41,7 @@ static NSString *kGuessRecordCellIdentifier = @"guessRecordCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"赛前记录";
+    self.title = @"投注记录";
     [self configueUIComponents];
     if ([_arrayOfRecord count] == 0) {
         
@@ -114,9 +114,9 @@ static NSString *kGuessRecordCellIdentifier = @"guessRecordCell";
             _gameModel.homeScore = [scoreArray firstObject];
             _gameModel.awayScore = [scoreArray lastObject];
             _gameModel.status = [dict stringForKey:@"status"];
-            _gameModel.profit = [dict floatForKey:@"profit"];
-            _gameModel.count = [dict floatForKey:@"bean_total"];
-            _gameModel.winCount = [dict floatForKey:@"win_total"];
+            _gameModel.profit = [dict stringForKey:@"profit"];
+            _gameModel.count = [dict stringForKey:@"bean_total"];
+            _gameModel.winCount = [dict stringForKey:@"win_total"];
             
             NSArray *guessedArray = [dict arrayForKey:@"record"];
             NSMutableArray *arrayM = [NSMutableArray array];
@@ -143,19 +143,26 @@ static NSString *kGuessRecordCellIdentifier = @"guessRecordCell";
         
         _homeLabel.text = _gameModel.homeName;
         _awayLabel.text = _gameModel.awayName;
-        _scoreLabel.text = [NSString stringWithFormat:@"%@ : %@", _gameModel.homeScore, _gameModel.awayScore];
+        if (_gameModel.status.integerValue == 0) {
+            
+            _scoreLabel.text = @"未开赛";
+        } else {
+            
+            _scoreLabel.text = [NSString stringWithFormat:@"%@ : %@", _gameModel.homeScore, _gameModel.awayScore];
+        }
+        
         _timeLabel.text = [JYCommonTool dateFormatWithInterval:_gameModel.startTime.integerValue format:@"yyyy-MM-dd HH:mm"];
         
-        if (_gameModel.profit < 0) {
+        if (_gameModel.profit.integerValue < 0) {
             
             _profitLabel.textColor = NGGPrimaryColor;
         } else {
             
             _profitLabel.textColor = NGGThirdColor;
         }
-        _profitLabel.text = [JYCommonTool stringDisposeWithFloat:_gameModel.profit];
+        _profitLabel.text = [JYCommonTool stringDisposeWithFloat:_gameModel.profit.floatValue];
         
-        _totalGuessLabel.text = [JYCommonTool stringDisposeWithFloat:_gameModel.count];
+        _totalGuessLabel.text = [JYCommonTool stringDisposeWithFloat:_gameModel.count.floatValue];
         
         if (_gameModel.winCount < 0) {
             
@@ -165,12 +172,15 @@ static NSString *kGuessRecordCellIdentifier = @"guessRecordCell";
             _totalWinLabel.textColor = NGGThirdColor;
         }
         
-        _totalWinLabel.text = [JYCommonTool stringDisposeWithFloat:_gameModel.winCount];
+        _totalWinLabel.text = [JYCommonTool stringDisposeWithFloat:_gameModel.winCount.floatValue];
         
         if ([_arrayOfRecord count] == 0) {
             
-            NGGEmptyView *emptyView = [[NGGEmptyView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, VIEW_H(_tableView))];
+            NGGEmptyView *emptyView = [[NGGEmptyView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, VIEW_H(_tableView) + 100)];
             _tableView.backgroundView = emptyView;
+        } else {
+            
+            _tableView.backgroundView = nil;
         }
     }
 }

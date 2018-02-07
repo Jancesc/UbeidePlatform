@@ -31,6 +31,7 @@
     [aCoder encodeObject:self.coin forKey:@"coin"];
     [aCoder encodeObject:self.bean forKey:@"bean"];
     [aCoder encodeObject:self.invitationCode forKey:@"invitationCode"];
+    [aCoder encodeObject:self.point forKey:@"point"];
 
 }
 
@@ -49,6 +50,7 @@
         self.coin = [aDecoder decodeObjectForKey:@"coin"];
         self.bean = [aDecoder decodeObjectForKey:@"bean"];
         self.invitationCode = [aDecoder decodeObjectForKey:@"invitationCode"];
+        self.point = [aDecoder decodeObjectForKey:@"point"];
     }
     
     return self;
@@ -110,7 +112,7 @@
         _coin = [dict stringForKey:@"coin"];
         _bean = [dict stringForKey:@"bean"];
         _invitationCode = [dict stringForKey:@"Invite_code"];
-
+        _point = [dict stringForKey:@"score"];
     }
     return self;
 }
