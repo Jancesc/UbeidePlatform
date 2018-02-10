@@ -70,7 +70,14 @@
     _sectionLabel.text = [NSString stringWithFormat:@"(%@)", _sectionModel.title];
     
     NGGUser *currentUser = [NGGLoginSession activeSession].currentUser;
-    _beanLabel.text = [NSString stringWithFormat:@"剩余：%@ 金豆", currentUser.bean];
+    if (_isDaren) {
+      
+        
+        _beanLabel.text = [NSString stringWithFormat:@"剩余：%@ 积分", _gameModel.darenPoint];
+    } else {
+       
+        _beanLabel.text = [NSString stringWithFormat:@"剩余：%@ 金豆", currentUser.bean];
+    }
     _profitLabel.text = [NSString stringWithFormat:@"预计盈利：0"];
     _textField.text = nil;
 }
@@ -113,8 +120,16 @@
         NSMutableAttributedString *subTitleAttr = [[NSMutableAttributedString alloc] initWithString:value];
         [subTitleAttr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, value.length)];
         
-        NSString *tmpString = [[value componentsSeparatedByString:@"金豆"] firstObject];
-        NSString *valueString = [[tmpString componentsSeparatedByString:@"即将投注"] lastObject];
+        NSString *tmpString = nil;
+        if (_isDaren) {
+          
+            tmpString = [[value componentsSeparatedByString:@"积分"] firstObject];
+        } else {
+          
+            tmpString = [[value componentsSeparatedByString:@"金豆"] firstObject];
+        }
+        
+        NSString *valueString = [[tmpString componentsSeparatedByString:@"投注"] lastObject];
         
         NSRange range = [value rangeOfString:valueString options:NSCaseInsensitiveSearch];
         [subTitleAttr addAttribute:NSForegroundColorAttributeName value:NGGViceColor range:range];
@@ -127,7 +142,14 @@
         return subTitleAttr;
     };
     
-    NSString *subTitleString = [NSString stringWithFormat:@"即将投注%@金豆\n系统将在20秒内确认是否投注成功",_textField.text];
+    NSString *subTitleString = nil;
+    if(_isDaren) {
+        
+        subTitleString = [NSString stringWithFormat:@"即将投注%@积分\n系统将在20秒内确认是否投注成功",_textField.text];
+    } else {
+    
+        subTitleString = [NSString stringWithFormat:@"即将投注%@金豆\n系统将在20秒内确认是否投注成功",_textField.text];
+    }
     [alertView showNotice:@"投注确认" subTitle:subTitleString closeButtonTitle:nil duration:0.0];
 }
 
@@ -135,55 +157,93 @@
 
 - (void)orderButtonClicked:(UIButton *) button {
     
-    NGGUser *currentUser = [NGGLoginSession activeSession].currentUser;
-    CGFloat becnCount = currentUser.bean.floatValue;
-    if (becnCount == 0) {
-        
-        ZSBlockAlertView *alert = [[ZSBlockAlertView alloc] initWithTitle:@"提示" message:@"金豆不足，无法完成投注，请充值" cancelButtonTitle:@"取消" otherButtonTitles:@[@"充值"]];
-        [alert setClickHandler:^(NSInteger index) {
-            
-            if (index == 1) {
-                
-                [self rechargeButtonClicked];
-            }
-        }];
-        [alert show];
-        return;
-    }
     
-    CGFloat orderCount = button.tag;
-    if (_textField.text) {
+    if (_isDaren) {
         
-        orderCount = orderCount + _textField.text.floatValue;
-    }
-    
-    if ([button.currentTitle isEqualToString: @"All in"]) {
-        
-        orderCount = becnCount;
-    }
-
-    if (orderCount > becnCount) {//金豆不足
-        
-        ZSBlockAlertView *alert = [[ZSBlockAlertView alloc] initWithTitle:@"提示" message:@"金豆不足，无法完成投注，请充值" cancelButtonTitle:@"取消" otherButtonTitles:@[@"充值"]];
-        [alert setClickHandler:^(NSInteger index) {
+        CGFloat pointCount = _gameModel.darenPoint.integerValue;
+        if (pointCount == 0) {
             
-            if (index == 1) {
+            [SVProgressHUD  showErrorWithStatus:@"抱歉，积分不足"];
+            return;
+        }
+        
+        CGFloat orderCount = button.tag;
+        if (_textField.text) {
+            
+            orderCount = orderCount + _textField.text.floatValue;
+        }
+        
+        if ([button.currentTitle isEqualToString: @"All in"]) {
+            
+            orderCount = pointCount;
+        }
+        
+        if (orderCount > pointCount) {//金豆不足
+            
+            [SVProgressHUD  showErrorWithStatus:@"抱歉，积分不足"];
+            return;
+        }
+        
+        if (orderCount > 50000) {
+            orderCount = 50000;
+            [SVProgressHUD showErrorWithStatus:@"最高投注50000"];
+        }
+        _textField.text = @(orderCount).stringValue;
+        CGFloat profit = orderCount * _itemModel.odds.doubleValue;
+        _profitLabel.text = [NSString stringWithFormat:@"预计盈利：%@", [JYCommonTool stringDisposeWithFloat:profit]];
+
+    } else {
+       
+        NGGUser *currentUser = [NGGLoginSession activeSession].currentUser;
+        CGFloat becnCount = currentUser.bean.floatValue;
+        if (becnCount == 0) {
+            
+            ZSBlockAlertView *alert = [[ZSBlockAlertView alloc] initWithTitle:@"提示" message:@"金豆不足，无法完成投注，请充值" cancelButtonTitle:@"取消" otherButtonTitles:@[@"充值"]];
+            [alert setClickHandler:^(NSInteger index) {
                 
-                [self rechargeButtonClicked];
-            }
-        }];
-        [alert show];
-        return;
-    }
+                if (index == 1) {
+                    
+                    [self rechargeButtonClicked];
+                }
+            }];
+            [alert show];
+            return;
+        }
+        
+        CGFloat orderCount = button.tag;
+        if (_textField.text) {
+            
+            orderCount = orderCount + _textField.text.floatValue;
+        }
+        
+        if ([button.currentTitle isEqualToString: @"All in"]) {
+            
+            orderCount = becnCount;
+        }
+        
+        if (orderCount > becnCount) {//金豆不足
+            
+            ZSBlockAlertView *alert = [[ZSBlockAlertView alloc] initWithTitle:@"提示" message:@"金豆不足，无法完成投注，请充值" cancelButtonTitle:@"取消" otherButtonTitles:@[@"充值"]];
+            [alert setClickHandler:^(NSInteger index) {
+                
+                if (index == 1) {
+                    
+                    [self rechargeButtonClicked];
+                }
+            }];
+            [alert show];
+            return;
+        }
+        
+        if (orderCount > 50000) {
+            orderCount = 50000;
+            [SVProgressHUD showErrorWithStatus:@"最高投注50000"];
+        }
+        _textField.text = @(orderCount).stringValue;
+        CGFloat profit = orderCount * _itemModel.odds.doubleValue;
+        _profitLabel.text = [NSString stringWithFormat:@"预计盈利：%@", [JYCommonTool stringDisposeWithFloat:profit]];
 
-    if (orderCount > 50000) {
-        orderCount = 50000;
-        [SVProgressHUD showErrorWithStatus:@"最高投注50000"];
     }
-    _textField.text = @(orderCount).stringValue;
-    CGFloat profit = orderCount * _itemModel.odds.doubleValue;
-    _profitLabel.text = [NSString stringWithFormat:@"预计盈利：%@", [JYCommonTool stringDisposeWithFloat:profit]];
-
 }
 
 - (void)rechargeButtonClicked {

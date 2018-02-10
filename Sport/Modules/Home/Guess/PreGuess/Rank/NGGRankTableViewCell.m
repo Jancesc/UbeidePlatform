@@ -37,7 +37,7 @@
     
     _cellInfo = cellInfo;
     
-    [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:@"avatar_img"] placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
+    [_avatarImageView sd_setImageWithURL:[NSURL URLWithString:[cellInfo stringForKey:@"avatar_img"]] placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
     _nameLabel.text = [cellInfo stringForKey:@"nickname"];
     _coinLabel.text = [cellInfo stringForKey:@"total"];
     NSInteger rank = [cellInfo intForKey:@"rank"];

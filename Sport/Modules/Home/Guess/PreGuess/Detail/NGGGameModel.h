@@ -8,6 +8,15 @@
 
 #import "NGGModel.h"
 #import "NGGGuessSectionModel.h"
+
+
+typedef NS_ENUM(NSUInteger, NGGGameType) {
+ 
+    NGGGameTypePreGame = 1,
+    NGGGameTypeLive = 2,
+    NGGGameTypeDaren = 3,
+};
+
 @interface NGGGameModel : NGGModel
 
 @property (nonatomic, assign) BOOL isForbid;
@@ -27,5 +36,9 @@
 @property (nonatomic, strong) NSString  *duration;
 
 @property (nonatomic, strong) NSArray *arrayOfSection;
+
+@property (nonatomic, strong) NSString  *darenPoint;
+
+@property (nonatomic, assign) NGGGameType gameType;
 
 @end

@@ -8,10 +8,15 @@
 
 #import "NGGDarenGameViewController.h"
 #import "NGGDarenGameListViewController.h"
+#import "NGGDarenGameResultViewController.h"
+#import "NGGDarenGameRankViewController.h"
 
 @interface NGGDarenGameViewController () {
     
     NGGDarenGameListViewController *_gameListViewController;
+    NGGDarenGameResultViewController *_resultViewController;
+    NGGDarenGameRankViewController *_gameRankController;
+
     UIView *_headerView;
 }
 
@@ -27,7 +32,18 @@
     [self configueUIComponents];
     self.title = @"盈利达人赛";
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(leftBarButtonClicked)];}
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(leftBarButtonClicked)];
+    
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    if (_segmentControl.selectedSegmentIndex == 0) {
+        
+        [_gameListViewController loadData];
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -52,12 +68,72 @@
     _segmentControl.layer.borderWidth = 1.f;
     
     _gameListViewController = [[NGGDarenGameListViewController alloc] init];
+    _gameRankController = [NGGDarenGameRankViewController new];
+    _resultViewController = [NGGDarenGameResultViewController new];
+    
     [self addChildViewController:_gameListViewController];
     [self.view addSubview:_gameListViewController.view];
+    
 }
 
 - (void)segmentControlValueChanged:(UISegmentedControl *) segmentControl {
     
+    switch (segmentControl.selectedSegmentIndex) {
+        case 0: {
+            
+                if (_resultViewController.parentViewController) {
+                    
+                    [_resultViewController removeFromParentViewController];
+                    [_resultViewController.view removeFromSuperview];
+                }
+                if (_gameRankController.parentViewController) {
+                    
+                    [_gameRankController removeFromParentViewController];
+                    [_gameRankController.view removeFromSuperview];
+                }
+                [self addChildViewController:_gameListViewController];
+                [self.view addSubview:_gameListViewController.view];
+
+                break;
+            }
+        case 1: {
+            
+            if (_gameListViewController.parentViewController) {
+              
+                [_gameListViewController removeFromParentViewController];
+                [_gameListViewController.view removeFromSuperview];
+            }
+            if (_gameRankController.parentViewController) {
+                
+                [_gameRankController removeFromParentViewController];
+                [_gameRankController.view removeFromSuperview];
+            }
+            
+            [self addChildViewController:_resultViewController];
+            [self.view addSubview:_resultViewController.view];
+            break;
+        }
+        case 2: {
+            
+            if (_gameListViewController.parentViewController) {
+                
+                [_gameListViewController removeFromParentViewController];
+                [_gameListViewController.view removeFromSuperview];
+            }
+            if (_resultViewController.parentViewController) {
+                
+                [_resultViewController removeFromParentViewController];
+                [_resultViewController.view removeFromSuperview];
+            }
+            
+            [self addChildViewController:_gameRankController];
+            [self.view addSubview:_gameRankController.view];
+            break;
+            
+        }
+        default:
+            break;
+    }
 }
 
 #pragma mark - button actions

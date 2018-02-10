@@ -40,7 +40,7 @@
         _homeLogo = [dict stringForKey:@"h_logo"];
         _awayLogo = [dict stringForKey:@"a_logo"];
         _duration = [dict stringForKey:@"duration"];
-        
+        _darenPoint = @"0";
         NSArray *scoreArray = [dict arrayForKey:@"score"];
         if ([scoreArray count] > 1) {
             
@@ -51,9 +51,6 @@
             _homeScore = @"0";
             _awayScore = @"0";
         }
-        
-        [NGGLoginSession activeSession].currentUser.bean = dict[@"bean"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidModifyUserInfoNotificationName object:nil];
         
         NSArray *sectionArray = [dict arrayForKey:@"list"];
         NSMutableArray *arrayM = [NSMutableArray array];

@@ -11,4 +11,6 @@
 @interface NGGDarenGameListViewController : NGGCommonViewController
 
 - (void)clear;
+
+- (void)loadData;
 @end

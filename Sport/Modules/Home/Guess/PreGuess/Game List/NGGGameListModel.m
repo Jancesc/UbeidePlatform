@@ -26,7 +26,13 @@
         _awayName = [dict stringForKey:@"a_name"];
         _timeString = [dict stringForKey:@"match_time"];
         _homeLogo = [dict stringForKey:@"h_logo"];
-        _awayLogo = [dict stringForKey:@"a_logo"];    }
+        _awayLogo = [dict stringForKey:@"a_logo"];
+        
+        //达人赛专用属性
+        _joined = [dict intForKey:@"is_play"];
+        _registeryFee = [dict stringForKey:@"need_bean"];
+
+    }
     return self;
 }
 @end

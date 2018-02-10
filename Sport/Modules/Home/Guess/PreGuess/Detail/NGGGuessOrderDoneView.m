@@ -39,7 +39,13 @@
     _titleLabel.text = [info stringForKey:@"itemName"];
     _oddsLabel.text = [NSString stringWithFormat:@"@%@", [info stringForKey:@"odds"]];
     _sectionLabel.text = [NSString stringWithFormat:@"(%@)", [info stringForKey:@"itemSection"]];
-    _beanLabel.text = [NSString stringWithFormat:@"剩余：%@金豆", [info stringForKey:@"bean"]];
+    if ([info intForKey:@"isDaren"]) {
+        
+        _beanLabel.text = [NSString stringWithFormat:@"剩余：%@ 积分", [info stringForKey:@"bean"]];
+    } else {
+        
+        _beanLabel.text = [NSString stringWithFormat:@"剩余：%@ 金豆", [info stringForKey:@"bean"]];
+    }
     _timeLabel.text = [NSString stringWithFormat:@"已投%@次", [info stringForKey:@"guessCount"]];
     _principleLabel.text = [NSString stringWithFormat:@"本金%@", [info stringForKey:@"money"]];
       _profitLabel.text = [NSString stringWithFormat:@"猜中盈利%@", [JYCommonTool stringDisposeWithFloat:[info floatForKey:@"profit"]]];

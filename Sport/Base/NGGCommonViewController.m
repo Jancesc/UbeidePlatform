@@ -176,7 +176,7 @@ static NSOperationQueue *sRequestQueue = nil;
         CAKeyframeAnimation *keyAnima=[CAKeyframeAnimation animation];
         keyAnima.keyPath = @"transform.rotation";
         keyAnima.duration = NGGHudNormalDuration;
-        keyAnima.values =@[ @0,@(2 * M_PI)];
+        keyAnima.values = @[ @0,@(2 * M_PI)];
         keyAnima.repeatCount = HUGE_VALF;
         keyAnima.fillMode = kCAFillModeForwards;
         keyAnima.removedOnCompletion = NO;
@@ -199,6 +199,15 @@ static NSOperationQueue *sRequestQueue = nil;
     
     [view addSubview:loadingIView];
     [view addSubview:loadingLabel];
+    
+    loadingIView.hidden = YES;
+    loadingLabel.hidden = YES;
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        loadingIView.hidden = NO;
+        loadingLabel.hidden = NO;
+    });
+    
 }
 
 - (void) dismissAnimationLoadingHUDOnView:(UIView *) view

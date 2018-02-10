@@ -8,6 +8,9 @@
 
 #import "NGGDarenGameListViewController.h"
 #import "NGGDarenGameListTableViewCell.h"
+#import "NGGDarenGameListHeaderView.h"
+#import "MJRefresh.h"
+#import "NGGDarenGameDetailViewController.h"
 
 static NSString *kDarenGameListTableViewCellIdentifier = @"darenGameListTableViewCellIdentifier";
 
@@ -15,6 +18,7 @@ static NSString *kDarenGameListTableViewCellIdentifier = @"darenGameListTableVie
     
     UITableView *_tableView;
     NSTimer *_timer;
+    NGGDarenGameListHeaderView *_headerView;
 }
 
 @property (nonatomic, strong) NSMutableArray *arrayOfGameList;
@@ -33,8 +37,15 @@ static NSString *kDarenGameListTableViewCellIdentifier = @"darenGameListTableVie
     
     [super viewDidLoad];
 //    self.view.frame = SCREEN_BOUNDS;
-    [self loadData];
+//    [self loadData];
 }
+
+- (void) setupLoadMoreFooter {
+    
+    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    _tableView.mj_footer = footer;
+}
+
 - (void)clear {
     
     if (_timer) {
@@ -68,6 +79,13 @@ static NSString *kDarenGameListTableViewCellIdentifier = @"darenGameListTableVie
     NGGWeakSelf
     _timer = [NSTimer timerWithTimeInterval:1.0 target:weakSelf selector:@selector(countTime) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
+    
+    _headerView = [[[NSBundle mainBundle] loadNibNamed:@"NGGDarenGameListHeaderView" owner:nil options:nil] lastObject];
+    _headerView.frame =CGRectMake(0, 0, SCREEN_WIDTH, 100);
+    _tableView.tableHeaderView =_headerView;
+    
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshData)];
+    _tableView.mj_header = header;
 }
 
 - (void)loadData {
@@ -81,17 +99,51 @@ static NSString *kDarenGameListTableViewCellIdentifier = @"darenGameListTableVie
             [self showErrorHUDWithText:msg];
         }];
         if (dict) {
-            
+            _headerView.count = [dict stringForKey:@"total"];
             _arrayOfGameList = [[dict arrayForKey:@"list"] mutableCopy];
             [_tableView reloadData];
+            if ([_arrayOfGameList count] == NGGMaxCountPerPage) {
+                
+                [self setupLoadMoreFooter];
+            } else {
+                
+                _tableView.mj_footer = nil;
+            }
         }
-        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
         [self dismissAnimationLoadingHUD];
     }];
-    
 }
+
+- (void)refreshData {
+    
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=expert.expertList" parameters:@{@"page" : @0} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [_tableView.mj_header endRefreshing];
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showErrorHUDWithText:msg];
+        }];
+        if (dict) {
+            
+            _headerView.count = [dict stringForKey:@"total"];
+            _arrayOfGameList = [[dict arrayForKey:@"list"] mutableCopy];
+            [_tableView reloadData];
+            if ([_arrayOfGameList count] == NGGMaxCountPerPage) {
+                
+                [self setupLoadMoreFooter];
+            } else {
+                
+                _tableView.mj_footer = nil;
+            }
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [_tableView.mj_header endRefreshing];
+    }];
+}
+
 
 - (void)countTime {
     
@@ -102,6 +154,36 @@ static NSString *kDarenGameListTableViewCellIdentifier = @"darenGameListTableVie
         [cell countTime];
     }
 }
+
+- (void)loadMoreData {
+    
+    NSInteger page = (NSInteger)([_arrayOfGameList count] / NGGMaxCountPerPage) + 1;
+    
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=expert.expertList" parameters:@{@"page" : @(page)} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [_tableView.mj_footer endRefreshing];
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showErrorHUDWithText:msg];
+        }];
+        if (dict) {
+            NSArray *gameListArray = [dict arrayForKey:@"list"];
+
+            [_arrayOfGameList addObjectsFromArray:gameListArray];;
+            [_tableView reloadData];
+            _headerView.count = [dict stringForKey:@"total"];
+            
+            if ([gameListArray count] < NGGMaxCountPerPage) {
+                
+                _tableView.mj_footer = nil;
+            }
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [_tableView.mj_footer endRefreshing];
+    }];
+}
+
 
 #pragma mark - NGGDarenGameListTableViewCellDelegate
 
@@ -150,6 +232,9 @@ static NSString *kDarenGameListTableViewCellIdentifier = @"darenGameListTableVie
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NGGDarenGameDetailViewController *controller = [[NGGDarenGameDetailViewController alloc] initWithNibName:@"NGGDarenGameDetailViewController" bundle:nil];
+    controller.model = [[NGGGameListModel alloc] initWithInfo:_arrayOfGameList[indexPath.row]];
+    [self.navigationController pushViewController:controller animated:YES];
     
 }
 

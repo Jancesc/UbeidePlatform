@@ -61,9 +61,15 @@ static NSString *kTaskCellIdentifier = @"NGGTaskTableViewCell";
     CADisplayLink *_displayLink;
     NSInteger _animationFactor;
     NSInteger _aniIndex;
-    NSInteger _openPrizeIndex;
 
     UIView *_coverView;
+    NSDictionary *_rewordDict;
+    
+    
+     NSInteger _currentButtonIndex;
+    
+     NSInteger _selectedIndex;
+     BOOL _openPrizeState;
 }
 
 @property (nonatomic, strong) NSArray *arrayOfLotteryButton;
@@ -448,9 +454,9 @@ static UIImage *image_0, *image_1;
         [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes]; /*将_CADisplayLink加入到RunLoop里面之后，selector就会被周期性的调用*/
         _aniIndex = 0;
         _animationFactor = 2;
-        kCurrentButtonIndex = 0;
-        kSelectedIndex = -1;
-        _openPrizeIndex = -1;
+        _currentButtonIndex = 0;
+        _selectedIndex = -1;
+        _openPrizeState = NO;
         for (UIButton *button in _arrayOfLotteryButton) {
             
             [button setBackgroundImage:nil forState:UIControlStateNormal];
@@ -463,57 +469,57 @@ static UIImage *image_0, *image_1;
     [self.view addSubview:_coverView];
 }
 
-static NSInteger kCurrentButtonIndex = 0;
-
-static NSInteger kSelectedIndex = -1;
 - (void)lotteryAnimation:(id) sender {
     
     _aniIndex++;
     if (_aniIndex % _animationFactor == 0) {
         
-        UIButton *preButton = _arrayOfLotteryButton[kCurrentButtonIndex % 14];
+        UIButton *preButton = _arrayOfLotteryButton[_currentButtonIndex % 14];
         [preButton setBackgroundImage:nil forState:UIControlStateNormal];
         
-        kCurrentButtonIndex++;
+        _currentButtonIndex++;
         
-        UIButton *button =  _arrayOfLotteryButton[kCurrentButtonIndex % 14];
+        UIButton *button =  _arrayOfLotteryButton[_currentButtonIndex % 14];
         _lotteryCoverView.frame = CGRectMake(0, 0, 1.5*VIEW_W(button), 1.5 * VIEW_H(button));
         _lotteryCoverView.center = button.center;
-        if (kCurrentButtonIndex == 100) {
+        if (_currentButtonIndex == 30) {
             
             _animationFactor = 2;
             [self luckyDraw];
         }
         
-        if (kSelectedIndex >= 0) {//进入开奖动画
-            _openPrizeIndex++;
-
-            static dispatch_once_t predicate;
-            dispatch_once(&predicate, ^{
-               
-                _animationFactor = 15;
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    
-                    _animationFactor = 25;
-                });
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    
-                    _animationFactor = 30;
-                });
+        if (_selectedIndex >= 0 && _openPrizeState == NO && _currentButtonIndex % 14 == _selectedIndex) {//判断进入开奖动画
+            
+            _openPrizeState = YES;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                 _animationFactor = 4;
+            });
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                _animationFactor = 7;
+            });
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.9 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                _animationFactor = 13;
+            });
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                _animationFactor = 20;
+            });
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                _animationFactor = 30;
             });
         }
-            
-        if (_animationFactor == 30 && _openPrizeIndex % 14 == kSelectedIndex) {
+        
+        if (_animationFactor == 30 && _currentButtonIndex % 14 == _selectedIndex) {
             
             [self dismissDisplayLink];
                     
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                         
                 [self refreshUI];
-                NSDictionary *itemInfo = _arrayOfLotteryItem[kSelectedIndex];
+                NSDictionary *itemInfo = _arrayOfLotteryItem[_selectedIndex];
                 NSDictionary *rewordInfo = @{
-                                               @"title" : [itemInfo stringForKey:@"title"],
+                                               @"title" : [_rewordDict stringForKey:@"title"],
                                                @"image" : [itemInfo stringForKey:@"icon"],
                                             };
                 [self showRewordView:rewordInfo];
@@ -521,9 +527,9 @@ static NSInteger kSelectedIndex = -1;
         }
     }
 }
-
 - (void)slowAnimationToShowPrize:(NSDictionary *)dict {
     
+    _rewordDict = dict;
     NSString *selectedID = [dict stringForKey:@"id"];
     for (NSInteger index = 0; index < [_arrayOfLotteryItem count]; index++) {
         
@@ -532,7 +538,7 @@ static NSInteger kSelectedIndex = -1;
             
             [NGGLoginSession activeSession].currentUser.point = [dict stringForKey:@"score"];
             [NGGLoginSession activeSession].currentUser.bean = [dict stringForKey:@"bean"];
-            kSelectedIndex = index;
+            _selectedIndex = index;
             if (_beanDrawButton.hidden && _pointDrawButton.hidden) {
                 
                 _pointDrawButton.hidden = NO;
@@ -554,7 +560,7 @@ static NSInteger kSelectedIndex = -1;
 
 - (void)showSelectedLottery:(NSInteger)selectedIndex {
     
-    UIButton *preButton = _arrayOfLotteryButton[kCurrentButtonIndex % 14];
+    UIButton *preButton = _arrayOfLotteryButton[_currentButtonIndex % 14];
     [preButton setBackgroundImage:nil forState:UIControlStateNormal];
  
     UIButton *button =  _arrayOfLotteryButton[selectedIndex % 14];

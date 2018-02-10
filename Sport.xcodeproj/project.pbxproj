@@ -255,6 +255,20 @@
 		3D84398D20034A9400DE29EA /* NGGRecordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D84398A20034A9400DE29EA /* NGGRecordViewController.xib */; };
 		3D922EF81FD00EEB003AA7F1 /* NGGGameListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D922EF71FD00EEB003AA7F1 /* NGGGameListView.m */; };
 		3D922EFA1FD00F72003AA7F1 /* NGGGameListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D922EF91FD00F72003AA7F1 /* NGGGameListView.xib */; };
+		3D931D39202BE001005A6D18 /* NGGDarenGameListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D931D38202BE001005A6D18 /* NGGDarenGameListHeaderView.m */; };
+		3D931D3B202BE015005A6D18 /* NGGDarenGameListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D931D3A202BE015005A6D18 /* NGGDarenGameListHeaderView.xib */; };
+		3D931D40202BF288005A6D18 /* NGGDarenGameResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D931D3E202BF288005A6D18 /* NGGDarenGameResultViewController.m */; };
+		3D931D45202BF2F0005A6D18 /* NGGDarenGameResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D931D43202BF2F0005A6D18 /* NGGDarenGameResultTableViewCell.m */; };
+		3D931D46202BF2F0005A6D18 /* NGGDarenGameResultTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D931D44202BF2F0005A6D18 /* NGGDarenGameResultTableViewCell.xib */; };
+		3D931D4B202C26F8005A6D18 /* NGGDarenGameRankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D931D49202C26F8005A6D18 /* NGGDarenGameRankViewController.m */; };
+		3D931D4F202C2729005A6D18 /* NGGDarenGameRankHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D931D4E202C2729005A6D18 /* NGGDarenGameRankHeader.m */; };
+		3D931D51202C2738005A6D18 /* NGGDarenGameRankHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D931D50202C2738005A6D18 /* NGGDarenGameRankHeader.xib */; };
+		3D931D55202C38E6005A6D18 /* NGGDarenGameResultDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D931D53202C38E6005A6D18 /* NGGDarenGameResultDetailViewController.m */; };
+		3D931D56202C38E6005A6D18 /* NGGDarenGameResultDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D931D54202C38E6005A6D18 /* NGGDarenGameResultDetailViewController.xib */; };
+		3D931D5A202C4004005A6D18 /* NGGDarenGameResultDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D931D58202C4004005A6D18 /* NGGDarenGameResultDetailTableViewCell.m */; };
+		3D931D5B202C4004005A6D18 /* NGGDarenGameResultDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D931D59202C4004005A6D18 /* NGGDarenGameResultDetailTableViewCell.xib */; };
+		3D931D60202D36AC005A6D18 /* NGGDarenGameDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D931D5E202D36AC005A6D18 /* NGGDarenGameDetailViewController.m */; };
+		3D931D61202D36AC005A6D18 /* NGGDarenGameDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D931D5F202D36AC005A6D18 /* NGGDarenGameDetailViewController.xib */; };
 		3DA121F81FEB933300FF0738 /* POPAnimatableProperty.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121C71FEB933200FF0738 /* POPAnimatableProperty.mm */; };
 		3DA121F91FEB933300FF0738 /* POPAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121C91FEB933200FF0738 /* POPAnimation.mm */; };
 		3DA121FA1FEB933300FF0738 /* POPAnimationEvent.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3DA121CB1FEB933200FF0738 /* POPAnimationEvent.mm */; };
@@ -783,6 +797,28 @@
 		3D922EF61FD00EEB003AA7F1 /* NGGGameListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGGameListView.h; sourceTree = "<group>"; };
 		3D922EF71FD00EEB003AA7F1 /* NGGGameListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGGameListView.m; sourceTree = "<group>"; };
 		3D922EF91FD00F72003AA7F1 /* NGGGameListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGGameListView.xib; sourceTree = "<group>"; };
+		3D931D37202BE001005A6D18 /* NGGDarenGameListHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGDarenGameListHeaderView.h; sourceTree = "<group>"; };
+		3D931D38202BE001005A6D18 /* NGGDarenGameListHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGDarenGameListHeaderView.m; sourceTree = "<group>"; };
+		3D931D3A202BE015005A6D18 /* NGGDarenGameListHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGDarenGameListHeaderView.xib; sourceTree = "<group>"; };
+		3D931D3D202BF288005A6D18 /* NGGDarenGameResultViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGDarenGameResultViewController.h; sourceTree = "<group>"; };
+		3D931D3E202BF288005A6D18 /* NGGDarenGameResultViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGDarenGameResultViewController.m; sourceTree = "<group>"; };
+		3D931D42202BF2F0005A6D18 /* NGGDarenGameResultTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGDarenGameResultTableViewCell.h; sourceTree = "<group>"; };
+		3D931D43202BF2F0005A6D18 /* NGGDarenGameResultTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGDarenGameResultTableViewCell.m; sourceTree = "<group>"; };
+		3D931D44202BF2F0005A6D18 /* NGGDarenGameResultTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGDarenGameResultTableViewCell.xib; sourceTree = "<group>"; };
+		3D931D48202C26F8005A6D18 /* NGGDarenGameRankViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGDarenGameRankViewController.h; sourceTree = "<group>"; };
+		3D931D49202C26F8005A6D18 /* NGGDarenGameRankViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGDarenGameRankViewController.m; sourceTree = "<group>"; };
+		3D931D4D202C2729005A6D18 /* NGGDarenGameRankHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGDarenGameRankHeader.h; sourceTree = "<group>"; };
+		3D931D4E202C2729005A6D18 /* NGGDarenGameRankHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGDarenGameRankHeader.m; sourceTree = "<group>"; };
+		3D931D50202C2738005A6D18 /* NGGDarenGameRankHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGDarenGameRankHeader.xib; sourceTree = "<group>"; };
+		3D931D52202C38E6005A6D18 /* NGGDarenGameResultDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGDarenGameResultDetailViewController.h; sourceTree = "<group>"; };
+		3D931D53202C38E6005A6D18 /* NGGDarenGameResultDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGDarenGameResultDetailViewController.m; sourceTree = "<group>"; };
+		3D931D54202C38E6005A6D18 /* NGGDarenGameResultDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGDarenGameResultDetailViewController.xib; sourceTree = "<group>"; };
+		3D931D57202C4004005A6D18 /* NGGDarenGameResultDetailTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGDarenGameResultDetailTableViewCell.h; sourceTree = "<group>"; };
+		3D931D58202C4004005A6D18 /* NGGDarenGameResultDetailTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGDarenGameResultDetailTableViewCell.m; sourceTree = "<group>"; };
+		3D931D59202C4004005A6D18 /* NGGDarenGameResultDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGDarenGameResultDetailTableViewCell.xib; sourceTree = "<group>"; };
+		3D931D5D202D36AC005A6D18 /* NGGDarenGameDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGDarenGameDetailViewController.h; sourceTree = "<group>"; };
+		3D931D5E202D36AC005A6D18 /* NGGDarenGameDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGDarenGameDetailViewController.m; sourceTree = "<group>"; };
+		3D931D5F202D36AC005A6D18 /* NGGDarenGameDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGDarenGameDetailViewController.xib; sourceTree = "<group>"; };
 		3DA121C41FEB933200FF0738 /* POP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POP.h; sourceTree = "<group>"; };
 		3DA121C51FEB933200FF0738 /* POPAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPAction.h; sourceTree = "<group>"; };
 		3DA121C61FEB933200FF0738 /* POPAnimatableProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = POPAnimatableProperty.h; sourceTree = "<group>"; };
@@ -1931,6 +1967,46 @@
 			path = "Game List";
 			sourceTree = "<group>";
 		};
+		3D931D3C202BF23D005A6D18 /* DarenGameResult */ = {
+			isa = PBXGroup;
+			children = (
+				3D931D3D202BF288005A6D18 /* NGGDarenGameResultViewController.h */,
+				3D931D3E202BF288005A6D18 /* NGGDarenGameResultViewController.m */,
+				3D931D42202BF2F0005A6D18 /* NGGDarenGameResultTableViewCell.h */,
+				3D931D43202BF2F0005A6D18 /* NGGDarenGameResultTableViewCell.m */,
+				3D931D44202BF2F0005A6D18 /* NGGDarenGameResultTableViewCell.xib */,
+				3D931D52202C38E6005A6D18 /* NGGDarenGameResultDetailViewController.h */,
+				3D931D53202C38E6005A6D18 /* NGGDarenGameResultDetailViewController.m */,
+				3D931D54202C38E6005A6D18 /* NGGDarenGameResultDetailViewController.xib */,
+				3D931D57202C4004005A6D18 /* NGGDarenGameResultDetailTableViewCell.h */,
+				3D931D58202C4004005A6D18 /* NGGDarenGameResultDetailTableViewCell.m */,
+				3D931D59202C4004005A6D18 /* NGGDarenGameResultDetailTableViewCell.xib */,
+			);
+			path = DarenGameResult;
+			sourceTree = "<group>";
+		};
+		3D931D47202C25D2005A6D18 /* DarenGameRank */ = {
+			isa = PBXGroup;
+			children = (
+				3D931D48202C26F8005A6D18 /* NGGDarenGameRankViewController.h */,
+				3D931D49202C26F8005A6D18 /* NGGDarenGameRankViewController.m */,
+				3D931D4D202C2729005A6D18 /* NGGDarenGameRankHeader.h */,
+				3D931D4E202C2729005A6D18 /* NGGDarenGameRankHeader.m */,
+				3D931D50202C2738005A6D18 /* NGGDarenGameRankHeader.xib */,
+			);
+			path = DarenGameRank;
+			sourceTree = "<group>";
+		};
+		3D931D5C202D360F005A6D18 /* DarenGameDetail */ = {
+			isa = PBXGroup;
+			children = (
+				3D931D5D202D36AC005A6D18 /* NGGDarenGameDetailViewController.h */,
+				3D931D5E202D36AC005A6D18 /* NGGDarenGameDetailViewController.m */,
+				3D931D5F202D36AC005A6D18 /* NGGDarenGameDetailViewController.xib */,
+			);
+			path = DarenGameDetail;
+			sourceTree = "<group>";
+		};
 		3DA121C31FEB933200FF0738 /* pop */ = {
 			isa = PBXGroup;
 			children = (
@@ -2126,6 +2202,9 @@
 		3DE9B8C2202ADD98005C3B3D /* DarenGame */ = {
 			isa = PBXGroup;
 			children = (
+				3D931D5C202D360F005A6D18 /* DarenGameDetail */,
+				3D931D47202C25D2005A6D18 /* DarenGameRank */,
+				3D931D3C202BF23D005A6D18 /* DarenGameResult */,
 				3DE9B8D2202AE73A005C3B3D /* DarenGameList */,
 				3DE9B8CD202AE59B005C3B3D /* NGGDarenGameViewController.h */,
 				3DE9B8CE202AE59B005C3B3D /* NGGDarenGameViewController.m */,
@@ -2142,6 +2221,9 @@
 				3DE9B8D3202AE795005C3B3D /* NGGDarenGameListTableViewCell.h */,
 				3DE9B8D4202AE795005C3B3D /* NGGDarenGameListTableViewCell.m */,
 				3DE9B8D5202AE795005C3B3D /* NGGDarenGameListTableViewCell.xib */,
+				3D931D37202BE001005A6D18 /* NGGDarenGameListHeaderView.h */,
+				3D931D38202BE001005A6D18 /* NGGDarenGameListHeaderView.m */,
+				3D931D3A202BE015005A6D18 /* NGGDarenGameListHeaderView.xib */,
 			);
 			path = DarenGameList;
 			sourceTree = "<group>";
@@ -2223,7 +2305,9 @@
 				3D35EDB51FB2F78900E01659 /* NGGHomeHeaderReusableView.xib in Resources */,
 				3DC56B7E1FC421F000F67C32 /* NGGFollowGameTableViewCell.xib in Resources */,
 				3D45CB7D1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.xib in Resources */,
+				3D931D5B202C4004005A6D18 /* NGGDarenGameResultDetailTableViewCell.xib in Resources */,
 				3DE9B8D1202AE59B005C3B3D /* NGGDarenGameViewController.xib in Resources */,
+				3D931D46202BF2F0005A6D18 /* NGGDarenGameResultTableViewCell.xib in Resources */,
 				3D35EDCE1FB2F78900E01659 /* AlipaySDK.bundle in Resources */,
 				3D35EDC41FB2F78900E01659 /* NGGLoginViewController.xib in Resources */,
 				3D35EDC21FB2F78900E01659 /* NGGTypeTableViewCell.xib in Resources */,
@@ -2232,10 +2316,12 @@
 				3DB56B421FF39430009D8880 /* NGGGoodsDescriptionViewController.xib in Resources */,
 				3D35EDA31FB2F78900E01659 /* Assets.xcassets in Resources */,
 				3D0BEAA61FC55B7800EC14A9 /* NGGRankHeaderView.xib in Resources */,
+				3D931D56202C38E6005A6D18 /* NGGDarenGameResultDetailViewController.xib in Resources */,
 				3D35EDBE1FB2F78900E01659 /* NGGPreGameTableViewCell.xib in Resources */,
 				3DA285291FE7CEA60093E726 /* NGGGuessRecordTableViewCell.xib in Resources */,
 				3D35EDEA1FB2F78900E01659 /* Info.plist in Resources */,
 				3D922EFA1FD00F72003AA7F1 /* NGGGameListView.xib in Resources */,
+				3D931D61202D36AC005A6D18 /* NGGDarenGameDetailViewController.xib in Resources */,
 				3D35EDCB1FB2F78900E01659 /* NGGTaskViewController.xib in Resources */,
 				3D35EDAF1FB2F78900E01659 /* NGGPreGuessDetailViewController.xib in Resources */,
 				3DC56B611FC3CBC800F67C32 /* NGGAnalyseHistoryTableViewCell.xib in Resources */,
@@ -2251,10 +2337,12 @@
 				3D4B1BD91FC6A0C600FBAB6C /* NGGUserViewController.xib in Resources */,
 				3D25B4AF1FB428A200D20FB2 /* NGGDetailAnalyseView.xib in Resources */,
 				3D3517742021644400F89D16 /* ExampleApp.html in Resources */,
+				3D931D51202C2738005A6D18 /* NGGDarenGameRankHeader.xib in Resources */,
 				3DA19B3B1FDE986400B19257 /* NGGConsumptionTableViewCell.xib in Resources */,
 				3D74A29A1FE1223F00108F06 /* NGGGuessOrderDoneView.xib in Resources */,
 				3D07BEE21FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.xib in Resources */,
 				3D35EE571FB3073D00E01659 /* NGGGuessCollectionViewCell.xib in Resources */,
+				3D931D3B202BE015005A6D18 /* NGGDarenGameListHeaderView.xib in Resources */,
 				3D35EDE71FB2F78900E01659 /* DMPictureBrowserViewController.Bundle in Resources */,
 				3DE9B8D7202AE795005C3B3D /* NGGDarenGameListTableViewCell.xib in Resources */,
 				3D35EDB91FB2F78900E01659 /* NGGHomeNoticeCollectionViewCell.xib in Resources */,
@@ -2310,8 +2398,10 @@
 				3D35EDB81FB2F78900E01659 /* NGGHomeNoticeCollectionViewCell.m in Sources */,
 				3DC56B881FC42FC000F67C32 /* NGGGameResultTableViewCell.m in Sources */,
 				3D3517802021C06B00F89D16 /* NGGNavigationBar.m in Sources */,
+				3D931D40202BF288005A6D18 /* NGGDarenGameResultViewController.m in Sources */,
 				3D35EDF31FB2F78900E01659 /* View+MASAdditions.m in Sources */,
 				3D35EE2B1FB2F78900E01659 /* ZSBlockAlertView.m in Sources */,
+				3D931D4B202C26F8005A6D18 /* NGGDarenGameRankViewController.m in Sources */,
 				3D07BEB91FD66E3400BC4A64 /* NSRunLoop+SRWebSocket.m in Sources */,
 				3D3517772021661100F89D16 /* NGGWebViewController.m in Sources */,
 				3D35EDB01FB2F78900E01659 /* NGGHomeActivityHeaderReusableView.m in Sources */,
@@ -2366,6 +2456,7 @@
 				3D4B1BDD1FC7BF7F00FBAB6C /* NGGUser.m in Sources */,
 				3D45CB971FCD7156006EF330 /* NGGConsumptionDeatilViewController.m in Sources */,
 				3DBA1EA31FF4FCDC0023D599 /* NGGRecordTableViewCell.m in Sources */,
+				3D931D5A202C4004005A6D18 /* NGGDarenGameResultDetailTableViewCell.m in Sources */,
 				3DC56B641FC3D9F700F67C32 /* NGGAnalyseHistoryheaderView.m in Sources */,
 				3D35EE151FB2F78900E01659 /* SDWebImageDecoder.m in Sources */,
 				3D35EDA41FB2F78900E01659 /* NGGCommonViewController.m in Sources */,
@@ -2432,6 +2523,7 @@
 				3D35EE1E1FB2F78900E01659 /* UIImageView+HighlightedWebCache.m in Sources */,
 				3D35EDBA1FB2F78900E01659 /* NGGHomePageMenuCollectionViewCell.m in Sources */,
 				3D35EDBF1FB2F78900E01659 /* NGGGuessListViewController.m in Sources */,
+				3D931D55202C38E6005A6D18 /* NGGDarenGameResultDetailViewController.m in Sources */,
 				3D45CB801FCD10FA006EF330 /* NGGEmptyView.m in Sources */,
 				3D07BEB71FD66E3400BC4A64 /* SRSIMDHelpers.m in Sources */,
 				3D35EDC31FB2F78900E01659 /* NGGLoginViewController.m in Sources */,
@@ -2454,8 +2546,12 @@
 				3D07BEBA1FD66E3400BC4A64 /* NSURLRequest+SRWebSocket.m in Sources */,
 				3D35EDF81FB2F78900E01659 /* MJRefreshFooter.m in Sources */,
 				3D35EE081FB2F78900E01659 /* UIView+MJExtension.m in Sources */,
+				3D931D45202BF2F0005A6D18 /* NGGDarenGameResultTableViewCell.m in Sources */,
 				3DA285281FE7CEA60093E726 /* NGGGuessRecordTableViewCell.m in Sources */,
 				3D35EDEF1FB2F78900E01659 /* MASViewAttribute.m in Sources */,
+				3D931D4F202C2729005A6D18 /* NGGDarenGameRankHeader.m in Sources */,
+				3D931D39202BE001005A6D18 /* NGGDarenGameListHeaderView.m in Sources */,
+				3D931D60202D36AC005A6D18 /* NGGDarenGameDetailViewController.m in Sources */,
 				3D35EE251FB2F78900E01659 /* UIImage+Screenshot.m in Sources */,
 				3D07BEAD1FD66E3400BC4A64 /* SRProxyConnect.m in Sources */,
 				3D07BEFF1FD90B9600BC4A64 /* SCLTextView.m in Sources */,

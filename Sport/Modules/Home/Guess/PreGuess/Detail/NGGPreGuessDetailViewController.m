@@ -593,6 +593,8 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
             [self updateGuessRecord];
         }
         _gameModel = [[NGGGameModel alloc] initWithInfo:dict];
+        _gameModel.gameType = NGGGameTypePreGame;
+        [NGGLoginSession activeSession].currentUser.bean = dict[@"bean"];
         [self refreshUI];
     }
 }

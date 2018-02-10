@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "NGGGuessItemModel.h"
 #import "NGGGuessSectionModel.h"
-
+#import "NGGGameModel.h"
 @protocol NGGGuessOrderViewDelegate <NSObject>
 
 - (void)guessOrderViewDidClickRechargeButton;
@@ -23,4 +23,8 @@
 - (void) updateWithItemModel:(NGGGuessItemModel *)itemModel sectionModel:(NGGGuessSectionModel *)sectionModel;
 - (NGGGuessItemModel *) currentItemModel;
 @property (nonatomic, strong) id <NGGGuessOrderViewDelegate> delegate;
+
+@property (nonatomic, assign) BOOL isDaren;
+@property (nonatomic, strong) NGGGameModel *gameModel;
+
 @end

@@ -1,12 +1,4 @@
-//
-//  NGGPreGuessDetailViewController.m
-//  sport
-//
-//  Created by Jan on 06/11/2017.
-//  Copyright © 2017 NGG. All rights reserved.
-//
-
-#import "NGGLiveGuessDetailViewController.h"
+#import "NGGDarenGameDetailViewController.h"
 #import "Masonry.h"
 #import "POP.h"
 #import "NGGGuessCollectionViewCell.h"
@@ -26,28 +18,40 @@
 #import "JYCommonTool.h"
 #import "UIImageView+WebCache.h"
 #import "NGGExchangeViewController.h"
+#import "ZSBlockAlertView.h"
 
 static NSString *kGuessCellIdentifier = @"NGGGuessCollectionViewCell";
 static NSString *kGuess2RowsCellIdentifier = @"NGGGuess2RowsCollectionViewCell";
 static NSString *kDescriptionCellIdentifier = @"NGGDescriptionCellIdentifier";
 static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
-@interface NGGLiveGuessDetailViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NGGWebSocketHelperDelegate, NGGGuessOrderViewDelegate, NGGGuessOrderDoneViewDelegate> {
+@interface NGGDarenGameDetailViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NGGWebSocketHelperDelegate, NGGGuessOrderViewDelegate, NGGGuessOrderDoneViewDelegate> {
     
     __weak IBOutlet UICollectionView *_collectionView;
-    __weak IBOutlet UILabel *_beanLabel;
+    __weak IBOutlet UILabel *_pointLabel;
     __weak IBOutlet UILabel *_homeLabel;
     __weak IBOutlet UILabel *_awayLabel;
     __weak IBOutlet UIImageView *_homeImageView;
     __weak IBOutlet UIImageView *_awayImageView;
+    __weak IBOutlet UILabel *_dateLabel;
     __weak IBOutlet UILabel *_statusLabel;
     
-    __weak IBOutlet UIButton *_moreBeanButton;
     __weak IBOutlet UIButton *_recordButton;
     __weak IBOutlet UIButton *_helpButton;
     
     NGGGuessOrderView *_makeOrderView;
     NGGGuessOrderDoneView *_resultView;
+    
+    __weak IBOutlet UIButton *_darenButton;
+    __weak IBOutlet UIButton *_prizeButton;
+    __weak IBOutlet UIButton *_playerButton;
+
+    __weak IBOutlet UIView *_tipsView;
+    
+
+    __weak IBOutlet UIView *_registeryBGView;
+    __weak IBOutlet UILabel *_registeryFeeLabel;
+    __weak IBOutlet UIButton *_registeryButton;
 }
 
 @property (nonatomic, strong) NGGGameModel *gameModel;
@@ -55,16 +59,17 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 @property (nonatomic, strong) NSArray *arrayOfGuessed;//已经投注的列表
 @property (nonatomic, strong) NSMutableDictionary *dictionaryOfGuessed;
 
+
 @end
 
-@implementation NGGLiveGuessDetailViewController
+@implementation NGGDarenGameDetailViewController
 
 #pragma mark - view life circle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"赛事";
+    self.title = @"赛前";
     [self configueUIComponents];
     _dictionaryOfGuessed = [NSMutableDictionary dictionary];
     [NGGWebSocketHelper shareHelper].delegate = self;
@@ -100,7 +105,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
 - (void)loadDetailInfo {
     
-    NSDictionary *params = @{@"match_id" : _model.matchID, @"method" : @"live.gameDetail"};
+    NSDictionary *params = @{@"match_id" : _model.matchID, @"method" : @"game.expertDetail"};
     NGGLoginSession *session = [NGGLoginSession activeSession];
     NSMutableDictionary *inputParams = [params mutableCopy];
     if (session) {
@@ -145,6 +150,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     }];
     
     _makeOrderView = [[[NSBundle mainBundle] loadNibNamed:@"NGGGuessOrderView" owner:nil options:nil] lastObject];
+    _makeOrderView.isDaren = YES;
     _makeOrderView.delegate = self;
     _makeOrderView.hidden = YES;
     [self.view addSubview:_makeOrderView];
@@ -168,9 +174,40 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
         
     }];
     
-    [_moreBeanButton addTarget:self action:@selector(moreBeanButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [_recordButton addTarget:self action:@selector(recordButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [_helpButton addTarget:self action:@selector(helpButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_darenButton setTitleColor:NGGPrimaryColor forState:UIControlStateSelected];
+    [_prizeButton setTitleColor:NGGPrimaryColor forState:UIControlStateSelected];
+    [_playerButton setTitleColor:NGGPrimaryColor forState:UIControlStateSelected];
+    
+    [_darenButton setTitleColor:NGGColor333 forState:UIControlStateNormal];
+    [_prizeButton setTitleColor:NGGColor333 forState:UIControlStateNormal];
+    [_playerButton setTitleColor:NGGColor333 forState:UIControlStateNormal];
+    
+    [_darenButton addTarget:self action:@selector(segmentButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [_prizeButton addTarget:self action:@selector(segmentButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [_playerButton addTarget:self action:@selector(segmentButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+
+    _darenButton.tag = 1;
+    _prizeButton.tag = 2;
+    _playerButton.tag = 3;
+    
+    _tipsView.backgroundColor = NGGPrimaryColor;
+    _darenButton.selected = YES;
+    [self segmentButtonClicked:_darenButton];
+    
+    if (_model.joined == NO) {
+        
+        _registeryFeeLabel.text = [NSString stringWithFormat:@"%@ 金豆", _model.registeryFee];
+        [_registeryButton setBackgroundImage:[UIImage imageWithColor:NGGThirdColor] forState:UIControlStateNormal];
+        _registeryButton.layer.cornerRadius = 4.f;
+        _registeryButton.clipsToBounds = YES;
+        [_registeryButton addTarget:self action:@selector(registeryButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    } else {
+        
+        _registeryBGView.hidden = YES;
+    }
 }
 
 - (void)refreshUI {
@@ -202,29 +239,23 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
             }];
         }
     }
-    _beanLabel.text = [NSString stringWithFormat:@"%@金豆", [NGGLoginSession activeSession].currentUser.bean];
+    _pointLabel.text = _gameModel.darenPoint;
     _homeLabel.text = _gameModel.homeName;
     _awayLabel.text = _gameModel.awayName;
+    _dateLabel.text = [JYCommonTool dateFormatWithInterval:_gameModel.startTime.integerValue format:@"MM月dd日 HH:mm开赛"];
     NSURL *homeURL = [NSURL URLWithString:_gameModel.homeLogo];
     NSURL *awayURL = [NSURL URLWithString:_gameModel.awayLogo];
     
     [_homeImageView sd_setImageWithURL:homeURL placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
     [_awayImageView sd_setImageWithURL:awayURL placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
     
-    //   状态 0尚未开始 1正在进行 2结束 3结束 4推迟 5中断 6取消 7比赛开始，但是被遗弃
+    //    比赛状态，0未开赛 1取消 2关闭 3完结 4赛果录入 5彩果计算完毕;ps：3之后都算比赛结束
     NSInteger status = _gameModel.status.integerValue;
-    if (status == 1) {
-        _statusLabel.text = _gameModel.duration;
-    } else {
-        
-        _statusLabel.text = status == 0 ? @"未开赛" :
-        status == 2 ? @"结束" :
-        status == 3 ? @"结束" :
-        status == 4 ? @"推迟" :
-        status == 5 ? @"中断" :
-        status == 6 ? @"取消" : @"比赛结束";
-
-    }
+    _statusLabel.text = status == 0 ? @"未开赛" :
+    status == 1 ? @"取消" :
+    status == 2 ? @"关闭" :
+    status == 3 ? @"完结" : @"比赛结束";
+    
 }
 
 - (void)refreshData {
@@ -264,7 +295,6 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     NGGGuessItemModel *itemModel = sectionModel.arrayOfItem[selectedIndexPath.item];
     
     NGGGuessRecordModel *model = nil;
-    NGGUser *currentUser = [NGGLoginSession activeSession].currentUser;
     NSInteger count = 0;
     NSInteger money = 0;
     CGFloat profit = 0;
@@ -284,11 +314,12 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     NSDictionary *info = @{
                            @"itemName" : model.itemName,
                            @"odds" : model.odds,
-                           @"bean" : currentUser.bean,
+                           @"bean" : _gameModel.darenPoint,
                            @"itemSection" : model.sectionName,
                            @"guessCount" : @(count).stringValue,
                            @"money" : moneyString,
                            @"profit" : profitString,
+                           @"isDaren" : @1
                            };
     [_resultView updateGuessOrderDoneViewWithInfo:info];
     _resultView.hidden = NO;
@@ -306,7 +337,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     //    token    string    Y    token
     //    match_id    string    Y    比赛id
     [self showLoadingHUDWithText:nil];
-    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=live.playRecord" parameters:@{@"match_id" : _model.matchID} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=expert.playRecord" parameters:@{@"match_id" : _model.matchID} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [self dismissHUD];
         NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
@@ -371,26 +402,40 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     }];
 }
 
-- (void)getMoreBeans {
+- (void)joinGame {
     
-    if ([NGGLoginSession activeSession].currentUser.coin.integerValue > 0) {
+    [self showAnimationLoadingHUDWithText:nil];
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=expert.signUp" parameters:@{@"match_id" : _model.matchID} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        NGGExchangeViewController *controller = [[NGGExchangeViewController alloc] initWithNibName:@"NGGExchangeViewController" bundle:nil];
-        [self.navigationController pushViewController:controller animated:YES];
-    } else{
+        [self dismissAnimationLoadingHUD];
+        [self dismissHUD];
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showErrorHUDWithText:msg];
+        }];
+        if (dict) {
+            _gameModel.darenPoint = dict[@"bean"];
+            _model.joined = YES;
+            _registeryBGView.hidden = YES;
+            [self refreshUI];
+            
+            ZSBlockAlertView *alertView = [[ZSBlockAlertView alloc] initWithTitle:@"提示" message:@"报名成功，获得10000积分，比赛结束后以积分排名发放奖品并清除本场竞猜积分" cancelButtonTitle:@"确定" otherButtonTitles:@[@"确认"]];
+            [alertView setClickHandler:^(NSInteger index) {
+                
+            }];
+            [alertView show];
+            
+            NSInteger beanCount = [NGGLoginSession activeSession].currentUser.bean.integerValue - _model.registeryFee.integerValue;
+            [NGGLoginSession activeSession].currentUser.bean = @(beanCount).stringValue;
+            [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidModifyUserInfoNotificationName object:nil];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        NGGRechargeViewController *controller = [[NGGRechargeViewController alloc] init];
-        [self.navigationController pushViewController:controller animated:YES];
-    }
+        [self dismissAnimationLoadingHUD];
+    }];
 }
 
 #pragma mark - button actions
-
-- (void)moreBeanButtonClicked:(UIButton *)button {
-    
-    
-    [self getMoreBeans];
-}
 
 - (void)recordButtonClicked:(UIButton *) button {
     
@@ -402,6 +447,35 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
 - (void)helpButtonClicked:(UIButton *) button {
     
+}
+
+- (void)segmentButtonClicked:(UIButton *) button {
+
+    _darenButton.selected = NO;
+    _prizeButton.selected = NO;
+    _playerButton.selected = NO;
+    button.selected = YES;
+    
+    CGFloat viewWidth = (SCREEN_WIDTH - 15 * 4) / 3.0;
+    _tipsView.frame = CGRectMake(button.frame.origin.x, 47, viewWidth, 3);
+
+}
+
+#pragma mark - button actions
+
+- (void)registeryButtonClicked {
+    
+    NSString *messageString = [NSString stringWithFormat:@"报名条件: %@ 金豆", _model.registeryFee];
+
+    ZSBlockAlertView *alertView = [[ZSBlockAlertView alloc] initWithTitle:@"确定是否报名？" message:messageString cancelButtonTitle:@"取消" otherButtonTitles:@[@"确认"]];
+    [alertView setClickHandler:^(NSInteger index) {
+        
+        if (index == 1) {
+            
+            [self joinGame];
+        }
+    }];
+    [alertView show];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -452,22 +526,10 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
         cell.model = itemModel;
         return cell;
     } else {
-        if(indexPath.item % 3 == 1) {
-          
-            NGGGuessDescriptionCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kDescriptionCellIdentifier forIndexPath:indexPath];
-            cell.model = itemModel;
-            return cell;
-        } else {
-           
-            NGGGuessCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kGuessCellIdentifier forIndexPath:indexPath];
-            cell.model = itemModel;
-            if (selectedIndexPath && selectedIndexPath.item == indexPath.item && selectedIndexPath.section == indexPath.section) {
-                
-                [cell updateUIForSelected];
-            }
-            return cell;
-        }
-
+        
+        NGGGuessDescriptionCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kDescriptionCellIdentifier forIndexPath:indexPath];
+        cell.model = itemModel;
+        return cell;
     }
     return nil;
 }
@@ -518,6 +580,11 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
     [collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
+    
+    if (_model.joined == NO) {
+        return;
+    }
+    
     NGGGuessSectionModel *sectionModel = _gameModel.arrayOfSection[indexPath.section];
     NGGGuessItemModel *itemModel = sectionModel.arrayOfItem [indexPath.item];
     if (itemModel.isGuessed) {
@@ -536,11 +603,6 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
 #pragma mark - NGGGuessOrderViewDelegate
 
-- (void)guessOrderViewDidClickRechargeButton {
-    
-    [self getMoreBeans];
-}
-
 - (void) guessOrderViewMakeOrder:(NSString *)count itemModel:(NGGGuessItemModel *)itemModel sectionModel:(NGGGuessSectionModel *)sectionModel {
     
     //    uid    string    Y    uid
@@ -550,7 +612,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     //    bean    string    Y    投注金豆数，10的倍数
     //
     [self showLoadingHUDWithText:nil];
-    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=live.playGame" parameters:@{@"item" : itemModel.itemID, @"match_id" : _gameModel.matchID, @"bean" : count, @"odds" : itemModel.odds} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=expert.playGame" parameters:@{@"item" : itemModel.itemID, @"match_id" : _gameModel.matchID, @"bean" : count, @"odds" : itemModel.odds} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [self dismissHUD];
         NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
@@ -559,8 +621,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
         }];
         if (dict) {
             
-            [NGGLoginSession activeSession].currentUser.bean = dict[@"bean"];
-            [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidModifyUserInfoNotificationName object:nil];
+            _gameModel.darenPoint = dict[@"bean"];
             [self updateGuessRecord];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -610,10 +671,10 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
             [self updateGuessRecord];
         }
         _gameModel = [[NGGGameModel alloc] initWithInfo:dict];
-        _gameModel.gameType = NGGGameTypeLive;
-        [NGGLoginSession activeSession].currentUser.bean = dict[@"bean"];
+        _gameModel.gameType = NGGGameTypeDaren;
+        _gameModel.darenPoint = dict[@"bean"];
+        _makeOrderView.gameModel = _gameModel;
         [self refreshUI];
     }
 }
 @end
-
