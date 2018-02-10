@@ -103,13 +103,6 @@
 		3D35EDCA1FB2F78900E01659 /* NGGTaskViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ECBF1FB2F78800E01659 /* NGGTaskViewController.m */; };
 		3D35EDCB1FB2F78900E01659 /* NGGTaskViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D35ECC01FB2F78800E01659 /* NGGTaskViewController.xib */; };
 		3D35EDCC1FB2F78900E01659 /* NGGUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ECC31FB2F78800E01659 /* NGGUserViewController.m */; };
-		3D35EDCE1FB2F78900E01659 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3D35ECC91FB2F78800E01659 /* AlipaySDK.bundle */; };
-		3D35EDCF1FB2F78900E01659 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D35ECCA1FB2F78800E01659 /* AlipaySDK.framework */; };
-		3D35EDD01FB2F78900E01659 /* NGGSocial.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ECCC1FB2F78800E01659 /* NGGSocial.m */; };
-		3D35EDD11FB2F78900E01659 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D35ECCE1FB2F78800E01659 /* TencentOpenAPI.framework */; };
-		3D35EDD21FB2F78900E01659 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D35ECD01FB2F78800E01659 /* libWeChatSDK.a */; };
-		3D35EDD31FB2F78900E01659 /* libWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D35ECD51FB2F78900E01659 /* libWeiboSDK.a */; };
-		3D35EDD41FB2F78900E01659 /* WeiboSDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3D35ECD71FB2F78900E01659 /* WeiboSDK.bundle */; };
 		3D35EDD51FB2F78900E01659 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ECDC1FB2F78900E01659 /* AFHTTPSessionManager.m */; };
 		3D35EDD61FB2F78900E01659 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ECDF1FB2F78900E01659 /* AFNetworkReachabilityManager.m */; };
 		3D35EDD71FB2F78900E01659 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D35ECE11FB2F78900E01659 /* AFSecurityPolicy.m */; };
@@ -520,19 +513,6 @@
 		3D35ECC21FB2F78800E01659 /* NGGUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGUserViewController.h; sourceTree = "<group>"; };
 		3D35ECC31FB2F78800E01659 /* NGGUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGUserViewController.m; sourceTree = "<group>"; };
 		3D35ECC41FB2F78800E01659 /* NGG-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NGG-Prefix.pch"; sourceTree = "<group>"; };
-		3D35ECC91FB2F78800E01659 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
-		3D35ECCA1FB2F78800E01659 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
-		3D35ECCB1FB2F78800E01659 /* NGGSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NGGSocial.h; sourceTree = "<group>"; };
-		3D35ECCC1FB2F78800E01659 /* NGGSocial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NGGSocial.m; sourceTree = "<group>"; };
-		3D35ECCE1FB2F78800E01659 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
-		3D35ECD01FB2F78800E01659 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
-		3D35ECD11FB2F78900E01659 /* WechatAuthSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WechatAuthSDK.h; sourceTree = "<group>"; };
-		3D35ECD21FB2F78900E01659 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
-		3D35ECD31FB2F78900E01659 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
-		3D35ECD51FB2F78900E01659 /* libWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeiboSDK.a; sourceTree = "<group>"; };
-		3D35ECD61FB2F78900E01659 /* WBHttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WBHttpRequest.h; sourceTree = "<group>"; };
-		3D35ECD71FB2F78900E01659 /* WeiboSDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = WeiboSDK.bundle; sourceTree = "<group>"; };
-		3D35ECD81FB2F78900E01659 /* WeiboSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboSDK.h; sourceTree = "<group>"; };
 		3D35ECDB1FB2F78900E01659 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		3D35ECDC1FB2F78900E01659 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
 		3D35ECDD1FB2F78900E01659 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
@@ -971,11 +951,7 @@
 				3D35EE391FB2F88500E01659 /* CoreText.framework in Frameworks */,
 				3D35EE381FB2F87E00E01659 /* ImageIO.framework in Frameworks */,
 				3D35EE301FB2F83D00E01659 /* Photos.framework in Frameworks */,
-				3D35EDD31FB2F78900E01659 /* libWeiboSDK.a in Frameworks */,
-				3D35EDD11FB2F78900E01659 /* TencentOpenAPI.framework in Frameworks */,
 				3D35EE321FB2F85300E01659 /* libiconv.tbd in Frameworks */,
-				3D35EDD21FB2F78900E01659 /* libWeChatSDK.a in Frameworks */,
-				3D35EDCF1FB2F78900E01659 /* AlipaySDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1225,7 +1201,6 @@
 				3D35EC861FB2F78800E01659 /* Manager */,
 				3D35EC8A1FB2F78800E01659 /* Modules */,
 				3D35ECC61FB2F78800E01659 /* Resource */,
-				3D35ECC71FB2F78800E01659 /* Social */,
 				3D35ECD91FB2F78900E01659 /* ThirdParty */,
 				3D35ED931FB2F78900E01659 /* Utils */,
 				3D35ECC41FB2F78800E01659 /* NGG-Prefix.pch */,
@@ -1380,58 +1355,6 @@
 			children = (
 			);
 			path = Resource;
-			sourceTree = "<group>";
-		};
-		3D35ECC71FB2F78800E01659 /* Social */ = {
-			isa = PBXGroup;
-			children = (
-				3D35ECC81FB2F78800E01659 /* AliPay15.4.1 */,
-				3D35ECCB1FB2F78800E01659 /* NGGSocial.h */,
-				3D35ECCC1FB2F78800E01659 /* NGGSocial.m */,
-				3D35ECCD1FB2F78800E01659 /* QQ3.3.0 */,
-				3D35ECCF1FB2F78800E01659 /* wechat1.8.0 */,
-				3D35ECD41FB2F78900E01659 /* Weibo3.2.2 */,
-			);
-			path = Social;
-			sourceTree = "<group>";
-		};
-		3D35ECC81FB2F78800E01659 /* AliPay15.4.1 */ = {
-			isa = PBXGroup;
-			children = (
-				3D35ECC91FB2F78800E01659 /* AlipaySDK.bundle */,
-				3D35ECCA1FB2F78800E01659 /* AlipaySDK.framework */,
-			);
-			path = AliPay15.4.1;
-			sourceTree = "<group>";
-		};
-		3D35ECCD1FB2F78800E01659 /* QQ3.3.0 */ = {
-			isa = PBXGroup;
-			children = (
-				3D35ECCE1FB2F78800E01659 /* TencentOpenAPI.framework */,
-			);
-			path = QQ3.3.0;
-			sourceTree = "<group>";
-		};
-		3D35ECCF1FB2F78800E01659 /* wechat1.8.0 */ = {
-			isa = PBXGroup;
-			children = (
-				3D35ECD01FB2F78800E01659 /* libWeChatSDK.a */,
-				3D35ECD11FB2F78900E01659 /* WechatAuthSDK.h */,
-				3D35ECD21FB2F78900E01659 /* WXApi.h */,
-				3D35ECD31FB2F78900E01659 /* WXApiObject.h */,
-			);
-			path = wechat1.8.0;
-			sourceTree = "<group>";
-		};
-		3D35ECD41FB2F78900E01659 /* Weibo3.2.2 */ = {
-			isa = PBXGroup;
-			children = (
-				3D35ECD51FB2F78900E01659 /* libWeiboSDK.a */,
-				3D35ECD61FB2F78900E01659 /* WBHttpRequest.h */,
-				3D35ECD71FB2F78900E01659 /* WeiboSDK.bundle */,
-				3D35ECD81FB2F78900E01659 /* WeiboSDK.h */,
-			);
-			path = Weibo3.2.2;
 			sourceTree = "<group>";
 		};
 		3D35ECD91FB2F78900E01659 /* ThirdParty */ = {
@@ -2308,11 +2231,9 @@
 				3D931D5B202C4004005A6D18 /* NGGDarenGameResultDetailTableViewCell.xib in Resources */,
 				3DE9B8D1202AE59B005C3B3D /* NGGDarenGameViewController.xib in Resources */,
 				3D931D46202BF2F0005A6D18 /* NGGDarenGameResultTableViewCell.xib in Resources */,
-				3D35EDCE1FB2F78900E01659 /* AlipaySDK.bundle in Resources */,
 				3D35EDC41FB2F78900E01659 /* NGGLoginViewController.xib in Resources */,
 				3D35EDC21FB2F78900E01659 /* NGGTypeTableViewCell.xib in Resources */,
 				3D74A2931FE1090F00108F06 /* NGGGuessDescriptionCollectionViewCell.xib in Resources */,
-				3D35EDD41FB2F78900E01659 /* WeiboSDK.bundle in Resources */,
 				3DB56B421FF39430009D8880 /* NGGGoodsDescriptionViewController.xib in Resources */,
 				3D35EDA31FB2F78900E01659 /* Assets.xcassets in Resources */,
 				3D0BEAA61FC55B7800EC14A9 /* NGGRankHeaderView.xib in Resources */,
@@ -2590,7 +2511,6 @@
 				3D45CB7C1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.m in Sources */,
 				3D35EE161FB2F78900E01659 /* SDWebImageDownloader.m in Sources */,
 				3DA19B411FDFCFDE00B19257 /* NGGGuessItemModel.m in Sources */,
-				3D35EDD01FB2F78900E01659 /* NGGSocial.m in Sources */,
 				3D35EDF91FB2F78900E01659 /* MJRefreshHeader.m in Sources */,
 				3DF60B3E1FD12AE400FE26E9 /* NGGGameListModel.m in Sources */,
 				3D35EE5B1FB3085400E01659 /* NGGGuess2RowsCollectionViewCell.m in Sources */,

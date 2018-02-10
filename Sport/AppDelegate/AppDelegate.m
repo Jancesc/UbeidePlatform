@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "NGGTabBarController.h"
-#import "NGGSocial.h"
 
 @interface AppDelegate ()
 
@@ -63,14 +62,12 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(nullable NSString *)sourceApplication annotation:(id)annotation {
     
-    [[NGGSocial sharedInstance] handleOpenURL:url];
     return YES;
 }
 
 
 - (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<UIApplicationOpenURLOptionsKey, id> *)options {
    
-    [[NGGSocial sharedInstance] handleOpenURL:url];
     return YES;
 }
 @end

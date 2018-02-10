@@ -9,7 +9,6 @@
 #import "NGGRechargeViewController.h"
 #import "NGGRechargeCollectionViewCell.h"
 #import "ZSBlockAlertView.h"
-#import "NGGSocial.h"
 
 static NSString *kRechargeCollectionViewCellidentifier = @"NGGRechargeCollectionViewCell";
 
@@ -143,36 +142,36 @@ static NSString *kRechargeCollectionViewCellidentifier = @"NGGRechargeCollection
 
 - (void)makeOrderWithModel:(NGGRechargeModel *)model {
     
-    [self showLoadingHUDWithText:nil];
-//    type    string    Y    支付类型 1微信 2支付宝
-//    coin    int    Y    充值金币数
-    NSDictionary *params = @{@"type" : @"1",
-                             @"coin" : model.price,
-                             };
-    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=info.recharge" parameters:params willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
-        
-        [self dismissHUD];
-        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
-            
-            [self showErrorHUDWithText:msg];
-        }];
-        if (dict) {
-            
-            [[NGGSocial sharedInstance] sendWechatPayRequestWithMessage:dict completion:^(NSString *returnKey, NSString *errorMsg) {
-                
-                if (errorMsg) {
-                    
-                    [self showErrorHUDWithText:@"支付失败"];
-                } else {
-                    
-                    [self showSuccessHUDWithText:@"充值成功，请注意查收" duration:1.0];
-                }
-            }];
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
-        [self dismissHUD];
-    }];
+//    [self showLoadingHUDWithText:nil];
+////    type    string    Y    支付类型 1微信 2支付宝
+////    coin    int    Y    充值金币数
+//    NSDictionary *params = @{@"type" : @"1",
+//                             @"coin" : model.price,
+//                             };
+//    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=info.recharge" parameters:params willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+//
+//        [self dismissHUD];
+//        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+//
+//            [self showErrorHUDWithText:msg];
+//        }];
+//        if (dict) {
+//
+//            [[NGGSocial sharedInstance] sendWechatPayRequestWithMessage:dict completion:^(NSString *returnKey, NSString *errorMsg) {
+//
+//                if (errorMsg) {
+//
+//                    [self showErrorHUDWithText:@"支付失败"];
+//                } else {
+//
+//                    [self showSuccessHUDWithText:@"充值成功，请注意查收" duration:1.0];
+//                }
+//            }];
+//        }
+//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//
+//        [self dismissHUD];
+//    }];
 }
 
 #pragma mark - UICollectionViewDataSource

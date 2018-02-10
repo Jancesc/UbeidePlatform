@@ -8,7 +8,6 @@
 
 #import "NGGLoginViewController.h"
 #import "NGGRegisterViewController.h"
-#import "NGGSocial.h"
 
 @interface NGGLoginViewController ()<UITextFieldDelegate> {
 
@@ -129,17 +128,14 @@
 
 - (void)QQLoginButtonClicked:(UIButton *) button {
     
-    [[NGGSocial sharedInstance] sendQQAuthorizeRequestCompletion:^(NSDictionary *info) {
-        
-        
-    }];
+   
 }
 
 - (void)weiboLoginButtonClicked:(UIButton *) button {
     
-    [[NGGSocial sharedInstance] sendWeiboAuthorizeRequestCompletion:^(NSDictionary *info) {
-        
-    }];
+//    [[NGGSocial sharedInstance] sendWeiboAuthorizeRequestCompletion:^(NSDictionary *info) {
+//
+//    }];
 }
 
 #pragma mark - private
