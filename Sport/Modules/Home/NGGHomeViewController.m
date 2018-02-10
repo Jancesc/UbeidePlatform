@@ -226,6 +226,7 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     UIImageView *logoView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)];
     logoView.image = [UIImage imageNamed:@"icon"];
     _logoImageView = logoView;
+    _logoImageView.hidden = YES;
     
     self.navigationItem.titleView = titleView;
     [titleView addSubview:rightView];
