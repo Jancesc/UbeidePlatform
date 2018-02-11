@@ -19,6 +19,8 @@
 #import "UIImageView+WebCache.h"
 #import "NGGExchangeViewController.h"
 #import "ZSBlockAlertView.h"
+#import "NGGDarenGameDetailPrizeViewController.h"
+#import "NGGDarenGameDetailPlayerListViewController.h"
 
 static NSString *kGuessCellIdentifier = @"NGGGuessCollectionViewCell";
 static NSString *kGuess2RowsCellIdentifier = @"NGGGuess2RowsCollectionViewCell";
@@ -27,6 +29,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
 @interface NGGDarenGameDetailViewController ()<UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, NGGWebSocketHelperDelegate, NGGGuessOrderViewDelegate, NGGGuessOrderDoneViewDelegate> {
     
+    __weak IBOutlet UIView *_contentView;
     __weak IBOutlet UICollectionView *_collectionView;
     __weak IBOutlet UILabel *_pointLabel;
     __weak IBOutlet UILabel *_homeLabel;
@@ -52,6 +55,9 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     __weak IBOutlet UIView *_registeryBGView;
     __weak IBOutlet UILabel *_registeryFeeLabel;
     __weak IBOutlet UIButton *_registeryButton;
+    
+    NGGDarenGameDetailPlayerListViewController *_playerListViewController;
+    NGGDarenGameDetailPrizeViewController *_prizeViewController;
 }
 
 @property (nonatomic, strong) NGGGameModel *gameModel;
@@ -59,7 +65,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 @property (nonatomic, strong) NSArray *arrayOfGuessed;//已经投注的列表
 @property (nonatomic, strong) NSMutableDictionary *dictionaryOfGuessed;
 
-
+@property (nonatomic, strong) NSMutableDictionary *gameDetailInfo;
 @end
 
 @implementation NGGDarenGameDetailViewController
@@ -74,6 +80,8 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     _dictionaryOfGuessed = [NSMutableDictionary dictionary];
     [NGGWebSocketHelper shareHelper].delegate = self;
     [[NGGWebSocketHelper shareHelper] webSocketOpen];
+    
+    [self loadGameDetail];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -125,6 +133,26 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     [self refreshUI];
 }
 
+- (void)loadGameDetail {
+    
+    [self showAnimationLoadingHUDWithText:nil];
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=expert.expertDetail" parameters:@{@"match_id" : _model.matchID} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self dismissAnimationLoadingHUD];
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showErrorHUDWithText:msg];
+        }];
+        if (dict) {
+            
+            _gameDetailInfo = [dict mutableCopy];
+            [self refreshUI];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+       
+        [self dismissAnimationLoadingHUD];
+    }];
+}
 #pragma mark - private methods
 
 - (void)configueUIComponents {
@@ -197,20 +225,32 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     _darenButton.selected = YES;
     [self segmentButtonClicked:_darenButton];
     
-    if (_model.joined == NO) {
-        
-        _registeryFeeLabel.text = [NSString stringWithFormat:@"%@ 金豆", _model.registeryFee];
-        [_registeryButton setBackgroundImage:[UIImage imageWithColor:NGGThirdColor] forState:UIControlStateNormal];
-        _registeryButton.layer.cornerRadius = 4.f;
-        _registeryButton.clipsToBounds = YES;
-        [_registeryButton addTarget:self action:@selector(registeryButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-    } else {
-        
-        _registeryBGView.hidden = YES;
-    }
+    _registeryFeeLabel.text = [NSString stringWithFormat:@"%@ 金豆", _model.registeryFee];
+    [_registeryButton setBackgroundImage:[UIImage imageWithColor:NGGThirdColor] forState:UIControlStateNormal];
+    _registeryButton.layer.cornerRadius = 4.f;
+    _registeryButton.clipsToBounds = YES;
+    [_registeryButton addTarget:self action:@selector(registeryButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    _prizeViewController = [[NGGDarenGameDetailPrizeViewController alloc] initWithNibName:@"NGGDarenGameDetailPrizeViewController" bundle:nil];
+    _prizeViewController.view.frame = CGRectMake(0, 264, SCREEN_WIDTH, SCREEN_HEIGHT - 264);
+    
+    _playerListViewController = [NGGDarenGameDetailPlayerListViewController new];
+    _playerListViewController.view.frame = CGRectMake(0, 264, SCREEN_WIDTH, SCREEN_HEIGHT - 264);
 }
 
 - (void)refreshUI {
+    
+    if (_gameDetailInfo) {
+        
+        if ([_gameDetailInfo intForKey:@"is_play"] == 1) {
+            
+            _registeryBGView.hidden = YES;
+        } else {
+            
+            _registeryBGView.hidden = NO;
+        }
+    }
     
     NSIndexPath *selectedIndexPath = nil;
     if ([[_collectionView indexPathsForSelectedItems] count] > 0) {
@@ -260,6 +300,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
 - (void)refreshData {
     
+    [self loadGameDetail];
     SRReadyState state = [[NGGWebSocketHelper shareHelper] socketStatus];
     if(state == SR_OPEN ){
         
@@ -415,8 +456,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
         }];
         if (dict) {
             _gameModel.darenPoint = dict[@"bean"];
-            _model.joined = YES;
-            _registeryBGView.hidden = YES;
+            _gameDetailInfo[@"is_play"] = @"1";
             [self refreshUI];
             
             ZSBlockAlertView *alertView = [[ZSBlockAlertView alloc] initWithTitle:@"提示" message:@"报名成功，获得10000积分，比赛结束后以积分排名发放奖品并清除本场竞猜积分" cancelButtonTitle:@"确定" otherButtonTitles:@[@"确认"]];
@@ -427,6 +467,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
             
             NSInteger beanCount = [NGGLoginSession activeSession].currentUser.bean.integerValue - _model.registeryFee.integerValue;
             [NGGLoginSession activeSession].currentUser.bean = @(beanCount).stringValue;
+            [[NGGLoginSession activeSession].currentUser saveToDisk];
             [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidModifyUserInfoNotificationName object:nil];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -458,6 +499,59 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     
     CGFloat viewWidth = (SCREEN_WIDTH - 15 * 4) / 3.0;
     _tipsView.frame = CGRectMake(button.frame.origin.x, 47, viewWidth, 3);
+    
+    switch (button.tag) {
+        case 1:
+            {
+                if (_prizeViewController.parentViewController) {
+                    
+                    [_prizeViewController removeFromParentViewController];
+                    [_prizeViewController.view removeFromSuperview];
+                }
+                if (_playerListViewController.parentViewController) {
+                  
+                    [_playerListViewController removeFromParentViewController];
+                    [_playerListViewController.view removeFromSuperview];
+                }
+                break;
+            }
+        case 2:
+        {
+            [self addChildViewController:_prizeViewController];
+            if (_gameDetailInfo && _prizeViewController.gameDetailInfo == nil) {
+                
+                _prizeViewController.gameDetailInfo = _gameDetailInfo;
+                _prizeViewController.gameModel = _gameModel;
+            }
+            [self.view addSubview:_prizeViewController.view];
+            
+            if (_playerListViewController.parentViewController) {
+                
+                [_playerListViewController removeFromParentViewController];
+                [_playerListViewController.view removeFromSuperview];
+            }
+            break;
+        }
+        case 3:
+        {
+            [self addChildViewController:_playerListViewController];
+            if (_gameDetailInfo && _playerListViewController.gameDetailInfo == nil) {
+                
+                _playerListViewController.gameDetailInfo = _gameDetailInfo;
+                _playerListViewController.gameModel = _gameModel;
+            }
+            [self.view addSubview:_playerListViewController.view];
+            
+            if (_prizeViewController.parentViewController) {
+                
+                [_prizeViewController removeFromParentViewController];
+                [_prizeViewController.view removeFromSuperview];
+            }
+            break;
+        }
+        default:
+            break;
+    }
 
 }
 
@@ -581,7 +675,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     
     [collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredVertically animated:YES];
     
-    if (_model.joined == NO) {
+    if (_gameDetailInfo[@"is_play"] == NO) {
         return;
     }
     

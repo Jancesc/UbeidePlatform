@@ -18,8 +18,7 @@
 @property (nonatomic, copy) NSString *homeLogo;
 @property (nonatomic, copy) NSString *awayLogo;
 
-// 达人赛专有属性 is_play    string    是否已报名 1是 0否
-@property (nonatomic, assign) BOOL joined;
+// 达人赛专有属性 
 @property (nonatomic, copy) NSString *registeryFee;
 
 @end

@@ -24,8 +24,6 @@
     __weak IBOutlet UIButton *_exchangeButton;
 }
 
-@property (nonatomic, assign) CGFloat coinCount;
-
 @end
 
 @implementation NGGExchangeViewController
@@ -36,7 +34,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self configueUIComponents];
-    [self refreshUI];
     self.title = @"金豆兑换";
     //监听键盘
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
@@ -54,6 +51,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    [self refreshUI];
+}
 
 -(void)dealloc {
     
@@ -78,13 +80,12 @@
     _textField.background= [UIImage imageWithColor:[UIColor whiteColor]];
     _textField.returnKeyType = UIReturnKeyDone;
     _textField.delegate = self;
+    _textField.tintColor = NGGPrimaryColor;
+    _textField.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     [_textField addTarget:self action:@selector(textField1TextChange:) forControlEvents:UIControlEventEditingChanged];
-
     [_exchangeButton setBackgroundImage:[UIImage imageWithColor:NGGViceColor] forState:UIControlStateNormal];
     [_exchangeButton addTarget:self action:@selector(exchangeButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
-    NGGUser *currentUser = [NGGLoginSession activeSession].currentUser;
-    _coinCount = currentUser.coin.floatValue;
 }
 
 - (void)configueButton:(UIButton *)button {
@@ -92,9 +93,10 @@
     [button setBackgroundImage:[UIImage imageWithColor:UIColorWithRGB(0xe0,0xe0 , 0xe0)] forState:UIControlStateDisabled];
     [button setBackgroundImage:[UIImage imageWithColor:[UIColor whiteColor]] forState:UIControlStateNormal];
     [button setBackgroundImage:[UIImage imageWithColor:UIColorWithRGB(0xea,0xea , 0xea)] forState:UIControlStateHighlighted];
+    [button setBackgroundImage:[UIImage imageWithColor:NGGThirdColor] forState:UIControlStateSelected];
+    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     button.layer.cornerRadius = 4.f;
     button.layer.masksToBounds = YES;
-    
     [button addTarget:self action:@selector(beanButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -105,9 +107,9 @@
 
 - (void)refreshUI {
     
-    _balanceLabel.text = [NSString stringWithFormat:@"(账户余额%@)", [JYCommonTool stringDisposeWithFloat:_coinCount]];
+    _balanceLabel.text = [NSString stringWithFormat:@"(账户余额%@)", [JYCommonTool stringDisposeWithFloat:[NGGLoginSession activeSession].currentUser.coin.floatValue]];
     
-    if (_coinCount == 1) {
+    if ([NGGLoginSession activeSession].currentUser.coin.floatValue < 1) {
         
         ZSBlockAlertView *alertView = [[ZSBlockAlertView alloc] initWithTitle:nil message:@"金币不足无法兑换金豆，请充值金币后兑换" cancelButtonTitle:@"取消" otherButtonTitles:@[@"充值"]];
         [alertView setClickHandler:^(NSInteger index) {
@@ -124,14 +126,18 @@
     NSArray *buttonaArray = @[_button_0, _button_1, _button_2, _button_3, _button_4];
     for (UIButton *button in buttonaArray) {
         
-        button.enabled =  button.tag <= _coinCount * 100;
+        button.enabled =  button.tag <= [NGGLoginSession activeSession].currentUser.coin.floatValue * 100;
       
         
     }
 }
 
 - (void)textField1TextChange:(UITextField *)textField{
-    
+    _button_0.selected = NO;
+    _button_1.selected = NO;
+    _button_2.selected = NO;
+    _button_3.selected = NO;
+    _button_4.selected = NO;
     NSString *payCount = [JYCommonTool stringDisposeWithFloat:_textField.text.floatValue * 0.01];
     _paymentLabel.text = [NSString stringWithFormat:@"支付金币:%@", payCount];
 }
@@ -152,7 +158,9 @@
         
         [self showErrorHUDWithText:@"请输入100倍数的金豆"];
         return;
-    } else if (payCount.floatValue > _coinCount) {
+    }
+    
+    if (payCount.floatValue > [NGGLoginSession activeSession].currentUser.coin.floatValue) {
         
         ZSBlockAlertView *alertView = [[ZSBlockAlertView alloc] initWithTitle:nil message:@"金币不足无法兑换金豆，请充值金币后兑换" cancelButtonTitle:@"取消" otherButtonTitles:@[@"充值"]];
         [alertView setClickHandler:^(NSInteger index) {
@@ -164,28 +172,51 @@
             }
         }];
         [alertView show];
-    }
-    
-    [self showLoadingHUDWithText:nil];
-    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=user.exchangeBean" parameters:@{@"bean" : @(payCount.integerValue * 100)} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+    } else {
         
-        [self dismissHUD];
-        BOOL success = [self noData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+        ZSBlockAlertView *alertView = [[ZSBlockAlertView alloc] initWithTitle:nil message:[NSString stringWithFormat:@"确定使用%@金币，兑换%@金豆?", payCount, @(payCount.integerValue * 100).stringValue] cancelButtonTitle:@"取消" otherButtonTitles:@[@"充值"]];
+        [alertView setClickHandler:^(NSInteger index) {
             
-            [self showErrorHUDWithText:msg];
+            if (index == 1) {
+                
+                
+                [self showLoadingHUDWithText:nil];
+                [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=user.exchangeBean" parameters:@{@"bean" : @(payCount.integerValue * 100)} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+                    
+                    [self dismissHUD];
+                    NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+                        
+                        [self showErrorHUDWithText:msg];
+                    }];
+                    if (dict) {
+                        
+                        [self showAlertText:@"兑换成功，请注意查收!" completion:nil];
+                        [NGGLoginSession activeSession].currentUser.bean = [dict stringForKey:@"bean"];
+                        [NGGLoginSession activeSession].currentUser.coin = [dict stringForKey:@"coin"];
+                        [[NGGLoginSession activeSession].currentUser saveToDisk];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidModifyUserInfoNotificationName object:nil];
+                        [self refreshUI];
+                    }
+                } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                    
+                    [self dismissHUD];
+                }];
+            }
         }];
-        if (success) {
-            
-            [self showAlertText:@"恭喜你，兑换成功!" completion:nil];
-        }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-      
-        [self dismissHUD];
-    }];
+        [alertView show];
+        
+    }
 }
 
 
 - (void)beanButtonClicked:(UIButton *) button {
+    
+    _button_0.selected = NO;
+    _button_1.selected = NO;
+    _button_2.selected = NO;
+    _button_3.selected = NO;
+    _button_4.selected = NO;
+    button.selected = YES;
     
     [self.view endEditing:YES];
     _textField.text = nil;

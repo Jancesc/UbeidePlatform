@@ -9,15 +9,17 @@
 #import "NGGRechargeViewController.h"
 #import "NGGRechargeCollectionViewCell.h"
 #import "ZSBlockAlertView.h"
+#import <StoreKit/StoreKit.h>
 
 static NSString *kRechargeCollectionViewCellidentifier = @"NGGRechargeCollectionViewCell";
 
-@interface NGGRechargeViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout> {
+@interface NGGRechargeViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout,SKProductsRequestDelegate,SKPaymentTransactionObserver> {
     
     UICollectionView *_collectionView;
 }
 
 @property (nonatomic, strong) NSArray<NGGRechargeModel *> *arrayOfRechargeItem;
+@property (nonatomic, strong) NSString *orderID;
 
 @end
 
@@ -142,36 +144,58 @@ static NSString *kRechargeCollectionViewCellidentifier = @"NGGRechargeCollection
 
 - (void)makeOrderWithModel:(NGGRechargeModel *)model {
     
-//    [self showLoadingHUDWithText:nil];
-////    type    string    Y    支付类型 1微信 2支付宝
-////    coin    int    Y    充值金币数
-//    NSDictionary *params = @{@"type" : @"1",
-//                             @"coin" : model.price,
-//                             };
-//    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=info.recharge" parameters:params willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
-//
-//        [self dismissHUD];
-//        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
-//
-//            [self showErrorHUDWithText:msg];
-//        }];
-//        if (dict) {
-//
-//            [[NGGSocial sharedInstance] sendWechatPayRequestWithMessage:dict completion:^(NSString *returnKey, NSString *errorMsg) {
-//
-//                if (errorMsg) {
-//
-//                    [self showErrorHUDWithText:@"支付失败"];
-//                } else {
-//
-//                    [self showSuccessHUDWithText:@"充值成功，请注意查收" duration:1.0];
-//                }
-//            }];
-//        }
-//    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//
-//        [self dismissHUD];
-//    }];
+    [self showLoadingHUDWithText:nil];
+//   type 支付类型 1微信 2支付宝 3微信h5支付 4苹果内购
+//    coin    int    Y    充值金币数
+    NSDictionary *params = @{@"type" : @"4",
+                             @"coin" : model.price,
+                             };
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=info.recharge" parameters:params willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+          
+            [self dismissHUD];
+            [self showErrorHUDWithText:msg];
+        }];
+        if (dict) {
+//            coin = 1;
+//            "order_id" = 21810561960801169;
+            _orderID = [dict stringForKey:@"order_id"];
+//            [self InAppPurchase:[NSString stringWithFormat:@"coin_%@", [dict stringForKey:@"coin"]]];
+            [self InAppPurchase:@"10RoomCards"];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+        [self dismissHUD];
+    }];
+}
+
+- (void)verifyOrder {
+    
+    [self showLoadingHUDWithText:nil];
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=info.verifyPay" parameters:@{@"order_id" : _orderID} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self dismissHUD];
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showErrorHUDWithText:msg];
+        }];
+        if (dict) {
+            
+            [self showSuccessHUDWithText:@"金币充值成功！请查收"];
+            [NGGLoginSession activeSession].currentUser.coin = [dict stringForKey:@"coin"];
+            [[NGGLoginSession activeSession].currentUser saveToDisk];
+            [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidModifyUserInfoNotificationName object:nil];
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        ZSBlockAlertView *alertView = [[ZSBlockAlertView alloc] initWithTitle:@"网络出错" message:@"网络不稳定，请检查手机网络" cancelButtonTitle:nil otherButtonTitles:@[@"重新连接"]];
+        [alertView setClickHandler:^(NSInteger index) {
+            
+            [self verifyOrder];
+        }];
+        [alertView show];
+    }];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -207,4 +231,105 @@ static NSString *kRechargeCollectionViewCellidentifier = @"NGGRechargeCollection
     }];
     [alertView show];
 }
+
+
+#pragma mark - Apple IAP
+-(void)InAppPurchase:(NSString *)productID {
+    
+    //通过苹果后台的产品后台获取产品的信息
+    SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:[NSSet setWithArray:@[productID]]];
+    request.delegate = self;
+    [request start];
+}
+
+#pragma mark - SKProductsRequestDelegate
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response {//IAP产品的信息回调
+    
+    if (response.invalidProductIdentifiers.count > 0) {
+        
+        [self dismissHUD];
+        [self showErrorHUDWithText:@"ProductID为无效ID"];
+    }else{
+        
+        if([response.products count] > 0) {
+            
+            //取到内购产品进行购买
+            SKMutablePayment *payment = [SKMutablePayment paymentWithProduct:response.products.firstObject];
+            [[SKPaymentQueue defaultQueue] addPayment:payment];
+            [[SKPaymentQueue defaultQueue] addTransactionObserver:self];
+        }
+        
+    }
+    
+}
+
+
+#pragma mark - SKPaymentTransactionObserver
+- (void)paymentQueue:(SKPaymentQueue *)queue updatedTransactions:(NSArray<SKPaymentTransaction *> *)transactions {
+    
+    for (SKPaymentTransaction *transaction in transactions) {
+        switch (transaction.transactionState)
+        {
+            case SKPaymentTransactionStatePurchased://购买成功
+                [self completeTransaction:transaction];
+                break;
+            case SKPaymentTransactionStateFailed://购买失败
+                [self failedTransaction:transaction];
+                break;
+            case SKPaymentTransactionStateRestored://恢复购买
+                [self restoreTransaction:transaction];
+                break;
+            case SKPaymentTransactionStatePurchasing://正在处理
+                break;
+            default:
+                break;
+        }
+    }
+    
+}
+
+#pragma mark - PrivateMethod
+- (void)completeTransaction:(SKPaymentTransaction *)transaction {
+    
+    [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
+
+    NSString *productIdentifier = transaction.payment.productIdentifier;
+    NSData *receiptData = transaction.transactionReceipt;
+    NSString *receipt = [receiptData base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    
+    if ([receipt length] > 0 && [productIdentifier length] > 0) {
+        
+
+       
+//TODO 完成了内购，还需要验证
+        [self verifyOrder];
+        NSLog(@"-------------------------  receipt:%s  ------------------------", [receipt UTF8String]);
+    }
+    
+    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+}
+
+- (void)failedTransaction:(SKPaymentTransaction *)transaction {
+ 
+    [[SKPaymentQueue defaultQueue] removeTransactionObserver:self];
+
+    if(transaction.error.code == SKErrorPaymentCancelled) {
+        
+//        UnitySendMessage("GlobalMono","HandleIAPFailed", [@"取消" UTF8String]);
+        [self showErrorHUDWithText:@"购买已取消"];
+
+    } else {
+        //        [SVProgressHUD showErrorWithStatus:@"支付失败"];
+        [self showErrorHUDWithText:@"支付失败"];
+//        UnitySendMessage("GlobalMono","HandleIAPFailed", [@"购买失败!" UTF8String]);
+    }
+    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+}
+
+
+- (void)restoreTransaction:(SKPaymentTransaction *)transaction {
+    
+    [[SKPaymentQueue defaultQueue] finishTransaction: transaction];
+}
+
 @end

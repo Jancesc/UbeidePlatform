@@ -560,6 +560,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
         if (dict) {
             
             [NGGLoginSession activeSession].currentUser.bean = dict[@"bean"];
+            [[NGGLoginSession activeSession].currentUser saveToDisk];
             [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidModifyUserInfoNotificationName object:nil];
             [self updateGuessRecord];
         }

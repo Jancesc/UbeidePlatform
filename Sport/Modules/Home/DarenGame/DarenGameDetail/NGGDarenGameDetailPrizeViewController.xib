@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NGGDarenGameDetailPrizeViewController">
+            <connections>
+                <outlet property="_headerView" destination="U0T-Lb-4Cr" id="PLz-yC-6r8"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <point key="canvasLocation" x="-90" y="-183"/>
+        </view>
+        <view contentMode="scaleToFill" id="U0T-Lb-4Cr">
+            <rect key="frame" x="0.0" y="0.0" width="347" height="26"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="排名" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePu-bC-XaR">
+                    <rect key="frame" x="71.5" y="0.0" width="30" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="DVD-zB-tsN"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="大师分" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZNf-0a-WPA">
+                    <rect key="frame" x="200.5" y="0.0" width="120" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="eKj-Q4-aem"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <constraints>
+                <constraint firstItem="ZNf-0a-WPA" firstAttribute="centerX" secondItem="U0T-Lb-4Cr" secondAttribute="centerX" multiplier="1.5" id="32y-YO-5JC"/>
+                <constraint firstAttribute="bottom" secondItem="ZNf-0a-WPA" secondAttribute="bottom" id="75Y-rk-Ier"/>
+                <constraint firstItem="ePu-bC-XaR" firstAttribute="top" secondItem="U0T-Lb-4Cr" secondAttribute="top" id="P9F-ji-iR5"/>
+                <constraint firstItem="ePu-bC-XaR" firstAttribute="centerX" secondItem="U0T-Lb-4Cr" secondAttribute="centerX" multiplier="0.5" id="Ywd-M6-Wjz"/>
+                <constraint firstAttribute="bottom" secondItem="ePu-bC-XaR" secondAttribute="bottom" id="cyh-RK-JFB"/>
+                <constraint firstItem="ZNf-0a-WPA" firstAttribute="top" secondItem="U0T-Lb-4Cr" secondAttribute="top" id="viA-im-KN3"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="420" y="-271"/>
+        </view>
+    </objects>
+</document>

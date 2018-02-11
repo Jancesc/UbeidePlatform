@@ -157,6 +157,7 @@
             
             NSString *avatar = [dict stringForKey:@"avatar_img"];
             [NGGLoginSession activeSession].currentUser.avatarURL= avatar;
+            [[NGGLoginSession activeSession].currentUser saveToDisk];
             [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidModifyUserInfoNotificationName object:nil];
             [self refreshData];
         }
@@ -179,6 +180,7 @@
         if (dict) {
             
             [NGGLoginSession activeSession].currentUser.nickname= dict[@"nickname"];
+            [[NGGLoginSession activeSession].currentUser saveToDisk];
             [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidModifyUserInfoNotificationName object:nil];
             [self refreshData];
         }
@@ -201,6 +203,7 @@
         if (dict) {
             
             [NGGLoginSession activeSession].currentUser.sex = dict[@"sex"];
+            [[NGGLoginSession activeSession].currentUser saveToDisk];
             [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidModifyUserInfoNotificationName object:nil];
             [self refreshData];
         }

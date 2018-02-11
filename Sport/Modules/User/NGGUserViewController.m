@@ -230,10 +230,22 @@
         
         cell.accessoryView = _rechargeButton;
         cell.accessoryType = UITableViewCellAccessoryNone;
+        if ([NGGLoginSession activeSession].currentUser) {
+            
+            NSMutableAttributedString *mAttrString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"我的金币    %@个",[NGGLoginSession activeSession].currentUser.coin] attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14.f], NSForegroundColorAttributeName : NGGColor333}];
+            [mAttrString setAttributes:@{NSForegroundColorAttributeName : NGGPrimaryColor,NSFontAttributeName : [UIFont boldSystemFontOfSize:14.f]} range:NSMakeRange(8, mAttrString.length - 8)];
+            cell.textLabel.attributedText = [mAttrString copy];
+        }
     } else if (indexPath.section == 0 && indexPath.row == 1) {
         
         cell.accessoryView = _exchangeBUtton;
         cell.accessoryType = UITableViewCellAccessoryNone;
+        if ([NGGLoginSession activeSession].currentUser) {
+            
+            NSMutableAttributedString *mAttrString = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"我的金豆    %@个",[NGGLoginSession activeSession].currentUser.bean] attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14.f], NSForegroundColorAttributeName : NGGColor333}];
+            [mAttrString setAttributes:@{NSForegroundColorAttributeName : NGGPrimaryColor,NSFontAttributeName : [UIFont boldSystemFontOfSize:14.f]} range:NSMakeRange(8, mAttrString.length - 8)];
+            cell.textLabel.attributedText = [mAttrString copy];
+        }
     }
     return cell;
 }

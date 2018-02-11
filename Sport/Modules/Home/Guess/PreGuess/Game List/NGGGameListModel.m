@@ -29,7 +29,6 @@
         _awayLogo = [dict stringForKey:@"a_logo"];
         
         //达人赛专用属性
-        _joined = [dict intForKey:@"is_play"];
         _registeryFee = [dict stringForKey:@"need_bean"];
 
     }

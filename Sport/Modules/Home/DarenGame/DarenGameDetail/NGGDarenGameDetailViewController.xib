@@ -14,6 +14,7 @@
                 <outlet property="_awayImageView" destination="KBd-Vn-VDY" id="1qv-Xb-bJB"/>
                 <outlet property="_awayLabel" destination="7TF-MN-8vc" id="nag-y4-2UR"/>
                 <outlet property="_collectionView" destination="Kmd-jG-T3e" id="58f-yo-mNN"/>
+                <outlet property="_contentView" destination="Goc-hn-dhR" id="S8h-8O-jTd"/>
                 <outlet property="_darenButton" destination="HC8-dI-0tW" id="32i-g4-tRj"/>
                 <outlet property="_dateLabel" destination="IEL-Y9-0HM" id="820-MX-y5F"/>
                 <outlet property="_helpButton" destination="qM4-MR-nyf" id="D68-dd-4k8"/>
