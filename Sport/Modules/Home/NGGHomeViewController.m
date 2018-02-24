@@ -122,7 +122,7 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     
     UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(100, 0, VIEW_W(titleView) - 110, 50)];
 
-    CGFloat buttonWidth = 45;
+    CGFloat buttonWidth = 0;
     UIButton *shareButton = [[UIButton alloc] initWithFrame:CGRectMake(VIEW_W(rightView) - buttonWidth, 0, buttonWidth, 50)];
     [shareButton setImage:[UIImage imageNamed:@"share"] forState:UIControlStateNormal];
     [rightView addSubview:shareButton];

@@ -40,7 +40,10 @@
         _noticeLabel.frame = cgrX(_noticeLabel.frame, 106 - textWidth);
     } completion:^(BOOL finished) {
 
-        [weakSelf noticeAnimation];
+        if(finished) {
+            
+             [weakSelf noticeAnimation];
+        }
     }];
    
 }
