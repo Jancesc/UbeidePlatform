@@ -92,11 +92,8 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     
     [super viewDidDisappear:animated];
     
-    if (self.navigationController == nil) {
-        
-        [NGGWebSocketHelper shareHelper].delegate = nil;
-        [[NGGWebSocketHelper shareHelper] webSocketClose];
-    }
+    [NGGWebSocketHelper shareHelper].delegate = nil;
+    [[NGGWebSocketHelper shareHelper] webSocketClose];
 }
 
 - (void)loadDetailInfo {

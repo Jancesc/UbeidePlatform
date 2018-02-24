@@ -35,7 +35,7 @@
     
     NGGWeakSelf
     
-    [UIView animateWithDuration:(SCREEN_WIDTH - 106 + textWidth) / 60.0 delay:0.5 options:UIViewAnimationOptionCurveLinear animations:^{
+    [UIView animateWithDuration:textWidth/ 40.0 + 1 delay:0.5 options:UIViewAnimationOptionCurveLinear animations:^{
        
         _noticeLabel.frame = cgrX(_noticeLabel.frame, 106 - textWidth);
     } completion:^(BOOL finished) {

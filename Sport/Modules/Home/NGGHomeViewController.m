@@ -24,6 +24,8 @@
 #import "UIImageView+WebCache.h"
 #import "JYCommonTool.h"
 #import "NGGDarenGameViewController.h"
+#import "NGGGameListModel.h"
+#import "NGGDarenGameDetailViewController.h"
 
 static NSString *kBannerCellIdentifier = @"NGGHomeBannerCollectionViewCell";
 static NSString *kPageCellIdentifier = @"NGGHomePageMenuCollectionViewCell";
@@ -47,6 +49,7 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
 
 @property (nonatomic, strong) NSArray *arrayOfNotice;
 @property (nonatomic, strong) NSArray *arrayOfBanner;
+@property (nonatomic, strong) NSArray *arrayOfActivity;
 
 @end
 
@@ -90,7 +93,7 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     }
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
-    _collectionView.backgroundColor = [UIColor clearColor];
+    _collectionView.backgroundColor = [UIColor whiteColor];
     _collectionView.showsVerticalScrollIndicator = NO;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(refreshHomePageData)];
     _collectionView.mj_header = header;
@@ -255,6 +258,7 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
         if (dict) {
             _arrayOfBanner = [dict arrayForKey:@"banner"];
             _arrayOfNotice = [dict arrayForKey:@"notice"];
+            _arrayOfActivity = [dict arrayForKey:@"activity"];
             [self refreshUI];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -352,10 +356,7 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
         [self.tabBarController.view  addSubview:controller.view];
     } else if(index == 3) {
         
-        NGGDarenGameViewController *controller =  [[NGGDarenGameViewController alloc] initWithNibName:@"NGGDarenGameViewController" bundle:nil];
-        NGGNavigationController *nav = [[NGGNavigationController alloc] initWithRootViewController:controller];
-        controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-        [self presentViewController:nav animated:YES completion:nil];
+        [self jumpToDarenGame];
     } else if (index == 4) {
         
         [self showLoadingHUDWithText:@""];
@@ -379,6 +380,14 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     
 }
 
+- (void)jumpToDarenGame {
+    
+    NGGDarenGameViewController *controller =  [[NGGDarenGameViewController alloc] initWithNibName:@"NGGDarenGameViewController" bundle:nil];
+    NGGNavigationController *nav = [[NGGNavigationController alloc] initWithRootViewController:controller];
+    controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
 #pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
@@ -389,7 +398,7 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
 {
     if (section == 3) {
         
-        return 4;
+        return [_arrayOfActivity count];
     }
     return 1;
 }
@@ -441,6 +450,7 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
     } else if (indexPath.section == 3) {
         
         NGGHomeItemCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kItemCellIdentifier forIndexPath:indexPath];
+        cell.itemInfo = _arrayOfActivity[indexPath.row];
         return cell;
     }
 
@@ -455,6 +465,11 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
          if (indexPath.section == 3) {
             
             NGGHomeActivityHeaderReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:kActivityHeaderReusableViewIdentifier forIndexPath:indexPath];
+             NGGWeakSelf
+             view.allButtonHandler = ^{
+                
+                 [weakSelf jumpToDarenGame];
+             };
             return view;
         }
     }
@@ -521,18 +536,25 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
 
 - (void) collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSInteger section = indexPath.section;
-//    NSInteger item = indexPath.item;
-//    NSDictionary *selectedCity = nil;
-//    if (section == 2) {
-//        selectedCity = [_arrayOfRecentCities objectAtIndex:item];
-//    }
-//    else if (section == 3)
-//    {
-//        selectedCity = [_arrayOfServingCities objectAtIndex:item];
-//    }
-//    
-//    [self handleSelectCity:selectedCity];
+    NSInteger section = indexPath.section;
+    NSInteger item = indexPath.item;
+    if (section == 3) {
+        
+        NSDictionary *itemInfo = _arrayOfActivity[item];
+        if([itemInfo intForKey:@"type"] == 1) {//达人赛
+            
+            NGGGameListModel *model = [NGGGameListModel new];
+            model.matchID = [itemInfo stringForKey:@"ext"];
+            NGGDarenGameDetailViewController *controller = [[NGGDarenGameDetailViewController alloc] initWithNibName:@"NGGDarenGameDetailViewController" bundle:nil];
+            controller.model = model;
+            model.registeryFee = @"--";
+            NGGNavigationController *nav = [[NGGNavigationController alloc] initWithRootViewController:controller];;
+            [self presentViewController:nav animated:YES completion:^{
+                
+            }];
+        }
+        
+    }
 }
 
 @end

@@ -75,14 +75,18 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = @"赛前";
+    self.title = @"达人赛";
     [self configueUIComponents];
     _dictionaryOfGuessed = [NSMutableDictionary dictionary];
     [NGGWebSocketHelper shareHelper].delegate = self;
     [[NGGWebSocketHelper shareHelper] webSocketOpen];
     
     [self loadGameDetail];
-}
+    
+    if (self.navigationController.viewControllers.count == 1) {
+        
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(leftBarButtonItemClicked:)];
+    }}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -104,11 +108,8 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     
     [super viewDidDisappear:animated];
     
-    if (self.navigationController == nil) {
-        
-        [NGGWebSocketHelper shareHelper].delegate = nil;
-        [[NGGWebSocketHelper shareHelper] webSocketClose];
-    }
+    [NGGWebSocketHelper shareHelper].delegate = nil;
+    [[NGGWebSocketHelper shareHelper] webSocketClose];
 }
 
 - (void)loadDetailInfo {
@@ -145,7 +146,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
         }];
         if (dict) {
             
-            _gameDetailInfo = [dict mutableCopy];
+            _gameDetailInfo = [dict mutableCopy];\
             [self refreshUI];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -225,7 +226,11 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
     _darenButton.selected = YES;
     [self segmentButtonClicked:_darenButton];
     
-    _registeryFeeLabel.text = [NSString stringWithFormat:@"%@ 金豆", _model.registeryFee];
+    if (_gameDetailInfo) {
+        
+        _registeryFeeLabel.text = [NSString stringWithFormat:@"%@ 金豆", [_gameDetailInfo stringForKey:@"need_bean"]];
+
+    }
     [_registeryButton setBackgroundImage:[UIImage imageWithColor:NGGThirdColor] forState:UIControlStateNormal];
     _registeryButton.layer.cornerRadius = 4.f;
     _registeryButton.clipsToBounds = YES;
@@ -241,14 +246,18 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
 - (void)refreshUI {
     
+
     if (_gameDetailInfo) {
         
-        if ([_gameDetailInfo intForKey:@"is_play"] == 1) {
-            
-            _registeryBGView.hidden = YES;
-        } else {
+        
+        if ([_gameDetailInfo intForKey:@"is_play"] == 0) {
             
             _registeryBGView.hidden = NO;
+            _registeryFeeLabel.text = [NSString stringWithFormat:@"%@ 金豆",  [_gameDetailInfo stringForKey:@"need_bean"]];
+
+        } else {
+            
+            _registeryBGView.hidden = YES;
         }
     }
     
@@ -465,7 +474,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
             }];
             [alertView show];
             
-            NSInteger beanCount = [NGGLoginSession activeSession].currentUser.bean.integerValue - _model.registeryFee.integerValue;
+            NSInteger beanCount = [NGGLoginSession activeSession].currentUser.bean.integerValue -  [_gameDetailInfo stringForKey:@"need_bean"].integerValue;
             [NGGLoginSession activeSession].currentUser.bean = @(beanCount).stringValue;
             [[NGGLoginSession activeSession].currentUser saveToDisk];
             [[NSNotificationCenter defaultCenter] postNotificationName:NGGUserDidModifyUserInfoNotificationName object:nil];
@@ -477,6 +486,11 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 }
 
 #pragma mark - button actions
+
+- (void)leftBarButtonItemClicked:(UIBarButtonItem *) button {
+    
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)recordButtonClicked:(UIButton *) button {
     
@@ -559,7 +573,7 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
 - (void)registeryButtonClicked {
     
-    NSString *messageString = [NSString stringWithFormat:@"报名条件: %@ 金豆", _model.registeryFee];
+    NSString *messageString = [NSString stringWithFormat:@"报名条件: %@ 金豆",  [_gameDetailInfo stringForKey:@"need_bean"]];
 
     ZSBlockAlertView *alertView = [[ZSBlockAlertView alloc] initWithTitle:@"确定是否报名？" message:messageString cancelButtonTitle:@"取消" otherButtonTitles:@[@"确认"]];
     [alertView setClickHandler:^(NSInteger index) {

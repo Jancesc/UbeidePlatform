@@ -10,4 +10,6 @@
 
 @interface NGGHomeItemCollectionViewCell : UICollectionViewCell
 
+@property (nonatomic, strong) NSDictionary *itemInfo;
+
 @end

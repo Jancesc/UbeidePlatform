@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface NGGHomeActivityHeaderReusableView : UICollectionReusableView
-
+@property (nonatomic, copy) void (^allButtonHandler) (void);
 @end

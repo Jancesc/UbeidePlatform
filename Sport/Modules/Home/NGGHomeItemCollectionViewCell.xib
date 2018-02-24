@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -32,7 +32,6 @@
                     </label>
                 </subviews>
             </view>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="ke3-HP-2Cq" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="3uc-3K-4Ah"/>
                 <constraint firstAttribute="bottom" secondItem="P8q-JA-WAJ" secondAttribute="bottom" id="9y0-M5-Cc5"/>
@@ -43,6 +42,10 @@
                 <constraint firstAttribute="trailing" secondItem="P8q-JA-WAJ" secondAttribute="trailing" id="wlR-w6-3oN"/>
             </constraints>
             <size key="customSize" width="269" height="164"/>
+            <connections>
+                <outlet property="_activityImageView" destination="ke3-HP-2Cq" id="2qb-oI-h79"/>
+                <outlet property="_titleLabel" destination="P8q-JA-WAJ" id="N2A-C4-VWb"/>
+            </connections>
             <point key="canvasLocation" x="-5.5" y="63"/>
         </collectionViewCell>
     </objects>
