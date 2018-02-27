@@ -32,12 +32,14 @@ static NSString *kPrizeCellIdentifier = @"prizeCellIdentifier";
     // Do any additional setup after loading the view.
     self.title = @"我的奖品";
     [self configueUIComponents];
+    [self  refreshData];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshData) name:NGGUserDidLoginNotificationName object:nil];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
+-(void)dealloc {
     
-    [super viewWillAppear:animated];
-    [self  refreshData];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)configueUIComponents {

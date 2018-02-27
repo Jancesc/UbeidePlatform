@@ -85,6 +85,7 @@ static NSString *kTaskCellIdentifier = @"NGGTaskTableViewCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
     self.view.frame = SCREEN_BOUNDS;
     self.navigationController.navigationBar.hidden = YES;
     self.view.backgroundColor = [UIColor clearColor];
@@ -93,7 +94,6 @@ static NSString *kTaskCellIdentifier = @"NGGTaskTableViewCell";
                               _lotteryButton_4, _lotteryButton_5, _lotteryButton_6, _lotteryButton_7,
                               _lotteryButton_8, _lotteryButton_9, _lotteryButton_10, _lotteryButton_11,
                               _lotteryButton_12, _lotteryButton_13];
-    
     [self setupUIComponents];
     [self loadTaskInfo];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUserLogined) name:NGGUserDidLoginNotificationName object:nil];
@@ -189,11 +189,8 @@ static NSString *kTaskCellIdentifier = @"NGGTaskTableViewCell";
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissRewordView)];
     [_rewordView addGestureRecognizer:tapGestureRecognizer];
+    
 
-    UIButton *firstButton = [_arrayOfLotteryButton firstObject];
-
-    _lotteryCoverView.frame = CGRectMake(0, 0, 1.5*VIEW_W(firstButton), 1.5 * VIEW_H(firstButton));
-    _lotteryCoverView.center = firstButton.center;
 }
 
 #pragma mark - private methods
@@ -577,7 +574,7 @@ static UIImage *image_0, *image_1;
     if (_beanDrawButton.selected) {
         
         type = @"2";
-    } else {
+    } else if (_pointDrawButton.selected) {
         
         type = @"1";
     }
@@ -626,6 +623,9 @@ static UIImage *image_0, *image_1;
         _tableView.hidden = NO;
     } else {
         
+        UIButton *firstButton = [_arrayOfLotteryButton firstObject];
+        _lotteryCoverView.frame = CGRectMake(0, 0, 1.5*VIEW_W(firstButton), 1.5 * VIEW_H(firstButton));
+        _lotteryCoverView.center = firstButton.center;
         _lotteryView.hidden = NO;
         _tableView.hidden = YES;
     }
@@ -660,14 +660,16 @@ static UIImage *image_0, *image_1;
     }
     
     [self updatePointAndBean];
-    _pointButton.selected = NO;
-    _beanButton.selected = NO;
+    _pointDrawButton.selected = NO;
+    _beanDrawButton.selected = NO;
     button.selected = YES;
     [self startDisplayLink];
 }
 
 - (void)freeDrawButtonClicked:(UIButton *) button {
     
+    _pointDrawButton.selected = NO;
+    _beanDrawButton.selected = NO;
     [self startDisplayLink];
 }
 #pragma mark - UITableViewDataSource

@@ -67,7 +67,6 @@
     [mAttributedString appendAttributedString:contentAttributedString];
     _textView.attributedText = [mAttributedString copy];
     _textView.contentInset = UIEdgeInsetsMake(15, 0, 15, 0);
-    _textView.contentOffset = CGPointMake(-200, -200);
     _textView.editable = NO;
     [_InfoButton setBackgroundImage:[UIImage imageWithColor:NGGViceColor] forState:UIControlStateNormal];
     [_submitButton setBackgroundImage:[UIImage imageWithColor:NGGViceColor] forState:UIControlStateNormal];
@@ -81,6 +80,12 @@
     [_rewordView addGestureRecognizer:tapGestureRecognizer];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    _textView.contentOffset = CGPointMake(0, 0);
+
+}
 - (void)refreshUI {
     
     _carouselView.imageURLs = @[[_goodsInfo stringForKey:@"goods_pic"]];

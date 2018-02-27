@@ -23,7 +23,8 @@
     UIView *view = [[UIView alloc] initWithFrame:SCREEN_BOUNDS];
     self.view = view;
     
-    _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT, VIEW_W(self.view), VIEW_H(self.view) - STATUS_BAR_HEIGHT - HOME_INDICATOR)];
+    _webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + NAVIGATION_BAR_HEIGHT, VIEW_W(self.view), VIEW_H(self.view) - STATUS_BAR_HEIGHT - HOME_INDICATOR)];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     _webView.navigationDelegate = self;
     [view addSubview:_webView];
 }
