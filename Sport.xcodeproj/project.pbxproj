@@ -220,7 +220,6 @@
 		3D45CB6C1FCC0128006EF330 /* UITextView+Placeholder.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB6B1FCC0128006EF330 /* UITextView+Placeholder.m */; };
 		3D45CB701FCC0C14006EF330 /* NGGModifyPasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB6E1FCC0C14006EF330 /* NGGModifyPasswordViewController.m */; };
 		3D45CB711FCC0C14006EF330 /* NGGModifyPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D45CB6F1FCC0C14006EF330 /* NGGModifyPasswordViewController.xib */; };
-		3D45CB751FCC1434006EF330 /* NGGMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB741FCC1434006EF330 /* NGGMessageViewController.m */; };
 		3D45CB781FCC1CAC006EF330 /* NGGSystemMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB771FCC1CAC006EF330 /* NGGSystemMessageViewController.m */; };
 		3D45CB7C1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB7A1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.m */; };
 		3D45CB7D1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D45CB7B1FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.xib */; };
@@ -233,6 +232,8 @@
 		3D45CB921FCD6303006EF330 /* NGGRechargeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB911FCD6303006EF330 /* NGGRechargeModel.m */; };
 		3D45CB971FCD7156006EF330 /* NGGConsumptionDeatilViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D45CB951FCD7156006EF330 /* NGGConsumptionDeatilViewController.m */; };
 		3D45CB981FCD7156006EF330 /* NGGConsumptionDeatilViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D45CB961FCD7156006EF330 /* NGGConsumptionDeatilViewController.xib */; };
+		3D46EE142043B37900666A8D /* NGGAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D46EE122043B37900666A8D /* NGGAddressViewController.m */; };
+		3D46EE152043B37900666A8D /* NGGAddressViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D46EE132043B37900666A8D /* NGGAddressViewController.xib */; };
 		3D4B1BD91FC6A0C600FBAB6C /* NGGUserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D4B1BD81FC6A0C600FBAB6C /* NGGUserViewController.xib */; };
 		3D4B1BDD1FC7BF7F00FBAB6C /* NGGUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4B1BDC1FC7BF7F00FBAB6C /* NGGUser.m */; };
 		3D4B1BE01FC7C4F500FBAB6C /* NGGModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D4B1BDF1FC7C4F500FBAB6C /* NGGModel.m */; };
@@ -739,8 +740,6 @@
 		3D45CB6D1FCC0C14006EF330 /* NGGModifyPasswordViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGModifyPasswordViewController.h; sourceTree = "<group>"; };
 		3D45CB6E1FCC0C14006EF330 /* NGGModifyPasswordViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGModifyPasswordViewController.m; sourceTree = "<group>"; };
 		3D45CB6F1FCC0C14006EF330 /* NGGModifyPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGModifyPasswordViewController.xib; sourceTree = "<group>"; };
-		3D45CB731FCC1434006EF330 /* NGGMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGMessageViewController.h; sourceTree = "<group>"; };
-		3D45CB741FCC1434006EF330 /* NGGMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGMessageViewController.m; sourceTree = "<group>"; };
 		3D45CB761FCC1CAC006EF330 /* NGGSystemMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGSystemMessageViewController.h; sourceTree = "<group>"; };
 		3D45CB771FCC1CAC006EF330 /* NGGSystemMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGSystemMessageViewController.m; sourceTree = "<group>"; };
 		3D45CB791FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGSystemMessageTableViewCell.h; sourceTree = "<group>"; };
@@ -761,6 +760,9 @@
 		3D45CB941FCD7156006EF330 /* NGGConsumptionDeatilViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGConsumptionDeatilViewController.h; sourceTree = "<group>"; };
 		3D45CB951FCD7156006EF330 /* NGGConsumptionDeatilViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGConsumptionDeatilViewController.m; sourceTree = "<group>"; };
 		3D45CB961FCD7156006EF330 /* NGGConsumptionDeatilViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGConsumptionDeatilViewController.xib; sourceTree = "<group>"; };
+		3D46EE112043B37900666A8D /* NGGAddressViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGAddressViewController.h; sourceTree = "<group>"; };
+		3D46EE122043B37900666A8D /* NGGAddressViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGAddressViewController.m; sourceTree = "<group>"; };
+		3D46EE132043B37900666A8D /* NGGAddressViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGAddressViewController.xib; sourceTree = "<group>"; };
 		3D4B1BD81FC6A0C600FBAB6C /* NGGUserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NGGUserViewController.xib; sourceTree = "<group>"; };
 		3D4B1BDB1FC7BF7F00FBAB6C /* NGGUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NGGUser.h; sourceTree = "<group>"; };
 		3D4B1BDC1FC7BF7F00FBAB6C /* NGGUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NGGUser.m; sourceTree = "<group>"; };
@@ -1221,10 +1223,10 @@
 				3D35EC821FB2F78800E01659 /* Define */,
 				3D35EC861FB2F78800E01659 /* Manager */,
 				3D35EC8A1FB2F78800E01659 /* Modules */,
-				3D35ECC61FB2F78800E01659 /* Resource */,
 				3D35ECD91FB2F78900E01659 /* ThirdParty */,
 				3D35ED931FB2F78900E01659 /* Utils */,
 				3D35ECC41FB2F78800E01659 /* NGG-Prefix.pch */,
+				3D46EE1620441AA000666A8D /* New Group */,
 				3D35EC841FB2F78800E01659 /* Info.plist */,
 				3D35EC851FB2F78800E01659 /* main.m */,
 				3D35EC7E1FB2F78800E01659 /* LaunchScreen.storyboard */,
@@ -1369,13 +1371,6 @@
 				3D4B1BD81FC6A0C600FBAB6C /* NGGUserViewController.xib */,
 			);
 			path = User;
-			sourceTree = "<group>";
-		};
-		3D35ECC61FB2F78800E01659 /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resource;
 			sourceTree = "<group>";
 		};
 		3D35ECD91FB2F78900E01659 /* ThirdParty */ = {
@@ -1807,8 +1802,6 @@
 		3D45CB721FCC1410006EF330 /* Message */ = {
 			isa = PBXGroup;
 			children = (
-				3D45CB731FCC1434006EF330 /* NGGMessageViewController.h */,
-				3D45CB741FCC1434006EF330 /* NGGMessageViewController.m */,
 				3D45CB761FCC1CAC006EF330 /* NGGSystemMessageViewController.h */,
 				3D45CB771FCC1CAC006EF330 /* NGGSystemMessageViewController.m */,
 				3D45CB791FCC1CD7006EF330 /* NGGSystemMessageTableViewCell.h */,
@@ -1853,6 +1846,13 @@
 				3DA19B391FDE986400B19257 /* NGGConsumptionTableViewCell.xib */,
 			);
 			path = ConsumptionDetail;
+			sourceTree = "<group>";
+		};
+		3D46EE1620441AA000666A8D /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "New Group";
 			sourceTree = "<group>";
 		};
 		3D4B1BDA1FC7BF5700FBAB6C /* Model */ = {
@@ -2146,6 +2146,9 @@
 		3DE538811FDA74A0004D80AA /* Prize */ = {
 			isa = PBXGroup;
 			children = (
+				3D46EE112043B37900666A8D /* NGGAddressViewController.h */,
+				3D46EE122043B37900666A8D /* NGGAddressViewController.m */,
+				3D46EE132043B37900666A8D /* NGGAddressViewController.xib */,
 				3DE538821FDA7526004D80AA /* NGGPrizeListViewController.h */,
 				3DE538831FDA7526004D80AA /* NGGPrizeListViewController.m */,
 				3DE538851FDA7676004D80AA /* NGGPrizeTableViewCell.h */,
@@ -2298,6 +2301,7 @@
 				3DA19B3B1FDE986400B19257 /* NGGConsumptionTableViewCell.xib in Resources */,
 				3D74A29A1FE1223F00108F06 /* NGGGuessOrderDoneView.xib in Resources */,
 				3D07BEE21FD7DE5B00BC4A64 /* NGGShopItemCollectionViewCell.xib in Resources */,
+				3D46EE152043B37900666A8D /* NGGAddressViewController.xib in Resources */,
 				3D35EE571FB3073D00E01659 /* NGGGuessCollectionViewCell.xib in Resources */,
 				3D931D3B202BE015005A6D18 /* NGGDarenGameListHeaderView.xib in Resources */,
 				3D35EDE71FB2F78900E01659 /* DMPictureBrowserViewController.Bundle in Resources */,
@@ -2442,7 +2446,6 @@
 				3D07BEFE1FD90B9600BC4A64 /* SCLSwitchView.m in Sources */,
 				3D07BEB31FD66E3400BC4A64 /* SRHTTPConnectMessage.m in Sources */,
 				3D35EE061FB2F78900E01659 /* UIScrollView+MJExtension.m in Sources */,
-				3D45CB751FCC1434006EF330 /* NGGMessageViewController.m in Sources */,
 				3D07BEB41FD66E3400BC4A64 /* SRLog.m in Sources */,
 				3D07BE721FD4E0F900BC4A64 /* NGGDateCollectionViewCell.m in Sources */,
 				3D35EDF11FB2F78900E01659 /* NSArray+MASAdditions.m in Sources */,
@@ -2454,6 +2457,7 @@
 				3D84398C20034A9400DE29EA /* NGGRecordViewController.m in Sources */,
 				3D07BEAF1FD66E3400BC4A64 /* SRPinningSecurityPolicy.m in Sources */,
 				3D07BEFB1FD90B9600BC4A64 /* SCLAlertViewResponder.m in Sources */,
+				3D46EE142043B37900666A8D /* NGGAddressViewController.m in Sources */,
 				3D35EDB21FB2F78900E01659 /* NGGHomeBannerCollectionViewCell.m in Sources */,
 				3D07BEB01FD66E3400BC4A64 /* SRConstants.m in Sources */,
 				3DA19B3E1FDFCFAC00B19257 /* NGGGuessSectionModel.m in Sources */,
@@ -2727,7 +2731,7 @@
 					"\"-Objc -all_load\"",
 				);
 				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.damaiapp.IAPTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ubeide.gamePlatform;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2772,7 +2776,7 @@
 					"\"-Objc -all_load\"",
 				);
 				OTHER_LIBTOOLFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.damaiapp.IAPTest;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ubeide.gamePlatform;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

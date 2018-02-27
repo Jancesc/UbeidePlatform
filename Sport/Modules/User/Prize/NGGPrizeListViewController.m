@@ -10,6 +10,7 @@
 #import "NGGPrizeTableViewCell.h"
 #import "MJRefresh.h"
 #import "Masonry.h"
+#import "NGGAddressViewController.h"
 
 static NSString *kPrizeCellIdentifier = @"prizeCellIdentifier";
 
@@ -19,6 +20,8 @@ static NSString *kPrizeCellIdentifier = @"prizeCellIdentifier";
 }
 
 @property (nonatomic, strong) NSMutableArray *arrayOfPrize;
+@property (nonatomic, strong) NSMutableDictionary *dictOfAddress;
+
 
 @end
 
@@ -29,12 +32,17 @@ static NSString *kPrizeCellIdentifier = @"prizeCellIdentifier";
     // Do any additional setup after loading the view.
     self.title = @"我的奖品";
     [self configueUIComponents];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
     [self  refreshData];
 }
 
 - (void)configueUIComponents {
 
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + NAVIGATION_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - STATUS_BAR_HEIGHT - NAVIGATION_BAR_HEIGHT - HOME_INDICATOR) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_HEIGHT + NAVIGATION_BAR_HEIGHT, SCREEN_WIDTH, SCREEN_HEIGHT - STATUS_BAR_HEIGHT - NAVIGATION_BAR_HEIGHT - HOME_INDICATOR) style:UITableViewStyleGrouped];
     [self.view addSubview:_tableView];
 
     if (@available(iOS 11.0, *)) {
@@ -72,15 +80,14 @@ static NSString *kPrizeCellIdentifier = @"prizeCellIdentifier";
 
     [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=info.myPrize" parameters:@{@"page" : @(page)} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        [self dismissHUD];
-        [_tableView.mj_header endRefreshing];
-        [self dismissHUD];
-        NSArray *dataArray = [self arrayData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+        [_tableView.mj_footer endRefreshing];
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
             
             [self showErrorHUDWithText:msg];
         }];
-        if (dataArray) {
+        if (dict) {
             
+            NSArray *dataArray = [dict arrayForKey:@"list"];
             [_arrayOfPrize addObjectsFromArray:dataArray];
             [_tableView reloadData];
             if ([dataArray count] < NGGMaxCountPerPage) {
@@ -90,9 +97,7 @@ static NSString *kPrizeCellIdentifier = @"prizeCellIdentifier";
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
-        
-        [self dismissHUD];
-        [_tableView.mj_header endRefreshing];
+        [_tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -103,20 +108,27 @@ static NSString *kPrizeCellIdentifier = @"prizeCellIdentifier";
         
         [self dismissHUD];
         [_tableView.mj_header endRefreshing];
-        [self dismissHUD];
-        NSArray *dataArray = [self arrayData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
-            
+        NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+        
             [self showErrorHUDWithText:msg];
         }];
-        if (dataArray) {
+        if (dict) {
             
-            _arrayOfPrize = [NSMutableArray arrayWithArray:dataArray];
-            if ([dataArray count] == NGGMaxCountPerPage) {
+            _arrayOfPrize = [[dict arrayForKey:@"list"] mutableCopy];
+            _dictOfAddress = [[dict dictionaryForKey:@"address"] mutableCopy];
+            if ([_arrayOfPrize count] == NGGMaxCountPerPage) {
                 
                 [self setupLoadMoreFooter];
             } else {
                 
                 _tableView.mj_footer = nil;
+            }
+            if ([_arrayOfPrize count] == 0) {
+                
+                [self showEmptyViewInView:_tableView];
+            } else {
+                
+                [self dismissEmptyView];
             }
             [_tableView reloadData];
         }
@@ -169,7 +181,32 @@ static NSString *kPrizeCellIdentifier = @"prizeCellIdentifier";
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    NSDictionary *prizeInfo = _arrayOfPrize[indexPath.row];
+    NSInteger status = [prizeInfo intForKey:@"status"];
+    switch (status) {
+            
+        case 1: {//待领取
+            
+            NGGAddressViewController *controller = [[NGGAddressViewController alloc] initWithNibName:@"NGGAddressViewController" bundle:nil];
+            controller.dictOfAddress = _dictOfAddress;
+            controller.prizeInfo = _arrayOfPrize[indexPath.row];
+            [self.navigationController pushViewController:controller animated:YES];
+            
+            break;
+        }
+        case 2: {//已领取
+            
     
+            break;
+        }
+        case 3: {//已截止
+            
+  
+            break;
+        }
+        default:
+            break;
+    }
 }
 
 

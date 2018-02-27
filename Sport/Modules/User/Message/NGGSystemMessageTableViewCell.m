@@ -8,6 +8,7 @@
 
 #import "NGGSystemMessageTableViewCell.h"
 #import "UIImageView+WebCache.h"
+#import "JYCommonTool.h"
 
 @interface NGGSystemMessageTableViewCell () {
     
@@ -80,14 +81,9 @@
     NSAttributedString *content = [[NSAttributedString alloc] initWithString:[cellInfo stringForKey:@"content"] attributes:@{NSFontAttributeName : [UIFont systemFontOfSize:14], NSParagraphStyleAttributeName : paragraphStyle}];
     _contentLabel.attributedText = content;
     
-    _timeLabel.text = [self dateFormatter:@"1065434"];
-    [_headerImageView sd_setImageWithURL:[NSURL URLWithString:[cellInfo stringForKey:@"user_img"]] placeholderImage:[UIImage imageNamed:@"avatar_placeholder"]];
+    _timeLabel.text = [JYCommonTool dateFormatWithInterval:[cellInfo intForKey:@"ct"] format:@"yyyy/MM/dd HH:mm"];
 }
 
-- (NSString *)dateFormatter:(NSString *)dateString {
-    
-    return @"2017/07/31 凌晨";
-}
 
 @end
 

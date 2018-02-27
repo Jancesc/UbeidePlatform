@@ -44,7 +44,8 @@
 //    "order_id": "221426852717464383",
 //    "goods_name": "20元充值卡",
 //    "goods_pic": "http://wx7.bigh5.com/fb/web/uploads/1711/081011231434.png",
-//    "status": "3"
+    //    "status": "3"//1待领取 2已领取 3已截止
+
 //    "et": "1512978944",
 
     _cellInfo = cellInfo;
@@ -65,13 +66,13 @@
         case 2: {//已领取
             
             [_statusButton setTitle:@"已领取" forState:UIControlStateNormal];
-            [_statusButton setBackgroundImage:[UIImage imageWithColor:NGGColorCCC] forState:UIControlStateNormal];
+            [_statusButton setBackgroundImage:[UIImage imageWithColor:NGGPrimaryColor] forState:UIControlStateNormal];
             break;
         }
         case 3: {//已截止
             
             [_statusButton setTitle:@"已截止" forState:UIControlStateNormal];
-            [_statusButton setBackgroundImage:[UIImage imageWithColor:NGGPrimaryColor] forState:UIControlStateNormal];
+            [_statusButton setBackgroundImage:[UIImage imageWithColor:NGGColorCCC] forState:UIControlStateNormal];
             break;
         }
         default:

@@ -29,6 +29,7 @@
                     <segments>
                         <segment title="赛前"/>
                         <segment title="滚球"/>
+                        <segment title="达人赛"/>
                     </segments>
                 </segmentedControl>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="auU-61-lER">

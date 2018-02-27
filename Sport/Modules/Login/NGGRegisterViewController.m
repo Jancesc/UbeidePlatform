@@ -8,7 +8,7 @@
 
 #import "NGGRegisterViewController.h"
 #import "POP.h"
-
+#import "NGGWebViewController.h"
 @interface NGGRegisterViewController ()<UITextFieldDelegate> {
     
     IBOutlet UITextField *_accountField;
@@ -281,6 +281,11 @@
 }
 
 - (IBAction)protocolButtonClicked:(UIButton *)sender {
+    
+    NGGWebViewController *controller = [[NGGWebViewController alloc] init];
+    controller.urlString = NGGUserAgreementURLString;
+    controller.title = @"用户协议";
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 

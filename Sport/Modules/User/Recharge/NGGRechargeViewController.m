@@ -161,8 +161,8 @@ static NSString *kRechargeCollectionViewCellidentifier = @"NGGRechargeCollection
 //            coin = 1;
 //            "order_id" = 21810561960801169;
             _orderID = [dict stringForKey:@"order_id"];
-//            [self InAppPurchase:[NSString stringWithFormat:@"coin_%@", [dict stringForKey:@"coin"]]];
-            [self InAppPurchase:@"10RoomCards"];
+            [self InAppPurchase:[NSString stringWithFormat:@"coin_%@", [dict stringForKey:@"coin"]]];
+//            [self InAppPurchase:@"10RoomCards"];
         }
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
 

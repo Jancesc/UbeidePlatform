@@ -317,6 +317,8 @@ static NSOperationQueue *sRequestQueue = nil;
 
 - (void) handleTokenFailed
 {
+    [self dismissHUD];
+    [self dismissAnimationLoadingHUD];
     [self presentLoginViewControllerWithAlertView];
 }
 

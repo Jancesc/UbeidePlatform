@@ -21,6 +21,8 @@ static NSString *kRecordTableViewCellIdentifier = @"kRecordTableViewCellIdentifi
 
 @property (nonatomic, strong) NSMutableArray *arrayOfPreRecord;
 @property (nonatomic, strong) NSMutableArray *arrayOfLiveRecord;
+@property (nonatomic, strong) NSMutableArray *arrayOfDarenGame;
+
 
 @end
 
@@ -55,7 +57,10 @@ static NSString *kRecordTableViewCellIdentifier = @"kRecordTableViewCellIdentifi
     _segmentControl.layer.cornerRadius = 5.f;
     _segmentControl.clipsToBounds = YES;
     _segmentControl.layer.borderWidth = 1.f;
-    
+    if (_fromDarenGame) {
+        
+        _segmentControl.selectedSegmentIndex = 2;
+    }
     _tableView.separatorColor = NGGSeparatorColor;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     _tableView.rowHeight = 130.f;
@@ -74,7 +79,8 @@ static NSString *kRecordTableViewCellIdentifier = @"kRecordTableViewCellIdentifi
 - (void)refreshUI {
     
     [_tableView reloadData];
-    NSArray *array = _segmentControl.selectedSegmentIndex == 0 ? _arrayOfPreRecord : _arrayOfLiveRecord;
+    NSArray *array = _segmentControl.selectedSegmentIndex == 0 ? _arrayOfPreRecord :
+                     _segmentControl.selectedSegmentIndex == 1 ? _arrayOfLiveRecord : _arrayOfDarenGame;
     NSInteger arrayCount = [array count];
     if (arrayCount == 0) {
         
@@ -111,9 +117,12 @@ static NSString *kRecordTableViewCellIdentifier = @"kRecordTableViewCellIdentifi
             if (_segmentControl.selectedSegmentIndex == 0) {
                 
                 _arrayOfPreRecord = [dataArray mutableCopy];
-            } else {
+            } else if (_segmentControl.selectedSegmentIndex == 1) {
                 
                 _arrayOfLiveRecord = [dataArray mutableCopy];
+            } else {
+                
+                _arrayOfDarenGame = [dataArray mutableCopy];
             }
         }
         [self refreshUI];
@@ -125,7 +134,8 @@ static NSString *kRecordTableViewCellIdentifier = @"kRecordTableViewCellIdentifi
 
 - (void)loadMoreData {
     
-    NSArray *array = _segmentControl.selectedSegmentIndex == 0 ? _arrayOfPreRecord : _arrayOfLiveRecord;
+    NSArray *array = _segmentControl.selectedSegmentIndex == 0 ? _arrayOfPreRecord :
+                     _segmentControl.selectedSegmentIndex == 1 ? _arrayOfLiveRecord : _arrayOfDarenGame;
     NSInteger page = (NSInteger)([array count] / NGGMaxCountPerPage) + 1;
     NSDictionary *params = @{@"type" : @(_segmentControl.selectedSegmentIndex + 1), @"page" : @(page)};
     
@@ -141,9 +151,12 @@ static NSString *kRecordTableViewCellIdentifier = @"kRecordTableViewCellIdentifi
             if (_segmentControl.selectedSegmentIndex == 0) {
                 
                 [_arrayOfPreRecord addObjectsFromArray: dataArray];
-            } else {
+            } else if(_segmentControl.selectedSegmentIndex == 1) {
                 
                 [_arrayOfLiveRecord addObjectsFromArray: dataArray];
+            } else {
+                
+                [_arrayOfDarenGame addObjectsFromArray:dataArray];
             }
         }
         
@@ -169,7 +182,8 @@ static NSString *kRecordTableViewCellIdentifier = @"kRecordTableViewCellIdentifi
 
 - (void)segmentControlValueChanged:(UISegmentedControl *) segmentControl {
     
-    NSArray *array = _segmentControl.selectedSegmentIndex == 0 ? _arrayOfPreRecord : _arrayOfLiveRecord;
+    NSArray *array = _segmentControl.selectedSegmentIndex == 0 ? _arrayOfPreRecord :
+                     _segmentControl.selectedSegmentIndex == 1 ? _arrayOfLiveRecord : _arrayOfDarenGame;
     if(array == nil) {
         
         [self loadRecord];
@@ -188,15 +202,16 @@ static NSString *kRecordTableViewCellIdentifier = @"kRecordTableViewCellIdentifi
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    NSArray *array = _segmentControl.selectedSegmentIndex == 0 ? _arrayOfPreRecord : _arrayOfLiveRecord;
-    
+    NSArray *array = _segmentControl.selectedSegmentIndex == 0 ? _arrayOfPreRecord :
+                     _segmentControl.selectedSegmentIndex == 1 ? _arrayOfLiveRecord : _arrayOfDarenGame;
     return [array count];
 }
 
 - (UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     NGGRecordTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kRecordTableViewCellIdentifier forIndexPath:indexPath];
-    NSArray *array = _segmentControl.selectedSegmentIndex == 0 ? _arrayOfPreRecord : _arrayOfLiveRecord;
+    NSArray *array = _segmentControl.selectedSegmentIndex == 0 ? _arrayOfPreRecord :
+                     _segmentControl.selectedSegmentIndex == 1 ? _arrayOfLiveRecord : _arrayOfDarenGame;
     cell.cellInfo = array[indexPath.row];
     return cell;
 }
@@ -220,8 +235,10 @@ static NSString *kRecordTableViewCellIdentifier = @"kRecordTableViewCellIdentifi
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NGGGuessRecordViewController *controller = [[NGGGuessRecordViewController alloc] initWithNibName:@"NGGGuessRecordViewController" bundle:nil];
-    NSArray *array = _segmentControl.selectedSegmentIndex == 0 ? _arrayOfPreRecord : _arrayOfLiveRecord;
+    NSArray *array = _segmentControl.selectedSegmentIndex == 0 ? _arrayOfPreRecord :
+                     _segmentControl.selectedSegmentIndex == 1 ? _arrayOfLiveRecord : _arrayOfDarenGame;
     NSDictionary *cellInfo = array[indexPath.row];
+    controller.gameType = _segmentControl.selectedSegmentIndex + 1;
     controller.gameID = [cellInfo stringForKey:@"match_id"];
     [self.navigationController pushViewController:controller animated:YES];
 }

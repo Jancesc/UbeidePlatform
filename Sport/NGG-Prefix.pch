@@ -42,4 +42,8 @@
 
 #define NGGMaxCountPerPage 12
 
+#define NGGHelperURLString @"http://wx7.bigh5.com/fb/web/webapp/dist/#/matchRuleAPP"
+#define NGGUserAgreementURLString  @"http://wx7.bigh5.com/fb/web/webapp/dist/#/userProtocolAPP"
+
+
 #endif /* NGG_Prefix_pch */

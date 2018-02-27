@@ -10,4 +10,5 @@
 
 @interface NGGRecordViewController : NGGCommonViewController
 
+@property (nonatomic, assign) BOOL fromDarenGame;
 @end

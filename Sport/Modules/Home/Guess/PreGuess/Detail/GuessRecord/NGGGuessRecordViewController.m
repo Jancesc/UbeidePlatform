@@ -43,10 +43,6 @@ static NSString *kGuessRecordCellIdentifier = @"guessRecordCell";
     // Do any additional setup after loading the view from its nib.
     self.title = @"投注记录";
     [self configueUIComponents];
-    if ([_arrayOfRecord count] == 0) {
-        
-        _tableView.userInteractionEnabled = NO;
-    }
     [self refreshUI];
 }
 
@@ -84,7 +80,28 @@ static NSString *kGuessRecordCellIdentifier = @"guessRecordCell";
 - (void)loadRecord {
     
     [self showLoadingHUDWithText:nil];
-    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=game.playRecord" parameters:@{@"match_id" : _gameID} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+    
+    NSString *urlString = nil;
+    switch (_gameType) {
+        case (NGGGameTypeLive): {
+            
+            urlString = @"/api.php?method=live.playRecord";
+                break;
+        }
+        case (NGGGameTypePreGame): {
+          
+            urlString = @"/api.php?method=game.playRecord";
+            break;
+        }
+        case (NGGGameTypeDaren): {
+            
+            urlString = @"/api.php?method=expert.playRecord";
+            break;
+        }
+        default:
+            break;
+    }
+    [[NGGHTTPClient defaultClient] postPath:urlString parameters:@{@"match_id" : _gameID} willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
         
         [self dismissHUD];
         NSDictionary *dict = [self dictionaryData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
@@ -113,10 +130,10 @@ static NSString *kGuessRecordCellIdentifier = @"guessRecordCell";
             }
             _gameModel.homeScore = [scoreArray firstObject];
             _gameModel.awayScore = [scoreArray lastObject];
-            _gameModel.status = [dict stringForKey:@"status"];
-            _gameModel.profit = [dict stringForKey:@"profit"];
-            _gameModel.count = [dict stringForKey:@"bean_total"];
-            _gameModel.winCount = [dict stringForKey:@"win_total"];
+            _gameModel.status = [gameInfo stringForKey:@"status"];
+            _gameModel.profit = [gameInfo stringForKey:@"profit"];
+            _gameModel.count = [gameInfo stringForKey:@"bean_total"];
+            _gameModel.winCount = [gameInfo stringForKey:@"win_total"];
             
             NSArray *guessedArray = [dict arrayForKey:@"record"];
             NSMutableArray *arrayM = [NSMutableArray array];
@@ -138,7 +155,13 @@ static NSString *kGuessRecordCellIdentifier = @"guessRecordCell";
 - (void)refreshUI {
     
     [_tableView reloadData];
-    
+    if ([_arrayOfRecord count] == 0) {
+        
+        _tableView.userInteractionEnabled = NO;
+    } else {
+        
+        _tableView.userInteractionEnabled = YES;
+    }
     if (_gameModel) {
         
         _homeLabel.text = _gameModel.homeName;

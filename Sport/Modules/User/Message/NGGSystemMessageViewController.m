@@ -8,13 +8,14 @@
 
 #import "NGGSystemMessageViewController.h"
 #import "NGGSystemMessageTableViewCell.h"
+#import "MJRefresh.h"
 
 static NSString *kSystemMessageTableViewCellIdentifier = @"wystemMessageTableViewCellIdentifier";
 @interface NGGSystemMessageViewController ()<UITableViewDelegate, UITableViewDataSource> {
     
     UITableView *_tableView;
 }
-@property (nonatomic, strong) NSArray *arrayOfMessage;
+@property (nonatomic, strong) NSMutableArray *arrayOfMessage;
 @end
 
 @implementation NGGSystemMessageViewController
@@ -43,48 +44,75 @@ static NSString *kSystemMessageTableViewCellIdentifier = @"wystemMessageTableVie
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"系统消息";
+    self.title = @"消息中心";
     [self configueData];
 }
 
 
 - (void)configueData {
     
-    _arrayOfMessage = @[
-                        @{
-                            @"date" : @"",
-                            @"content" : @"出来时就不会被计算高度了。这是因为从 iOS7 开始，iOS7 中引入了 Dynamic Type 的功能，这个功能使得用户可以调整应用中字体的大小，而 iOS7 中的所有系统应用都适配了这个功能需求。但是从 iOS8 开始，Apple 希望所有的应用都可以适配这个功能需求，于是就取消了 Cell 在自动算高时的高度缓存",
-                            @"user_img" : @"http://upload.jianshu.io/users/upload_avatars/737583/c6ff9abb68c3.png?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96"
-                            },
-                        @{
-                            @"date" : @"",
-                            @"content" : @"算过高度，那么它下一次滑动出来时就不会被计算高度了。这是因为从 iOS7 开始，iOS7 中引入了 Dynamic Type 的功能，这个功能使得用户可以调整应用中字体的大小，而 iOS7 中的所有系统应用都适配了这个功能需求。但是从 iOS8 开始，Apple 希望所有的应用都可以适配这个功能需求，于是就取消了 Cell 在自动算高时的高度缓存",
-                            @"user_img" : @"http://upload.jianshu.io/users/upload_avatars/737583/c6ff9abb68c3.png?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96"
-                            },
-                        @{
-                            @"date" : @"",
-                            @"content" : @"如的高度缓存如的高度缓存如的\n高度缓存如的高度缓存",
-                            @"user_img" : @"http://upload.jianshu.io/users/upload_avatars/737583/c6ff9abb68c3.png?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96"
-                            },
-                        @{
-                            @"date" : @"",
-                            @"content" : @"如的高度缓存",
-                            @"user_img" : @"http://upload.jianshu.io/users/upload_avatars/737583/c6ff9abb68c3.png?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96"
-                            },
-                        @{
-                            @"date" : @"",
-                            @"content" : @"高度\n，你就会发现一\n\n旦 Cell 在之前被\n计算过\n高度，那么它下\n一次滑动出来时就不会被计算高\n度了。这是因为\n从 iOS7 开始，iOS7\n 中\n引入了 \nDynamic Type 的功能，这个\n功能使得用户可以调整应\n用中字体的大小，而 iOS7 中的\n所有系统应用都适配了这个功能需求。但是从 iOS8 开\n始，Apple 希望所有的\n应用\n都可以适配这个功能需求，于是就\n取消了 \nCell 在自动算高时\n的高度缓存",
-                            @"user_img" : @"http://upload.jianshu.io/users/upload_avatars/737583/c6ff9abb68c3.png?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96"
-                            },
-                        @{
-                            @"date" : @"",
-                            @"content" : @"这个功能使得用户可以调整应用中字体的大小，而 iOS7 中的所有系统应用都适配了这个功能需求。但是从 iOS8 开始，Apple 希望所有的应用都可以适配这个功能需求，于是就取消了 Cell 在自动算高时的高度缓存",
-                            @"user_img" : @"http://upload.jianshu.io/users/upload_avatars/737583/c6ff9abb68c3.png?imageMogr2/auto-orient/strip|imageView2/1/w/96/h/96"
-                            },
-                        ];
-    [_tableView reloadData];
-    
+    [self showAnimationLoadingHUDWithText:nil];
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=info.msgList" parameters:nil willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [self dismissAnimationLoadingHUD];
+        NSArray *dataArray = [self arrayData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+        
+            [self showErrorHUDWithText:nil];
+        }];
+        if (dataArray) {
+            
+            _arrayOfMessage = [dataArray mutableCopy];
+            [_tableView reloadData];
+            if ([dataArray count] == NGGMaxCountPerPage) {
+                
+                [self setupLoadMoreFooter];
+            } else {
+                
+                _tableView.mj_footer = nil;
+            }
+            
+            if ([dataArray count] == 0) {
+                
+                [self showEmptyViewInView:_tableView.backgroundView];
+                
+            }
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [self dismissAnimationLoadingHUD];
+    }];
 }
+
+- (void)loadMoreData {
+    
+    [[NGGHTTPClient defaultClient] postPath:@"/api.php?method=info.msgList" parameters:nil willContainsLoginSession:YES success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [_tableView.mj_footer endRefreshing];
+        NSArray *dataArray = [self arrayData:responseObject errorHandler:^(NSInteger code, NSString *msg) {
+            
+            [self showErrorHUDWithText:nil];
+        }];
+        if (dataArray) {
+            
+            [_arrayOfMessage addObjectsFromArray:dataArray];
+            [_tableView reloadData];
+            if ([dataArray count] < NGGMaxCountPerPage) {
+                
+                _tableView.mj_footer = nil;
+            }
+        }
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        [_tableView.mj_footer endRefreshing];
+    }];
+}
+
+- (void) setupLoadMoreFooter {
+    
+    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    _tableView.mj_footer = footer;
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

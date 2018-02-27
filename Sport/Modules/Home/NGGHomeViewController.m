@@ -370,12 +370,10 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
         }];
     } else if (index == 5) {
         
-        NGGH5GameViewController *controller = [NGGH5GameViewController new];
-        controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-
-        [self presentViewController:controller animated:YES completion:^{
-            
-        }];
+        [self showErrorHUDWithText:@"暂无开通，敬请期待"];
+    } else if (index == 6) {
+        
+        [self showErrorHUDWithText:@"暂无开通，敬请期待"];
     }
     
 }
@@ -546,6 +544,7 @@ static NSString *kHomeHeaderIdentifier = @"NGGHomeHeaderReusableView";
             NGGGameListModel *model = [NGGGameListModel new];
             model.matchID = [itemInfo stringForKey:@"ext"];
             NGGDarenGameDetailViewController *controller = [[NGGDarenGameDetailViewController alloc] initWithNibName:@"NGGDarenGameDetailViewController" bundle:nil];
+            controller.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
             controller.model = model;
             model.registeryFee = @"--";
             NGGNavigationController *nav = [[NGGNavigationController alloc] initWithRootViewController:controller];;

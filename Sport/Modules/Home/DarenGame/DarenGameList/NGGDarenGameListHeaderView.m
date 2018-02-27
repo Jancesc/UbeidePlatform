@@ -25,6 +25,7 @@
     [super awakeFromNib];
     
     [_recordButton setBackgroundImage:[UIImage imageWithColor:UIColorWithRGB(0x23, 0x4d, 0xf1)] forState:UIControlStateNormal];
+    [_recordButton addTarget:self action:@selector(recordButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     _recordButton.layer.cornerRadius = 4.f;
     _recordButton.clipsToBounds = YES;
 }
@@ -39,4 +40,18 @@
     _nameLabel.text = currentUser.nickname;
     
 }
+
+#pragma mark - button actions
+
+- (void)recordButtonClicked:(UIButton *) button {
+    
+    if (_recordButtonHandler) {
+        
+        _recordButtonHandler();
+    }
+}
+
+
+
+
 @end

@@ -11,5 +11,6 @@
 @interface NGGDarenGameListHeaderView : UIView
 
 @property (nonatomic, strong) NSString *count;
+@property (nonatomic, copy) void (^recordButtonHandler) (void);
 
 @end

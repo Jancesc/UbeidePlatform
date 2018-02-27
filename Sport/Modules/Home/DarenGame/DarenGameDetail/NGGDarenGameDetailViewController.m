@@ -21,7 +21,7 @@
 #import "ZSBlockAlertView.h"
 #import "NGGDarenGameDetailPrizeViewController.h"
 #import "NGGDarenGameDetailPlayerListViewController.h"
-
+#import "NGGWebViewController.h"
 static NSString *kGuessCellIdentifier = @"NGGGuessCollectionViewCell";
 static NSString *kGuess2RowsCellIdentifier = @"NGGGuess2RowsCollectionViewCell";
 static NSString *kDescriptionCellIdentifier = @"NGGDescriptionCellIdentifier";
@@ -502,6 +502,10 @@ static NSString *kDetailHeaderIdentifier = @"NGGDetailHeaderReusableView";
 
 - (void)helpButtonClicked:(UIButton *) button {
     
+    NGGWebViewController *controller = [[NGGWebViewController alloc] init];
+    controller.urlString = NGGHelperURLString;
+    controller.title = @"玩法介绍";
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 - (void)segmentButtonClicked:(UIButton *) button {

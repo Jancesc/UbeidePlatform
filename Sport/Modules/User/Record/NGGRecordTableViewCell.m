@@ -64,6 +64,10 @@
     } else if ([cellInfo floatForKey:@"result"] < 0) {
         
         _totalLabel.textColor = NGGPrimaryColor;
+    } else {
+        
+        _totalLabel.textColor = NGGColor333;
+        
     }
     
     _totalLabel.text = [cellInfo stringForKey:@"result"];

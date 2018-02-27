@@ -17,5 +17,6 @@
 
 //另一种方式
 @property (nonatomic, strong) NSString *gameID;
+@property (nonatomic, assign) NGGGameType gameType;
 
 @end

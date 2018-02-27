@@ -11,7 +11,7 @@
 #import "NGGDarenGameListHeaderView.h"
 #import "MJRefresh.h"
 #import "NGGDarenGameDetailViewController.h"
-
+#import "NGGRecordViewController.h"
 static NSString *kDarenGameListTableViewCellIdentifier = @"darenGameListTableViewCellIdentifier";
 
 @interface NGGDarenGameListViewController ()<UITableViewDelegate, UITableViewDataSource,NGGDarenGameListTableViewCellDelegate> {
@@ -81,6 +81,10 @@ static NSString *kDarenGameListTableViewCellIdentifier = @"darenGameListTableVie
     [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
     
     _headerView = [[[NSBundle mainBundle] loadNibNamed:@"NGGDarenGameListHeaderView" owner:nil options:nil] lastObject];
+    _headerView.recordButtonHandler = ^{
+        
+        [weakSelf handlerRecordButtonClicked];
+    };
     _headerView.frame =CGRectMake(0, 0, SCREEN_WIDTH, 100);
     _tableView.tableHeaderView =_headerView;
     
@@ -184,6 +188,14 @@ static NSString *kDarenGameListTableViewCellIdentifier = @"darenGameListTableVie
     }];
 }
 
+#pragma mark - button actions
+
+- (void)handlerRecordButtonClicked{
+    
+    NGGRecordViewController *controller = [[NGGRecordViewController alloc] initWithNibName:@"NGGRecordViewController" bundle:nil];
+    controller.fromDarenGame = YES;
+    [self.navigationController pushViewController:controller animated:YES];
+}
 
 #pragma mark - NGGDarenGameListTableViewCellDelegate
 

@@ -10,7 +10,7 @@
 #import "NGGNavigationController.h"
 #import "NGGLoginViewController.h"
 #import "NGGUserInfoViewController.h"
-#import "NGGMessageViewController.h"
+#import "NGGSystemMessageViewController.h"
 #import "NGGExchangeViewController.h"
 #import "NGGRechargeViewController.h"
 #import "NGGRegisterViewController.h"
@@ -144,10 +144,11 @@
                              @"image" : @"user_message",
                              @"name"  : @"消息中心",
                              },
-                         @{
-                             @"image" : @"user_QRCode",
-                             @"name"  : @"我的邀请码",
-                             },],
+//                         @{
+//                             @"image" : @"user_QRCode",
+//                             @"name"  : @"我的邀请码",
+//                             },
+                         ],
                      ];
     
     [self refreshUI];
@@ -285,7 +286,7 @@
         [self.navigationController pushViewController:controller animated:YES];
     }  else if (indexPath.section == 1 && indexPath.row == 4) {
         
-        NGGMessageViewController *controller = [[NGGMessageViewController alloc] initWithNibName:@"NGGMessageViewController" bundle:nil];
+        NGGSystemMessageViewController *controller = [[NGGSystemMessageViewController alloc] init];
         controller.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:controller animated:YES];
     } else if (indexPath.section == 1 && indexPath.row == 1) {

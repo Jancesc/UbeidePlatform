@@ -12,7 +12,6 @@
 #import "NGGModifyNicknameViewController.h"
 #import "NGGNavigationController.h"
 #import "NGGModifyPasswordViewController.h"
-#import "NGGMessageViewController.h"
 #import "ZSBlockAlertView.h"
 @interface NGGUserInfoViewController()<UITableViewDelegate, UITableViewDataSource,UIActionSheetDelegate, UIImagePickerControllerDelegate,UINavigationControllerDelegate> {
     
